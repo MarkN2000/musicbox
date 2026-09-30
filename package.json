@@ -1,0 +1,8 @@
+{
+  "name": "music-box-score",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node check.mjs", "start": "node serve.mjs" },
+  "dependencies": { "@tonejs/midi": "2.0.28" }
+}
