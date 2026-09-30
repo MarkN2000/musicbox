@@ -4,6 +4,8 @@ const pitches = Array.from({length:41}, (_,i)=>93-i);
 const sample = [['C5','E5','G5'],[],['D5','F5'],['E5','G5','C6'],[],['D5','F5'],['E5','G5','C6']].flatMap((row,step)=>row.map(name=>({step,midi:noteNumber(name)})));
 let notes = sample, length = 32, page = 0, dirty = false, history = [];
 let sourceMidi = null, drag = null, audio = null, player = null, activeVoices = new Set();
+const audioBuffers = new Map();
+let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function snapshot(){return {notes:notes.map(note=>({...note})),length,page};}
@@ -39,7 +41,7 @@ function renderOutput(){
   $('noteStats').textContent=`${notes.length}音 · ${length}ステップ`;
   $('lineCount').textContent=`${length}行`;
   $('txtPreview').value=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length);
-  $('export').disabled=outside.length>0;$('exportWarning').hidden=!outside.length;
+  $('export').disabled=$('copyText').disabled=outside.length>0;$('exportWarning').hidden=!outside.length;
   $('exportWarning').textContent=`対応外の音が${outside.length}個あります。置き換えか除外を選んでください。プレビューには対応音だけを表示しています。`;
   renderUnsupported(outside);
 }
@@ -73,31 +75,43 @@ $('undo').onclick=()=>{stopPlayback();const previous=history.pop();if(!previous)
 async function confirmReplace(text){if(!dirty)return true;const dialog=$('confirmDialog');$('confirmText').textContent=text;dialog.returnValue='cancel';return new Promise(resolve=>{dialog.addEventListener('close',()=>resolve(dialog.returnValue==='ok'),{once:true});dialog.showModal();});}
 $('newScore').onclick=async()=>{if(!await confirmReplace('まだ書き出していない編集があります。新しい空の楽譜に置き換えます。'))return;stopPlayback();notes=[];length=32;page=0;history=[];dirty=false;sourceMidi=null;$('midiPanel').hidden=true;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';render();announce('空の楽譜を作りました。マスをクリックして音を入力してください。');};
 $('export').onclick=()=>{try{const text=serialize(notes,length);const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const anchor=document.createElement('a');anchor.href=url;anchor.download=($('fileName').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||'music-box')+'.txt';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);dirty=false;announce(`${length}行のTXTを書き出しました。再生間隔は${$('interval').value}msです。`);}catch(error){announce(error.message,true);}};
+$('copyText').onclick=async()=>{
+  let text;try{text=serialize(notes,length);}catch(error){announce(error.message,true);return;}
+  try{await navigator.clipboard.writeText(text);announce(`${text.split('\n').length-1}行のテキストをコピーしました。空行と末尾の改行も含まれます。`);}
+  catch{$('txtPreview').focus();$('txtPreview').select();announce('クリップボードにコピーできませんでした。選択したテキストをCtrl+Cでコピーしてください。',true);}
+};
 function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));$('outputInterval').textContent=`${$('interval').value}ms`;}
 $('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',()=>{stopPlayback();$('outputInterval').textContent=`${$('interval').value}ms`;});
-function stopPlayback(){if(player){clearTimeout(player.timer);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').disabled=false;$('stop').disabled=true;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');}
+function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').disabled=false;$('stop').disabled=true;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');}
+async function loadTone(midi){
+  if(audioBuffers.has(midi))return audioBuffers.get(midi);
+  const name=noteName(midi);
+  const response=await fetch(`audio/${encodeURIComponent(name)}.ogg`);
+  if(!response.ok)throw new Error(`${name}の音源を読み込めませんでした。もう一度試聴してください。`);
+  let buffer;try{buffer=await audio.decodeAudioData(await response.arrayBuffer());}catch{throw new Error(`${name}のOGG音源を再生できません。このブラウザのOGG対応を確認してください。`);}
+  audioBuffers.set(midi,buffer);return buffer;
+}
 function playTone(midi,time,volume){
-  const frequency=440*2**((midi-69)/12);
-  for(const [ratio,gainValue,decay]of[[1,volume,1.4],[2.76,volume*.2,.7]]){
-    const oscillator=audio.createOscillator(),gain=audio.createGain();oscillator.type='sine';oscillator.frequency.value=frequency*ratio;gain.gain.setValueAtTime(.0001,time);gain.gain.exponentialRampToValueAtTime(gainValue,time+.005);gain.gain.exponentialRampToValueAtTime(.0001,time+decay);oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(time);oscillator.stop(time+decay+.02);activeVoices.add(oscillator);oscillator.onended=()=>{activeVoices.delete(oscillator);oscillator.disconnect();gain.disconnect();};
-  }
+  const voice=audio.createBufferSource(),gain=audio.createGain();voice.buffer=audioBuffers.get(midi);gain.gain.value=volume;voice.connect(gain);gain.connect(audio.destination);voice.start(time);activeVoices.add(voice);voice.onended=()=>{activeVoices.delete(voice);voice.disconnect();gain.disconnect();};
+  return time+voice.buffer.duration;
 }
 $('play').onclick=async()=>{
+  let request;
   try{
     const interval=Number($('interval').value)/1000;if(!Number.isFinite(interval)||interval<.01||interval>5)throw new Error('再生間隔は10〜5000msにしてください。');
     if(!notes.some(note=>ALLOWED.has(note.midi)))throw new Error('試聴する音を入力してください。');
-    stopPlayback();const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');audio??=new AudioClass();await audio.resume();
+    stopPlayback();request=playbackRequest;const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');audio??=new AudioClass();$('play').disabled=true;$('stop').disabled=false;announce('オルゴールの音源を読み込んでいます…');await audio.resume();if(request!==playbackRequest)return;
     const rows=new Map();for(const note of notes.filter(note=>ALLOWED.has(note.midi))){if(!rows.has(note.step))rows.set(note.step,[]);rows.get(note.step).push(note.midi);}
-    // ponytail: 試聴は合成音。実機の音色が必要になったら採録したサンプルへ置き換える。
-    player={start:audio.currentTime+.06,next:0,visual:-1,timer:0};const session=player;$('play').disabled=true;$('stop').disabled=false;
+    await Promise.all([...new Set([...rows.values()].flat())].map(loadTone));if(request!==playbackRequest)return;
+    player={start:audio.currentTime+.06,next:0,visual:-1,timer:0,end:audio.currentTime+.06+length*interval};const session=player;
     const tick=()=>{
       if(player!==session)return;
-      while(session.next<length&&session.start+session.next*interval<audio.currentTime+.1){const row=rows.get(session.next)||[];for(const midi of row)playTone(midi,Math.max(audio.currentTime,session.start+session.next*interval),.14/Math.sqrt(Math.max(1,row.length)));session.next++;}
+      while(session.next<length&&session.start+session.next*interval<audio.currentTime+.1){const row=rows.get(session.next)||[];for(const midi of row)session.end=Math.max(session.end,playTone(midi,Math.max(audio.currentTime,session.start+session.next*interval),.5/Math.sqrt(Math.max(1,row.length))));session.next++;}
       const step=Math.floor((audio.currentTime-session.start)/interval);
       if(step>=0&&step<length&&step!==session.visual){session.visual=step;if(Math.floor(step/64)!==page){page=Math.floor(step/64);renderGrid();}for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
-      if(step>=length+Math.ceil(1.4/interval)){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
-    };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'対応する音だけを試聴しています。':'合成したオルゴール音で試聴しています。');
-  }catch(error){stopPlayback();announce(error.message,true);}
+      if(session.next>=length&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
+    };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'指定された音源で、対応する音だけを試聴しています。':'指定された30音のオルゴール音源で試聴しています。');
+  }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
 };$('stop').onclick=()=>{stopPlayback();announce('試聴を停止しました。');};document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});
 function midiSettings(){return {tracks:[...$('trackList').querySelectorAll('input:checked')].map(input=>Number(input.value)),subdivision:Number($('subdivision').value),transpose:Number($('transpose').value)};}
 function previewConversion(){try{const result=convertMidi(sourceMidi,midiSettings());const valid=result.notes.filter(note=>ALLOWED.has(note.midi)).length;$('conversionInfo').textContent=`適用後：${result.notes.length}音のうち${valid}音が対応 · ${result.length}ステップ${result.merged?` · 重複${result.merged}音を統合`:''}`;$('applyMidi').disabled=false;return result;}catch(error){$('conversionInfo').textContent=error.message;$('applyMidi').disabled=true;return null;}}

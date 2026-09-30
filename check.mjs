@@ -5,6 +5,7 @@ import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,convertMidi,validateMid
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
 for(const name of NOTE_NAMES)assert.equal(noteName(noteNumber(name)),name);
+for(const name of NOTE_NAMES){const ogg=await readFile(`dist/audio/${name}.ogg`);assert.equal(ogg.subarray(0,4).toString(),'OggS',`${name}の音源`);assert(ogg.length>100,`${name}の音源が空です`);}
 assert(!ALLOWED.has(noteNumber('F#4')));assert(!ALLOWED.has(noteNumber('F#6')));
 assert.equal(serialize([{step:1,midi:72},{step:1,midi:79},{step:1,midi:72},{step:1,midi:76},{step:3,midi:74}],5),'\nC5,E5,G5\n\nD5\n\n');
 assert.equal(serialize([],3),'\n\n\n');
@@ -26,4 +27,4 @@ const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(sm
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
 await mkdir('.sites-runtime',{recursive:true});await writeFile('.sites-runtime/check.mid',bytes);
 const html=await readFile('dist/index.html','utf8');for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1]);}
-process.stdout.write('確認成功: 30音・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
+process.stdout.write('確認成功: 30音・OGG音源30ファイル・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
