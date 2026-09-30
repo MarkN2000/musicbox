@@ -101,7 +101,7 @@ function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);
 async function loadTone(midi){
   if(audioBuffers.has(midi))return audioBuffers.get(midi);
   const name=noteName(midi);
-  const response=await fetch(`audio/${encodeURIComponent(name)}.ogg`);
+  const response=await fetch(`audio/${encodeURIComponent(name)}.ogg?v=01e82e8fcb28047e`);
   if(!response.ok)throw new Error(`${name}の音源を読み込めませんでした。もう一度試聴してください。`);
   let buffer;try{buffer=await audio.decodeAudioData(await response.arrayBuffer());}catch{throw new Error(`${name}のOGG音源を再生できません。このブラウザのOGG対応を確認してください。`);}
   audioBuffers.set(midi,buffer);return buffer;

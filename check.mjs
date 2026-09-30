@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {writeFile,readFile,mkdir} from 'node:fs/promises';
 import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,convertMidi,validateMidiHeader,MAX_STEPS,MAX_NOTES} from './dist/core.js';
@@ -6,7 +7,10 @@ import {TEMPLATES,templateScore} from './dist/templates.js';
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
 for(const name of NOTE_NAMES)assert.equal(noteName(noteNumber(name)),name);
-for(const name of NOTE_NAMES){const ogg=await readFile(`dist/audio/${name}.ogg`);assert.equal(ogg.subarray(0,4).toString(),'OggS',`${name}の音源`);assert(ogg.length>100,`${name}の音源が空です`);}
+const audioHash=createHash('sha256');
+for(const name of NOTE_NAMES){const ogg=await readFile(`dist/audio/${name}.ogg`);assert.equal(ogg.subarray(0,4).toString(),'OggS',`${name}の音源`);assert(ogg.length>100,`${name}の音源が空です`);audioHash.update(name).update(ogg);}
+const audioRevision=audioHash.digest('hex').slice(0,16);
+assert((await readFile('dist/app.js','utf8')).includes(`.ogg?v=${audioRevision}`),'音源URLの更新識別子が音源の内容と一致しません');
 assert(!ALLOWED.has(noteNumber('F#4')));assert(!ALLOWED.has(noteNumber('F#6')));
 assert.equal(serialize([{step:1,midi:72},{step:1,midi:79},{step:1,midi:72},{step:1,midi:76},{step:3,midi:74}],5),'\nC5,E5,G5\n\nD5\n\n');
 assert.equal(serialize([],3),'\n\n\n');
@@ -40,5 +44,6 @@ for(const [id,length,opening] of templateExpectations){
 assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
 assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
 await mkdir('.sites-runtime',{recursive:true});await writeFile('.sites-runtime/check.mid',bytes);
-const html=await readFile('dist/index.html','utf8');for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1]);}
-process.stdout.write('確認成功: 30音・OGG音源30ファイル・テンプレート4曲・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
+const html=await readFile('dist/index.html','utf8');assert(html.includes(`src="app.js?v=${audioRevision}"`),'再生スクリプトURLの更新識別子が音源の内容と一致しません');
+for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
+process.stdout.write('確認成功: 30音・OGG音源30ファイル・音源更新識別子・テンプレート4曲・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
