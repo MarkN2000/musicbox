@@ -1,14 +1,14 @@
 import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js';
-import {TEMPLATES, templateScore} from './templates.js';
+import {TEMPLATES, templateScore} from './templates.js?v=3f9635771fd6b34c';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
-const sample = [['C5','E5','G5'],[],['D5','F5'],['E5','G5','C6'],[],['D5','F5'],['E5','G5','C6']].flatMap((row,step)=>row.map(name=>({step,midi:noteNumber(name)})));
-let notes = sample, length = 32, page = 0, dirty = false, history = [];
+const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
+let notes = sample.notes, length = sample.length, page = 0, dirty = false, history = [];
 let sourceMidi = null, drag = null, audio = null, player = null, activeVoices = new Set();
 const audioBuffers = new Map();
 let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
-let beatsPerBar=4,pickupBeats=0;
+let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function snapshot(){return {notes:notes.map(note=>({...note})),length,page,beatsPerBar,pickupBeats};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
@@ -178,4 +178,5 @@ if(modelContext?.registerTool){
   for(const tool of tools){try{Promise.resolve(modelContext.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}}
   window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
-render();requestAnimationFrame(()=>{$('rollViewport').scrollTop=210;});
+$('scoreTitle').textContent=`${initialTemplate.title}（サンプル）`;$('fileName').value=initialTemplate.id;$('bpm').value=initialTemplate.bpm;
+updateInterval();render();requestAnimationFrame(()=>{$('rollViewport').scrollTop=210;});

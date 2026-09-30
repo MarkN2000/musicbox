@@ -10,7 +10,9 @@ for(const name of NOTE_NAMES)assert.equal(noteName(noteNumber(name)),name);
 const audioHash=createHash('sha256');
 for(const name of NOTE_NAMES){const ogg=await readFile(`dist/audio/${name}.ogg`);assert.equal(ogg.subarray(0,4).toString(),'OggS',`${name}の音源`);assert(ogg.length>100,`${name}の音源が空です`);audioHash.update(name).update(ogg);}
 const audioRevision=audioHash.digest('hex').slice(0,16);
-assert((await readFile('dist/app.js','utf8')).includes(`.ogg?v=${audioRevision}`),'音源URLの更新識別子が音源の内容と一致しません');
+const app=await readFile('dist/app.js','utf8'),templatesRevision=createHash('sha256').update((await readFile('dist/templates.js','utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,16);
+assert(app.includes(`.ogg?v=${audioRevision}`),'音源URLの更新識別子が音源の内容と一致しません');
+assert(app.includes(`from './templates.js?v=${templatesRevision}'`),'テンプレートURLの更新識別子が内容と一致しません');
 assert(!ALLOWED.has(noteNumber('F#4')));assert(!ALLOWED.has(noteNumber('F#6')));
 assert.equal(serialize([{step:1,midi:72},{step:1,midi:79},{step:1,midi:72},{step:1,midi:76},{step:3,midi:74}],5),'\nC5,E5,G5\n\nD5\n\n');
 assert.equal(serialize([],3),'\n\n\n');
@@ -38,12 +40,23 @@ for(const [id,length,opening] of templateExpectations){
   assert.equal((length-template.pickupBeats*4)%(template.beatsPerBar*4),0,id);
   assert(template.bpm>=20&&template.bpm<=300);assert(template.source.startsWith('https://'));
   assert(score.notes.every(note=>ALLOWED.has(note.midi)),id);
+  const melody=templateScore({...template,accompaniment:[]}),keys=new Set(score.notes.map(note=>`${note.step}:${note.midi}`));
+  assert(melody.notes.every(note=>keys.has(`${note.step}:${note.midi}`)),`${id}の旋律が失われています`);
+  assert(score.notes.length>melody.notes.length*1.5,`${id}の伴奏が不足しています`);
+  assert.equal(score.notes.length,keys.size,`${id}の同音重複`);
+  const rows=serialize(score.notes,score.length).trimEnd().split('\n');
+  assert(rows.filter(row=>row.includes(',')).length>=6,`${id}の和音が不足しています`);
+  assert(rows.every(row=>!row||row.split(',').length<=4),`${id}の和音が多すぎます`);
   assert.equal(serialize(score.notes,score.length).split('\n').length-1,length,id);
   score.notes[0].midi=0;assert.equal(noteName(templateScore(template).notes[0].midi),opening[0]);
 }
 assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
 assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
+const layered=templateScore({melody:[['C5',2]],accompaniment:[['C4,C5,E4',1],['D4',1],['',2]]});
+assert.equal(layered.length,4);assert.equal(layered.notes.length,4);assert.equal(serialize(layered.notes,layered.length),'C4,E4,C5\nD4\n\n\n');
+assert.throws(()=>templateScore({melody:[['C5',4]],accompaniment:[['F#4',4]]}),/対応外/);
+assert.throws(()=>templateScore({melody:[['C5',4]],accompaniment:[['C4',0]]}),/長さ/);
 await mkdir('.sites-runtime',{recursive:true});await writeFile('.sites-runtime/check.mid',bytes);
-const html=await readFile('dist/index.html','utf8');assert(html.includes(`src="app.js?v=${audioRevision}"`),'再生スクリプトURLの更新識別子が音源の内容と一致しません');
+const html=await readFile('dist/index.html','utf8');assert(html.includes(`src="app.js?v=${audioRevision}&templates=${templatesRevision}"`),'再生スクリプトURLの更新識別子が音源・テンプレートの内容と一致しません');
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源30ファイル・音源更新識別子・テンプレート4曲・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
+process.stdout.write('確認成功: 30音・OGG音源30ファイル・更新識別子・テンプレート4曲の旋律と伴奏・和音・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
