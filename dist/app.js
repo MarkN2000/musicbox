@@ -3,29 +3,30 @@ import {TEMPLATES, templateScore} from './templates.js?v=3f9635771fd6b34c';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
-let notes = sample.notes, length = sample.length, page = 0, history = [], currentTemplate=initialTemplate;
+let notes = sample.notes, length = sample.length, history = [], currentTemplate=initialTemplate;
 let sourceMidi = null, drag = null, audio = null, player = null, activeVoices = new Set();
 const audioBuffers = new Map();
 let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
 let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
-function snapshot(){return {notes:notes.map(note=>({...note})),length,page,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft,scrollTop:$('rollViewport').scrollTop};}
+function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft,scrollTop:$('rollViewport').scrollTop};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
 function remember(){history.push(snapshot());if(history.length>30)history.shift();}
+// ponytail: 全マスの描画量は41×ステップ数。実測で重くなった場合に可視範囲の描画を検討する。
 function renderGrid(){
   const roll=$('roll');roll.replaceChildren();
-  const start=page*64, end=Math.min(start+64,length), selected=new Set(notes.map(keyOf));
+  const selected=new Set(notes.map(keyOf));
   const subdivision=Number($('subdivision').value);
   const header=document.createElement('div');header.className='grid-row header-row';header.setAttribute('role','row');
   const corner=document.createElement('div');corner.className='key';corner.textContent='音 / 拍';corner.setAttribute('role','columnheader');header.append(corner);
-  for(let step=start;step<end;step++){const label=document.createElement('div');label.className='step-label';label.dataset.step=step;label.setAttribute('role','columnheader');if(step%subdivision===0){label.classList.add('beat');label.textContent=String(Math.floor(step/subdivision)+1);}if((step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0)label.classList.add('bar');header.append(label);}
+  for(let step=0;step<length;step++){const label=document.createElement('div');label.className='step-label';label.dataset.step=step;label.setAttribute('role','columnheader');if(step%subdivision===0){label.classList.add('beat');label.textContent=String(Math.floor(step/subdivision)+1);}if((step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0)label.classList.add('bar');header.append(label);}
   roll.append(header);
   for(const midi of pitches){
     const allowed=ALLOWED.has(midi), black=noteName(midi).includes('#');
     const row=document.createElement('div');row.className='grid-row';row.setAttribute('role','row');
     const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.textContent=noteName(midi);key.setAttribute('role','rowheader');row.append(key);
-    for(let step=start;step<end;step++){
+    for(let step=0;step<length;step++){
       const cell=document.createElement('button'),has=selected.has(`${step}:${midi}`);
       cell.className='cell'+(black?' black':'')+(!allowed?' unavailable':'')+(has?(allowed?' active':' outside'):'');
       if(step%subdivision===0)cell.classList.add('beat');if((step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0)cell.classList.add('bar');
@@ -36,7 +37,7 @@ function renderGrid(){
     }roll.append(row);
   }
   if(!roll.querySelector('[tabindex="0"]')){const first=roll.querySelector('.cell:not(:disabled):not(.unavailable)');if(first)first.tabIndex=0;}
-  $('pageLabel').textContent=`${start+1}–${end} / ${length}`;$('prevPage').disabled=page===0;$('nextPage').disabled=end>=length;$('extend').disabled=length+16>MAX_STEPS;
+  $('extend').disabled=length+16>MAX_STEPS;
 }
 function renderOutput(){
   const outside=notes.filter(note=>!ALLOWED.has(note.midi));
@@ -69,24 +70,27 @@ $('roll').addEventListener('pointerdown',event=>{const cell=event.target.closest
 $('roll').addEventListener('pointerover',event=>{const cell=event.target.closest('.cell');if(!drag||!cell||cell.disabled)return;const key=`${cell.dataset.step}:${cell.dataset.midi}`;if(drag.seen.has(key))return;drag.seen.add(key);paint(cell,drag.on);});
 window.addEventListener('pointerup',()=>{if(drag){drag=null;render();$('roll').querySelector(`[data-step="${currentCell.step}"][data-midi="${currentCell.midi}"]`)?.focus({preventScroll:true});}});window.addEventListener('pointercancel',()=>{drag=null;});
 $('roll').addEventListener('click',event=>{if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');}});
-$('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;currentCell={step,midi};if(Math.floor(step/64)!==page){page=Math.floor(step/64);renderGrid();}for(const other of $('roll').querySelectorAll('.cell'))other.tabIndex=-1;const target=$('roll').querySelector(`[data-step="${step}"][data-midi="${midi}"]`);if(target){target.tabIndex=0;target.focus();}});
-$('prevPage').onclick=()=>{page--;renderGrid();};$('nextPage').onclick=()=>{page++;renderGrid();};
-$('extend').onclick=()=>{stopPlayback();remember();length+=16;render();announce('16ステップ追加しました。');};
+$('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;currentCell={step,midi};for(const other of $('roll').querySelectorAll('.cell'))other.tabIndex=-1;const target=$('roll').querySelector(`[data-step="${step}"][data-midi="${midi}"]`);if(target){target.tabIndex=0;target.focus();}});
+$('extend').onclick=()=>{
+  if(length+16>MAX_STEPS)return;
+  stopPlayback();remember();length+=16;render();$('rollViewport').scrollLeft=$('rollViewport').scrollWidth;
+  announce('16ステップ追加しました。');
+};
 function undo(){
-  const previous=history.pop();if(!previous)return;stopPlayback();({notes,length,page,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell}=previous);
+  const previous=history.pop();if(!previous)return;stopPlayback();({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell}=previous);
   for(const [id,value] of Object.entries(previous.values))$(id).value=value;
   $('scoreTitle').textContent=previous.title;$('midiPanel').hidden=!sourceMidi;$('suggestions').replaceChildren();
   if(sourceMidi){renderTracks(previous.tracks);previewConversion();}showTemplateInfo();render();$('rollViewport').scrollLeft=previous.scrollLeft;$('rollViewport').scrollTop=previous.scrollTop;announce('取り消しました。');
 }
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&!event.altKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,select,[contenteditable]')){event.preventDefault();undo();}});
-$('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;page=0;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
+$('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
 for(const template of TEMPLATES){const option=document.createElement('option');option.value=template.id;option.textContent=template.title;$('templateSelect').append(option);}
 function showTemplateInfo(){const template=currentTemplate;$('templateInfo').hidden=!template;if(!template)return;$('templateDetails').textContent=`${template.title} · ${template.composer} · ${template.detail}`;$('templateSource').href=template.source;}
 showTemplateInfo();
 $('templateSelect').onchange=()=>{
   try{
     const template=TEMPLATES.find(item=>item.id===$('templateSelect').value);if(!template)throw new Error('テンプレートを選択してください。');const score=templateScore(template);
-    stopPlayback();remember();({notes,length}=score);page=0;sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
+    stopPlayback();remember();({notes,length}=score);sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
     $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;$('rollViewport').scrollTop=Math.max(0,(93-Math.max(...notes.map(note=>note.midi))-2)*23);
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
@@ -126,7 +130,7 @@ $('play').onclick=async()=>{
       if(player!==session)return;
       while(session.next<length&&session.start+session.next*interval<audio.currentTime+.1){const row=rows.get(session.next)||[];for(const midi of row)session.end=Math.max(session.end,playTone(midi,Math.max(audio.currentTime,session.start+session.next*interval),.5/Math.sqrt(Math.max(1,row.length))));session.next++;}
       const step=Math.floor((audio.currentTime-session.start)/interval);
-      if(step>=0&&step<length&&step!==session.visual){session.visual=step;if(Math.floor(step/64)!==page){page=Math.floor(step/64);renderGrid();}for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
+      if(step>=0&&step<length&&step!==session.visual){session.visual=step;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
       if(session.next>=length&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
     };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'対応する音だけを試聴中':'試聴中');
   }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
@@ -151,7 +155,7 @@ async function importFile(file){
     const selected=parsed.tracks.map((track,index)=>({track,index})).filter(({track})=>track.notes.length&&!track.instrument.percussion).map(({index})=>index);
     if(!selected.length)throw new Error('このMIDIには打楽器以外の音符がありません。メロディのあるMIDIを選んでください。');
     const result=convertMidi(parsed,{tracks:selected,subdivision:Number($('subdivision').value),transpose:0});
-    stopPlayback();remember();sourceMidi=parsed;currentTemplate=null;notes=result.notes;length=result.length;page=0;currentCell={step:0,midi:72};beatsPerBar=4;pickupBeats=0;$('transpose').value=0;$('suggestions').replaceChildren();$('scoreTitle').textContent=file.name.replace(/\.(mid|midi)$/i,'');$('fileName').value=file.name.replace(/\.(mid|midi)$/i,'');
+    stopPlayback();remember();sourceMidi=parsed;currentTemplate=null;notes=result.notes;length=result.length;currentCell={step:0,midi:72};beatsPerBar=4;pickupBeats=0;$('transpose').value=0;$('suggestions').replaceChildren();$('scoreTitle').textContent=file.name.replace(/\.(mid|midi)$/i,'');$('fileName').value=file.name.replace(/\.(mid|midi)$/i,'');
     const tempo=parsed.header.tempos[0]?.bpm;if(Number.isFinite(tempo)&&tempo>=20&&tempo<=300)$('bpm').value=Math.round(tempo);updateInterval();renderTracks();$('midiPanel').hidden=false;$('settings').open=true;previewConversion();showTemplateInfo();render();$('rollViewport').scrollLeft=0;
     announce(`${file.name}を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{importBusy=false;$('pickFile').disabled=false;$('fileInput').value='';}
@@ -161,7 +165,7 @@ let dragDepth=0;
 document.addEventListener('dragover',event=>{if(event.dataTransfer?.types.includes('Files'))event.preventDefault();});document.addEventListener('drop',event=>{if(!event.dataTransfer?.types.includes('Files'))return;event.preventDefault();dragDepth=0;$('dropZone').classList.remove('dragover');const files=event.dataTransfer.files;if(files.length!==1){announce('MIDIファイルを1つずつドロップしてください。',true);return;}void importFile(files[0]);});
 $('dropZone').addEventListener('dragenter',event=>{if(event.dataTransfer?.types.includes('Files')){event.preventDefault();dragDepth++;$('dropZone').classList.add('dragover');}});$('dropZone').addEventListener('dragleave',()=>{dragDepth=Math.max(0,dragDepth-1);if(!dragDepth)$('dropZone').classList.remove('dragover');});
 $('transpose').addEventListener('input',()=>{if(sourceMidi)previewConversion();});
-$('applyMidi').onclick=()=>{const result=previewConversion();if(!result)return;stopPlayback();remember();notes=result.notes;length=result.length;page=0;render();announce('MIDI設定を適用しました。');};
+$('applyMidi').onclick=()=>{const result=previewConversion();if(!result)return;stopPlayback();remember();notes=result.notes;length=result.length;render();announce('MIDI設定を適用しました。');};
 $('suggest').onclick=()=>{
   const settings=midiSettings();if(!settings.tracks.length)return;const candidates=[];
   for(let transpose=-24;transpose<=24;transpose++){try{const result=convertMidi(sourceMidi,{...settings,transpose});const valid=result.notes.filter(note=>ALLOWED.has(note.midi)).length;candidates.push({transpose,valid,total:result.notes.length});}catch{}}
