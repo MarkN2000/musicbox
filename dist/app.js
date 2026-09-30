@@ -37,7 +37,7 @@ function renderGrid(){
     }roll.append(row);
   }
   if(!roll.querySelector('[tabindex="0"]')){const first=roll.querySelector('.cell:not(:disabled):not(.unavailable)');if(first)first.tabIndex=0;}
-  $('extend').disabled=length+16>MAX_STEPS;
+  $('extend').disabled=length+4>MAX_STEPS;$('shrink').disabled=length<=4;
 }
 function renderOutput(){
   const outside=notes.filter(note=>!ALLOWED.has(note.midi));
@@ -71,10 +71,11 @@ $('roll').addEventListener('pointerover',event=>{const cell=event.target.closest
 window.addEventListener('pointerup',()=>{if(drag){drag=null;render();$('roll').querySelector(`[data-step="${currentCell.step}"][data-midi="${currentCell.midi}"]`)?.focus({preventScroll:true});}});window.addEventListener('pointercancel',()=>{drag=null;});
 $('roll').addEventListener('click',event=>{if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');}});
 $('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;currentCell={step,midi};for(const other of $('roll').querySelectorAll('.cell'))other.tabIndex=-1;const target=$('roll').querySelector(`[data-step="${step}"][data-midi="${midi}"]`);if(target){target.tabIndex=0;target.focus();}});
-$('extend').onclick=()=>{
-  if(length+16>MAX_STEPS)return;
-  stopPlayback();remember();length+=16;render();$('rollViewport').scrollLeft=$('rollViewport').scrollWidth;
-  announce('16ステップ追加しました。');
+for(const [id,delta] of [['extend',4],['shrink',-4]])$(id).onclick=()=>{
+  if(length+delta<1||length+delta>MAX_STEPS)return;
+  stopPlayback();remember();length+=delta;notes=notes.filter(note=>note.step<length);currentCell.step=Math.min(currentCell.step,length-1);
+  render();$('rollViewport').scrollLeft=$('rollViewport').scrollWidth;
+  announce(`4ステップ${delta>0?'追加':'削除'}しました。`);
 };
 function undo(){
   const previous=history.pop();if(!previous)return;stopPlayback();({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell}=previous);

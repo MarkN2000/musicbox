@@ -70,31 +70,38 @@ const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
 element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;element('rollViewport').scrollTop=180;
 const ui=runInNewContext(`
-  let notes=[{step:9,midi:72}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:9,midi:72};
+  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72};
   const pitches=Array.from({length:41},(_,i)=>93-i);
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function renderGrid(){'))}
   ${app.slice(app.indexOf('function renderGrid(){'),app.indexOf('function renderOutput(){'))}
-  ${app.slice(app.indexOf("$('extend').onclick="),app.indexOf('function undo(){'))}
+  ${app.slice(app.indexOf("for(const [id,delta] of [['extend',4]"),app.indexOf('function undo(){'))}
   ${app.slice(app.indexOf('function undo(){'),app.indexOf('for(const template of TEMPLATES)'))}
   ${app.split('\n').find(line=>line.startsWith('function updateInterval(){'))}
-  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),grid:renderGrid,state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
+  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
 `,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},previewConversion(){},showTemplateInfo(){},render(){},stopPlayback(){},announce(){}});
 const originalUI=JSON.stringify(ui.state());ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(element('interval').value,125);
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
 listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('fileName').value,'edited');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollTop,180);
 ui.reset();listeners.get('keydown')({...key(false),target:{closest:()=>({})}});assert.equal(ui.state().notes.length,0,'入力欄の標準取り消しを妨げています');listeners.get('keydown')(key(true));assert.equal(JSON.stringify(ui.state()),originalUI);
+ui.shrink();assert.equal(ui.state().length,46);assert.deepEqual(Array.from(ui.state().notes,note=>note.step),[9,45],'削除範囲の音が残っています');assert.equal(ui.state().currentCell.step,45);assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,46);
+listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),originalUI,'削除した音や編集位置を復元できません');assert.equal(element('rollViewport').scrollLeft,90);
+for(let i=0;i<12;i++)ui.shrink();assert.equal(ui.state().length,2);const shortScore=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),shortScore,'4の倍数でない楽譜を削除しすぎています');ui.grid();assert(element('shrink').disabled);
+for(let i=0;i<12;i++)listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),originalUI);
 for(const start of [50,64,256]){
   if(start===64)ui.reset();
   while(ui.state().length<start)ui.extend();
   assert.equal(ui.state().length,start);
-  const before=JSON.stringify(ui.state()),oldLength=ui.state().length,oldScroll=element('rollViewport').scrollLeft;
-  ui.extend();assert.equal(ui.state().length,oldLength+16);assert.equal(element('rollViewport').scrollLeft,element('rollViewport').scrollWidth);
-  ui.grid();const rows=element('roll').children;assert.equal(rows.length,42);assert(rows.every(row=>row.children.length===oldLength+17),'全ステップが描画されていません');assert.equal(rows[0].children.at(-1).dataset.step,oldLength+15);
-  assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,oldLength+16);
-  listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),before);assert.equal(element('rollViewport').scrollLeft,oldScroll);
+  const before=JSON.stringify({...ui.state(),historyLength:undefined}),oldLength=ui.state().length,oldScroll=element('rollViewport').scrollLeft;
+  ui.extend();assert.equal(ui.state().length,oldLength+4);assert.equal(element('rollViewport').scrollLeft,element('rollViewport').scrollWidth);const extendedNotes=JSON.stringify(ui.state().notes);assert.equal(extendedNotes,JSON.stringify(JSON.parse(before).notes));
+  ui.grid();const rows=element('roll').children;assert.equal(rows.length,42);assert(rows.every(row=>row.children.length===oldLength+5),'全ステップが描画されていません');assert.equal(rows[0].children.at(-1).dataset.step,oldLength+3);
+  assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,oldLength+4);
+  ui.shrink();assert.equal(ui.state().length,oldLength);assert.equal(JSON.stringify(ui.state().notes),extendedNotes,'空のステップ削除で既存の音が変わっています');listeners.get('keydown')(key(false));assert.equal(ui.state().length,oldLength+4);
+  listeners.get('keydown')(key(false));assert.equal(JSON.stringify({...ui.state(),historyLength:undefined}),before);assert.equal(element('rollViewport').scrollLeft,oldScroll);
 }
-while(ui.state().length+16<=MAX_STEPS)ui.extend();const capped=JSON.stringify(ui.state());ui.extend();assert.equal(JSON.stringify(ui.state()),capped,'上限を超えて追加しています');
+while(ui.state().length+4<=MAX_STEPS)ui.extend();const capped=JSON.stringify(ui.state());ui.extend();assert.equal(JSON.stringify(ui.state()),capped,'上限を超えて追加しています');
 ui.grid();assert(element('extend').disabled,'上限で追加ボタンが無効になっていません');
+ui.reset();while(ui.state().length>4)ui.shrink();assert.equal(ui.state().length,4);const minimum=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),minimum,'空の楽譜まで削除しています');ui.grid();assert(element('shrink').disabled);assert(!element('extend').disabled);
+listeners.get('keydown')(key(false));assert.equal(ui.state().length,8);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源・更新識別子・テンプレート4曲・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・追加とスクロール・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・更新識別子・テンプレート4曲・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

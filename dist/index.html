@@ -19,7 +19,7 @@
         </div>
         <section id="unsupportedPanel" class="unsupported-panel" hidden><p id="exportWarning" class="warning" hidden></p><div id="unsupportedList"></div><button id="removeUnsupported" class="button danger">対応外を除外</button></section>
         <div id="rollViewport" class="roll-viewport"><div id="roll" class="roll" role="grid" aria-label="音とステップの編集マス目"></div></div>
-        <div class="editor-footer"><span id="noteStats"></span><button id="extend" class="button subtle">＋16ステップ</button></div>
+        <div class="editor-footer"><span id="noteStats"></span><div><button id="shrink" class="button subtle" title="末尾の4ステップを削除">−4ステップ</button> <button id="extend" class="button subtle">＋4ステップ</button></div></div>
         <details id="settings" class="settings"><summary>設定</summary><div class="settings-content">
           <div class="settings-fields"><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt</span></span></label></div>
           <p class="template-info" id="templateInfo"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">出典 ↗</a></p>
@@ -29,6 +29,6 @@
         <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
   </main>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=3f9635771fd6b34c&ui=8e483c72cbbe3b22"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=3f9635771fd6b34c&ui=f4d81cb94dbb2f04"></script>
 </body>
 </html>
