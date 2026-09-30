@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {writeFile,readFile,mkdir} from 'node:fs/promises';
 import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,convertMidi,validateMidiHeader,MAX_STEPS,MAX_NOTES} from './dist/core.js';
+import {TEMPLATES,templateScore} from './dist/templates.js';
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
 for(const name of NOTE_NAMES)assert.equal(noteName(noteNumber(name)),name);
@@ -25,6 +26,19 @@ assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:[{midi:72,ticks:M
 assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:Array(MAX_NOTES+1).fill({midi:72,ticks:0,durationTicks:1})}]},{tracks:[0],subdivision:4}),/上限/);
 const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(smpte.buffer),/SMPTE/);
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
+const templateExpectations=[['ode-to-joy',256,['E5','E5','F5','G5']],['fur-elise',50,['E6','D#6','E6','D#6']],['twinkle',192,['C5','C5','G5','G5']],['minuet',192,['G5','C5','D5','E5']]];
+assert.equal(TEMPLATES.length,4);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,4);
+for(const [id,length,opening] of templateExpectations){
+  const template=TEMPLATES.find(item=>item.id===id),score=templateScore(template);
+  assert.equal(score.length,length,id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),opening,id);
+  assert.equal((length-template.pickupBeats*4)%(template.beatsPerBar*4),0,id);
+  assert(template.bpm>=20&&template.bpm<=300);assert(template.source.startsWith('https://'));
+  assert(score.notes.every(note=>ALLOWED.has(note.midi)),id);
+  assert.equal(serialize(score.notes,score.length).split('\n').length-1,length,id);
+  score.notes[0].midi=0;assert.equal(noteName(templateScore(template).notes[0].midi),opening[0]);
+}
+assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
+assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
 await mkdir('.sites-runtime',{recursive:true});await writeFile('.sites-runtime/check.mid',bytes);
 const html=await readFile('dist/index.html','utf8');for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1]);}
-process.stdout.write('確認成功: 30音・OGG音源30ファイル・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');
+process.stdout.write('確認成功: 30音・OGG音源30ファイル・テンプレート4曲・休符・末尾改行・MIDI変換・重複・移調・三連符・上限・ローカル参照\n');

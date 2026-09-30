@@ -15,6 +15,11 @@
       <button id="pickFile" class="button">ファイルを選ぶ</button><input id="fileInput" type="file" accept=".mid,.midi,audio/midi,audio/x-midi" hidden>
       <span class="local-note">ファイルはこのブラウザ内で処理します</span>
     </section>
+    <section class="template-strip" aria-label="クラシックのテンプレート">
+      <div class="template-copy"><strong>クラシックから始める</strong><span>原曲がパブリックドメインの4曲。30音用のメロディ版です。</span></div>
+      <div class="template-picker"><label for="templateSelect">曲を選ぶ</label><select id="templateSelect"></select><button id="loadTemplate" class="button">楽譜に読み込む</button></div>
+      <p class="template-info"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">原曲の出典 ↗</a></p>
+    </section>
     <div class="workspace">
       <section class="editor" aria-label="楽譜エディター">
         <div class="editor-heading"><div><span class="eyebrow">SCORE EDITOR</span><h1 id="scoreTitle">サンプルの楽譜</h1></div><div class="heading-actions"><button id="undo" class="button subtle" disabled>元に戻す</button><button id="newScore" class="button subtle">新しく作る</button></div></div>
