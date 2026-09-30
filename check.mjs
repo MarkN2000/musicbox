@@ -8,8 +8,19 @@ import {TEMPLATES,templateScore} from './dist/templates.js';
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
 for(const name of NOTE_NAMES)assert.equal(noteName(noteNumber(name)),name);
-const audioHash=createHash('sha256');
-for(const name of NOTE_NAMES){const ogg=await readFile(`dist/audio/${name}.ogg`);assert.equal(ogg.subarray(0,4).toString(),'OggS',`${name}の音源`);assert(ogg.length>100,`${name}の音源が空です`);audioHash.update(name).update(ogg);}
+const audioHash=createHash('sha256'),audioDurations=new Map();
+for(const name of NOTE_NAMES){
+  const ogg=await readFile(`dist/audio/${name}.ogg`);assert(ogg.length>100,`${name}の音源が空です`);audioHash.update(name).update(ogg);
+  let offset=0,sampleRate=0,lastSample=0n;
+  while(offset<ogg.length){
+    assert.equal(ogg.subarray(offset,offset+4).toString(),'OggS',`${name}の音源`);
+    const segmentCount=ogg[offset+26],body=offset+27+segmentCount;
+    if(offset===0){assert.equal(ogg.subarray(body+1,body+7).toString(),'vorbis');sampleRate=ogg.readUInt32LE(body+12);}
+    const sample=ogg.readBigUInt64LE(offset+6);if(sample!==0xffffffffffffffffn&&sample>lastSample)lastSample=sample;
+    offset=body+ogg.subarray(offset+27,body).reduce((sum,size)=>sum+size,0);
+  }
+  assert(sampleRate>0&&lastSample>0n);audioDurations.set(noteNumber(name),Number(lastSample)/sampleRate);
+}
 const audioRevision=audioHash.digest('hex').slice(0,16);
 const app=await readFile('dist/app.js','utf8'),templatesRevision=createHash('sha256').update((await readFile('dist/templates.js','utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,16);
 assert(app.includes(`.ogg?v=${audioRevision}`),'音源URLの更新識別子が音源の内容と一致しません');
@@ -34,11 +45,16 @@ assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:Array(MAX_NOTES+1
 const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(smpte.buffer),/SMPTE/);
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
 const templateExpectations=[['ode-to-joy',256,['E5','E5','F5','G5']],['fur-elise',50,['E6','D#6','E6','D#6']],['twinkle',192,['C5','C5','G5','G5']],['minuet',192,['G5','C5','D5','E5']]];
-assert.equal(TEMPLATES.length,4);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,4);
-for(const [id,length,opening] of templateExpectations){
-  const template=TEMPLATES.find(item=>item.id===id),score=templateScore(template);
-  assert.equal(score.length,length,id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),opening,id);
-  assert.equal((length-template.pickupBeats*4)%(template.beatsPerBar*4),0,id);
+assert.equal(TEMPLATES.length,42);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,42);
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':31,'行進曲':7,'民謡など':4});
+assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
+for(const template of TEMPLATES){
+  const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
+  const expectation=templateExpectations.find(row=>row[0]===id);
+  if(expectation){assert.equal(length,expectation[1],id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),expectation[2],id);assert.equal((length-template.pickupBeats*subdivision)%(template.beatsPerBar*subdivision),0,id);}
+  const interval=Math.round(60000/template.bpm/subdivision)/1000;
+  assert(Math.max(length*interval,...score.notes.map(note=>note.step*interval+audioDurations.get(note.midi)))<=60,`${id}が音源の余韻を含めて60秒を超えています`);
+  assert([3,4,6].includes(subdivision),id);assert(template.listen.startsWith('https://'));
   assert(template.bpm>=20&&template.bpm<=300);assert(template.source.startsWith('https://'));
   assert(score.notes.every(note=>ALLOWED.has(note.midi)),id);
   const melody=templateScore({...template,accompaniment:[]}),keys=new Set(score.notes.map(note=>`${note.step}:${note.midi}`));
@@ -49,7 +65,7 @@ for(const [id,length,opening] of templateExpectations){
   assert(rows.filter(row=>row.includes(',')).length>=6,`${id}の和音が不足しています`);
   assert(rows.every(row=>!row||row.split(',').length<=4),`${id}の和音が多すぎます`);
   assert.equal(serialize(score.notes,score.length).split('\n').length-1,length,id);
-  score.notes[0].midi=0;assert.equal(noteName(templateScore(template).notes[0].midi),opening[0]);
+  const first=score.notes[0].midi;score.notes[0].midi=0;assert.equal(templateScore(template).notes[0].midi,first);
 }
 assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
 assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
@@ -127,4 +143,4 @@ let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});sound.edit(1
 response={ok:false};sound.edit(2,79,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,3,'音源エラーで楽譜が失われています');assert.match(audioErrors.at(-1),/G5の音源を読み込めません/);
 let finishResume;resumeResult=new Promise(resolve=>{finishResume=resolve;});const previousFetches=fetched.length,pendingPreview=sound.preview(84);sound.stop();finishResume();await pendingPreview;assert.equal(fetched.length,previousFetches,'停止後に音源を読み込んでいます');
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・更新識別子・テンプレート4曲・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

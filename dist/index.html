@@ -22,13 +22,13 @@
         <div class="editor-footer"><span id="noteStats"></span><div><button id="shrink" class="button subtle" title="末尾の4ステップを削除">−4ステップ</button> <button id="extend" class="button subtle">＋4ステップ</button></div></div>
         <details id="settings" class="settings"><summary>設定</summary><div class="settings-content">
           <div class="settings-fields"><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt</span></span></label></div>
-          <p class="template-info" id="templateInfo"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">出典 ↗</a></p>
+          <p class="template-info" id="templateInfo"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">出典 ↗</a><a id="templateListen" target="_blank" rel="noopener noreferrer">原曲を聴く ↗</a><span id="templateCredit" hidden></span><a id="templateLicense" target="_blank" rel="noopener noreferrer" hidden></a></p>
           <section id="midiPanel" class="midi-panel" hidden><h2>MIDI設定</h2><div id="trackList" class="track-list"></div><div class="transpose-row"><label for="transpose">移調 <input id="transpose" type="number" min="-24" max="24" value="0"> 半音</label><button id="suggest" class="button subtle">候補</button></div><div id="suggestions" class="suggestions"></div><p id="conversionInfo" class="secondary"></p><button id="applyMidi" class="button">適用</button></section>
           <label class="preview-heading" for="txtPreview">TXTプレビュー</label><textarea id="txtPreview" readonly spellcheck="false" aria-label="出力テキストのプレビュー"></textarea>
         </div></details>
         <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
   </main>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=3f9635771fd6b34c&ui=8b06f2d452f7198d"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=d540075d3389abdc&ui=4a002e6ecb33bd0c"></script>
 </body>
 </html>

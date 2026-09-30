@@ -1,5 +1,5 @@
 import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js';
-import {TEMPLATES, templateScore} from './templates.js?v=3f9635771fd6b34c';
+import {TEMPLATES, templateScore} from './templates.js?v=d540075d3389abdc';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
@@ -86,14 +86,25 @@ function undo(){
 }
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&!event.altKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,select,[contenteditable]')){event.preventDefault();undo();}});
 $('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
-for(const template of TEMPLATES){const option=document.createElement('option');option.value=template.id;option.textContent=template.title;$('templateSelect').append(option);}
-function showTemplateInfo(){const template=currentTemplate;$('templateInfo').hidden=!template;if(!template)return;$('templateDetails').textContent=`${template.title} · ${template.composer} · ${template.detail}`;$('templateSource').href=template.source;}
+for(const template of TEMPLATES){
+  let group=[...$('templateSelect').children].find(item=>item.label===template.category);
+  if(!group){group=document.createElement('optgroup');group.label=template.category;$('templateSelect').append(group);}
+  const option=document.createElement('option');option.value=template.id;option.textContent=template.title;group.append(option);
+}
+function showTemplateInfo(){
+  const template=currentTemplate;$('templateInfo').hidden=!template;if(!template)return;
+  const score=templateScore(template),seconds=(score.length*Math.round(60000/template.bpm/(template.subdivision??4))/1000).toFixed(1);
+  $('templateDetails').textContent=`${template.title} · ${template.composer} · ${template.detail} · 推奨 約${seconds}秒＋余韻`;
+  $('templateSource').href=template.source;$('templateListen').href=template.listen;
+  $('templateCredit').hidden=!template.credit;$('templateCredit').textContent=template.credit??'';
+  $('templateLicense').hidden=!template.license;if(template.license){$('templateLicense').href=template.license;$('templateLicense').textContent=template.licenseLabel;}
+}
 showTemplateInfo();
 $('templateSelect').onchange=()=>{
   try{
     const template=TEMPLATES.find(item=>item.id===$('templateSelect').value);if(!template)throw new Error('テンプレートを選択してください。');const score=templateScore(template);
     stopPlayback();remember();({notes,length}=score);sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
-    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;scrollToPitch(Math.min(93,Math.max(...notes.map(note=>note.midi))+2));
+    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=template.subdivision??4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;scrollToPitch(Math.min(93,Math.max(...notes.map(note=>note.midi))+2));
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
 };
