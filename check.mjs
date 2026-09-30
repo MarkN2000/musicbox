@@ -44,14 +44,16 @@ assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:[{midi:72,ticks:M
 assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:Array(MAX_NOTES+1).fill({midi:72,ticks:0,durationTicks:1})}]},{tracks:[0],subdivision:4}),/上限/);
 const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(smpte.buffer),/SMPTE/);
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
-const templateExpectations=[['ode-to-joy',256,['E5','E5','F5','G5']],['fur-elise',50,['E6','D#6','E6','D#6']],['twinkle',192,['C5','C5','G5','G5']],['minuet',192,['G5','C5','D5','E5']]];
+const templateExpectations=[['ode-to-joy',252,['E5','E5','F5','G5']],['fur-elise',48,['E6','D#6','E6','D#6']],['twinkle',188,['C5','C5','G5','G5']],['minuet',184,['G5','C5','D5','E5']]];
 assert.equal(TEMPLATES.length,42);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,42);
 assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':31,'行進曲':7,'民謡など':4});
 assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
   const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
   const expectation=templateExpectations.find(row=>row[0]===id);
-  if(expectation){assert.equal(length,expectation[1],id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),expectation[2],id);assert.equal((length-template.pickupBeats*subdivision)%(template.beatsPerBar*subdivision),0,id);}
+  if(expectation){assert.equal(length,expectation[1],id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),expectation[2],id);}
+  const lastStep=Math.max(...score.notes.map(note=>note.step));
+  assert(length>lastStep&&length-lastStep<=4,`${id}の末尾の空行が3ステップを超えています`);
   const interval=Math.round(60000/template.bpm/subdivision)/1000;
   assert(Math.max(length*interval,...score.notes.map(note=>note.step*interval+audioDurations.get(note.midi)))<=60,`${id}が音源の余韻を含めて60秒を超えています`);
   assert([3,4,6,8].includes(subdivision),id);assert(template.listen.startsWith('https://'));
@@ -68,11 +70,23 @@ for(const template of TEMPLATES){
   const first=score.notes[0].midi;score.notes[0].midi=0;assert.equal(templateScore(template).notes[0].midi,first);
 }
 const canon=TEMPLATES.find(template=>template.id==='pachelbel-canon');
-assert.equal(canon.bpm,72);assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,288);
+assert.equal(canon.bpm,72);assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,268);
 assert.deepEqual(canon.melody.slice(0,6),[['G6',2],['E6',1],['F6',1],['G6',2],['E6',1],['F6',1]],'カノンのよく知られた速い変奏');
 const canonBacking=new Set(templateScore({...canon,melody:[]}).notes.map(keyOf));
 for(let cycle=0;cycle<4;cycle++)['C5','G4','A4','E4','F4','C4','F4','G4'].forEach((name,beat)=>assert(canonBacking.has(`${cycle*64+beat*8}:${noteNumber(name)}`),'カノンの定型低声は原譜に合わせて1拍ごとに進む'));
 assert.deepEqual(canon.melody.slice(-3),[['G5',4],['B5',4],['C6',24]],'カノンの終止');
+const air=TEMPLATES.find(template=>template.id==='air-on-g'),airScore=templateScore(air);
+assert.equal(air.subdivision,8);assert.equal(airScore.length,196);
+assert.deepEqual(air.melody.slice(0,4),[['B5',36],['E6',2],['C6',2],['A5',2]],'アリアの長い冒頭と装飾');
+for(const [step,name]of [[0,'G3'],[8,'F#5'],[16,'E4'],[24,'D4'],[32,'C4'],[192,'G5']])assert(airScore.notes.some(note=>note.step===step&&note.midi===noteNumber(name)),`アリアの低声とト長調の終止 ${step}:${name}`);
+assert.deepEqual(TEMPLATES.find(t=>t.id==='blue-danube').melody.slice(0,5),[['C5',4],['C5',4],['E5',4],['G5',4],['G5',8]],'ドナウの弱起と有名な分散和音');
+assert.equal(TEMPLATES.find(t=>t.id==='blue-danube').pickupBeats,1);
+assert.equal(templateScore(TEMPLATES.find(t=>t.id==='stars-and-stripes')).length,256,'星条旗の主題と結びの16小節');
+assert.equal(templateScore({melody:[['C5',8]]}).length,4,'終止の1音＋7空行を1音＋3空行にする');
+assert.equal(templateScore({melody:[['',5],['C5',8]]}).length,8,'弱起の後も4ステップ単位で末尾を詰める');
+assert.equal(templateScore({melody:[['C5',3]]}).length,3,'元の長さを超えて空行を増やさない');
+assert.equal(templateScore({melody:[['',8]]}).length,8,'全休符は保持する');
+assert.equal(serialize(templateScore({melody:[['',2],['C5',2],['',4],['E5',8]]}).notes,12),'\n\nC5\n\n\n\n\n\nE5\n\n\n\n','先頭と途中の休符は詰めない');
 assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
 assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
 const layered=templateScore({melody:[['C5',2]],accompaniment:[['C4,C5,E4',1],['D4',1],['',2]]});
