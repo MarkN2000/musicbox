@@ -24,8 +24,8 @@ function renderGrid(){
   roll.append(header);
   for(const midi of pitches){
     const allowed=ALLOWED.has(midi), black=noteName(midi).includes('#');
-    const row=document.createElement('div');row.className='grid-row';row.setAttribute('role','row');
-    const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.textContent=noteName(midi);key.setAttribute('role','rowheader');row.append(key);
+    const row=document.createElement('div');row.className='grid-row'+(!allowed?' unavailable':'');row.setAttribute('role','row');
+    const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.textContent=noteName(midi);key.setAttribute('role','rowheader');key.setAttribute('aria-label',`${noteName(midi)}${allowed?'':'、使用不可'}`);row.append(key);
     for(let step=0;step<length;step++){
       const cell=document.createElement('button'),has=selected.has(`${step}:${midi}`);
       cell.className='cell'+(black?' black':'')+(!allowed?' unavailable':'')+(has?(allowed?' active':' outside'):'');
@@ -58,6 +58,7 @@ function renderUnsupported(outside){
   }
 }
 function render(){renderGrid();renderOutput();}
+function scrollToPitch(midi){$('rollViewport').scrollTop=$('roll').querySelector(`[data-step="0"][data-midi="${midi}"]`).offsetTop-$('roll').firstElementChild.offsetHeight;}
 function paint(cell,on){
   const step=Number(cell.dataset.step),midi=Number(cell.dataset.midi),key=`${step}:${midi}`;
   if(!ALLOWED.has(midi)&&on)return;
@@ -92,7 +93,7 @@ $('templateSelect').onchange=()=>{
   try{
     const template=TEMPLATES.find(item=>item.id===$('templateSelect').value);if(!template)throw new Error('テンプレートを選択してください。');const score=templateScore(template);
     stopPlayback();remember();({notes,length}=score);sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
-    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;$('rollViewport').scrollTop=Math.max(0,(93-Math.max(...notes.map(note=>note.midi))-2)*23);
+    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;scrollToPitch(Math.min(93,Math.max(...notes.map(note=>note.midi))+2));
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
 };
@@ -196,4 +197,4 @@ if(modelContext?.registerTool){
   window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
 $('scoreTitle').textContent=initialTemplate.title;$('fileName').value=initialTemplate.id;$('bpm').value=initialTemplate.bpm;
-updateInterval();render();requestAnimationFrame(()=>{$('rollViewport').scrollTop=210;});
+updateInterval();render();requestAnimationFrame(()=>scrollToPitch(84));
