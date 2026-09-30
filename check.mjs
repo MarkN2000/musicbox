@@ -54,7 +54,7 @@ for(const template of TEMPLATES){
   if(expectation){assert.equal(length,expectation[1],id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),expectation[2],id);assert.equal((length-template.pickupBeats*subdivision)%(template.beatsPerBar*subdivision),0,id);}
   const interval=Math.round(60000/template.bpm/subdivision)/1000;
   assert(Math.max(length*interval,...score.notes.map(note=>note.step*interval+audioDurations.get(note.midi)))<=60,`${id}が音源の余韻を含めて60秒を超えています`);
-  assert([3,4,6].includes(subdivision),id);assert(template.listen.startsWith('https://'));
+  assert([3,4,6,8].includes(subdivision),id);assert(template.listen.startsWith('https://'));
   assert(template.bpm>=20&&template.bpm<=300);assert(template.source.startsWith('https://'));
   assert(score.notes.every(note=>ALLOWED.has(note.midi)),id);
   const melody=templateScore({...template,accompaniment:[]}),keys=new Set(score.notes.map(note=>`${note.step}:${note.midi}`));
@@ -67,6 +67,12 @@ for(const template of TEMPLATES){
   assert.equal(serialize(score.notes,score.length).split('\n').length-1,length,id);
   const first=score.notes[0].midi;score.notes[0].midi=0;assert.equal(templateScore(template).notes[0].midi,first);
 }
+const canon=TEMPLATES.find(template=>template.id==='pachelbel-canon');
+assert.equal(canon.bpm,72);assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,288);
+assert.deepEqual(canon.melody.slice(0,6),[['G6',2],['E6',1],['F6',1],['G6',2],['E6',1],['F6',1]],'カノンのよく知られた速い変奏');
+const canonBacking=new Set(templateScore({...canon,melody:[]}).notes.map(keyOf));
+for(let cycle=0;cycle<4;cycle++)['C5','G4','A4','E4','F4','C4','F4','G4'].forEach((name,beat)=>assert(canonBacking.has(`${cycle*64+beat*8}:${noteNumber(name)}`),'カノンの定型低声は原譜に合わせて1拍ごとに進む'));
+assert.deepEqual(canon.melody.slice(-3),[['G5',4],['B5',4],['C6',24]],'カノンの終止');
 assert.throws(()=>templateScore({melody:[['C5',0]]}),/長さ/);
 assert.throws(()=>templateScore({melody:[['F#4',4]]}),/対応外/);
 const layered=templateScore({melody:[['C5',2]],accompaniment:[['C4,C5,E4',1],['D4',1],['',2]]});
