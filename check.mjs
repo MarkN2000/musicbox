@@ -65,7 +65,7 @@ for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert(html.includes(`id="${
 assert(!/confirmReplace|beforeunload|confirmDialog/.test(app+html),'不要な確認が残っています');
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
 const controls=new Map(),listeners=new Map();
-const node=()=>({value:'',textContent:'',hidden:false,open:false,scrollLeft:0,scrollTop:0,scrollWidth:2000,children:[],dataset:{},classList:{add(){}},setAttribute(){},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};}});
+const node=()=>({value:'',textContent:'',hidden:false,open:false,scrollLeft:0,scrollTop:0,scrollWidth:2000,children:[],dataset:{},classList:{add(){},toggle(){}},setAttribute(){},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
 element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;element('rollViewport').scrollTop=180;
@@ -103,5 +103,28 @@ ui.grid();assert(element('extend').disabled,'上限で追加ボタンが無効�
 ui.reset();while(ui.state().length>4)ui.shrink();assert.equal(ui.state().length,4);const minimum=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),minimum,'空の楽譜まで削除しています');ui.grid();assert(element('shrink').disabled);assert(!element('extend').disabled);
 listeners.get('keydown')(key(false));assert.equal(ui.state().length,8);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
+// 実際の配置・音源再生処理を、最小限のAudioContextで確認する。
+const played=[],fetched=[],audioErrors=[];let response,resumeResult;
+class TestAudio{
+  currentTime=12;destination={};
+  resume(){return resumeResult;}
+  async decodeAudioData(data){return {...data,duration:1};}
+  createBufferSource(){return {connect(){},disconnect(){},stop(){},start(time){played.push({name:this.buffer.name,time});}};}
+  createGain(){return {gain:{},connect(){},disconnect(){}};}
+}
+const sound=runInNewContext(`
+  let notes=[],audio=null,player=null,playbackRequest=0;const audioBuffers=new Map(),activeVoices=new Set();
+  ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
+  ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,state:()=>notes});
+`,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},clearTimeout,renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
+const settle=()=>new Promise(setImmediate);
+sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
+sound.edit(0,72,true);sound.edit(0,72,false);await settle();assert.equal(played.length,1,'重複入力や削除で音が鳴っています');
+sound.edit(0,72,true);await settle();assert.equal(played.length,2);assert.equal(fetched.length,1,'読み込み済みの音源を再取得しています');
+sound.edit(0,66,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,1,'対応外の音を配置しています');
+let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});sound.edit(1,76,true);await settle();sound.stop();finishLoad({ok:true,arrayBuffer:async()=>({name:'E5'})});await settle();assert.equal(played.length,2,'停止した入力の音が後から鳴っています');
+response={ok:false};sound.edit(2,79,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,3,'音源エラーで楽譜が失われています');assert.match(audioErrors.at(-1),/G5の音源を読み込めません/);
+let finishResume;resumeResult=new Promise(resolve=>{finishResume=resolve;});const previousFetches=fetched.length,pendingPreview=sound.preview(84);sound.stop();finishResume();await pendingPreview;assert.equal(fetched.length,previousFetches,'停止後に音源を読み込んでいます');
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源・更新識別子・テンプレート4曲・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・更新識別子・テンプレート4曲・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

@@ -62,7 +62,7 @@ function paint(cell,on){
   const step=Number(cell.dataset.step),midi=Number(cell.dataset.midi),key=`${step}:${midi}`;
   if(!ALLOWED.has(midi)&&on)return;
   const has=notes.some(note=>keyOf(note)===key);if(has===on)return;
-  if(on)notes.push({step,midi});else notes=notes.filter(note=>keyOf(note)!==key);
+  if(on){notes.push({step,midi});void previewTone(midi);}else notes=notes.filter(note=>keyOf(note)!==key);
   cell.classList.toggle('active',on&&ALLOWED.has(midi));cell.classList.toggle('outside',on&&!ALLOWED.has(midi));cell.setAttribute('aria-pressed',String(on));cell.setAttribute('aria-label',`${noteName(midi)}、ステップ${step+1}${on?'、音あり':''}`);
   renderOutput();
 }
@@ -105,6 +105,10 @@ $('copyText').onclick=async()=>{
 function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));}
 $('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',stopPlayback);
 function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');}
+async function resumeAudio(){
+  const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');
+  audio??=new AudioClass();await audio.resume();
+}
 async function loadTone(midi){
   if(audioBuffers.has(midi))return audioBuffers.get(midi);
   const name=noteName(midi);
@@ -117,13 +121,20 @@ function playTone(midi,time,volume){
   const voice=audio.createBufferSource(),gain=audio.createGain();voice.buffer=audioBuffers.get(midi);gain.gain.value=volume;voice.connect(gain);gain.connect(audio.destination);voice.start(time);activeVoices.add(voice);voice.onended=()=>{activeVoices.delete(voice);voice.disconnect();gain.disconnect();};
   return time+voice.buffer.duration;
 }
+async function previewTone(midi){
+  const request=playbackRequest;
+  try{
+    await resumeAudio();if(request!==playbackRequest)return;
+    await loadTone(midi);if(request===playbackRequest)playTone(midi,audio.currentTime,.5);
+  }catch(error){if(request===playbackRequest)announce(error.message,true);}
+}
 $('play').onclick=async()=>{
   if($('play').getAttribute('aria-pressed')==='true'){stopPlayback();announce('停止しました。');return;}
   let request;
   try{
     const interval=Number($('interval').value)/1000;if(!Number.isFinite(interval)||interval<.01||interval>5)throw new Error('再生間隔は10〜5000msにしてください。');
     if(!notes.some(note=>ALLOWED.has(note.midi)))throw new Error('試聴する音を入力してください。');
-    stopPlayback();request=playbackRequest;const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');audio??=new AudioClass();$('play').textContent='■ 停止';$('play').setAttribute('aria-pressed','true');announce('音源を読み込んでいます…');await audio.resume();if(request!==playbackRequest)return;
+    stopPlayback();request=playbackRequest;$('play').textContent='■ 停止';$('play').setAttribute('aria-pressed','true');announce('音源を読み込んでいます…');await resumeAudio();if(request!==playbackRequest)return;
     const rows=new Map();for(const note of notes.filter(note=>ALLOWED.has(note.midi))){if(!rows.has(note.step))rows.set(note.step,[]);rows.get(note.step).push(note.midi);}
     await Promise.all([...new Set([...rows.values()].flat())].map(loadTone));if(request!==playbackRequest)return;
     player={start:audio.currentTime+.06,next:0,visual:-1,timer:0,end:audio.currentTime+.06+length*interval};const session=player;
