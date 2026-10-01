@@ -99,23 +99,30 @@ assert.equal(TEMPLATES.find(t=>t.id==='blue-danube').pickupBeats,1);
 const marches=Object.fromEntries(TEMPLATES.filter(t=>t.category==='行進曲').map(t=>[t.id,t]));
 const marchHeads={
  'british-grenadiers':['G5','C6','G5','C6','D6','E6','D6','E6','F6'],
- 'us-field-artillery':['G5','G5','C6','C6','G5','G5','G5','B5','C6','D6'],
+ 'us-field-artillery':['G5','G5','C6','C6','G5','G5','G5','A5','B5','C6','A5'],
  'when-johnny':['E5','A5','A5','A5','B5','C6','B5','C6','A5'],
  'battle-hymn':['G5','G5','G5','G5','F5','E5','G5','C6','D6'],
- 'radetzky-march':['E6','D#6','E6','E6','D#6','E6','E6','D6'],
- 'stars-and-stripes':['C5','B4','C5','A4','C5','D5','D#5','E5','F5','F#5'],
+ 'radetzky-march':['F5','F5','F5','F5','F5','F5','A5','G5','F5','E5'],
+ 'stars-and-stripes':['F5','E5','F5','D5','F5','G5','G#5','A5','A#5','B5'],
 };
 for(const [id,head]of Object.entries(marchHeads))assert.deepEqual(marches[id].melody.filter(([name])=>name).slice(0,head.length).map(([name])=>name),head,`${id}の指定主題の歌い出し`);
 assert.equal(marches['british-grenadiers'].beatsPerBar,2);
 assert.equal(marches['us-field-artillery'].melody.reduce((sum,[,span])=>sum+span,0),132,'野砲隊は弱起とコーラス16小節');
-assert(marches['us-field-artillery'].melody.some(([name])=>name==='G#5'),'野砲隊のコーラス後半の半音を残す');
+const fieldLead=templateScore({...marches['us-field-artillery'],accompaniment:[]}).notes;
+for(const [step,name]of [[20,'A5'],[23,'B5'],[24,'C6'],[26,'A5'],[36,'C6'],[38,'C6'],[42,'B5'],[44,'A5'],[84,'A5'],[98,'F5'],[100,'G5'],[102,'F5'],[106,'D5']])assert(fieldLead.some(n=>n.step===step&&n.midi===noteNumber(name)),`野砲隊の原譜のコーラスの音程・調号 ${step}:${name}`);
+assert(!marches['us-field-artillery'].melody.some(([name])=>name==='G#5'),'野砲隊に原譜にない嬰ト音を加えない');
 assert.equal(marches['when-johnny'].bpm,120,'ジョニーは付点四分音符80で6/8の主題を演奏する');
 assert.equal(marches['when-johnny'].melody.reduce((sum,[,span])=>sum+span,0),192,'ジョニーは歌い出しから結びまで16小節');
 assert.deepEqual(marches['when-johnny'].melody.slice(-6),[['E5',2],['A5',2],['A5',2],['A5',4],['G#5',2],['A5',10]],'ジョニーの原譜の結びを残す');
 assert.deepEqual(marches['battle-hymn'].melody.slice(-5),[['D6',1],['C6',4],['B5',4],['C6',8],['',6]],'リパブリックはコーラスへ進まず歌い出しの節で終止する');
-assert(marches['radetzky-march'].melody.some(([name])=>name==='A6'),'ラデツキーは第1主題の高い応答まで続ける');
-assert.equal(templateScore(marches['stars-and-stripes']).length,224,'星条旗は冒頭12小節と2小節の短い終止');
-assert.deepEqual(marches['stars-and-stripes'].melody.slice(12,18),[['G4',8],['E5',4],['',2],['E5',2],['E5',4],['E5',4]],'星条旗は導入から第1主題へ続け、トリオへ飛ばない');
+assert.equal(marches['radetzky-march'].bpm/2,108,'ラデツキーの2/2は2分音符108で進み、半分の速さにしない');
+assert.equal(marches['radetzky-march'].pickupBeats,0);assert.equal(templateScore(marches['radetzky-march']).length,208,'ラデツキーは導入4小節・主題8小節・終止1小節');
+const radLead=templateScore({...marches['radetzky-march'],accompaniment:[]}).notes;
+for(const [step,name]of [[160,'G5'],[164,'E6'],[168,'F5'],[172,'D6']])assert(radLead.some(n=>n.step===step&&n.midi===noteNumber(name)),`ラデツキーの主題末尾の跳躍を一括移調で残す ${step}:${name}`);
+assert.equal(marches['stars-and-stripes'].bpm/2,112,'星条旗の2/2は2分音符112で進む');
+assert.equal(templateScore(marches['stars-and-stripes']).length,320,'星条旗は導入4小節と第1主題16小節を終止まで一巡する');
+assert.deepEqual(marches['stars-and-stripes'].melody.slice(12,18),[['A5',6],['A5',2],['A5',4],['A5',4],['A5',6],['A5',2]],'星条旗の1897年原譜の第1主題を使う');
+assert.equal(createHash('sha256').update(JSON.stringify(templateScore({...marches['stars-and-stripes'],accompaniment:[]}).notes)).digest('hex'),'1424bf9799b539279b488bb74e08732b7d15be7b72a16f4d66381f3a60a65bd7','星条旗はPD浄書MIDIの冒頭20小節の主旋律・拍位置・一括移調と一致する');
 const snow= marches['yuki-no-shingun'];
 assert.equal(snow.bpm,120);assert.equal(snow.accompaniment.length,33,'雪の進軍の伴奏は装飾を減らし、基本1拍ごとの和音だけ');
 assert(snow.accompaniment.every(([names,span])=>names.split(',').length===3&&names.split(',').every(name=>noteNumber(name)<=noteNumber('D5'))&&[2,4].includes(span)),'雪の進軍の伴奏に高い装飾音や細かい走句を加えない');
