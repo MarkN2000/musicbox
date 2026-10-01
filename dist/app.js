@@ -151,10 +151,14 @@ $('play').onclick=async()=>{
     player={start:audio.currentTime+.06,next:0,visual:-1,timer:0,end:audio.currentTime+.06+length*interval};const session=player;
     const tick=()=>{
       if(player!==session)return;
-      while(session.next<length&&session.start+session.next*interval<audio.currentTime+.1){const row=rows.get(session.next)||[];for(const midi of row)session.end=Math.max(session.end,playTone(midi,Math.max(audio.currentTime,session.start+session.next*interval),.5/Math.sqrt(Math.max(1,row.length))));session.next++;}
-      const step=Math.floor((audio.currentTime-session.start)/interval);
-      if(step>=0&&step<length&&step!==session.visual){session.visual=step;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
-      if(session.next>=length&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
+      while(session.start+session.next*interval<audio.currentTime+.1){
+        if(session.next>=length&&session.next%length===0&&!$('loop').checked)break;
+        const row=rows.get(session.next%length)||[];for(const midi of row)session.end=Math.max(session.end,playTone(midi,Math.max(audio.currentTime,session.start+session.next*interval),.5/Math.sqrt(Math.max(1,row.length))));session.next++;
+        if(session.next%length===0)session.end=Math.max(session.end,session.start+session.next*interval);
+      }
+      const elapsed=Math.floor((audio.currentTime-session.start)/interval),step=elapsed%length;
+      if(elapsed>=0&&elapsed<session.next&&step!==session.visual){session.visual=step;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
+      if(session.next>=length&&session.next%length===0&&!$('loop').checked&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
     };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'対応する音だけを試聴中':'試聴中');
   }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
 };document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});

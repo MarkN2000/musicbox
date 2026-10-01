@@ -140,7 +140,7 @@ for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert(html.includes(`id="${
 assert(!/confirmReplace|beforeunload|confirmDialog/.test(app+html),'不要な確認が残っています');
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
 const controls=new Map(),listeners=new Map();
-const node=()=>({value:'',textContent:'',hidden:false,open:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},classList:{add(){},toggle(){}},setAttribute(){},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
+const node=()=>({value:'',textContent:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{},classList:{add(){},toggle(){}},setAttribute(name,value){this.attributes[name]=String(value);},getAttribute(name){return this.attributes[name]??null;},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
 element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;
@@ -179,7 +179,7 @@ ui.reset();while(ui.state().length>4)ui.shrink();assert.equal(ui.state().length,
 listeners.get('keydown')(key(false));assert.equal(ui.state().length,8);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
 // 実際の配置・音源再生処理を、最小限のAudioContextで確認する。
-const played=[],fetched=[],audioErrors=[];let response,resumeResult;
+const played=[],fetched=[],audioErrors=[];let response,resumeResult,scheduledTick;
 class TestAudio{
   currentTime=12;destination={};
   resume(){return resumeResult;}
@@ -188,11 +188,12 @@ class TestAudio{
   createGain(){return {gain:{},connect(){},disconnect(){}};}
 }
 const sound=runInNewContext(`
-  let notes=[],audio=null,player=null,playbackRequest=0;const audioBuffers=new Map(),activeVoices=new Set();
+  let notes=[],length=4,audio=null,player=null,playbackRequest=0;const audioBuffers=new Map(),activeVoices=new Set();
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
   ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
-  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,state:()=>notes});
-`,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},clearTimeout,renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
+  ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
+`,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
 sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
 sound.edit(0,72,true);sound.edit(0,72,false);await settle();assert.equal(played.length,1,'重複入力や削除で音が鳴っています');
@@ -201,5 +202,14 @@ sound.edit(0,66,true);await settle();assert.equal(played.length,2);assert.equal(
 let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});sound.edit(1,76,true);await settle();sound.stop();finishLoad({ok:true,arrayBuffer:async()=>({name:'E5'})});await settle();assert.equal(played.length,2,'停止した入力の音が後から鳴っています');
 response={ok:false};sound.edit(2,79,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,3,'音源エラーで楽譜が失われています');assert.match(audioErrors.at(-1),/G5の音源を読み込めません/);
 let finishResume;resumeResult=new Promise(resolve=>{finishResume=resolve;});const previousFetches=fetched.length,pendingPreview=sound.preview(84);sound.stop();finishResume();await pendingPreview;assert.equal(fetched.length,previousFetches,'停止後に音源を読み込んでいます');
+// 音源の余韻より短い曲でも、音声クロック上の同じ間隔で繰り返す。
+response=resumeResult=undefined;sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);element('interval').value=125;
+const advance=time=>{while(sound.time()<time&&scheduledTick){sound.setTime(Math.min(time,sound.time()+.025));scheduledTick();}},near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-8,`再生時刻がずれています: ${actual} / ${expected}`);
+let playCount=played.length;await sound.play();let start=sound.playback().start;advance(start+.5);assert.equal(played.length-playCount,2,'ループオフで繰り返しています');advance(start+1.3);assert(sound.playback(),'余韻を途中で止めています');advance(start+1.4);assert.equal(sound.playback(),null);
+playCount=played.length;await sound.play();start=sound.playback().start;element('loop').checked=true;advance(start+.45);advance(start+.95);
+for(const [i,offset]of[0,.375,.5,.875,1].entries())near(played[playCount+i].time,start+offset);
+assert.equal(sound.playback().visual,3,'2周目の表示位置が先頭に戻っていません');element('loop').checked=false;advance(start+1.4);assert.equal(played.length-playCount,6,'オフにした周回を最後まで再生していません');advance(start+2.4);assert.equal(sound.playback(),null,'ループをオフにしても終了しません');
+element('loop').checked=true;await sound.play();const pendingTick=scheduledTick;sound.stop();playCount=played.length;pendingTick();assert.equal(played.length,playCount);assert.equal(sound.playback(),null);assert.equal(scheduledTick,null,'停止後もループのタイマーが残っています');
+sound.setScore([{step:0,midi:72}],1);element('interval').value=10;await sound.play();start=sound.playback().start;advance(start+.02);assert(sound.playback().next>1,'1ステップの楽譜をループできません');sound.stop();element('loop').checked=false;
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

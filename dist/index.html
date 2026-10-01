@@ -5,7 +5,7 @@
   <title>オルゴール譜 — 30音の楽譜エディター</title>
   <meta name="description" content="MIDIを取り込み、30音オルゴールの楽譜をマス目で編集。試聴してTXT形式で書き出せます。">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23163e57'/%3E%3Cpath d='M8 9h16M8 16h16M8 23h16' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='10' y='6' width='5' height='6' fill='%2391d8f6'/%3E%3Crect x='19' y='13' width='5' height='6' fill='%2391d8f6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=625b143ca8d3fb53">
+  <link rel="stylesheet" href="style.css?v=1e37c426205824a9">
 </head>
 <body>
   <main>
@@ -21,7 +21,7 @@
         <div id="rollViewport" class="roll-viewport"><div id="roll" class="roll" role="grid" aria-label="音とステップの編集マス目"></div></div>
         <div class="editor-footer"><span id="noteStats"></span><div><button id="shrink" class="button subtle" title="末尾の4ステップを削除">−4ステップ</button> <button id="extend" class="button subtle">＋4ステップ</button></div></div>
         <details id="settings" class="settings"><summary>設定</summary><div class="settings-content">
-          <div class="settings-fields"><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt</span></span></label></div>
+          <div class="settings-fields"><label><input id="loop" type="checkbox"> ループ再生</label><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt</span></span></label></div>
           <p class="template-info" id="templateInfo"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">出典 ↗</a><a id="templateListen" target="_blank" rel="noopener noreferrer">原曲を聴く ↗</a><span id="templateCredit" hidden></span><a id="templateLicense" target="_blank" rel="noopener noreferrer" hidden></a></p>
           <section id="midiPanel" class="midi-panel" hidden><h2>MIDI設定</h2><div id="trackList" class="track-list"></div><div class="transpose-row"><label for="transpose">移調 <input id="transpose" type="number" min="-24" max="24" value="0"> 半音</label><button id="suggest" class="button subtle">候補</button></div><div id="suggestions" class="suggestions"></div><p id="conversionInfo" class="secondary"></p><button id="applyMidi" class="button">適用</button></section>
           <label class="preview-heading" for="txtPreview">TXTプレビュー</label><textarea id="txtPreview" readonly spellcheck="false" aria-label="出力テキストのプレビュー"></textarea>
@@ -29,6 +29,6 @@
         <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
   </main>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=7c9357b8896dc156&ui=7b8406835ac72c4c"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=7c9357b8896dc156&ui=11b7be8b39a24085"></script>
 </body>
 </html>
