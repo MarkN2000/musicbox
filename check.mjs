@@ -57,8 +57,8 @@ assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:Array(MAX_NOTES+1
 const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(smpte.buffer),/SMPTE/);
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
 const templateExpectations=[['ode-to-joy',252,['E5','E5','F5','G5']],['fur-elise',48,['E6','D#6','E6','D#6']],['twinkle',188,['C5','C5','G5','G5']],['minuet',184,['G5','C5','D5','E5']]];
-assert.equal(TEMPLATES.length,42);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,42);
-assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':31,'行進曲':7,'民謡など':4});
+assert.equal(TEMPLATES.length,43);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,43);
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':32,'行進曲':7,'民謡など':4});
 assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
   const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
@@ -81,6 +81,15 @@ for(const template of TEMPLATES){
   assert.equal(serialize(score.notes,score.length).split('\n').length-1,length,id);
   const first=score.notes[0].midi;score.notes[0].midi=0;assert.equal(templateScore(template).notes[0].midi,first);
 }
+const entertainer=TEMPLATES.find(t=>t.id==='the-entertainer'),entertainerScore=templateScore(entertainer),entertainerLead=templateScore({...entertainer,accompaniment:[]}).notes;
+assert.equal(entertainer.bpm,72,'エンターテイナーは原譜のNot fastと参照MIDIのテンポを保つ');
+assert.equal(entertainer.beatsPerBar,2);assert.equal(entertainer.pickupBeats,.5);assert.equal(entertainerScore.length,128);
+// Mutopia 263の1902年版の第1主題。オクターブ重複の下側と単音を一律12半音上げた原譜の77音・発音位置を照合する。
+assert.equal(createHash('sha256').update(JSON.stringify(entertainerLead)).digest('hex'),'304e925d3ebb13f18cf58d6669029ee3bee7bda103bca06ac749013f00868626','エンターテイナーの半音・シンコペーション・タイ・主題の続きは原譜と一致する');
+for(const n of templateScore({...entertainer,melody:[]}).notes)assert(n.midi<entertainerLead.findLast(lead=>lead.step<=n.step).midi,'エンターテイナーの伴奏をその時点の主旋律より低く保つ');
+const entertainerRows=serialize(entertainerScore.notes,128).split('\n');
+for(const[step,row]of [[8,'G4,A#4,C5,E5'],[52,'A4,C5,F#5,C6'],[112,'F4,C5,G#5,D6'],[122,'C4,E4,G4,C6'],[126,'C4,E4,G4']])assert.equal(entertainerRows[step],row,'エンターテイナーのC7・D7・Fmと末尾の主和音');
+assert.deepEqual(entertainerRows.slice(0,3),['D5','D#5','C4,E5'],'エンターテイナーのループは末尾の主和音から弱起と主題へ戻る');
 const canon=TEMPLATES.find(template=>template.id==='pachelbel-canon');
 assert.equal(canon.bpm,55,'カノンは参照MIDIのゆったりしたテンポ');assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,192);
 assert(templateScore(canon).notes.every(note=>note.step<24*8),'カノンの25拍目以降は含めない');
@@ -270,13 +279,28 @@ assert.deepEqual(flowers.melody.slice(-9),[['A5',16],['G5',12],['F#5',4],['F5',4
 assert(!flowersLead.notes.some(note=>note.step===360),'花のワルツの応答の小節をまたぐタイを打ち直さない');
 assert.equal(serialize(flowersScore.notes,396).split('\n')[392],'F3,A4,C5,F5','花のワルツの最後の旋律音と主和音をそろえる');
 const maiden=TEMPLATES.find(t=>t.id==='maidens-prayer'),maidenScore=templateScore(maiden);
-assert.equal(maiden.bpm,78);assert.equal(maiden.subdivision,6);assert.equal(maidenScore.length,96,'乙女の祈りのループは4小節・16拍を保つ');
-assert.deepEqual(maiden.melody.slice(0,8),[['G5',2],['C6',2],['E6',2],['G5',2],['C6',2],['E6',2],['G6',9],['E6',3]],'乙女の祈りは有名な第1主題から始め、三連符と付点を保つ');
-assert.deepEqual(maiden.melody.slice(-9),[['G5',1],['G5',2],['F5',2],['E5',2],['D5',2],['C5',4],['E5',2],['G5',2],['E5',2]],'乙女の祈りは主音へ下がって分散和音から冒頭のG5に戻る');
+assert.equal(maiden.bpm,78);assert.equal(maiden.subdivision,6);assert.equal(maidenScore.length,192,'乙女の祈りは主題と応答8小節・32拍を使う');
+const maidenOriginal=[
+  ['',2],['A#4',2],['D#5',2],['G5',2],['A#5',2],['D#6',2],['G6',9],['F6',3],
+  ['F6',5],['D#6',1],['D#6',2],['D6',2],['C6',2],['C6',6],['',6],
+  ['',2],['D4',2],['F4',2],['A#4',2],['D5',2],['F5',2],['D6',9],['C6',3],
+  ['C6',5],['A#5',1],['A#5',2],['G#5',2],['G5',2],['G5',6],['',6],
+];
+const maidenSource=[...maidenOriginal,...maidenOriginal.slice(0,15),
+  ['',2],['D4',2],['F4',2],['G#4',2],['D5',2],['F5',2],
+  ['',2],['G4',2],['A#4',2],['D#5',2],['G5',2],['A#5',2],
+];
+assert.deepEqual(maiden.melody.slice(0,-4),maidenSource.map(([name,span])=>[name?noteName(noteNumber(name)+2):'',span]),'乙女の祈りは1855・1856年の原譜の第1主題7小節を一括で2半音上げ、上行・応答・休符を保つ');
+assert.deepEqual(maiden.melody.slice(-4),[['C6',9],['A5',3],['G5',3],['F5',9]],'乙女の祈りの最後は主音まで下降し、余計な分散和音を付け足さない');
 assert.equal(maiden.listen,'https://www.youtube.com/watch?v=HDAofQTcwQE');
-assert(!templateScore({...maiden,melody:[]}).notes.some(note=>note.step>=48&&note.step<72&&note.midi===noteNumber('F5')),'乙女の祈りの9拍目からの伴奏にF5を重ねない');
-assert.equal(serialize(maidenScore.notes,96).split('\n')[90],'C4,E4,G4,E5','乙女の祈りの結びは主和音で支える');
-assert.equal(serialize(maidenScore.notes,96).split('\n')[94],'E5','乙女の祈りの最後の三連符から冒頭へ等間隔で続く');
+const maidenLead=templateScore({...maiden,accompaniment:[]}).notes,maidenBacking=templateScore({...maiden,melody:[]}).notes;
+for(const note of maidenBacking){
+  const lead=maidenLead.findLast(lead=>lead.step<=note.step);
+  if(lead)assert(note.midi<lead.midi,'乙女の祈りの伴奏は旋律より下に置き、旋律を打ち直さない');
+}
+for(const start of [48,144])assert(maidenBacking.filter(note=>note.step>=start&&note.step<start+6).every(note=>note.midi<=noteNumber('C4')),'乙女の祈りの低い応答は低音だけで支える');
+assert.equal(serialize(maidenScore.notes,192).split('\n')[183],'F3,A4,C5,F5','乙女の祈りの最後の旋律音とヘ長調の主和音をそろえる');
+assert.equal(maidenLead.at(-1).step,183,'乙女の祈りの終止音を余計な装飾で打ち直さない');
 const salut=TEMPLATES.find(t=>t.id==='salut-damour'),salutScore=templateScore(salut);
 assert.equal(salut.bpm,76);assert.equal(salutScore.length,76,'愛の挨拶は主題8小節に短い結びを添える');
 assert(templateScore({...salut,accompaniment:[]}).notes.some(n=>n.step===36&&n.midi===noteNumber('G#5')),'愛の挨拶の原譜の半音を別の音に置き換えない');
@@ -539,4 +563,4 @@ for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[
 }
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const url=new URL(match[1],'https://musicbox.test/');if(url.origin==='https://musicbox.test')await readFile('dist/'+decodeURIComponent(url.pathname.slice(1)||'index.html'));}
 await import('./check-mp3.mjs');
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート43曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
