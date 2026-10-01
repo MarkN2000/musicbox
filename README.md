@@ -53,6 +53,8 @@ WorkersのGit連携にこのGitHubリポジトリを接続し、次の設定に�
 
 GitHubの `main` を本番のソースとし、変更後は `npm test` で確認してコミットします。WorkersのGit連携と `main` の自動ビルドが有効なら、GitHubを指す `origin` に `git push origin main` するとCloudflareがテストとデプロイを実行します。公開完了はCloudflareのビルド履歴と公開サイトで確認します。
 
+GitHub連携の設定時は、Cloudflare Workers and Pagesアプリに `MarkN2000/musicbox` へのアクセスを許可してください。連携を復旧した後は、最新の `main` のビルドとデプロイが成功したことを確認します。
+
 公開先はCloudflare Workersとします。旧Sitesの公開用設定はリポジトリから除外しています。
 
 ## 利用ライブラリ
