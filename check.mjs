@@ -139,6 +139,15 @@ assert.deepEqual(auld.melody.slice(19),[['D5',6],['C5',2],['D5',4],['E5',2],['D5
 assert(auldBacking.filter(note=>(note.step>=20&&note.step<36)||note.step>=84).every(note=>note.midi<=noteNumber('C5')),'蛍の光の指定区間で伴奏が旋律より高くなっています');
 const auldRows=serialize(auldBacking,128).split('\n');
 for(const [step,chord]of [[20,'G3,D4'],[32,'C4,E4'],[84,'G3,D4'],[100,'F3,A4'],[108,'F3,A4'],[112,'G3,D4'],[116,'C4,E4'],[124,'C4,E4']])assert.equal(auldRows[step],chord,`蛍の光の和声の切り替え ${step}`);
+const amazing=TEMPLATES.find(t=>t.id==='amazing-grace'),amazingScore=templateScore(amazing);
+assert.equal(amazing.bpm,84);assert.equal(amazing.beatsPerBar,3);assert.equal(amazing.pickupBeats,1);
+assert.equal(amazingScore.length,192,'アメイジング・グレイスは弱起と最後の長音を含む1番の48拍を保つ');
+assert.deepEqual(amazing.melody.slice(0,8),[['G5',4],['C6',8],['E6',2],['C6',2],['E6',8],['D6',4],['C6',8],['A5',4]],'アメイジング・グレイスの有名な歌い出し');
+assert.deepEqual(amazing.melody.slice(15,29),[['G6',20],['E6',4],['G6',6],['E6',2],['G6',2],['E6',2],['C6',8],['G5',4],['A5',6],['C6',2],['C6',2],['A5',2],['G5',8],['G5',4]],'NEW BRITAINの長音と後半の付点・上行・下降を原譜のまま残す');
+assert.deepEqual(amazing.melody.slice(-3),[['E6',8],['D6',4],['C6',20]],'最後は1番の主音へ解決し、5拍のタイを打ち直さない');
+const amazingBacking=templateScore({...amazing,melody:[]}).notes;
+assert(amazingBacking.every(n=>n.midi<=noteNumber('B4')),'アメイジング・グレイスの伴奏を旋律より低く保つ');
+assert.deepEqual(serialize(amazingBacking,192).split('\n').slice(184,192),['C4,E4,G4','','','','E4,G4','','',''],'終止の主和音を弱起まで続け、末尾処理でループの長さを縮めない');
 const gymnopedie=TEMPLATES.find(t=>t.id==='gymnopedie-1'),gymnopedieScore=templateScore(gymnopedie);
 assert.equal(gymnopedie.bpm,64);assert.equal(gymnopedieScore.length,52,'ジムノペディは後半に進まず13拍で閉じる');
 assert.deepEqual(gymnopedie.melody.slice(-2),[['G5',12],['E5',4]],'ジムノペディの冒頭主題と直後の終止音');
