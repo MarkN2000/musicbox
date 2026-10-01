@@ -157,21 +157,31 @@ assert(html.includes(`href="style.css?v=${cssRevision}"`),'スタイルURLの更
 for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert(html.includes(`id="${match[1]}"`),`UIがありません: ${match[1]}`);
 assert(!/confirmReplace|beforeunload|confirmDialog/.test(app+html),'不要な確認が残っています');
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
-const controls=new Map(),listeners=new Map();
-const node=()=>({value:'',textContent:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{},classList:{add(){},toggle(){}},setAttribute(name,value){this.attributes[name]=String(value);},getAttribute(name){return this.attributes[name]??null;},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
+const controls=new Map(),listeners=new Map(),windowListeners=new Map();let nodeCount=0,outputWrites=0,focusedNode;
+const nodeMethods={
+  get firstElementChild(){return this.children[0];},get lastElementChild(){return this.children.at(-1);},
+  get classList(){const cell=this;return {toggle(name,on){const names=new Set(cell.className.split(' ').filter(Boolean));if(on??!names.has(name))names.add(name);else names.delete(name);cell.className=[...names].join(' ');},add(name){this.toggle(name,true);},remove(name){this.toggle(name,false);}};},
+  setAttribute(name,value){this.attributes[name]=String(value);},getAttribute(name){return this.attributes[name]??null;},
+  append(...children){for(const child of children){child.parent=this;this.children.push(child);}},replaceChildren(){this.children=[];},
+  remove(){const siblings=this.parent.children;if(siblings.at(-1)===this)siblings.pop();else siblings.splice(siblings.indexOf(this),1);this.parent=null;},
+  querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
+  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(){return this;},focus(){focusedNode=this;}
+};
+const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{}});};
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
 element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;
 const ui=runInNewContext(`
-  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72};
+  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72},focusedCell=null,drag=null;
   const pitches=Array.from({length:41},(_,i)=>93-i);
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function renderGrid(){'))}
   ${app.slice(app.indexOf('function renderGrid(){'),app.indexOf('function renderOutput(){'))}
+  ${app.slice(app.indexOf('function paint('),app.indexOf("for(const [id,delta] of [['extend',4]"))}
   ${app.slice(app.indexOf("for(const [id,delta] of [['extend',4]"),app.indexOf('function undo(){'))}
   ${app.slice(app.indexOf('function undo(){'),app.indexOf('for(const template of TEMPLATES)'))}
   ${app.split('\n').find(line=>line.startsWith('function updateInterval(){'))}
-  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
-`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},previewConversion(){},showTemplateInfo(){},render(){},stopPlayback(){},announce(){}});
+  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
+`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},previewConversion(){},showTemplateInfo(){},render(){},renderOutput(){outputWrites++;},previewTone(){},stopPlayback(){},announce(){}});
 const originalUI=JSON.stringify(ui.state());ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(element('interval').value,125);
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
 listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('fileName').value,'edited');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);
@@ -186,7 +196,7 @@ for(const start of [50,64,256]){
   assert.equal(ui.state().length,start);
   const before=JSON.stringify({...ui.state(),historyLength:undefined}),oldLength=ui.state().length,oldScroll=element('rollViewport').scrollLeft;
   ui.extend();assert.equal(ui.state().length,oldLength+4);assert.equal(element('rollViewport').scrollLeft,element('rollViewport').scrollWidth);const extendedNotes=JSON.stringify(ui.state().notes);assert.equal(extendedNotes,JSON.stringify(JSON.parse(before).notes));
-  ui.grid();const rows=element('roll').children;assert.equal(rows.length,42);assert(rows.every(row=>row.children.length===oldLength+5),'全ステップが描画されていません');assert.equal(rows[0].children.at(-1).dataset.step,oldLength+3);
+  ui.grid();const rows=element('roll').children;assert.equal(rows.length,42);assert(rows.every(row=>row.children.length===oldLength+5),'全ステップが描画されていません');assert.equal(Number(rows[0].children.at(-1).dataset.step),oldLength+3);
   assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,oldLength+4);
   ui.shrink();assert.equal(ui.state().length,oldLength);assert.equal(JSON.stringify(ui.state().notes),extendedNotes,'空のステップ削除で既存の音が変わっています');listeners.get('keydown')(key(false));assert.equal(ui.state().length,oldLength+4);
   listeners.get('keydown')(key(false));assert.equal(JSON.stringify({...ui.state(),historyLength:undefined}),before);assert.equal(element('rollViewport').scrollLeft,oldScroll);
@@ -196,6 +206,16 @@ ui.grid();assert(element('extend').disabled,'上限で追加ボタンが無効�
 ui.reset();while(ui.state().length>4)ui.shrink();assert.equal(ui.state().length,4);const minimum=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),minimum,'空の楽譜まで削除しています');ui.grid();assert(element('shrink').disabled);assert(!element('extend').disabled);
 listeners.get('keydown')(key(false));assert.equal(ui.state().length,8);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
+ui.grid();const firstCell=ui.cell(0,72),otherCell=ui.cell(1,72),row=element('roll').children[1];let created=nodeCount,writes=outputWrites;
+const pointer=cell=>({target:cell,button:0,pointerType:'mouse',preventDefault(){}});
+element('roll').events.pointerdown(pointer(firstCell));element('roll').events.pointerover(pointer(otherCell));assert.equal(outputWrites,writes,'ドラッグ中に出力を毎回作り直しています');windowListeners.get('pointerup')();assert.equal(outputWrites,writes+1);
+assert.equal(nodeCount,created,'音配置でマスを作り直しています');assert.equal(ui.cell(0,72),firstCell);assert.equal(firstCell.getAttribute('aria-pressed'),'true');assert.equal(otherCell.getAttribute('aria-pressed'),'true');
+element('roll').events.keydown({...pointer(firstCell),key:'ArrowRight'});assert.equal(focusedNode,otherCell);assert.equal(firstCell.tabIndex,-1);assert.equal(otherCell.tabIndex,0);
+element('roll').events.click({...pointer(ui.cell(2,72)),pointerType:'touch',detail:1});assert.equal(ui.cell(2,72).getAttribute('aria-pressed'),'true');assert.equal(focusedNode,ui.cell(2,72));
+writes=outputWrites;element('roll').events.pointerdown(pointer(ui.cell(3,72)));windowListeners.get('pointercancel')();assert.equal(outputWrites,writes+1,'中断したドラッグの出力が更新されません');
+ui.grid();assert.equal(nodeCount,created,'同じ構造の描画でマスを作り直しています');ui.extend();ui.grid();assert.equal(nodeCount-created,42*4,'末尾4列以外も作り直しています');created=nodeCount;ui.shrink();ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').children[1],row);assert.equal(ui.cell(0,72),firstCell);
+ui.setScore([{step:0,midi:66},{step:0,midi:120}]);ui.grid();const outsideCell=ui.cell(0,66);assert.equal(outsideCell.disabled,false);assert.equal(outsideCell.getAttribute('aria-pressed'),'true');element('roll').events.click({...pointer(outsideCell),detail:0});assert.equal(outsideCell.disabled,true,'削除した対応外のマスが無効になりません');assert.match(outsideCell.getAttribute('aria-label'),/対応外/);assert.equal(firstCell.tabIndex,0);listeners.get('keydown')(key(false));ui.grid();assert.equal(outsideCell.disabled,false,'取り消した対応外の音を復元できません');
+ui.rhythm(6,3,.5);ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').firstElementChild.children[7].textContent,'2');assert.match(firstCell.parent.children[4].className,/\bbar\b/,'拍子・弱起の変更で小節線を更新できません');ui.rhythm(4,4,0);ui.grid();
 // 実際の配置・音源再生処理を、最小限のAudioContextで確認する。
 const played=[],fetched=[],audioErrors=[];let response,resumeResult,scheduledTick;
 class TestAudio{
@@ -206,20 +226,24 @@ class TestAudio{
   createGain(){return {gain:{},connect(){},disconnect(){}};}
 }
 const sound=runInNewContext(`
-  let notes=[],length=4,audio=null,player=null,playbackRequest=0;const audioBuffers=new Map(),activeVoices=new Set();
+  let notes=[],length=4,audio=null,player=null,playbackRequest=0,drag=null;const audioBuffers=new Map(),audioLoads=new Map(),activeVoices=new Set();
+  ${app.slice(app.indexOf('function updateCell('),app.indexOf('function focusCell('))}
+  ${app.slice(app.indexOf('function markStep('),app.indexOf('function renderOutput('))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
   ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
   ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
-  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
 `,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
 sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
 sound.edit(0,72,true);sound.edit(0,72,false);await settle();assert.equal(played.length,1,'重複入力や削除で音が鳴っています');
 sound.edit(0,72,true);await settle();assert.equal(played.length,2);assert.equal(fetched.length,1,'読み込み済みの音源を再取得しています');
 sound.edit(0,66,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,1,'対応外の音を配置しています');
-let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});sound.edit(1,76,true);await settle();sound.stop();finishLoad({ok:true,arrayBuffer:async()=>({name:'E5'})});await settle();assert.equal(played.length,2,'停止した入力の音が後から鳴っています');
+let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});const loadsBefore=fetched.length;sound.edit(1,76,true);await settle();assert.equal(sound.load(76),sound.load(76),'読み込み中の音源を共有していません');assert.equal(fetched.length,loadsBefore+1);sound.stop();finishLoad({ok:true,arrayBuffer:async()=>({name:'E5'})});await settle();assert.equal(played.length,2,'停止した入力の音が後から鳴っています');
 response={ok:false};sound.edit(2,79,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,3,'音源エラーで楽譜が失われています');assert.match(audioErrors.at(-1),/G5の音源を読み込めません/);
 let finishResume;resumeResult=new Promise(resolve=>{finishResume=resolve;});const previousFetches=fetched.length,pendingPreview=sound.preview(84);sound.stop();finishResume();await pendingPreview;assert.equal(fetched.length,previousFetches,'停止後に音源を読み込んでいます');
+response=resumeResult=undefined;const silentCount=played.length;await Promise.all([...ALLOWED].map(sound.load));assert.equal(played.length,silentCount,'先読みで音を鳴らしています');assert.equal(new Set(fetched).size,30,'共通30音源を準備できません');assert.equal(fetched.filter(url=>url.includes('/G5.ogg')).length,2,'失敗した音源を再試行できません');
+const loadedCount=fetched.length;sound.setScore([{step:0,midi:93}],4);element('interval').value=125;await sound.play();assert.equal(fetched.length,loadedCount,'別の楽譜で準備済みの音源を再取得しています');sound.stop();
 // 音源の余韻より短い曲でも、音声クロック上の同じ間隔で繰り返す。
 response=resumeResult=undefined;sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);element('interval').value=125;
 const advance=time=>{while(sound.time()<time&&scheduledTick){sound.setTime(Math.min(time,sound.time()+.025));scheduledTick();}},near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-8,`再生時刻がずれています: ${actual} / ${expected}`);

@@ -6,39 +6,59 @@ const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
 let notes = sample.notes, length = sample.length, history = [], currentTemplate=initialTemplate;
 let sourceMidi = null, drag = null, audio = null, player = null, activeVoices = new Set();
 const audioBuffers = new Map();
+const audioLoads = new Map();
 let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
+let focusedCell = null;
 let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
 function remember(){history.push(snapshot());if(history.length>30)history.shift();}
-// ponytail: 全マスの描画量は41×ステップ数。実測で重くなった場合に可視範囲の描画を検討する。
-function renderGrid(){
-  const roll=$('roll');roll.replaceChildren();
-  const selected=new Set(notes.map(keyOf));
-  const subdivision=Number($('subdivision').value);
-  const header=document.createElement('div');header.className='grid-row header-row';header.setAttribute('role','row');
-  const corner=document.createElement('div');corner.className='key';corner.textContent='音 / 拍';corner.setAttribute('role','columnheader');header.append(corner);
-  for(let step=0;step<length;step++){const label=document.createElement('div');label.className='step-label';label.dataset.step=step;label.setAttribute('role','columnheader');if(step%subdivision===0){label.classList.add('beat');label.textContent=String(Math.floor(step/subdivision)+1);}if((step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0)label.classList.add('bar');header.append(label);}
-  roll.append(header);
-  for(const midi of pitches){
-    const allowed=ALLOWED.has(midi), black=noteName(midi).includes('#');
-    const row=document.createElement('div');row.className='grid-row'+(!allowed?' unavailable':'');row.setAttribute('role','row');
-    const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.textContent=noteName(midi);key.setAttribute('role','rowheader');key.setAttribute('aria-label',`${noteName(midi)}${allowed?'':'、使用不可'}`);row.append(key);
-    for(let step=0;step<length;step++){
-      const cell=document.createElement('button'),has=selected.has(`${step}:${midi}`);
-      cell.className='cell'+(black?' black':'')+(!allowed?' unavailable':'')+(has?(allowed?' active':' outside'):'');
-      if(step%subdivision===0)cell.classList.add('beat');if((step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0)cell.classList.add('bar');
-      cell.dataset.step=step;cell.dataset.midi=midi;cell.setAttribute('role','gridcell');cell.setAttribute('aria-label',`${noteName(midi)}、ステップ${step+1}${allowed?'':'、対応外'}${has?'、音あり':''}`);cell.setAttribute('aria-pressed',String(has));
-      cell.tabIndex=allowed&&step===currentCell.step&&midi===currentCell.midi?0:-1;
-      if(!allowed&&!has){cell.disabled=true;cell.setAttribute('aria-disabled','true');}
-      row.append(cell);
-    }roll.append(row);
-  }
-  if(!roll.querySelector('[tabindex="0"]')){const first=roll.querySelector('.cell:not(:disabled):not(.unavailable)');if(first)first.tabIndex=0;}
-  $('extend').disabled=length+4>MAX_STEPS;$('shrink').disabled=length<=4;
+function getCell(step,midi){return $('roll').children[pitches[0]-midi+1]?.children[step+1];}
+function updateCell(cell,on){
+  const midi=Number(cell.dataset.midi),allowed=ALLOWED.has(midi);
+  cell.classList.toggle('active',on&&allowed);cell.classList.toggle('outside',on&&!allowed);
+  cell.disabled=!allowed&&!on;cell.setAttribute('aria-disabled',String(cell.disabled));cell.setAttribute('aria-pressed',String(on));
+  cell.setAttribute('aria-label',`${noteName(midi)}、ステップ${Number(cell.dataset.step)+1}${allowed?'':'、対応外'}${on?'、音あり':''}`);
 }
+function focusCell(cell,focus=false){
+  if(!cell||cell.disabled)cell=getCell(Math.min(cell?Number(cell.dataset.step):currentCell.step,length-1),72);
+  if(focusedCell)focusedCell.tabIndex=-1;focusedCell=cell;if(!cell)return;
+  cell.tabIndex=0;currentCell={step:Number(cell.dataset.step),midi:Number(cell.dataset.midi)};if(focus)cell.focus();
+}
+// ponytail: 全マスの保持量は41×ステップ数。非常に長い楽譜でメモリが不足する場合は描画方式を見直す。
+function renderGrid(){
+  const roll=$('roll'),selected=new Set(notes.map(keyOf)),subdivision=Number($('subdivision').value);
+  const rhythm=`${subdivision}:${beatsPerBar}:${pickupBeats}`,rhythmChanged=roll.dataset.rhythm!==rhythm;
+  if(!roll.children.length){
+    const header=document.createElement('div');header.className='grid-row header-row';header.setAttribute('role','row');
+    const corner=document.createElement('div');corner.className='key';corner.textContent='音 / 拍';corner.setAttribute('role','columnheader');header.append(corner);roll.append(header);
+    for(const midi of pitches){
+      const allowed=ALLOWED.has(midi),black=noteName(midi).includes('#'),row=document.createElement('div');row.className='grid-row'+(!allowed?' unavailable':'');row.setAttribute('role','row');
+      const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.textContent=noteName(midi);key.setAttribute('role','rowheader');key.setAttribute('aria-label',`${noteName(midi)}${allowed?'':'、使用不可'}`);row.append(key);roll.append(row);
+    }
+  }
+  for(const [index,row]of Array.from(roll.children).entries()){
+    const midi=pitches[index-1];
+    while(row.children.length>length+1)row.lastElementChild.remove();
+    const firstNew=row.children.length-1;
+    for(let step=firstNew;step<length;step++){
+      const cell=document.createElement(index?'button':'div');cell.dataset.step=step;cell.setAttribute('role',index?'gridcell':'columnheader');
+      if(index){cell.className='cell'+(noteName(midi).includes('#')?' black':'')+(!ALLOWED.has(midi)?' unavailable':'');cell.dataset.midi=midi;cell.tabIndex=-1;updateCell(cell,selected.has(`${step}:${midi}`));}
+      else cell.className='step-label';row.append(cell);
+    }
+    for(let step=rhythmChanged?0:firstNew;step<length;step++){
+      const cell=row.children[step+1];cell.classList.toggle('beat',step%subdivision===0);cell.classList.toggle('bar',(step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0);
+      if(!index)cell.textContent=step%subdivision===0?String(Math.floor(step/subdivision)+1):'';
+    }
+  }
+  roll.dataset.rhythm=rhythm;
+  for(const cell of roll.querySelectorAll('.active,.outside'))if(!selected.has(`${cell.dataset.step}:${cell.dataset.midi}`))updateCell(cell,false);
+  for(const note of notes){const cell=getCell(note.step,note.midi);if(cell&&cell.getAttribute('aria-pressed')!=='true')updateCell(cell,true);}
+  focusCell(getCell(currentCell.step,currentCell.midi));$('extend').disabled=length+4>MAX_STEPS;$('shrink').disabled=length<=4;
+}
+function markStep(step,on){if(step<0)return;for(const row of $('roll').children)row.children[step+1]?.classList.toggle('playing',on);}
 function renderOutput(){
   const outside=notes.filter(note=>!ALLOWED.has(note.midi));
   $('noteStats').textContent=`${notes.length}音 · ${length}ステップ`;
@@ -63,14 +83,13 @@ function paint(cell,on){
   if(!ALLOWED.has(midi)&&on)return;
   const has=notes.some(note=>keyOf(note)===key);if(has===on)return;
   if(on){notes.push({step,midi});void previewTone(midi);}else notes=notes.filter(note=>keyOf(note)!==key);
-  cell.classList.toggle('active',on&&ALLOWED.has(midi));cell.classList.toggle('outside',on&&!ALLOWED.has(midi));cell.setAttribute('aria-pressed',String(on));cell.setAttribute('aria-label',`${noteName(midi)}、ステップ${step+1}${on?'、音あり':''}`);
-  renderOutput();
+  updateCell(cell,on);if(!drag)renderOutput();
 }
-$('roll').addEventListener('pointerdown',event=>{const cell=event.target.closest('.cell');if(!cell||cell.disabled||event.button!==0)return;if(event.pointerType==='touch')return;event.preventDefault();stopPlayback();remember();const on=cell.getAttribute('aria-pressed')!=='true';drag={on,seen:new Set()};paint(cell,on);drag.seen.add(`${cell.dataset.step}:${cell.dataset.midi}`);currentCell={step:Number(cell.dataset.step),midi:Number(cell.dataset.midi)};cell.focus();});
+$('roll').addEventListener('pointerdown',event=>{const cell=event.target.closest('.cell');if(!cell||cell.disabled||event.button!==0)return;if(event.pointerType==='touch')return;event.preventDefault();stopPlayback();remember();const on=cell.getAttribute('aria-pressed')!=='true';drag={on,seen:new Set()};paint(cell,on);drag.seen.add(`${cell.dataset.step}:${cell.dataset.midi}`);focusCell(cell,true);});
 $('roll').addEventListener('pointerover',event=>{const cell=event.target.closest('.cell');if(!drag||!cell||cell.disabled)return;const key=`${cell.dataset.step}:${cell.dataset.midi}`;if(drag.seen.has(key))return;drag.seen.add(key);paint(cell,drag.on);});
-window.addEventListener('pointerup',()=>{if(drag){drag=null;render();$('roll').querySelector(`[data-step="${currentCell.step}"][data-midi="${currentCell.midi}"]`)?.focus({preventScroll:true});}});window.addEventListener('pointercancel',()=>{drag=null;});
-$('roll').addEventListener('click',event=>{if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');}});
-$('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;currentCell={step,midi};for(const other of $('roll').querySelectorAll('.cell'))other.tabIndex=-1;const target=$('roll').querySelector(`[data-step="${step}"][data-midi="${midi}"]`);if(target){target.tabIndex=0;target.focus();}});
+window.addEventListener('pointerup',()=>{if(drag){drag=null;renderOutput();}});window.addEventListener('pointercancel',()=>{if(drag){drag=null;renderOutput();}});
+$('roll').addEventListener('click',event=>{if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);}});
+$('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;focusCell(getCell(step,midi),true);});
 for(const [id,delta] of [['extend',4],['shrink',-4]])$(id).onclick=()=>{
   if(length+delta<1||length+delta>MAX_STEPS)return;
   stopPlayback();remember();length+=delta;notes=notes.filter(note=>note.step<length);currentCell.step=Math.min(currentCell.step,length-1);
@@ -115,18 +134,23 @@ $('copyText').onclick=async()=>{
 };
 function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));}
 $('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',stopPlayback);
-function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');}
-async function resumeAudio(){
+function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');}
+function getAudio(){
   const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');
-  audio??=new AudioClass();await audio.resume();
+  return audio??=new AudioClass();
 }
-async function loadTone(midi){
-  if(audioBuffers.has(midi))return audioBuffers.get(midi);
-  const name=noteName(midi);
-  const response=await fetch(`audio/${encodeURIComponent(name)}.ogg?v=01e82e8fcb28047e`);
-  if(!response.ok)throw new Error(`${name}の音源を読み込めませんでした。もう一度試聴してください。`);
-  let buffer;try{buffer=await audio.decodeAudioData(await response.arrayBuffer());}catch{throw new Error(`${name}のOGG音源を再生できません。このブラウザのOGG対応を確認してください。`);}
-  audioBuffers.set(midi,buffer);return buffer;
+async function resumeAudio(){await getAudio().resume();}
+function loadTone(midi){
+  if(audioBuffers.has(midi))return Promise.resolve(audioBuffers.get(midi));
+  if(!audioLoads.has(midi)){
+    const loading=(async()=>{
+      const name=noteName(midi),response=await fetch(`audio/${encodeURIComponent(name)}.ogg?v=01e82e8fcb28047e`);
+      if(!response.ok)throw new Error(`${name}の音源を読み込めませんでした。もう一度試聴してください。`);
+      const context=getAudio();let buffer;try{buffer=await context.decodeAudioData(await response.arrayBuffer());}catch{throw new Error(`${name}のOGG音源を再生できません。このブラウザのOGG対応を確認してください。`);}
+      audioBuffers.set(midi,buffer);return buffer;
+    })().finally(()=>audioLoads.delete(midi));audioLoads.set(midi,loading);
+  }
+  return audioLoads.get(midi);
 }
 function playTone(midi,time,volume){
   const voice=audio.createBufferSource(),gain=audio.createGain();voice.buffer=audioBuffers.get(midi);gain.gain.value=volume;voice.connect(gain);gain.connect(audio.destination);voice.start(time);activeVoices.add(voice);voice.onended=()=>{activeVoices.delete(voice);voice.disconnect();gain.disconnect();};
@@ -157,7 +181,7 @@ $('play').onclick=async()=>{
         if(session.next%length===0)session.end=Math.max(session.end,session.start+session.next*interval);
       }
       const elapsed=Math.floor((audio.currentTime-session.start)/interval),step=elapsed%length;
-      if(elapsed>=0&&elapsed<session.next&&step!==session.visual){session.visual=step;for(const cell of $('roll').querySelectorAll('.playing'))cell.classList.remove('playing');for(const cell of $('roll').querySelectorAll(`[data-step="${step}"]`))cell.classList.add('playing');const header=$('roll').querySelector(`.step-label[data-step="${step}"]`);if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
+      if(elapsed>=0&&elapsed<session.next&&step!==session.visual){markStep(session.visual,false);markStep(step,true);session.visual=step;const header=$('roll').firstElementChild.children[step+1];if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
       if(session.next>=length&&session.next%length===0&&!$('loop').checked&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
     };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'対応する音だけを試聴中':'試聴中');
   }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
@@ -211,4 +235,4 @@ if(modelContext?.registerTool){
   window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
 $('scoreTitle').textContent=initialTemplate.title;$('fileName').value=initialTemplate.id;$('bpm').value=initialTemplate.bpm;
-updateInterval();render();
+void Promise.allSettled([...ALLOWED].map(loadTone));updateInterval();render();
