@@ -95,6 +95,14 @@ assert.deepEqual(air.melody.slice(0,4),[['B5',36],['E6',2],['C6',2],['A5',2]],'�
 for(const [step,name]of [[0,'G3'],[8,'F#5'],[16,'E4'],[24,'D4'],[32,'C4'],[192,'G5']])assert(airScore.notes.some(note=>note.step===step&&note.midi===noteNumber(name)),`アリアの低声とト長調の終止 ${step}:${name}`);
 assert.deepEqual(TEMPLATES.find(t=>t.id==='blue-danube').melody.slice(0,5),[['C5',4],['C5',4],['E5',4],['G5',4],['G5',8]],'ドナウの弱起と有名な分散和音');
 assert.equal(TEMPLATES.find(t=>t.id==='blue-danube').pickupBeats,1);
+const turkish=TEMPLATES.find(t=>t.id==='mozart-turkish-march'),turkishScore=templateScore(turkish),turkishLead=templateScore({...turkish,accompaniment:[]}).notes;
+assert.equal(turkish.bpm,112);assert.equal(turkish.beatsPerBar,2);assert.equal(turkish.pickupBeats,1);
+assert.equal(turkishScore.length,132,'トルコ行進曲は弱起・主題・応答・短い終止の33拍を保つ');
+assert.equal(createHash('sha256').update(JSON.stringify(turkishLead.filter(n=>n.step<128))).digest('hex'),'b7738086bf79987f2f4c5e24f4e30aa394fe4bdfcc595b734262d9ed70666a81','トルコ行進曲はPD原譜の主旋律を全区間で同じ5半音だけ移調する。前打音と内声を省く');
+for(const[step,name]of [[0,'E5'],[2,'C#5'],[19,'A5'],[20,'E6'],[76,'G5'],[108,'E5'],[124,'E5'],[128,'D5']])assert(turkishLead.some(n=>n.step===step&&n.midi===noteNumber(name)),`トルコ行進曲の原譜の音程と終止 ${step}:${name}`);
+assert(!turkishLead.some(n=>n.step===78||n.step===110),'持続する主旋律の途中で、低い内声を次の旋律音として鳴らさない');
+assert(templateScore({...turkish,melody:[]}).notes.every(n=>n.midi<=noteNumber('C#5')),'トルコ行進曲の伴奏は主旋律の下に配置する');
+assert.deepEqual(serialize(turkishScore.notes,turkishScore.length).split('\n').slice(128,132),['D4,F4,A4,D5','','',''],'トルコ行進曲は低い主和音と旋律のD5で自然に解決する');
 // 行進曲は原譜の指定主題を一巡し、以前の別の節や不完全な反復へ戻さない。
 const marches=Object.fromEntries(TEMPLATES.filter(t=>t.category==='行進曲').map(t=>[t.id,t]));
 const marchHeads={
@@ -165,10 +173,36 @@ assert.deepEqual(aveMaria.melody.slice(-8),[['A5',9],['E5',2],['F#5',1],['G5',1]
 for(const [step,name]of [[12,'C#5'],[94,'C#6'],[96,'G4'],[104,'A#5'],[112,'D#5'],[144,'F#5'],[152,'G#5']])assert(aveMariaScore.notes.some(note=>note.step===step&&note.midi===noteNumber(name)),`アヴェ・マリアの旋律と伴奏の半音を残す ${step}:${name}`);
 assert(aveMariaScore.notes.some(note=>note.step===40),'アヴェ・マリアの歌唱の休符には伴奏を続ける');
 assert.equal(serialize(aveMariaScore.notes,188).split('\n')[184],'G3,B4,D5,G5','アヴェ・マリアをト長調の主和音で閉じる');
+const clair=TEMPLATES.find(t=>t.id==='clair-de-lune'),clairScore=templateScore(clair);
+// Fromont（1905）を底本とする原譜の最上声。タイの継続と下で動く内声は新たな発音にしない。
+const clairSource=[
+  ['',4],['G#5',8],['F5',8],['D#5',2],['F5',2],['D#5',14],['C#5',2],['D#5',2],
+  ['C#5',3],['F5',6],['C#5',5],['C5',2],['C#5',2],['C5',14],['A#4',2],['C5',2],
+  ['A#4',2],['D#5',2],['A#4',2],['G#4',2],['A#4',2],['G#4',4],['F#4',2],['G#4',2],
+  ['F#4',6],['F4',8],['F4',2],['F#4',2],['F4',2],['A#4',2],['F4',2],['D#4',2],
+  ['F4',2],['D#4',4],['C#4',2],['D#4',2],['C#4',6],['C4',6],
+];
+assert.deepEqual(clair.melody.slice(0,-1).map(([names,span])=>[names?noteName(Math.max(...names.split(',').map(noteNumber))):'',span]),clairSource.map(([name,span])=>[name?noteName(noteNumber(name)+11):'',span]),'月の光の最上声の音程・拍位置・タイは一括移調で原譜と一致する');
+assert.equal(clair.bpm,54);assert.equal(clair.beatsPerBar,4.5);assert.equal(clairScore.length,148);
+const clairLead=templateScore({...clair,accompaniment:[]}).notes;
+assert(!clairLead.some(n=>[72,90,108,126].includes(n.step)),'月の光の小節をまたぐタイを打ち直さない');
+assert(clairLead.some(n=>n.step===138&&n.midi===noteNumber('B4')),'月の光の最後の導音を1音だけ1オクターブ上げない');
+assert.deepEqual(serialize(clairScore.notes,148).split('\n').slice(138,144),['G3,B4','','F4','','D4',''],'月の光の導音を高い伴奏や同音の打ち直しで隠さない');
+assert.deepEqual(serialize(clairScore.notes,148).split('\n').slice(144,148),['C4,E4,G4,C5','','',''],'月の光は低い導音から主音へ解決し、低い主和音で結ぶ');
 const newWorld=TEMPLATES.find(t=>t.id==='new-world-largo'),newWorldScore=templateScore(newWorld);
-assert.equal(newWorld.bpm,52);assert.equal(newWorldScore.length,68,'新世界は有名な主題4小節と短い終止');
-assert.deepEqual(newWorld.melody.slice(0,11),[['E6',3],['G6',1],['G6',4],['E6',3],['D6',1],['C6',4],['E6',3],['F6',1],['G6',3],['F6',1],['E6',8]],'家路の主題の音程と付点のリズム');
-assert.deepEqual(newWorld.melody.slice(-2),[['D6',9],['C6',4]],'新世界のタイを打ち直さず、隣の主音で終止');
+assert.equal(newWorld.bpm,52);assert.equal(newWorld.beatsPerBar,4);assert.equal(newWorldScore.length,64,'新世界は原譜の主題4小節で自然に結び、終止音を付け足さない');
+// 原譜第7〜10小節の実音。変ニ長調の旋律を全区間で同じ16半音だけ移調する。
+const newWorldSource=[
+ ['F4',3],['G#4',1],['G#4',4],['F4',3],['D#4',1],['C#4',4],
+ ['D#4',3],['F4',1],['F#4',3],['F4',1],['D#4',8],
+ ['F4',3],['G#4',1],['G#4',4],['F4',3],['D#4',1],['C#4',4],
+ ['D#4',2],['F4',2],['D#4',3],['C#4',9],
+];
+assert.deepEqual(newWorld.melody,newWorldSource.map(([name,span])=>[noteName(noteNumber(name)+16),span]),'家路の21音・付点・応答・第3小節の反復を原譜に合わせ、個別のオクターブ移動をしない');
+assert(!templateScore({...newWorld,accompaniment:[]}).notes.some(n=>n.step>=56),'最後のF5のタイを打ち直さない');
+assert(templateScore({...newWorld,melody:[]}).notes.every(n=>n.midi<=noteNumber('D5')),'新世界の伴奏をF5〜C6の旋律より低く保つ');
+for(const[step,chord]of [[40,'F4,A4,A5'],[42,'C#5'],[48,'F3,A#4,G5'],[52,'C4,E4,A#4,G5'],[56,'F3,A4,C5']])assert.equal(serialize(newWorldScore.notes,64).split('\n')[step],chord,'新世界の増三和音・下属和音・属七和音・主和音を旋律に合わせる');
+assert.deepEqual(serialize(newWorldScore.notes,64).split('\n').slice(60,64),['F3,A4,C5','','',''],'新世界は長い主音を低い主和音で支え、ループの16拍を保つ');
 const eineKleine=TEMPLATES.find(t=>t.id==='eine-kleine'),eineScore=templateScore(eineKleine);
 assert.equal(eineKleine.bpm,112);assert.equal(eineScore.length,160,'アイネ・クライネは冒頭と続く主題の10小節を保つ');
 assert.deepEqual(eineKleine.melody.slice(0,9),[['C6',6],['G5',2],['C6',6],['G5',2],['C6',2],['G5',2],['C6',2],['E6',2],['G6',8]],'アイネ・クライネの有名な冒頭を高い旋律で残す');
