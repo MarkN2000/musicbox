@@ -1,5 +1,12 @@
 # オルゴール楽譜エディター仕様
 
+## 配信
+
+- Cloudflare Workersの静的アセットで `dist/` を配信する。`wrangler.json` に既存のWorker名 `musicbox`、互換日付 `2026-09-30`、`assets.directory: "./dist"` を指定する。
+- Workerの処理コード、API、追加のビルド処理は設けない。HTML・CSS・JavaScript・OGG音源・MIDIライブラリをそのまま配信する。
+- GitHubの `main` をWorkersのGit連携に接続し、ビルドコマンドを `npm test`、デプロイコマンドを `npx wrangler deploy` とする。自動ビルドを有効にし、テスト成功後に公開する。
+- 配信設定は `npx wrangler deploy --dry-run` で確認する。実際の公開状態はCloudflareのビルド履歴と公開サイトで確認する。
+
 ## 確定している出力形式
 
 - TXTの先頭に `step_ms=125` の形式で、1ステップあたりの間隔msを1行だけ記す。値は現在のBPMとステップ単位から `60000 / BPM / 四分音符あたりのステップ数` を計算し、四捨五入した整数msを使う。この設定行はステップ数に含めない。TXT形式での間隔の許容範囲（10〜5000ms）は変えない。
