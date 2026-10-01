@@ -1,10 +1,11 @@
-import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js?v=cc31448cb4f522c2';
+import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, suggestMidiTranspositions, validateMidiHeader, validateNote} from './core.js?v=9a09c8fd8cf2a413';
 import {TEMPLATES, templateScore} from './templates.js?v=16b7925fc7621094';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
 let notes = sample.notes, length = sample.length, history = [], currentTemplate=initialTemplate;
 let sourceMidi = null, drag = null, audio = null, player = null, activeVoices = new Set();
+let appliedMidiSettings = null;
 const audioBuffers = new Map();
 const audioLoads = new Map();
 let playbackRequest = 0;
@@ -13,7 +14,7 @@ let startStep = 0;
 let focusedCell = null;
 let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
-function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft};}
+function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,sourceMidi&&['subdivision','transpose'].includes(id)?String(appliedMidiSettings[id]):$(id).value])),tracks:sourceMidi?[...appliedMidiSettings.tracks]:[],scrollLeft:$('rollViewport').scrollLeft};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
 function remember(){history.push(snapshot());if(history.length>30)history.shift();}
 function getCell(step,midi){return $('roll').children[pitches[0]-midi+1]?.children[step+1];}
@@ -70,18 +71,11 @@ function renderOutput(){
   $('noteStats').textContent=`${notes.length}音 · ${length}ステップ`;
   try{$('txtPreview').value=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,Number($('interval').value));}catch(error){$('txtPreview').value='';announce(error.message,true);}
   $('export').disabled=$('copyText').disabled=outside.length>0;$('exportWarning').hidden=!outside.length;
-  $('exportWarning').textContent=`対応外 ${outside.length}音：置換か除外で保存できます。`;
+  $('exportWarning').textContent=`${outside.length}個の音は鳴らせません。`;
   renderUnsupported(outside);
 }
 function renderUnsupported(outside){
-  $('unsupportedPanel').hidden=!outside.length;const list=$('unsupportedList');list.replaceChildren();
-  const groups=new Map();for(const note of outside)groups.set(note.midi,(groups.get(note.midi)||0)+1);
-  for(const [midi,count]of[...groups].sort((a,b)=>a[0]-b[0])){
-    const row=document.createElement('div');row.className='unsupported-item';const text=document.createElement('span');text.textContent=`${noteName(midi)} · ${count}音`;
-    const select=document.createElement('select');select.setAttribute('aria-label',`${noteName(midi)}の置換先`);const initial=document.createElement('option');initial.textContent='置換先';initial.value='';select.append(initial);
-    for(const name of NOTE_NAMES){const option=document.createElement('option');option.textContent=name;option.value=noteNumber(name);select.append(option);}
-    select.addEventListener('change',()=>{if(select.value==='')return;stopPlayback();remember();const target=Number(select.value);notes=[...new Map(notes.map(note=>{const updated=note.midi===midi?{...note,midi:target}:note;return[keyOf(updated),updated];})).values()];render();announce(`${noteName(midi)}を${noteName(target)}に置き換えました。`);});row.append(text,select);list.append(row);
-  }
+  $('unsupportedPanel').hidden=!outside.length;
 }
 function render(){renderGrid();renderOutput();}
 function paint(cell,on){
@@ -105,11 +99,12 @@ for(const [id,delta] of [['extend',4],['shrink',-4]])$(id).onclick=()=>{
 function undo(){
   const previous=history.pop();if(!previous)return;stopPlayback();({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell}=previous);
   for(const [id,value] of Object.entries(previous.values))$(id).value=value;
-  $('scoreTitle').textContent=previous.title;$('midiPanel').hidden=!sourceMidi;$('suggestions').replaceChildren();
-  if(sourceMidi){renderTracks(previous.tracks);previewConversion();}showTemplateInfo();render();$('rollViewport').scrollLeft=previous.scrollLeft;announce('取り消しました。');
+  appliedMidiSettings=sourceMidi?{tracks:previous.tracks,subdivision:Number(previous.values.subdivision),transpose:Number(previous.values.transpose)}:null;
+  $('scoreTitle').textContent=previous.title;$('midiPanel').hidden=!sourceMidi;
+  if(sourceMidi){renderTracks(previous.tracks);updateMidiRecommendation();}showTemplateInfo();render();$('rollViewport').scrollLeft=previous.scrollLeft;announce('取り消しました。');
 }
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&!event.altKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,select,[contenteditable]')){event.preventDefault();undo();}});
-$('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
+$('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;appliedMidiSettings=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
 for(const template of TEMPLATES){
   let group=[...$('templateSelect').children].find(item=>item.label===template.category);
   if(!group){group=document.createElement('optgroup');group.label=template.category;$('templateSelect').append(group);}
@@ -127,7 +122,7 @@ showTemplateInfo();
 $('templateSelect').onchange=()=>{
   try{
     const template=TEMPLATES.find(item=>item.id===$('templateSelect').value);if(!template)throw new Error('テンプレートを選択してください。');const score=templateScore(template);
-    stopPlayback();remember();({notes,length}=score);sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
+    stopPlayback();remember();({notes,length}=score);sourceMidi=null;appliedMidiSettings=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
     $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=template.subdivision??4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
@@ -139,7 +134,7 @@ $('copyText').onclick=async()=>{
   catch{$('settings').open=true;$('txtPreview').focus();$('txtPreview').select();announce('コピーできませんでした。選択したテキストをCtrl+Cでコピーしてください。',true);}
 };
 function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));renderOutput();}
-$('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',()=>{stopPlayback();renderOutput();});
+$('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{if(sourceMidi)applyMidiSettings(true);else{updateInterval();renderGrid();}});$('interval').addEventListener('change',()=>{stopPlayback();renderOutput();});
 function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();selectStart(0);$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');}
 function getAudio(){
   const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');
@@ -193,12 +188,30 @@ $('play').onclick=async()=>{
   }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
 };document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});
 function midiSettings(){return {tracks:[...$('trackList').querySelectorAll('input:checked')].map(input=>Number(input.value)),subdivision:Number($('subdivision').value),transpose:Number($('transpose').value)};}
-function previewConversion(){try{const result=convertMidi(sourceMidi,midiSettings());const valid=result.notes.filter(note=>ALLOWED.has(note.midi)).length;$('conversionInfo').textContent=`適用後：${result.notes.length}音のうち${valid}音が対応 · ${result.length}ステップ${result.merged?` · 重複${result.merged}音を統合`:''}`;$('applyMidi').disabled=false;return result;}catch(error){$('conversionInfo').textContent=error.message;$('applyMidi').disabled=true;return null;}}
+function updateMidiRecommendation(){
+  const settings=midiSettings(),total=sourceMidi.tracks.filter(track=>track.notes.length).length;
+  $('trackSummary').textContent=`トラック ${settings.tracks.length} / ${total}`;$('suggest').disabled=true;$('suggest').textContent='おすすめ';
+  if(!settings.tracks.length)return;
+  try{
+    const best=suggestMidiTranspositions(sourceMidi,settings)[0];
+    $('suggest').dataset.transpose=best.transpose;$('suggest').textContent=best.transpose===0?'おすすめ：原曲の高さ':`おすすめ：${best.transpose>0?'+':''}${best.transpose}半音`;
+    $('suggest').title=`鳴らせない音 ${best.outside}個`;$('suggest').disabled=String($('transpose').value).trim()!==''&&settings.transpose===best.transpose;
+  }catch{}
+}
+function applyMidiSettings(updateTiming=false){
+  if(!sourceMidi)return;
+  try{
+    const settings=midiSettings();if(String($('transpose').value).trim()===''||!Number.isInteger(settings.transpose)||Math.abs(settings.transpose)>24)throw new Error('音の高さは−24〜＋24の整数で指定してください。');
+    if(JSON.stringify(settings)===JSON.stringify(appliedMidiSettings))return;
+    const result=settings.tracks.length?convertMidi(sourceMidi,settings):{notes:[],length};
+    stopPlayback();remember();notes=result.notes;length=result.length;appliedMidiSettings=settings;currentCell.step=Math.min(currentCell.step,length-1);
+    if(updateTiming)updateInterval();render();updateMidiRecommendation();announce('MIDI設定を更新しました。');
+  }catch(error){announce(error.message,true);}
+}
 function renderTracks(selected=null){
   const list=$('trackList');list.replaceChildren();
-  const melodic=sourceMidi.tracks.map((track,index)=>({track,index})).filter(({track})=>track.notes.length&&!track.instrument.percussion);
   for(const [index,track]of sourceMidi.tracks.entries()){
-    if(!track.notes.length)continue;const label=document.createElement('label');label.className='track-option';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.value=index;checkbox.checked=selected?selected.includes(index):melodic.some(item=>item.index===index);const title=document.createElement('span');title.textContent=`${track.name||`トラック${index+1}`} · ${track.notes.length}音${track.instrument.percussion?'（打楽器）':''}`;checkbox.addEventListener('change',previewConversion);label.append(checkbox,title);list.append(label);
+    if(!track.notes.length)continue;const label=document.createElement('label');label.className='track-option';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.value=index;checkbox.checked=selected!==null?selected.includes(index):!track.instrument.percussion;const title=document.createElement('span');title.textContent=`${index+1}. ${track.name||'名前なし'} · ${track.instrument.name||'楽器不明'} · ${track.notes.length}音${track.instrument.percussion?'（打楽器）':''}`;checkbox.addEventListener('change',()=>{applyMidiSettings();updateMidiRecommendation();});label.append(checkbox,title);list.append(label);
   }
 }
 let importBusy=false;
@@ -212,8 +225,8 @@ async function importFile(file){
     const selected=parsed.tracks.map((track,index)=>({track,index})).filter(({track})=>track.notes.length&&!track.instrument.percussion).map(({index})=>index);
     if(!selected.length)throw new Error('このMIDIには打楽器以外の音符がありません。メロディのあるMIDIを選んでください。');
     const result=convertMidi(parsed,{tracks:selected,subdivision:Number($('subdivision').value),transpose:0});
-    stopPlayback();remember();sourceMidi=parsed;currentTemplate=null;notes=result.notes;length=result.length;currentCell={step:0,midi:72};beatsPerBar=4;pickupBeats=0;$('transpose').value=0;$('suggestions').replaceChildren();$('scoreTitle').textContent=file.name.replace(/\.(mid|midi)$/i,'');$('fileName').value=file.name.replace(/\.(mid|midi)$/i,'');
-    const tempo=parsed.header.tempos[0]?.bpm;if(Number.isFinite(tempo)&&tempo>=20&&tempo<=300)$('bpm').value=Math.round(tempo);updateInterval();renderTracks();$('midiPanel').hidden=false;$('settings').open=true;previewConversion();showTemplateInfo();render();$('rollViewport').scrollLeft=0;
+    stopPlayback();remember();sourceMidi=parsed;appliedMidiSettings={tracks:selected,subdivision:Number($('subdivision').value),transpose:0};currentTemplate=null;notes=result.notes;length=result.length;currentCell={step:0,midi:72};beatsPerBar=4;pickupBeats=0;$('transpose').value=0;$('midiTracks').open=false;$('scoreTitle').textContent=file.name.replace(/\.(mid|midi)$/i,'');$('fileName').value=file.name.replace(/\.(mid|midi)$/i,'');
+    const tempo=parsed.header.tempos[0]?.bpm;if(Number.isFinite(tempo)&&tempo>=20&&tempo<=300)$('bpm').value=Math.round(tempo);updateInterval();renderTracks();$('midiPanel').hidden=false;updateMidiRecommendation();showTemplateInfo();render();$('rollViewport').scrollLeft=0;
     announce(`${file.name}を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{importBusy=false;$('pickFile').disabled=false;$('fileInput').value='';}
 }
@@ -221,14 +234,9 @@ $('pickFile').onclick=()=>$('fileInput').click();$('fileInput').onchange=()=>{co
 let dragDepth=0;
 document.addEventListener('dragover',event=>{if(event.dataTransfer?.types.includes('Files'))event.preventDefault();});document.addEventListener('drop',event=>{if(!event.dataTransfer?.types.includes('Files'))return;event.preventDefault();dragDepth=0;$('dropZone').classList.remove('dragover');const files=event.dataTransfer.files;if(files.length!==1){announce('MIDIファイルを1つずつドロップしてください。',true);return;}void importFile(files[0]);});
 $('dropZone').addEventListener('dragenter',event=>{if(event.dataTransfer?.types.includes('Files')){event.preventDefault();dragDepth++;$('dropZone').classList.add('dragover');}});$('dropZone').addEventListener('dragleave',()=>{dragDepth=Math.max(0,dragDepth-1);if(!dragDepth)$('dropZone').classList.remove('dragover');});
-$('transpose').addEventListener('input',()=>{if(sourceMidi)previewConversion();});
-$('applyMidi').onclick=()=>{const result=previewConversion();if(!result)return;stopPlayback();remember();notes=result.notes;length=result.length;render();announce('MIDI設定を適用しました。');};
-$('suggest').onclick=()=>{
-  const settings=midiSettings();if(!settings.tracks.length)return;const candidates=[];
-  for(let transpose=-24;transpose<=24;transpose++){try{const result=convertMidi(sourceMidi,{...settings,transpose});const valid=result.notes.filter(note=>ALLOWED.has(note.midi)).length;candidates.push({transpose,valid,total:result.notes.length});}catch{}}
-  candidates.sort((a,b)=>b.valid-a.valid||Math.abs(a.transpose)-Math.abs(b.transpose));const container=$('suggestions');container.replaceChildren();
-  for(const candidate of candidates.slice(0,3)){const button=document.createElement('button');button.className='button';button.textContent=`${candidate.transpose>0?'+':''}${candidate.transpose} / ${candidate.total?Math.round(candidate.valid/candidate.total*100):0}%対応`;button.onclick=()=>{$('transpose').value=candidate.transpose;previewConversion();};container.append(button);}
-};
+$('transpose').addEventListener('input',()=>{applyMidiSettings();if(sourceMidi)updateMidiRecommendation();});
+$('suggest').onclick=()=>{$('transpose').value=$('suggest').dataset.transpose;applyMidiSettings();};
+$('selectMelodic').onclick=()=>{renderTracks();applyMidiSettings();updateMidiRecommendation();};$('clearTracks').onclick=()=>{renderTracks([]);applyMidiSettings();updateMidiRecommendation();};
 $('removeUnsupported').onclick=()=>{stopPlayback();const count=notes.filter(note=>!ALLOWED.has(note.midi)).length;if(!count)return;remember();notes=notes.filter(note=>ALLOWED.has(note.midi));render();announce(`対応外の${count}音を除外しました。`);};
 const modelContext=document.modelContext;
 if(modelContext?.registerTool){
