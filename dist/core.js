@@ -19,15 +19,16 @@ export const keyOf = note => `${note.step}:${note.midi}`;
 export function validateNote(note, length) {
   if (!Number.isInteger(note.step) || note.step < 0 || note.step >= length || !Number.isInteger(note.midi) || note.midi < 0 || note.midi > 127) throw new Error('ステップまたは音の高さが不正です。');
 }
-export function serialize(notes, length) {
+export function serialize(notes, length, stepMs) {
   if (!Number.isInteger(length) || length < 1 || length > MAX_STEPS) throw new Error('ステップ数が不正です。');
+  if (stepMs !== undefined && (!Number.isFinite(stepMs) || stepMs < 10 || stepMs > 5000)) throw new Error('再生間隔は10〜5000msにしてください。');
   const rows = Array.from({length}, () => new Set());
   for (const note of notes) {
     validateNote(note, length);
     if (!ALLOWED.has(note.midi)) throw new Error('対応外の音を解決してから出力してください。');
     rows[note.step].add(note.midi);
   }
-  return rows.map(row => [...row].sort((a,b)=>a-b).map(noteName).join(',')).join('\n') + '\n';
+  return (stepMs === undefined ? '' : `step_ms=${stepMs}\n`) + rows.map(row => [...row].sort((a,b)=>a-b).map(noteName).join(',')).join('\n') + '\n';
 }
 export function validateMidiHeader(buffer) {
   const bytes = new Uint8Array(buffer);

@@ -1,4 +1,4 @@
-import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js';
+import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js?v=cc31448cb4f522c2';
 import {TEMPLATES, templateScore} from './templates.js?v=5a784d777f50e771';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
@@ -62,7 +62,7 @@ function markStep(step,on){if(step<0)return;for(const row of $('roll').children)
 function renderOutput(){
   const outside=notes.filter(note=>!ALLOWED.has(note.midi));
   $('noteStats').textContent=`${notes.length}音 · ${length}ステップ`;
-  $('txtPreview').value=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length);
+  try{$('txtPreview').value=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,Number($('interval').value));}catch(error){$('txtPreview').value='';announce(error.message,true);}
   $('export').disabled=$('copyText').disabled=outside.length>0;$('exportWarning').hidden=!outside.length;
   $('exportWarning').textContent=`対応外 ${outside.length}音：置換か除外で保存できます。`;
   renderUnsupported(outside);
@@ -126,14 +126,14 @@ $('templateSelect').onchange=()=>{
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
 };
-$('export').onclick=()=>{try{const text=serialize(notes,length);const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const anchor=document.createElement('a');anchor.href=url;anchor.download=($('fileName').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||'music-box')+'.txt';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);announce(`TXTを保存しました。間隔 ${$('interval').value}ms`);}catch(error){announce(error.message,true);}};
+$('export').onclick=()=>{try{const text=serialize(notes,length,Number($('interval').value));const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const anchor=document.createElement('a');anchor.href=url;anchor.download=($('fileName').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||'music-box')+'.txt';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);announce(`TXTを保存しました。間隔 ${$('interval').value}ms`);}catch(error){announce(error.message,true);}};
 $('copyText').onclick=async()=>{
-  let text;try{text=serialize(notes,length);}catch(error){announce(error.message,true);return;}
+  let text;try{text=serialize(notes,length,Number($('interval').value));}catch(error){announce(error.message,true);return;}
   try{await navigator.clipboard.writeText(text);announce('コピーしました。');}
   catch{$('settings').open=true;$('txtPreview').focus();$('txtPreview').select();announce('コピーできませんでした。選択したテキストをCtrl+Cでコピーしてください。',true);}
 };
-function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));}
-$('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',stopPlayback);
+function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));renderOutput();}
+$('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',()=>{stopPlayback();renderOutput();});
 function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');}
 function getAudio(){
   const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');
