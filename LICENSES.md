@@ -32,5 +32,6 @@ MarkNは、上記の録音・編曲・楽譜データについて保有する著
 | midi-file | MIT — [LICENSE-midi-file.md](./dist/vendor/LICENSE-midi-file.md) |
 | array-flatten | MIT — [LICENSE-array-flatten.txt](./dist/vendor/LICENSE-array-flatten.txt) |
 | lamejs 1.2.1（LAMEのJavaScript移植） | LGPL-3.0 — [ライセンス案内とソース配布物](./dist/vendor/LICENSE-lamejs.md)、[LGPL本文](./dist/vendor/LICENSE-LGPL-3.0.txt)、[GPL本文](./dist/vendor/LICENSE-GPL-3.0.txt) |
+| wasm-media-encoders 0.7.0・libogg・libvorbis（OGG Vorbis変換）と補助コード | [ライセンス案内](./dist/vendor/LICENSE-vorbis.md)、[MIT本文](./dist/vendor/LICENSE-wasm-media-encoders.txt)、BSDの[libogg](./dist/vendor/LICENSE-libogg.txt)・[libvorbis](./dist/vendor/LICENSE-libvorbis.txt)、[補助コードの原文](./dist/vendor/LICENSE-vorbis-runtime.txt) |
 
 作者のホームページ：[markn2000.com](https://markn2000.com/)。

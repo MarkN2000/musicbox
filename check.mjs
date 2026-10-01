@@ -332,6 +332,10 @@ assert(!/templateInfo|templateDetails|templateSource|templateListen|templateCred
 assert(!html.includes('id="fileName"')&&!app.includes("$('fileName')"),'曲名とは別のファイル名入力欄を残さない');
 assert(!html.includes('id="interval"')&&!app.includes("$('interval')"),'間隔の直接入力や隠れた間隔欄を残さない');
 assert(!html.includes('<summary>設定</summary>')&&html.includes('<summary>TXTプレビュー</summary>'));
+const exportButtons=html.match(/<div class="export-actions">(.*?)<\/div>/)[1];
+assert.deepEqual([...exportButtons.matchAll(/id="([^"]+)"/g)].map(match=>match[1]),['copyText','save'],'書き出しはコピーと保存の2ボタンにまとめる');
+assert(html.includes('popovertarget="saveMenu"')&&html.includes('popover role="menu"'),'外側のクリックとEscで閉じるネイティブメニュー');
+assert.deepEqual([...html.match(/<div id="saveMenu".*?<\/div>/)[0].matchAll(/role="menuitem"[^>]*>(.*?)<\/button>/g)].map(match=>match[1]),['TXT','MIDI','MP3','OGG（Vorbis）']);
 
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
 const controls=new Map(),listeners=new Map(),windowListeners=new Map(),previewedKeys=[];let nodeCount=0,outputWrites=0,focusedNode;

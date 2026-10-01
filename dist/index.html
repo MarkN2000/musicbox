@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>オルゴール譜 — 30音の楽譜エディター</title>
-  <meta name="description" content="MIDIを取り込み、30音オルゴールの楽譜をマス目で編集。試聴してTXT・MIDI・MP3で保存できます。">
+  <meta name="description" content="MIDIを取り込み、30音オルゴールの楽譜をマス目で編集。試聴してTXT・MIDI・MP3・OGGで保存できます。">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23163e57'/%3E%3Cpath d='M8 9h16M8 16h16M8 23h16' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='10' y='6' width='5' height='6' fill='%2391d8f6'/%3E%3Crect x='19' y='13' width='5' height='6' fill='%2391d8f6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=52edcc0ea256f885">
+  <link rel="stylesheet" href="style.css?v=53c95feb36b336f8">
 </head>
 <body>
   <main>
@@ -15,7 +15,8 @@
           <div class="playback-actions"><button id="play" class="button primary" aria-label="試聴" title="試聴" aria-pressed="false">▶</button><button id="loop" class="button" aria-label="ループ再生" title="ループ再生" aria-pressed="false">↻</button></div>
           <label><input id="bpm" type="number" min="20" max="300" value="120" aria-label="テンポ" title="テンポ"> <span class="unit">BPM</span></label>
           <select id="subdivision" aria-label="1ステップの長さ" title="1ステップの長さ"><option value="1">4分音符</option><option value="2">8分音符</option><option value="4" selected>16分音符</option><option value="8">32分音符</option><option value="3">8分三連符</option><option value="6">16分三連符</option></select>
-          <div class="export-actions"><button id="export" class="button" aria-label="TXT保存" title="TXT保存">TXT💾</button><button id="exportMidi" class="button" aria-label="MIDI保存" title="MIDI保存（対応外の音は省いて保存）">MIDI💾</button><button id="exportMp3" class="button" aria-label="MP3保存" title="MP3保存（対応外の音は省いて保存）">MP3💾</button><button id="copyText" class="button" aria-label="テキストをコピー" title="コピー">コピー</button></div>
+          <div class="export-actions"><button id="copyText" class="button" aria-label="テキストをコピー" title="コピー">コピー</button><button id="save" class="button" popovertarget="saveMenu" aria-haspopup="menu" aria-expanded="false" aria-label="保存形式を選ぶ" title="保存形式を選ぶ">保存 ▾</button></div>
+          <div id="saveMenu" class="save-menu" popover role="menu" aria-label="保存形式"><button id="export" class="button" role="menuitem" aria-label="TXT保存">TXT</button><button id="exportMidi" class="button" role="menuitem" aria-label="MIDI保存">MIDI</button><button id="exportMp3" class="button" role="menuitem" aria-label="MP3保存">MP3</button><button id="exportOgg" class="button" role="menuitem" aria-label="OGG（Vorbis）保存">OGG（Vorbis）</button></div>
         </div>
         <section id="midiPanel" class="midi-panel" hidden><details id="midiTracks"><summary id="trackSummary">トラック</summary><div class="track-actions"><button id="selectMelodic" class="button subtle">打楽器以外を選択</button><button id="clearTracks" class="button subtle">すべて外す</button></div><div id="trackList" class="track-list"></div></details><label for="transpose">音の高さ <input id="transpose" type="number" min="-24" max="24" step="1" value="0" title="半音単位。0で原曲の高さに戻ります。"> 半音</label><button id="suggest" class="button subtle">おすすめ</button></section>
         <section id="unsupportedPanel" class="unsupported-panel" hidden><p id="exportWarning" class="warning" hidden></p><button id="removeUnsupported" class="button danger">まとめて省く</button></section>
@@ -28,6 +29,6 @@
       </section>
   </main>
   <footer class="site-footer"><a href="https://markn2000.com/" target="_blank" rel="noopener" aria-label="MarkNのホームページ">markn2000.com</a><span>音源・サンプル楽譜 <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a> · <a href="https://github.com/MarkN2000/musicbox/blob/main/LICENSES.md" target="_blank" rel="noopener" aria-label="ライセンスの詳細">詳細</a></span></footer>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=f2b1de047b466bd7&ui=7e144f8b0ba3cb5c"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=f2b1de047b466bd7&ui=716708fc8c61f2e5"></script>
 </body>
 </html>

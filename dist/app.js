@@ -363,41 +363,44 @@ if(modelContext?.registerTool){
 setTitle(initialTemplate.title);$('bpm').value=initialTemplate.bpm;
 void Promise.allSettled([...ALLOWED].map(loadTone));updateTiming();render();
 
-let mp3Job=null;
-function mp3Button(busy){
-  const button=$('exportMp3');button.textContent=busy?'MP3■':'MP3💾';
-  button.setAttribute('aria-label',busy?'MP3保存を中止':'MP3保存');
-  button.setAttribute('aria-busy',String(busy));button.title=busy?'MP3保存を中止':'MP3保存（対応外の音は省いて保存）';
+let audioExportJob=null;
+function audioSaveButton(busy){
+  const button=$('save'),label=busy?audioExportJob.label+'保存を中止':'保存形式を選ぶ';
+  button.textContent=busy?'中止 ■':'保存 ▾';button.setAttribute('aria-label',label);
+  button.setAttribute('aria-busy',String(busy));button.title=label;
 }
-function mp3Request(job,message,transfer=[]){
+function cancelAudioExport(){
+  const job=audioExportJob;if(!job)return;
+  job.cancelled=true;job.reject?.(new Error('中止'));job.worker?.terminate();audioExportJob=null;
+  audioSaveButton(false);announce(job.label+'保存を中止しました。');
+}
+function audioRequest(job,message,transfer=[]){
   return new Promise((resolve,reject)=>{
     job.reject=reject;
-    job.worker.onmessage=({data})=>{job.reject=null;data.error?reject(new Error(`MP3に変換できませんでした。${data.error}`)):resolve(data);};
-    job.worker.onerror=job.worker.onmessageerror=()=>{job.reject=null;reject(new Error('MP3変換を読み込めませんでした。ページを再読み込みしてお試しください。'));};
+    job.worker.onmessage=({data})=>{job.reject=null;data.error?reject(new Error(`${job.label}に変換できませんでした。${data.error}`)):resolve(data);};
+    job.worker.onerror=job.worker.onmessageerror=()=>{job.reject=null;reject(new Error(`${job.label}変換を読み込めませんでした。ページを再読み込みしてお試しください。`));};
     job.worker.postMessage(message,transfer);
   });
 }
-$('exportMp3').onclick=async()=>{
-  if(mp3Job){
-    mp3Job.cancelled=true;mp3Job.reject?.(new Error('中止'));mp3Job.worker?.terminate();mp3Job=null;
-    mp3Button(false);announce('MP3保存を中止しました。');return;
-  }
-  const job={cancelled:false,worker:null,reject:null};mp3Job=job;mp3Button(true);
+async function saveAudio(format){
+  if(audioExportJob){cancelAudioExport();return;}
+  const label=format==='mp3'?'MP3':'OGG';
+  const job={label,cancelled:false,worker:null,reject:null};audioExportJob=job;audioSaveButton(true);
   try{
     const OfflineAudio=window.OfflineAudioContext||window.webkitOfflineAudioContext;
-    if(!OfflineAudio||!window.Worker)throw new Error('このブラウザではMP3を保存できません。');
+    if(!OfflineAudio||!window.Worker)throw new Error(`このブラウザでは${label}を保存できません。`);
     if(!Number.isInteger(length)||length<1||length>MAX_STEPS)throw new Error('ステップ数が不正です。');
-    const interval=stepInterval()/1000,size=length,filename=downloadName('mp3'),unique=new Map();let omitted=0;
+    const interval=stepInterval()/1000,size=length,filename=downloadName(format),unique=new Map();let omitted=0;
     for(const note of notes){validateNote(note,size);if(ALLOWED.has(note.midi))unique.set(keyOf(note),{...note});else omitted++;}
     const score=[...unique.values()].sort((a,b)=>a.step-b.step||a.midi-b.midi),counts=new Map();
     for(const note of score)counts.set(note.step,(counts.get(note.step)||0)+1);
-    announce('MP3作成中…音源を準備しています。');
+    announce(`${label}作成中…音源を準備しています。`);
     await Promise.all([...new Set(score.map(note=>note.midi))].map(loadTone));
     if(job.cancelled)return;
     const duration=score.reduce((end,note)=>Math.max(end,note.step*interval+audioBuffers.get(note.midi).duration),size*interval);
     const total=Math.ceil(duration*44100),chunkFrames=44100*30;
-    job.worker=new window.Worker('mp3-worker.js?v=30d9a32e43822abe');
-    await mp3Request(job,{type:'init'});
+    job.worker=new window.Worker(format==='mp3'?'mp3-worker.js?v=30d9a32e43822abe':'ogg-worker.js?v=fbfd8de2a1e68bb2');
+    await audioRequest(job,{type:'init'});
     let nextNote=0,carry=[];
     for(let frame=0;frame<total;frame+=chunkFrames){
       if(job.cancelled)return;
@@ -413,18 +416,52 @@ $('exportMp3').onclick=async()=>{
           voice.connect(gain);gain.connect(context.destination);voice.start(Math.max(0,time-start),Math.max(0,start-time));
         }
         rendered=await context.startRendering();
-      }catch{throw new Error('音声を作成できませんでした。MP3保存をもう一度お試しください。');}
+      }catch{throw new Error(`音声を作成できませんでした。${label}保存をもう一度お試しください。`);}
       if(job.cancelled)return;
       const left=rendered.getChannelData(0).slice(),right=rendered.getChannelData(1).slice();
-      await mp3Request(job,{type:'encode',left,right},[left.buffer,right.buffer]);
+      await audioRequest(job,{type:'encode',left,right},[left.buffer,right.buffer]);
       if(job.cancelled)return;
-      announce(`MP3作成中…${Math.round((frame+frames)/total*100)}%`);
+      announce(`${label}作成中…${Math.round((frame+frames)/total*100)}%`);
     }
-    const {blob}=await mp3Request(job,{type:'finish'});
+    const {blob}=await audioRequest(job,{type:'finish'});
     if(job.cancelled)return;
     const url=URL.createObjectURL(blob),anchor=document.createElement('a');
     anchor.href=url;anchor.download=filename;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-    announce(omitted?`対応外の${omitted}音を省いてMP3を保存しました。`:'MP3を保存しました。');
+    announce(omitted?`対応外の${omitted}音を省いて${label}を保存しました。`:`${label}を保存しました。`);
   }catch(error){if(!job.cancelled)announce(error.message,true);}
-  finally{job.worker?.terminate();if(mp3Job===job){mp3Job=null;mp3Button(false);}}
+  finally{job.worker?.terminate();if(audioExportJob===job){audioExportJob=null;audioSaveButton(false);}}
+}
+$('exportMp3').onclick=()=>saveAudio('mp3');
+$('exportOgg').onclick=()=>saveAudio('ogg');
+
+const saveMenu=$('saveMenu'),saveButton=$('save');
+let menuLast=false;
+const menuItems=()=>[...saveMenu.querySelectorAll('button:not(:disabled)')];
+function positionSaveMenu(){
+  if(!saveMenu.matches(':popover-open'))return;
+  const rect=saveButton.getBoundingClientRect(),width=saveMenu.offsetWidth,height=saveMenu.offsetHeight;
+  saveMenu.style.left=Math.max(8,Math.min(rect.right-width,window.innerWidth-width-8))+'px';
+  const below=rect.bottom+5;
+  saveMenu.style.top=Math.max(8,Math.min(below+height<=window.innerHeight-8?below:rect.top-height-5,window.innerHeight-height-8))+'px';
+}
+saveButton.onclick=event=>{if(audioExportJob){event.preventDefault();cancelAudioExport();}};
+saveButton.onkeydown=event=>{
+  if(!['ArrowDown','ArrowUp'].includes(event.key)||audioExportJob)return;
+  event.preventDefault();menuLast=event.key==='ArrowUp';
+  if(saveMenu.matches(':popover-open')){const items=menuItems();items[menuLast?items.length-1:0]?.focus();menuLast=false;}
+  else saveMenu.showPopover();
 };
+saveMenu.addEventListener('toggle',event=>{
+  const open=event.newState==='open';saveButton.setAttribute('aria-expanded',String(open));
+  if(open){positionSaveMenu();const items=menuItems();items[menuLast?items.length-1:0]?.focus();menuLast=false;}
+  else if(saveMenu.contains(document.activeElement))saveButton.focus();
+});
+saveMenu.onclick=event=>{if(event.target.closest('button')){saveMenu.hidePopover();saveButton.focus();}};
+saveMenu.onkeydown=event=>{
+  const items=menuItems(),index=items.indexOf(document.activeElement);
+  if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
+    event.preventDefault();items[event.key==='Home'?0:event.key==='End'?items.length-1:(index+(event.key==='ArrowDown'?1:-1)+items.length)%items.length]?.focus();
+  }else if(event.key==='Tab')saveMenu.hidePopover();
+};
+window.addEventListener('resize',positionSaveMenu);
+window.addEventListener('scroll',positionSaveMenu,true);
