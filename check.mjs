@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {writeFile,readFile,mkdir} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
-import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,convertMidi,validateMidiHeader,keyOf,MAX_STEPS,MAX_NOTES} from './dist/core.js';
+import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,convertMidi,suggestMidiTranspositions,validateMidiHeader,keyOf,MAX_STEPS,MAX_NOTES} from './dist/core.js';
 import {TEMPLATES,templateScore} from './dist/templates.js';
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
@@ -43,6 +43,12 @@ const bytes=midi.toArray();validateMidiHeader(bytes.buffer);const parsed=new Mid
 const converted=convertMidi(parsed,{tracks:[0],subdivision:4});assert.equal(converted.notes.length,4);assert.equal(converted.merged,1);assert.equal(converted.notes[0].step,4);assert.equal(converted.length,18);assert(converted.notes.some(note=>!ALLOWED.has(note.midi)));
 assert.equal(convertMidi(parsed,{tracks:[0],subdivision:3}).notes[0].step,3);
 assert.equal(convertMidi(parsed,{tracks:[0],subdivision:4,transpose:12}).notes[0].midi,84);
+const transposeSettings={tracks:[0],subdivision:4},suggested=suggestMidiTranspositions(parsed,transposeSettings);
+assert.equal(suggested[0].transpose,-1);assert.equal(suggested[0].outside,0);assert.equal(suggested[0].total,4,'量子化後の重複を省かれる音数に含めない');
+const singlePitch=pitch=>({header:{ppq:480},tracks:[{notes:[{midi:pitch,ticks:0,durationTicks:120}]}]});
+assert.deepEqual(suggestMidiTranspositions(singlePitch(66),transposeSettings).map(candidate=>candidate.transpose),[-1,1,-2],'同数なら移動幅を優先し、同じ幅なら低い候補を先にする');
+assert.equal(suggestMidiTranspositions(singlePitch(72),transposeSettings)[0].transpose,0);
+assert.deepEqual(suggestMidiTranspositions({header:{ppq:480},tracks:[{notes:[{midi:0,ticks:0,durationTicks:1},{midi:127,ticks:480,durationTicks:1}]}]},transposeSettings).map(candidate=>candidate.transpose),[0],'MIDIの音高範囲を外れる候補は提示しない');
 const oldEnd=parsed.tracks[0].endOfTrackTicks;parsed.tracks[0].endOfTrackTicks=480*6;assert.equal(convertMidi(parsed,{tracks:[0],subdivision:4}).length,24);parsed.tracks[0].endOfTrackTicks=oldEnd;
 assert.throws(()=>convertMidi(parsed,{tracks:[],subdivision:4}),/トラック/);
 assert.throws(()=>convertMidi(parsed,{tracks:[0],subdivision:5}),/設定/);
@@ -218,7 +224,8 @@ const nodeMethods={
   setAttribute(name,value){this.attributes[name]=String(value);},getAttribute(name){return this.attributes[name]??null;},
   append(...children){for(const child of children){child.parent=this;this.children.push(child);}},replaceChildren(){this.children=[];},
   remove(){const siblings=this.parent.children;if(siblings.at(-1)===this)siblings.pop();else siblings.splice(siblings.indexOf(this),1);this.parent=null;},
-  querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
+  querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector==='input:checked'?cell.checked:selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
+  showModal(){this.open=true;},close(){this.open=false;this.events?.close?.();},
   addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;}
 };
 const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{}});};
@@ -288,9 +295,9 @@ const sound=runInNewContext(`
   ${app.slice(app.indexOf('function updateCell('),app.indexOf('function focusCell('))}
   ${app.slice(app.indexOf('function markStep('),app.indexOf('function renderOutput('))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
-  ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
-  ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
-  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
+  ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf('async function playScore('))}
+  ${app.slice(app.indexOf('async function playScore('),app.indexOf('function midiSettings(){'))}
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,previewScore:playScore,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
 `,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
 sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
@@ -317,6 +324,35 @@ assert.equal(sound.playback().visual,-1,'再生前に選択位置より前の列
 element('loop').checked=true;sound.select(2);playCount=played.length;await sound.play();firstTime=sound.playback().start+.25;advance(firstTime+.76);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5','C5','E5','G5','C5']);for(const [i,offset]of[0,.125,.25,.5,.625,.75].entries())near(played[playCount+i].time,firstTime+offset);element('rollViewport').scrollLeft=300;await sound.play();assert.equal(sound.playback(),null);assert.equal(sound.start(),0);assert.equal(element('rollViewport').scrollLeft,0);assert(element('roll').children.every(row=>row.children.every(cell=>!cell.className.split(' ').includes('playing'))),'停止後に再生位置が残っています');element('loop').checked=false;
 sound.select(3);element('interval').value=1000;playCount=played.length;await sound.play();firstTime=sound.playback().start+3;advance(firstTime+1.05);assert.equal(played.length-playCount,1,'末尾からの再生で別の音を鳴らしています');assert.equal(sound.playback(),null);
 resumeResult=new Promise(resolve=>{finishResume=resolve;});sound.select(2);playCount=played.length;const pendingPlay=sound.play();await sound.play();finishResume();await pendingPlay;assert.equal(played.length,playCount,'準備中の停止後に音が鳴っています');assert.equal(sound.start(),0);assert.equal(sound.playback(),null);resumeResult=undefined;
+const beforeMidiPreview=JSON.stringify(sound.state());element('loop').checked=true;playCount=played.length;await sound.previewScore({notes:[{step:0,midi:72}],length:1,interval:10});start=sound.playback().start;advance(start+1.1);assert.equal(played.length-playCount,1,'取り込み前の試聴をループさせない');assert.equal(sound.playback(),null);assert.equal(JSON.stringify(sound.state()),beforeMidiPreview,'取り込み前の試聴で編集楽譜を変更しない');element('loop').checked=false;
+// 実際の取り込み処理で、適用前の保持・複数選択・試聴・一括除外・キャンセルと履歴を確認する。
+const midiControls=new Map(),midiElement=id=>{if(!midiControls.has(id))midiControls.set(id,node());return midiControls.get(id);};
+for(const [id,value]of Object.entries({fileName:'before',bpm:'90',subdivision:'4',interval:'167',transpose:'0'}))midiElement(id).value=value;
+midiElement('scoreTitle').textContent='取り込み前の楽譜';let previewedMidi;
+const midiUI=runInNewContext(`
+  let notes=[{step:1,midi:72}],length=5,history=[],beatsPerBar=3,pickupBeats=0,sourceMidi=null,currentTemplate={id:'before'},currentCell={step:1,midi:72},pendingMidi=null,pendingSnapshot=null;
+  ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function getCell('))}
+  ${app.slice(app.indexOf('function undo(){'),app.indexOf("document.addEventListener('keydown'"))}
+  ${app.slice(app.indexOf('function midiSettings(){'),app.indexOf("$('removeUnsupported').onclick="))}
+  ({import:importFile,settings:midiSettings,state:()=>({notes,length,sourceMidi,currentTemplate,history}),undo});
+`,{$:midiElement,MAX_NOTES,ALLOWED,convertMidi,suggestMidiTranspositions,validateMidiHeader,window:{Midi},document:{createElement:node,addEventListener(){}},stopPlayback(){},announce(){},render(){},showTemplateInfo(){},updateInterval(){},playScore:score=>{previewedMidi=score;}});
+const midiFile={name:'選択用.mid',size:bytes.length,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)};
+const beforeImport=JSON.stringify(midiUI.state());await midiUI.import(midiFile);
+assert(midiElement('midiDialog').open);assert.equal(JSON.stringify(midiUI.state()),beforeImport,'ファイル選択だけで現在の楽譜や履歴を変えない');
+assert.deepEqual(Array.from(midiUI.settings().tracks),[0],'打楽器以外は選択済み、打楽器は未選択');assert.match(midiElement('trackList').children[0].children[1].textContent,/Melody.*acoustic grand piano.*5音/);
+assert.match(midiElement('suggestions').children[0].textContent,/おすすめ：1半音低く.*省く音0個/);
+midiElement('clearTracks').onclick();assert(midiElement('applyMidi').disabled);assert(midiElement('previewMidi').disabled);
+midiElement('selectMelodic').onclick();const drumCheck=midiElement('trackList').children[1].children[0];drumCheck.checked=true;drumCheck.events.change();assert.deepEqual(Array.from(midiUI.settings().tracks),[0,1],'複数トラックを同時に選べる');
+midiElement('selectMelodic').onclick();midiElement('transpose').value='';midiElement('transpose').events.input();assert(midiElement('applyMidi').disabled,'空の高さ入力を0として適用しない');
+midiElement('transpose').value='25';midiElement('transpose').events.input();assert(midiElement('applyMidi').disabled);
+midiElement('transpose').value='0';midiElement('transpose').events.input();midiElement('lowerPitch').onclick();assert.equal(Number(midiElement('transpose').value),-1);midiElement('raisePitch').onclick();assert.equal(Number(midiElement('transpose').value),0);
+midiElement('previewMidi').onclick();assert.equal(previewedMidi.interval,125,'新規MIDIの最初のテンポで試聴する');assert.equal(JSON.stringify(midiUI.state()),beforeImport,'試聴だけで楽譜を変えない');
+midiElement('cancelMidi').onclick();assert.equal(JSON.stringify(midiUI.state()),beforeImport,'キャンセルで楽譜と履歴を保持する');
+await midiUI.import(midiFile);assert.match(midiElement('applyMidi').textContent,/1個を省いて取り込む/);midiElement('applyMidi').onclick();
+assert(!midiElement('midiDialog').open);assert.equal(midiUI.state().history.length,1);assert.equal(midiUI.state().notes.length,3);assert(midiUI.state().notes.every(note=>ALLOWED.has(note.midi)));assert.equal(midiUI.state().length,18,'除外しても曲末と休符を保持する');
+const importedMidi=JSON.stringify(midiUI.state());midiElement('adjustMidi').onclick();midiElement('clearTracks').onclick();midiElement('transpose').value='12';midiElement('cancelMidi').onclick();assert.equal(JSON.stringify(midiUI.state()),importedMidi);assert.deepEqual(Array.from(midiUI.settings().tracks),[0]);assert.equal(Number(midiElement('transpose').value),0,'キャンセルで適用済みの高さと選択を復元する');
+midiElement('interval').value='200';midiElement('adjustMidi').onclick();midiElement('previewMidi').onclick();assert.equal(previewedMidi.interval,200,'再調整の試聴は現在の間隔を使う');midiElement('cancelMidi').onclick();
+midiUI.undo();assert.equal(JSON.stringify(midiUI.state()),beforeImport,'取り込みを取り消すと適用前の曲を復元する');
 // 実際の保存・コピー・プレビューと、間隔変更のイベントを同じ出力で確認する。
 let savedBlob,copiedText;const outputErrors=[];
 const textOutput=runInNewContext(`
