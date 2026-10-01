@@ -95,9 +95,12 @@ assert.deepEqual(nocturne.melody.slice(0,7),[['C5',2],['A5',8],['G5',2],['A5',2]
 assert.equal(serialize(nocturneScore.notes,88).split('\n')[86],'F3,A4,C5,F5','ノクターンは次の弱起へ進まず主和音で閉じる');
 assert(nocturneScore.notes.some(note=>note.step===28&&note.midi===noteNumber('F#5')),'ノクターンの原譜の左手にある属七の半音を残す');
 const aveMaria=TEMPLATES.find(t=>t.id==='schubert-ave-maria'),aveMariaScore=templateScore(aveMaria);
-assert.equal(aveMaria.bpm,54);assert.equal(aveMariaScore.length,20,'アヴェ・マリアは歌い出しの5拍だけ');
-assert.deepEqual(aveMaria.melody,[['C6',6],['B5',1],['C6',1],['E6',7],['D6',1],['C6',4]],'アヴェ・マリアの最初の呼びかけの旋律');
-assert.equal(serialize(aveMariaScore.notes,20).split('\n')[16],'C4,E4,G4,C6','アヴェ・マリアの呼びかけを主和音で閉じる');
+assert.equal(aveMaria.bpm,54);assert.equal(aveMaria.subdivision,8);assert.equal(aveMariaScore.length,188,'アヴェ・マリアは続く旋律も含め、テンポを保って23.5拍');
+assert.deepEqual(aveMaria.melody.slice(0,13),[['G5',12],['F#5',2],['G5',2],['B5',14],['A5',2],['G5',8],['',8],['A5',8],['G5',2],['F#5',2],['E5',2],['F#5',2],['G5',8]],'アヴェ・マリアの呼びかけと続く旋律の音程・休符');
+assert.deepEqual(aveMaria.melody.slice(-8),[['A5',9],['E5',2],['F#5',1],['G5',1],['F#5',2],['E5',1],['D5',8],['G5',4]],'アヴェ・マリアは下降する旋律から終止し、次の句の弱起を入れない');
+for(const [step,name]of [[12,'C#5'],[94,'C#6'],[96,'G4'],[104,'A#5'],[112,'D#5'],[144,'F#5'],[152,'G#5']])assert(aveMariaScore.notes.some(note=>note.step===step&&note.midi===noteNumber(name)),`アヴェ・マリアの旋律と伴奏の半音を残す ${step}:${name}`);
+assert(aveMariaScore.notes.some(note=>note.step===40),'アヴェ・マリアの歌唱の休符には伴奏を続ける');
+assert.equal(serialize(aveMariaScore.notes,188).split('\n')[184],'G3,B4,D5,G5','アヴェ・マリアをト長調の主和音で閉じる');
 const newWorld=TEMPLATES.find(t=>t.id==='new-world-largo'),newWorldScore=templateScore(newWorld);
 assert.equal(newWorld.bpm,52);assert.equal(newWorldScore.length,68,'新世界は有名な主題4小節と短い終止');
 assert.deepEqual(newWorld.melody.slice(0,11),[['E6',3],['G6',1],['G6',4],['E6',3],['D6',1],['C6',4],['E6',3],['F6',1],['G6',3],['F6',1],['E6',8]],'家路の主題の音程と付点のリズム');
