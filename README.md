@@ -60,6 +60,15 @@ GitHub連携の設定時は、Cloudflare Workers and Pagesアプリに `MarkN200
 
 公開先はCloudflare Workersとします。旧Sitesの公開用設定はリポジトリから除外しています。
 
+## ライセンス
+
+- 本プロジェクトのコード・文書：[MIT](./LICENSE)。
+- 作者が録音・作成した30音のOGG音源と、収録サンプルの編曲・楽譜データ：[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)。
+
+適用範囲と同梱ライブラリの条件は [LICENSES.md](./LICENSES.md) に記載しています。利用者が取り込むMIDIや作成する楽譜には、この指定を自動で適用しません。
+
+作者のホームページ：[markn2000.com](https://markn2000.com/)。
+
 ## 利用ライブラリ
 
 MIDI解析ライブラリのライセンス文書は `dist/vendor/` に同梱しています。MP3変換には [lamejs 1.2.1](https://github.com/zhuker/lamejs)（[LAME](https://lame.sourceforge.io/) のJavaScript移植、LGPL-3.0）を変更せず利用します。ライセンスと元のソース配布物も同梱し、詳細は `dist/vendor/LICENSE-lamejs.md` に記載しています。
