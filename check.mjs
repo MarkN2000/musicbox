@@ -111,6 +111,11 @@ for(const [id,length]of [['salut-damour',68],['sugar-plum-fairy',68],['csikos-po
 const salut=TEMPLATES.find(t=>t.id==='salut-damour');
 assert(templateScore({...salut,accompaniment:[]}).notes.some(n=>n.step===36&&n.midi===noteNumber('G#5')),'愛の挨拶の原譜の半音を別の音に置き換えない');
 assert.deepEqual(salut.melody.slice(-3),[['D6',6],['D#6',2],['E6',4]],'愛の挨拶は半音上の主和音の音で締める');
+const swanLake=TEMPLATES.find(t=>t.id==='swan-lake-scene'),swanLakeScore=templateScore(swanLake);
+assert.equal(swanLake.bpm,72);assert.equal(swanLake.pickupBeats,0);assert.equal(swanLakeScore.length,52,'白鳥の湖は主題3小節と次の終止音に絞る');
+assert.deepEqual(swanLake.melody.slice(0,9),[['E6',8],['A5',2],['B5',2],['C6',2],['D6',2],['E6',6],['C6',2],['E6',6],['C6',2]],'白鳥の湖の高い長音から始まる有名なオーボエの音程とリズム');
+assert.deepEqual(swanLake.melody.slice(-7),[['E6',6],['C6',2],['D6',2],['C6',2],['B5',2],['D6',2],['A5',4]],'白鳥の湖の主題から次の落ち着く音まで');
+assert.equal(serialize(swanLakeScore.notes,52).split('\n')[48],'A4,C5,E5,A5','白鳥の湖のイ短調の終止');
 assert.equal(templateScore({melody:[['C5',8]]}).length,4,'終止の1音＋7空行を1音＋3空行にする');
 assert.equal(templateScore({melody:[['',5],['C5',8]]}).length,8,'弱起の後も4ステップ単位で末尾を詰める');
 assert.equal(templateScore({melody:[['C5',3]]}).length,3,'元の長さを超えて空行を増やさない');
