@@ -59,16 +59,3 @@ export function convertMidi(midi, {tracks, subdivision, transpose = 0}) {
   if (length > MAX_STEPS) throw new Error('ステップ数の上限（16,384）を超えています。細かさを下げてください。');
   return {notes, length, sourceCount:selected.length, merged:selected.length-notes.length};
 }
-export function suggestMidiTranspositions(midi, settings) {
-  const original=convertMidi(midi,{...settings,transpose:0}),counts=new Map(),candidates=[];
-  for(const note of original.notes)counts.set(note.midi,(counts.get(note.midi)||0)+1);
-  for(let transpose=-24;transpose<=24;transpose++){
-    let outside=0,valid=true;
-    for(const [pitch,count]of counts){
-      const moved=pitch+transpose;if(moved<0||moved>127){valid=false;break;}
-      if(!ALLOWED.has(moved))outside+=count;
-    }
-    if(valid)candidates.push({transpose,outside,total:original.notes.length});
-  }
-  return candidates.sort((a,b)=>a.outside-b.outside||Math.abs(a.transpose)-Math.abs(b.transpose)||a.transpose-b.transpose).slice(0,3);
-}
