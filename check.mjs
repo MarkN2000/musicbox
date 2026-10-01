@@ -214,14 +214,14 @@ const nodeMethods={
   append(...children){for(const child of children){child.parent=this;this.children.push(child);}},replaceChildren(){this.children=[];},
   remove(){const siblings=this.parent.children;if(siblings.at(-1)===this)siblings.pop();else siblings.splice(siblings.indexOf(this),1);this.parent=null;},
   querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
-  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(){return this;},focus(){focusedNode=this;}
+  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;}
 };
 const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{}});};
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
 element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;
 const ui=runInNewContext(`
-  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72},focusedCell=null,drag=null;
+  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72},focusedCell=null,drag=null,startStep=0;
   const pitches=Array.from({length:41},(_,i)=>93-i);
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function renderGrid(){'))}
   ${app.slice(app.indexOf('function renderGrid(){'),app.indexOf('function renderOutput(){'))}
@@ -229,7 +229,7 @@ const ui=runInNewContext(`
   ${app.slice(app.indexOf("for(const [id,delta] of [['extend',4]"),app.indexOf('function undo(){'))}
   ${app.slice(app.indexOf('function undo(){'),app.indexOf('for(const template of TEMPLATES)'))}
   ${app.split('\n').find(line=>line.startsWith('function updateInterval(){'))}
-  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
+  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
 `,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},previewConversion(){},showTemplateInfo(){},render(){},renderOutput(){outputWrites++;},previewTone(){},stopPlayback(){},announce(){}});
 const originalUI=JSON.stringify(ui.state());ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(element('interval').value,125);
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
@@ -265,6 +265,10 @@ writes=outputWrites;element('roll').events.pointerdown(pointer(ui.cell(3,72)));w
 ui.grid();assert.equal(nodeCount,created,'同じ構造の描画でマスを作り直しています');ui.extend();ui.grid();assert.equal(nodeCount-created,42*4,'末尾4列以外も作り直しています');created=nodeCount;ui.shrink();ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').children[1],row);assert.equal(ui.cell(0,72),firstCell);
 ui.setScore([{step:0,midi:66},{step:0,midi:120}]);ui.grid();const outsideCell=ui.cell(0,66);assert.equal(outsideCell.disabled,false);assert.equal(outsideCell.getAttribute('aria-pressed'),'true');element('roll').events.click({...pointer(outsideCell),detail:0});assert.equal(outsideCell.disabled,true,'削除した対応外のマスが無効になりません');assert.match(outsideCell.getAttribute('aria-label'),/対応外/);assert.equal(firstCell.tabIndex,0);listeners.get('keydown')(key(false));ui.grid();assert.equal(outsideCell.disabled,false,'取り消した対応外の音を復元できません');
 ui.rhythm(6,3,.5);ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').firstElementChild.children[7].textContent,'2');assert.match(firstCell.parent.children[4].className,/\bbar\b/,'拍子・弱起の変更で小節線を更新できません');ui.rhythm(4,4,0);ui.grid();
+const header=element('roll').firstElementChild,emptyHeader=header.children[6],beforeSelection=JSON.stringify(ui.state());created=nodeCount;
+element('roll').events.click({...pointer(emptyHeader),detail:1});assert.equal(ui.start(),5);assert.equal(emptyHeader.getAttribute('aria-selected'),'true');assert.equal(header.children[1].getAttribute('aria-selected'),'false');assert.equal(emptyHeader.tabIndex,0);assert.equal(header.children[1].tabIndex,-1);
+element('roll').events.keydown({...pointer(emptyHeader),key:'ArrowRight'});assert.equal(ui.start(),6);assert.equal(focusedNode,header.children[7]);element('roll').events.click({...pointer(header.children[1]),detail:0});element('roll').events.keydown({...pointer(header.children[1]),key:'ArrowLeft'});assert.equal(ui.start(),0,'開始位置が先頭より前に移動しています');
+element('roll').events.click({...pointer(header.lastElementChild),pointerType:'touch',detail:1});element('roll').events.keydown({...pointer(header.lastElementChild),key:'ArrowRight'});assert.equal(ui.start(),ui.state().length-1,'開始位置が楽譜の末尾を超えています');assert.equal(header.children.filter(cell=>cell.getAttribute('aria-selected')==='true').length,1);assert.equal(JSON.stringify(ui.state()),beforeSelection,'開始位置の選択で楽譜や履歴が変わっています');assert.equal(nodeCount,created,'開始位置の選択でマスを作り直しています');
 // 実際の配置・音源再生処理を、最小限のAudioContextで確認する。
 const played=[],fetched=[],audioErrors=[];let response,resumeResult,scheduledTick;
 class TestAudio{
@@ -275,13 +279,13 @@ class TestAudio{
   createGain(){return {gain:{},connect(){},disconnect(){}};}
 }
 const sound=runInNewContext(`
-  let notes=[],length=4,audio=null,player=null,playbackRequest=0,drag=null;const audioBuffers=new Map(),audioLoads=new Map(),activeVoices=new Set();
+  let notes=[],length=4,audio=null,player=null,playbackRequest=0,drag=null,startStep=0;const audioBuffers=new Map(),audioLoads=new Map(),activeVoices=new Set();
   ${app.slice(app.indexOf('function updateCell('),app.indexOf('function focusCell('))}
   ${app.slice(app.indexOf('function markStep('),app.indexOf('function renderOutput('))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
   ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
   ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
-  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
 `,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
 sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
@@ -302,6 +306,12 @@ for(const [i,offset]of[0,.375,.5,.875,1].entries())near(played[playCount+i].time
 assert.equal(sound.playback().visual,3,'2周目の表示位置が先頭に戻っていません');element('loop').checked=false;advance(start+1.4);assert.equal(played.length-playCount,6,'オフにした周回を最後まで再生していません');advance(start+2.4);assert.equal(sound.playback(),null,'ループをオフにしても終了しません');
 element('loop').checked=true;await sound.play();const pendingTick=scheduledTick;sound.stop();playCount=played.length;pendingTick();assert.equal(played.length,playCount);assert.equal(sound.playback(),null);assert.equal(scheduledTick,null,'停止後もループのタイマーが残っています');
 sound.setScore([{step:0,midi:72}],1);element('interval').value=10;await sound.play();start=sound.playback().start;advance(start+.02);assert(sound.playback().next>1,'1ステップの楽譜をループできません');sound.stop();element('loop').checked=false;
+// 途中からの初回再生と、以降の全体ループは同じ音声クロックで進む。
+sound.setScore([{step:0,midi:72},{step:2,midi:76},{step:3,midi:79}],4);element('interval').value=125;sound.select(2);playCount=played.length;await sound.play();let firstTime=sound.playback().start+.25;
+assert.equal(sound.playback().visual,-1,'再生前に選択位置より前の列を表示しています');advance(firstTime+.01);assert.equal(sound.playback().visual,2);advance(firstTime+.25);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5'],'選択位置より前の音が鳴っています');near(played[playCount].time,firstTime);near(played[playCount+1].time,firstTime+.125);advance(firstTime+1.2);assert.equal(sound.playback(),null);assert.equal(sound.start(),0);
+element('loop').checked=true;sound.select(2);playCount=played.length;await sound.play();firstTime=sound.playback().start+.25;advance(firstTime+.76);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5','C5','E5','G5','C5']);for(const [i,offset]of[0,.125,.25,.5,.625,.75].entries())near(played[playCount+i].time,firstTime+offset);element('rollViewport').scrollLeft=300;await sound.play();assert.equal(sound.playback(),null);assert.equal(sound.start(),0);assert.equal(element('rollViewport').scrollLeft,0);assert(element('roll').children.every(row=>row.children.every(cell=>!cell.className.split(' ').includes('playing'))),'停止後に再生位置が残っています');element('loop').checked=false;
+sound.select(3);element('interval').value=1000;playCount=played.length;await sound.play();firstTime=sound.playback().start+3;advance(firstTime+1.05);assert.equal(played.length-playCount,1,'末尾からの再生で別の音を鳴らしています');assert.equal(sound.playback(),null);
+resumeResult=new Promise(resolve=>{finishResume=resolve;});sound.select(2);playCount=played.length;const pendingPlay=sound.play();await sound.play();finishResume();await pendingPlay;assert.equal(played.length,playCount,'準備中の停止後に音が鳴っています');assert.equal(sound.start(),0);assert.equal(sound.playback(),null);resumeResult=undefined;
 // 実際の保存・コピー・プレビューと、間隔変更のイベントを同じ出力で確認する。
 let savedBlob,copiedText;const outputErrors=[];
 const textOutput=runInNewContext(`

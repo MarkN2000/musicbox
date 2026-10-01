@@ -9,6 +9,7 @@ const audioBuffers = new Map();
 const audioLoads = new Map();
 let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
+let startStep = 0;
 let focusedCell = null;
 let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
@@ -44,9 +45,9 @@ function renderGrid(){
     while(row.children.length>length+1)row.lastElementChild.remove();
     const firstNew=row.children.length-1;
     for(let step=firstNew;step<length;step++){
-      const cell=document.createElement(index?'button':'div');cell.dataset.step=step;cell.setAttribute('role',index?'gridcell':'columnheader');
+      const cell=document.createElement('button');cell.dataset.step=step;cell.setAttribute('role',index?'gridcell':'columnheader');
       if(index){cell.className='cell'+(noteName(midi).includes('#')?' black':'')+(!ALLOWED.has(midi)?' unavailable':'');cell.dataset.midi=midi;cell.tabIndex=-1;updateCell(cell,selected.has(`${step}:${midi}`));}
-      else cell.className='step-label';row.append(cell);
+      else{cell.className='step-label';cell.tabIndex=-1;cell.setAttribute('aria-selected','false');cell.setAttribute('aria-label',`ステップ${step+1}から試聴`);cell.title=`ステップ${step+1}から試聴`;}row.append(cell);
     }
     for(let step=rhythmChanged?0:firstNew;step<length;step++){
       const cell=row.children[step+1];cell.classList.toggle('beat',step%subdivision===0);cell.classList.toggle('bar',(step-pickupBeats*subdivision)%(subdivision*beatsPerBar)===0);
@@ -56,9 +57,14 @@ function renderGrid(){
   roll.dataset.rhythm=rhythm;
   for(const cell of roll.querySelectorAll('.active,.outside'))if(!selected.has(`${cell.dataset.step}:${cell.dataset.midi}`))updateCell(cell,false);
   for(const note of notes){const cell=getCell(note.step,note.midi);if(cell&&cell.getAttribute('aria-pressed')!=='true')updateCell(cell,true);}
-  focusCell(getCell(currentCell.step,currentCell.midi));$('extend').disabled=length+4>MAX_STEPS;$('shrink').disabled=length<=4;
+  selectStart(Math.min(startStep,length-1));focusCell(getCell(currentCell.step,currentCell.midi));$('extend').disabled=length+4>MAX_STEPS;$('shrink').disabled=length<=4;
 }
 function markStep(step,on){if(step<0)return;for(const row of $('roll').children)row.children[step+1]?.classList.toggle('playing',on);}
+function selectStart(step){
+  const header=$('roll').firstElementChild;
+  for(const [position,on]of[[startStep,false],[step,true]]){const cell=header?.children[position+1];if(cell){cell.classList.toggle('selected',on);cell.setAttribute('aria-selected',String(on));cell.tabIndex=on?0:-1;}}
+  startStep=step;
+}
 function renderOutput(){
   const outside=notes.filter(note=>!ALLOWED.has(note.midi));
   $('noteStats').textContent=`${notes.length}音 · ${length}ステップ`;
@@ -88,8 +94,8 @@ function paint(cell,on){
 $('roll').addEventListener('pointerdown',event=>{const cell=event.target.closest('.cell');if(!cell||cell.disabled||event.button!==0)return;if(event.pointerType==='touch')return;event.preventDefault();stopPlayback();remember();const on=cell.getAttribute('aria-pressed')!=='true';drag={on,seen:new Set()};paint(cell,on);drag.seen.add(`${cell.dataset.step}:${cell.dataset.midi}`);focusCell(cell,true);});
 $('roll').addEventListener('pointerover',event=>{const cell=event.target.closest('.cell');if(!drag||!cell||cell.disabled)return;const key=`${cell.dataset.step}:${cell.dataset.midi}`;if(drag.seen.has(key))return;drag.seen.add(key);paint(cell,drag.on);});
 window.addEventListener('pointerup',()=>{if(drag){drag=null;renderOutput();}});window.addEventListener('pointercancel',()=>{if(drag){drag=null;renderOutput();}});
-$('roll').addEventListener('click',event=>{if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);}});
-$('roll').addEventListener('keydown',event=>{const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;focusCell(getCell(step,midi),true);});
+$('roll').addEventListener('click',event=>{const header=event.target.closest('.step-label');if(header){stopPlayback();selectStart(Number(header.dataset.step));return;}if(event.detail===0||event.pointerType==='touch'){const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);}});
+$('roll').addEventListener('keydown',event=>{const header=event.target.closest('.step-label');if(header){if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const step=Number(header.dataset.step)+(event.key==='ArrowLeft'?-1:1);if(step<0||step>=length)return;stopPlayback();selectStart(step);$('roll').firstElementChild.children[step+1].focus();return;}const cell=event.target.closest('.cell');if(!cell)return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;focusCell(getCell(step,midi),true);});
 for(const [id,delta] of [['extend',4],['shrink',-4]])$(id).onclick=()=>{
   if(length+delta<1||length+delta>MAX_STEPS)return;
   stopPlayback();remember();length+=delta;notes=notes.filter(note=>note.step<length);currentCell.step=Math.min(currentCell.step,length-1);
@@ -134,7 +140,7 @@ $('copyText').onclick=async()=>{
 };
 function updateInterval(){const bpm=Number($('bpm').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)return;stopPlayback();$('interval').value=Math.round(60000/bpm/Number($('subdivision').value));renderOutput();}
 $('bpm').addEventListener('change',updateInterval);$('subdivision').addEventListener('change',()=>{updateInterval();renderGrid();if(sourceMidi)previewConversion();});$('interval').addEventListener('change',()=>{stopPlayback();renderOutput();});
-function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');}
+function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();selectStart(0);$('play').textContent='▶ 試聴';$('play').setAttribute('aria-pressed','false');}
 function getAudio(){
   const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)throw new Error('このブラウザでは試聴できません。');
   return audio??=new AudioClass();
@@ -164,15 +170,15 @@ async function previewTone(midi){
   }catch(error){if(request===playbackRequest)announce(error.message,true);}
 }
 $('play').onclick=async()=>{
-  if($('play').getAttribute('aria-pressed')==='true'){stopPlayback();announce('停止しました。');return;}
+  if($('play').getAttribute('aria-pressed')==='true'){stopPlayback();$('rollViewport').scrollLeft=0;announce('停止しました。');return;}
   let request;
   try{
     const interval=Number($('interval').value)/1000;if(!Number.isFinite(interval)||interval<.01||interval>5)throw new Error('再生間隔は10〜5000msにしてください。');
     if(!notes.some(note=>ALLOWED.has(note.midi)))throw new Error('試聴する音を入力してください。');
-    stopPlayback();request=playbackRequest;$('play').textContent='■ 停止';$('play').setAttribute('aria-pressed','true');announce('音源を読み込んでいます…');await resumeAudio();if(request!==playbackRequest)return;
+    const first=startStep;stopPlayback();selectStart(first);request=playbackRequest;$('play').textContent='■ 停止';$('play').setAttribute('aria-pressed','true');announce('音源を読み込んでいます…');await resumeAudio();if(request!==playbackRequest)return;
     const rows=new Map();for(const note of notes.filter(note=>ALLOWED.has(note.midi))){if(!rows.has(note.step))rows.set(note.step,[]);rows.get(note.step).push(note.midi);}
     await Promise.all([...new Set([...rows.values()].flat())].map(loadTone));if(request!==playbackRequest)return;
-    player={start:audio.currentTime+.06,next:0,visual:-1,timer:0,end:audio.currentTime+.06+length*interval};const session=player;
+    const start=audio.currentTime+.06-first*interval;player={start,next:first,visual:-1,timer:0,end:start+length*interval};const session=player;
     const tick=()=>{
       if(player!==session)return;
       while(session.start+session.next*interval<audio.currentTime+.1){
@@ -181,7 +187,7 @@ $('play').onclick=async()=>{
         if(session.next%length===0)session.end=Math.max(session.end,session.start+session.next*interval);
       }
       const elapsed=Math.floor((audio.currentTime-session.start)/interval),step=elapsed%length;
-      if(elapsed>=0&&elapsed<session.next&&step!==session.visual){markStep(session.visual,false);markStep(step,true);session.visual=step;const header=$('roll').firstElementChild.children[step+1];if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
+      if(elapsed>=first&&elapsed<session.next&&step!==session.visual){markStep(session.visual,false);markStep(step,true);session.visual=step;const header=$('roll').firstElementChild.children[step+1];if(header){const viewport=$('rollViewport');const left=header.offsetLeft;if(left<viewport.scrollLeft+84||left>viewport.scrollLeft+viewport.clientWidth-30)viewport.scrollLeft=Math.max(0,left-84);}}
       if(session.next>=length&&session.next%length===0&&!$('loop').checked&&audio.currentTime>=session.end){stopPlayback();announce('試聴が終わりました。');return;}session.timer=setTimeout(tick,25);
     };tick();announce(notes.some(note=>!ALLOWED.has(note.midi))?'対応する音だけを試聴中':'試聴中');
   }catch(error){if(request!==undefined&&request!==playbackRequest)return;stopPlayback();announce(error.message,true);}
