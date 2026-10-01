@@ -5,7 +5,7 @@
   <title>オルゴール譜 — 30音の楽譜エディター</title>
   <meta name="description" content="MIDIを取り込み、30音オルゴールの楽譜をマス目で編集。試聴してTXT・MIDI・MP3で保存できます。">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23163e57'/%3E%3Cpath d='M8 9h16M8 16h16M8 23h16' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='10' y='6' width='5' height='6' fill='%2391d8f6'/%3E%3Crect x='19' y='13' width='5' height='6' fill='%2391d8f6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=7eb12a206297e2a4">
+  <link rel="stylesheet" href="style.css?v=9c5a80218111e661">
 </head>
 <body>
   <main>
@@ -19,7 +19,7 @@
         </div>
         <section id="midiPanel" class="midi-panel" hidden><details id="midiTracks"><summary id="trackSummary">トラック</summary><div class="track-actions"><button id="selectMelodic" class="button subtle">打楽器以外を選択</button><button id="clearTracks" class="button subtle">すべて外す</button></div><div id="trackList" class="track-list"></div></details><label for="transpose">音の高さ <input id="transpose" type="number" min="-24" max="24" step="1" value="0" title="半音単位。0で原曲の高さに戻ります。"> 半音</label><button id="suggest" class="button subtle">おすすめ</button></section>
         <section id="unsupportedPanel" class="unsupported-panel" hidden><p id="exportWarning" class="warning" hidden></p><button id="removeUnsupported" class="button danger">まとめて省く</button></section>
-        <div id="rollViewport" class="roll-viewport"><div id="roll" class="roll" role="grid" aria-label="音とステップの編集マス目"></div></div>
+        <div id="rollViewport" class="roll-viewport"><div id="roll" class="roll" role="grid" aria-label="音とステップの編集マス目" aria-multiselectable="true" title="クリックで入力・削除、空白をドラッグで範囲選択、音をドラッグで移動。Shiftで選択を追加。"></div><div id="selectionBox" class="selection-box" aria-hidden="true" hidden></div></div>
         <div class="editor-footer"><span id="noteStats"></span><div><button id="shrink" class="button subtle" title="末尾の1ステップを削除">−1ステップ</button> <button id="extend" class="button subtle">＋4ステップ</button></div></div>
         <details id="txtPreviewPanel" class="preview-panel"><summary>TXTプレビュー</summary><div class="preview-content">
           <textarea id="txtPreview" readonly spellcheck="false" aria-label="出力テキストのプレビュー"></textarea>
@@ -27,6 +27,6 @@
         <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
   </main>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=124be4c6ffedd4e2&ui=a7d94fef1f2c1ff5"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=124be4c6ffedd4e2&ui=13a81a4e1273f121"></script>
 </body>
 </html>

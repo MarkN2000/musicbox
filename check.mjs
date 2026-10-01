@@ -279,14 +279,21 @@ assert(!html.includes('<summary>設定</summary>')&&html.includes('<summary>TXT�
 const controls=new Map(),listeners=new Map(),windowListeners=new Map(),previewedKeys=[];let nodeCount=0,outputWrites=0,focusedNode;
 const nodeMethods={
   get firstElementChild(){return this.children[0];},get lastElementChild(){return this.children.at(-1);},
-  get classList(){const cell=this;return {toggle(name,on){const names=new Set(cell.className.split(' ').filter(Boolean));if(on??!names.has(name))names.add(name);else names.delete(name);cell.className=[...names].join(' ');},add(name){this.toggle(name,true);},remove(name){this.toggle(name,false);}};},
+  get classList(){const cell=this;return {toggle(name,on){const names=new Set(cell.className.split(' ').filter(Boolean));if(on??!names.has(name))names.add(name);else names.delete(name);cell.className=[...names].join(' ');},add(...names){for(const name of names)this.toggle(name,true);},remove(...names){for(const name of names)this.toggle(name,false);}};},
   setAttribute(name,value){this.attributes[name]=String(value);},getAttribute(name){return this.attributes[name]??null;},
   append(...children){for(const child of children){child.parent=this;this.children.push(child);}},replaceChildren(){this.children=[];},
   remove(){const siblings=this.parent.children;if(siblings.at(-1)===this)siblings.pop();else siblings.splice(siblings.indexOf(this),1);this.parent=null;},
   querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector==='input:checked'?cell.checked:selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
-  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;},blur(){this.events?.blur?.();}
+  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;},blur(){this.events?.blur?.();},
+  setPointerCapture(){},releasePointerCapture(){},getBoundingClientRect(){
+    let left=0,top=0,width=500,height=1000;
+    if(this.className.split(' ').includes('cell')){left=84+Number(this.dataset.step)*30-element('rollViewport').scrollLeft;top=28+(93-Number(this.dataset.midi))*23;width=30;height=23;}
+    else if(this.className.split(' ').includes('grid-row')){top=28+(this.parent.children.indexOf(this)-1)*23;height=23;}
+    else if(this.className.split(' ').includes('key'))width=84;
+    return {left,top,width,height,right:left+width,bottom:top+height};
+  }
 };
-const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{}});};
+const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{},style:{}});};
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({bpm:'84',subdivision:'6',transpose:'12'}))element(id).value=value;
 element('scoreTitle').value=element('scoreTitle').dataset.before='編集したMIDI';element('rollViewport').scrollLeft=90;
@@ -295,13 +302,14 @@ const ui=runInNewContext(`
   const pitches=Array.from({length:41},(_,i)=>93-i);
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function renderGrid(){'))}
   ${app.slice(app.indexOf('function renderGrid(){'),app.indexOf('function renderOutput(){'))}
+  ${app.slice(app.indexOf('let noteSelection='),app.indexOf('function paint('))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("for(const [id,delta] of [['extend',4]"))}
   ${app.slice(app.indexOf("for(const [id,delta] of [['extend',4]"),app.indexOf('function undo(){'))}
   ${app.slice(app.indexOf('function undo(){'),app.indexOf('function downloadName('))}
   ${app.split('\n').find(line=>line.startsWith('function updateTiming(){'))}
   ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
-  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,interval:stepInterval,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
-`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){},announce(){}});
+  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,interval:stepInterval,setScore:score=>{notes=score;},selectionScore:score=>{notes=score;history=[];renderGrid();},selected:()=>[...noteSelection].sort(),preview:()=>moveCells.size,updateGesture:updateNoteGesture,rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
+`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},requestAnimationFrame:()=>1,cancelAnimationFrame(){},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){},announce(){}});
 const originalUI=JSON.stringify(ui.state());element('loop').setAttribute('aria-pressed','true');ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(ui.interval(),125);assert.equal(element('loop').getAttribute('aria-pressed'),'true','リセットでループの選択を変えない');
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
 listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('scoreTitle').value,'編集したMIDI');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);
@@ -332,22 +340,52 @@ ui.reset();while(ui.state().length>1)ui.shrink();assert.equal(ui.state().length,
 listeners.get('keydown')(key(false));assert.equal(ui.state().length,2);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
 ui.grid();const firstCell=ui.cell(0,72),otherCell=ui.cell(1,72),row=element('roll').children[1];let created=nodeCount,writes=outputWrites;
-const pointer=cell=>({target:cell,button:0,pointerType:'mouse',preventDefault(){}});
+const pointer=cell=>{const rect=cell.getBoundingClientRect();return {target:cell,button:0,pointerType:'mouse',pointerId:1,clientX:rect.left+rect.width/2,clientY:rect.top+rect.height/2,preventDefault(){}};};
 const keyButtons=element('roll').children.slice(1).flatMap(row=>row.children[0].children),beforeKeyPreview=JSON.stringify(ui.state());assert.equal(keyButtons.length,30,'対応30音だけを試聴ボタンにする');assert.equal(ui.cell(0,66).parent.children[0].children.length,0,'使用不可の鍵盤に試聴ボタンを置かない');
 const whiteKey=firstCell.parent.children[0].children[0],blackKey=ui.cell(0,73).parent.children[0].children[0];
 element('roll').events.pointerdown(pointer(whiteKey));element('roll').events.click({...pointer(whiteKey),detail:1});element('roll').events.click({...pointer(blackKey),pointerType:'touch',detail:1});element('roll').events.click({...pointer(whiteKey),detail:0});assert.deepEqual(previewedKeys,[72,73,72],'マウス・タッチ・キーボードで1回ずつ鍵盤の音を鳴らす');assert.equal(JSON.stringify(ui.state()),beforeKeyPreview,'鍵盤の試聴で楽譜や履歴を変更しない');assert.equal(outputWrites,writes);
-element('roll').events.pointerdown(pointer(firstCell));element('roll').events.pointerover(pointer(otherCell));assert.equal(outputWrites,writes,'ドラッグ中に出力を毎回作り直しています');windowListeners.get('pointerup')();assert.equal(outputWrites,writes+1);
-assert.equal(nodeCount,created,'音配置でマスを作り直しています');assert.equal(ui.cell(0,72),firstCell);assert.equal(firstCell.getAttribute('aria-pressed'),'true');assert.equal(otherCell.getAttribute('aria-pressed'),'true');
+element('roll').events.pointerdown(pointer(firstCell));windowListeners.get('pointerup')(pointer(firstCell));element('roll').events.click({...pointer(firstCell),detail:1});assert.equal(outputWrites,writes+1);
+assert.equal(nodeCount,created,'音配置でマスを作り直しています');assert.equal(ui.cell(0,72),firstCell);assert.equal(firstCell.getAttribute('aria-pressed'),'true');assert.equal(otherCell.getAttribute('aria-pressed'),'false');
 element('roll').events.keydown({...pointer(firstCell),key:'ArrowRight'});assert.equal(focusedNode,otherCell);assert.equal(firstCell.tabIndex,-1);assert.equal(otherCell.tabIndex,0);
 element('roll').events.click({...pointer(ui.cell(2,72)),pointerType:'touch',detail:1});assert.equal(ui.cell(2,72).getAttribute('aria-pressed'),'true');assert.equal(focusedNode,ui.cell(2,72));
-writes=outputWrites;element('roll').events.pointerdown(pointer(ui.cell(3,72)));windowListeners.get('pointercancel')();assert.equal(outputWrites,writes+1,'中断したドラッグの出力が更新されません');
+writes=outputWrites;element('roll').events.pointerdown(pointer(ui.cell(3,72)));windowListeners.get('pointercancel')(pointer(ui.cell(3,72)));assert.equal(outputWrites,writes,'中断したドラッグで出力を変更しない');
 ui.grid();assert.equal(nodeCount,created,'同じ構造の描画でマスを作り直しています');ui.extend();ui.grid();assert.equal(nodeCount-created,42*4,'末尾4列以外も作り直しています');created=nodeCount;ui.shrink();ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').children[1],row);assert.equal(ui.cell(0,72),firstCell);
 ui.setScore([{step:0,midi:66},{step:0,midi:120}]);ui.grid();const outsideCell=ui.cell(0,66);assert.equal(outsideCell.disabled,false);assert.equal(outsideCell.getAttribute('aria-pressed'),'true');element('roll').events.click({...pointer(outsideCell),detail:0});assert.equal(outsideCell.disabled,true,'削除した対応外のマスが無効になりません');assert.match(outsideCell.getAttribute('aria-label'),/対応外/);assert.equal(firstCell.tabIndex,0);listeners.get('keydown')(key(false));ui.grid();assert.equal(outsideCell.disabled,false,'取り消した対応外の音を復元できません');
 ui.rhythm(6,3,.5);ui.grid();assert.equal(nodeCount,created);assert.equal(element('roll').firstElementChild.children[7].textContent,'2');assert.match(firstCell.parent.children[4].className,/\bbar\b/,'拍子・弱起の変更で小節線を更新できません');ui.rhythm(4,4,0);ui.grid();
 const header=element('roll').firstElementChild,emptyHeader=header.children[6],beforeSelection=JSON.stringify(ui.state());created=nodeCount;
-element('roll').events.click({...pointer(emptyHeader),detail:1});assert.equal(ui.start(),5);assert.equal(emptyHeader.getAttribute('aria-selected'),'true');assert.equal(header.children[1].getAttribute('aria-selected'),'false');assert.equal(emptyHeader.tabIndex,0);assert.equal(header.children[1].tabIndex,-1);
+element('roll').events.pointerdown(pointer(emptyHeader));element('roll').events.click({...pointer(emptyHeader),detail:1});assert.equal(ui.start(),5);assert.equal(emptyHeader.getAttribute('aria-selected'),'true');assert.equal(header.children[1].getAttribute('aria-selected'),'false');assert.equal(emptyHeader.tabIndex,0);assert.equal(header.children[1].tabIndex,-1);
 element('roll').events.keydown({...pointer(emptyHeader),key:'ArrowRight'});assert.equal(ui.start(),6);assert.equal(focusedNode,header.children[7]);element('roll').events.click({...pointer(header.children[1]),detail:0});element('roll').events.keydown({...pointer(header.children[1]),key:'ArrowLeft'});assert.equal(ui.start(),0,'開始位置が先頭より前に移動しています');
 element('roll').events.click({...pointer(header.lastElementChild),pointerType:'touch',detail:1});element('roll').events.keydown({...pointer(header.lastElementChild),key:'ArrowRight'});assert.equal(ui.start(),ui.state().length-1,'開始位置が楽譜の末尾を超えています');assert.equal(header.children.filter(cell=>cell.getAttribute('aria-selected')==='true').length,1);assert.equal(JSON.stringify(ui.state()),beforeSelection,'開始位置の選択で楽譜や履歴が変わっています');assert.equal(nodeCount,created,'開始位置の選択でマスを作り直しています');
+// 実際の選択・ドラッグ・キー操作で、プレビューと確定・取り消しの境界を確認する。
+ui.reset();ui.grid();element('rollViewport').scrollLeft=0;
+const selectionFixture=()=>ui.selectionScore([{step:2,midi:72},{step:4,midi:76},{step:4,midi:79},{step:10,midi:72},{step:6,midi:66}]);
+const rollEvents=element('roll').events,scoreKeys=()=>Array.from(ui.state().notes,keyOf).sort(),selectedKeys=()=>Array.from(ui.selected()),scoreState=()=>JSON.stringify({...ui.state(),currentCell:undefined});
+const drop=(from,to,shiftKey=false)=>{rollEvents.pointerdown({...pointer(from),shiftKey});windowListeners.get('pointerup')({...pointer(to),shiftKey});rollEvents.click({...pointer(from),shiftKey,detail:1});};
+const selectPhrase=()=>drop(ui.cell(1,81),ui.cell(5,71));
+selectionFixture();const phraseBefore=scoreState();selectPhrase();
+assert.deepEqual(selectedKeys(),['2:72','4:76','4:79']);assert.equal(scoreState(),phraseBefore,'範囲選択で楽譜や履歴を変更しない');assert(element('selectionBox').hidden);assert.equal(ui.cell(2,72).getAttribute('aria-selected'),'true');
+drop(ui.cell(9,74),ui.cell(11,71),true);assert.deepEqual(selectedKeys(),['10:72','2:72','4:76','4:79'],'Shiftで範囲を追加する');
+rollEvents.click({...pointer(ui.cell(10,72)),shiftKey:true,detail:1});assert.deepEqual(selectedKeys(),['2:72','4:76','4:79'],'Shiftクリックで選択から解除する');
+rollEvents.pointerdown(pointer(ui.cell(2,72)));windowListeners.get('pointermove')(pointer(ui.cell(4,73)));ui.updateGesture(false);
+assert.equal(scoreState(),phraseBefore,'ドラッグのプレビュー中に音を変更しない');assert.equal(ui.preview(),3);assert.match(ui.cell(4,73).className,/move-preview/);
+windowListeners.get('pointercancel')(pointer(ui.cell(4,73)));assert.equal(ui.preview(),0);assert.deepEqual(selectedKeys(),['2:72','4:76','4:79']);assert.equal(scoreState(),phraseBefore,'中止したドラッグで音を失わない');
+drop(ui.cell(2,72),ui.cell(4,72));ui.grid();assert.deepEqual(scoreKeys(),['10:72','4:72','6:66','6:76','6:79']);assert.deepEqual(selectedKeys(),['4:72','6:76','6:79'],'和音と相対位置を保って選択全体を移動する');assert.equal(ui.state().historyLength,1,'まとめた移動を1操作にする');
+listeners.get('keydown')(key(false));ui.grid();assert.equal(scoreState(),phraseBefore,'1回の取り消しで全音と編集位置を戻す');assert.deepEqual(selectedKeys(),[]);
+selectPhrase();const boundaryBefore=scoreState();drop(ui.cell(2,72),ui.cell(0,72));ui.grid();assert.equal(ui.state().historyLength,1,'先頭ちょうどへは移動できる');listeners.get('keydown')(key(false));ui.grid();
+selectPhrase();drop(ui.cell(4,76),ui.cell(0,76));assert.equal(scoreState(),boundaryBefore,'一部の音が先頭を越える場合は全音を保持する');
+element('rollViewport').scrollLeft=600;drop(ui.cell(2,72),ui.cell(31,72));element('rollViewport').scrollLeft=0;assert.equal(scoreState(),boundaryBefore,'一部の音が末尾を越える場合は長さも音も保持する');
+drop(ui.cell(2,72),ui.cell(2,66));assert.equal(scoreState(),boundaryBefore,'対応外の音高を新しく作らない');
+rollEvents.keydown({...pointer(ui.cell(2,72)),key:'Escape'});assert.deepEqual(selectedKeys(),[]);
+drop(ui.cell(6,66),ui.cell(7,66));ui.grid();assert(scoreKeys().includes('7:66'),'取り込んだ対応外の音は音高を変えず横に移動できる');listeners.get('keydown')(key(false));ui.grid();
+ui.selectionScore([{step:2,midi:72},{step:3,midi:72}]);drop(ui.cell(2,72),ui.cell(3,72));ui.grid();assert.deepEqual(scoreKeys(),['3:72'],'同じ位置・音高の衝突を1音に統合する');listeners.get('keydown')(key(false));ui.grid();assert.deepEqual(scoreKeys(),['2:72','3:72'],'衝突前の2音を復元する');
+selectionFixture();selectPhrase();rollEvents.keydown({...pointer(ui.cell(2,72)),key:'ArrowRight'});ui.grid();assert.deepEqual(selectedKeys(),['3:72','5:76','5:79']);
+rollEvents.keydown({...pointer(ui.cell(3,72)),key:'ArrowUp'});ui.grid();assert.deepEqual(selectedKeys(),['3:73','5:77','5:80'],'全音を同じ半音数だけ移動する');listeners.get('keydown')(key(false));ui.grid();
+selectPhrase();const beforeDelete=scoreKeys();rollEvents.keydown({...pointer(ui.cell(3,72)),key:'Delete'});ui.grid();assert.deepEqual(scoreKeys(),['10:72','6:66']);assert.deepEqual(selectedKeys(),[]);listeners.get('keydown')(key(false));ui.grid();assert.deepEqual(scoreKeys(),beforeDelete,'一括削除を1回で取り消す');
+rollEvents.keydown({...pointer(ui.cell(3,72)),key:'Enter',shiftKey:true});assert.deepEqual(selectedKeys(),['3:72']);rollEvents.keydown({...pointer(ui.cell(3,72)),key:' ',shiftKey:true});assert.deepEqual(selectedKeys(),[]);
+rollEvents.pointerdown(pointer(ui.cell(3,72)));windowListeners.get('pointermove')(pointer(ui.cell(8,72)));ui.updateGesture(false);rollEvents.keydown({...pointer(ui.cell(3,72)),key:'Escape'});windowListeners.get('pointerup')(pointer(ui.cell(8,72)));rollEvents.click({...pointer(ui.cell(3,72)),detail:1});assert.deepEqual(scoreKeys(),beforeDelete,'Escで移動中止後のクリックによる削除も防ぐ');assert.equal(ui.preview(),0);
+const beforeTouch=scoreState();rollEvents.pointerdown({...pointer(ui.cell(0,72)),pointerType:'touch'});windowListeners.get('pointerup')({...pointer(ui.cell(5,72)),pointerType:'touch'});assert.equal(scoreState(),beforeTouch,'タッチのスワイプで音を連続入力しない');
+selectionFixture();rollEvents.pointerdown(pointer(ui.cell(1,81)));windowListeners.get('pointermove')({...pointer(ui.cell(12,71)),clientX:499});ui.updateGesture();assert(element('rollViewport').scrollLeft>0,'横端へのドラッグでスクロールする');windowListeners.get('pointercancel')(pointer(ui.cell(12,71)));element('rollViewport').scrollLeft=0;
+ui.setScore([{step:0,midi:72}]);ui.grid();assert.deepEqual(selectedKeys(),[],'楽譜の置換後に古い選択を残さない');assert.equal(ui.cell(-1,72),undefined,'範囲外の移動先を鍵盤として扱わない');assert.equal(ui.cell(0,94),undefined,'範囲外の音高を拍欄として扱わない');
 // 実際の配置・音源再生処理を、最小限のAudioContextで確認する。
 const played=[],fetched=[],audioErrors=[];let response,resumeResult,scheduledTick;
 class TestAudio{
