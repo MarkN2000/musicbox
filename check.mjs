@@ -58,9 +58,11 @@ const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(sm
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
 const templateExpectations=[['ode-to-joy',252,['E5','E5','F5','G5']],['fur-elise',48,['E6','D#6','E6','D#6']],['twinkle',188,['C5','C5','G5','G5']],['minuet',184,['G5','C5','D5','E5']]];
 assert.equal(TEMPLATES.length,44);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,44);
-assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':33,'行進曲':7,'民謡など':4});
+for(const [id,title] of [['twinkle','きらきら星変奏曲'],['minuet','メヌエット'],['mozart-turkish-march','トルコ行進曲'],['brahms-lullaby','子守歌 Op.49-4'],['schubert-ave-maria','アヴェ・マリア D.839'],['clair-de-lune','月の光']])assert.equal(TEMPLATES.find(template=>template.id===id).title,title,'一般的な短い曲名を使う');
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':37,'行進曲・軍歌':7});
 assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
+  assert(/^[ぁ-ゖー]+$/.test(template.reading),`${template.id}の曲名の読み`);
   const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
   const expectation=templateExpectations.find(row=>row[0]===id);
   if(expectation){assert.equal(length,expectation[1],id);assert.deepEqual(score.notes.slice(0,4).map(note=>noteName(note.midi)),expectation[2],id);}
@@ -133,7 +135,7 @@ assert(!turkishLead.some(n=>n.step===78||n.step===110),'持続する主旋律の
 assert(templateScore({...turkish,melody:[]}).notes.every(n=>n.midi<=noteNumber('C#5')),'トルコ行進曲の伴奏は主旋律の下に配置する');
 assert.deepEqual(serialize(turkishScore.notes,turkishScore.length).split('\n').slice(128,132),['D4,F4,A4,D5','','',''],'トルコ行進曲は低い主和音と旋律のD5で自然に解決する');
 // 行進曲は原譜の指定主題を一巡し、以前の別の節や不完全な反復へ戻さない。
-const marches=Object.fromEntries(TEMPLATES.filter(t=>t.category==='行進曲').map(t=>[t.id,t]));
+const marches=Object.fromEntries(TEMPLATES.filter(t=>t.category==='行進曲・軍歌').map(t=>[t.id,t]));
 const marchHeads={
  'british-grenadiers':['G5','C6','G5','C6','D6','E6','D6','E6','F6'],
  'us-field-artillery':['G5','G5','C6','C6','G5','G5','G5','A5','B5','C6','A5'],
@@ -392,6 +394,24 @@ const ui=runInNewContext(`
   ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
   ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,interval:stepInterval,setScore:score=>{notes=score;},selectionScore:score=>{notes=score;history=[];renderGrid();},selected:()=>[...noteSelection].sort(),preview:()=>moveCells.size,updateGesture:updateNoteGesture,rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
 `,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},requestAnimationFrame:()=>1,cancelAnimationFrame(){},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){},announce(){}});
+const templateOptions=element('templateSelect').children.flatMap(group=>group.children);
+assert.equal(templateOptions.length,TEMPLATES.length);
+for(const template of TEMPLATES)assert.equal(templateOptions.find(option=>option.value===template.id).textContent,`${template.title}／${template.composer}`,'全曲の選択肢に作曲者を表示する');
+assert.deepEqual(element('templateSelect').children.map(group=>[group.label,group.children.length]),[['クラシック・民謡',37],['行進曲・軍歌',7]],'分類とグループの表示順');
+assert.deepEqual(templateOptions.map(option=>option.value),[
+  'eine-kleine','salut-damour','schubert-ave-maria','amazing-grace','burgmuller-arabesque','ievan-polkka','blue-danube','fur-elise','maidens-prayer','pachelbel-canon','carmen-prelude','ode-to-joy','twinkle','csikos-post','greensleeves','nutcracker-march','sugar-plum-fairy','waltz-of-flowers','minute-waltz','brahms-lullaby','air-on-g','the-entertainer','vivaldi-spring','gymnopedie-1','jesu-joy','new-world-largo','clair-de-lune','offenbach-can-can','mozart-turkish-march','dolls-dream','chopin-nocturne-2','swan-lake-scene','mendelssohn-spring-song','chopin-prelude-7','auld-lang-syne','minuet','jupiter',
+  'us-field-artillery','when-johnny','stars-and-stripes','british-grenadiers','yuki-no-shingun','radetzky-march','battle-hymn',
+],'曲名の読みの五十音順で、漢字・英字と同じ作品の曲を並べる');
+const initialControls=new Map(['scoreTitle','bpm','subdivision'].map(id=>[id,node()]));
+initialControls.get('bpm').value=html.match(/id="bpm"[^>]*value="([^"]+)"/)[1];initialControls.get('subdivision').value=html.match(/<option value="([^"]+)" selected>/)[1];
+const initialUI=runInNewContext(`
+  ${app.slice(app.indexOf('let notes ='),app.indexOf('function announce('))}
+  ${app.split('\n').find(line=>line.startsWith('function setTitle('))}
+  ${app.split('\n').find(line=>line.startsWith("setTitle('新しい楽譜');"))}
+  ({notes,length,beatsPerBar,pickupBeats,history});
+`,{$:id=>initialControls.get(id)});
+assert.equal(initialControls.get('scoreTitle').value,'新しい楽譜');assert.equal(Number(initialControls.get('bpm').value),120);assert.equal(Number(initialControls.get('subdivision').value),4);
+assert.equal(initialUI.notes.length,0,'初期状態は空の楽譜');assert.equal(initialUI.length,32);assert.equal(initialUI.beatsPerBar,4);assert.equal(initialUI.pickupBeats,0);assert.equal(initialUI.history.length,0,'初期状態を取り消し履歴に追加しない');
 const originalUI=JSON.stringify(ui.state());element('loop').setAttribute('aria-pressed','true');ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(ui.interval(),125);assert.equal(element('loop').getAttribute('aria-pressed'),'true','リセットでループの選択を変えない');
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
 listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('scoreTitle').value,'編集したMIDI');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);

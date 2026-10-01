@@ -1,9 +1,8 @@
 import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, suggestMidiTranspositions, validateMidiHeader, validateNote} from './core.js?v=9a09c8fd8cf2a413';
-import {TEMPLATES, templateScore} from './templates.js?v=0b7b5a360f86ce1b';
+import {TEMPLATES, templateScore} from './templates.js?v=45057fbdeef8921e';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
-const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
-let notes = sample.notes, length = sample.length, history = [];
+let notes = [], length = 32, history = [];
 let sourceMidi = null, audio = null, player = null, activeVoices = new Set();
 let appliedMidiSettings = null;
 const audioBuffers = new Map();
@@ -12,7 +11,7 @@ let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
 let startStep = 0;
 let focusedCell = null;
-let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
+let beatsPerBar=4,pickupBeats=0;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentCell:{...currentCell},title:$('scoreTitle').value,values:Object.fromEntries(['bpm','subdivision','transpose'].map(id=>[id,sourceMidi&&['subdivision','transpose'].includes(id)?String(appliedMidiSettings[id]):$(id).value])),tracks:sourceMidi?[...appliedMidiSettings.tracks]:[],scrollLeft:$('rollViewport').scrollLeft};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
@@ -207,10 +206,11 @@ function undo(){
 }
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&!event.altKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,select,[contenteditable]')){event.preventDefault();undo();}});
 $('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;appliedMidiSettings=null;$('midiPanel').hidden=true;$('txtPreviewPanel').open=false;setTitle('新しい楽譜');$('bpm').value=120;$('subdivision').value=4;updateTiming();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
-for(const template of TEMPLATES){
-  let group=[...$('templateSelect').children].find(item=>item.label===template.category);
-  if(!group){group=document.createElement('optgroup');group.label=template.category;$('templateSelect').append(group);}
-  const option=document.createElement('option');option.value=template.id;option.textContent=template.title;group.append(option);
+for(const category of ['クラシック・民謡','行進曲・軍歌']){
+  const group=document.createElement('optgroup');group.label=category;$('templateSelect').append(group);
+  for(const template of TEMPLATES.filter(item=>item.category===category).sort((a,b)=>a.reading.localeCompare(b.reading,'ja'))){
+    const option=document.createElement('option');option.value=template.id;option.textContent=`${template.title}／${template.composer}`;group.append(option);
+  }
 }
 $('templateSelect').onchange=()=>{
   try{
@@ -360,7 +360,7 @@ if(modelContext?.registerTool){
   for(const tool of tools){try{Promise.resolve(modelContext.registerTool(tool,{signal:lifecycle.signal})).catch(()=>{});}catch{}}
   window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
-setTitle(initialTemplate.title);$('bpm').value=initialTemplate.bpm;
+setTitle('新しい楽譜');
 void Promise.allSettled([...ALLOWED].map(loadTone));updateTiming();render();
 
 let audioExportJob=null;
