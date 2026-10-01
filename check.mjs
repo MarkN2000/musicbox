@@ -170,11 +170,13 @@ assert.equal(newWorld.bpm,52);assert.equal(newWorldScore.length,68,'新世界は
 assert.deepEqual(newWorld.melody.slice(0,11),[['E6',3],['G6',1],['G6',4],['E6',3],['D6',1],['C6',4],['E6',3],['F6',1],['G6',3],['F6',1],['E6',8]],'家路の主題の音程と付点のリズム');
 assert.deepEqual(newWorld.melody.slice(-2),[['D6',9],['C6',4]],'新世界のタイを打ち直さず、隣の主音で終止');
 const eineKleine=TEMPLATES.find(t=>t.id==='eine-kleine'),eineScore=templateScore(eineKleine);
-assert.equal(eineKleine.bpm,112);assert.equal(eineScore.length,76);
+assert.equal(eineKleine.bpm,112);assert.equal(eineScore.length,160,'アイネ・クライネは冒頭と続く主題の10小節を保つ');
 assert.deepEqual(eineKleine.melody.slice(0,9),[['C6',6],['G5',2],['C6',6],['G5',2],['C6',2],['G5',2],['C6',2],['E6',2],['G6',8]],'アイネ・クライネの有名な冒頭を高い旋律で残す');
-for(const step of [4,5,12,13,28,29,30,31,36,37,44,45])assert(!eineScore.notes.some(n=>n.step===step),'アイネ・クライネの冒頭の休符に伴奏を入れない');
-assert.deepEqual(eineKleine.melody.slice(-6),[['G5',4],['B5',2],['D6',2],['C6',4],['G5',4],['C5',4]],'アイネ・クライネは属和音から主音に解決し、低い主音で締める');
-assert.equal(serialize(eineScore.notes,76).split('\n')[72],'C4,E4,G4,C5','アイネ・クライネの最後の主和音');
+for(const step of [4,5,12,13,28,29,30,31,36,37,44,45,60,61,62,63])assert(!eineScore.notes.some(n=>n.step===step),'アイネ・クライネの冒頭4小節の休符に伴奏を入れない');
+const eineLead=templateScore({...eineKleine,accompaniment:[]}).notes;
+assert.deepEqual(eineLead.filter(n=>n.step>=64&&n.step<80).map(n=>[n.step,noteName(n.midi)]),[[64,'C6'],[68,'C6'],[74,'E6'],[76,'D6'],[78,'C6']],'第5小節の休符と付点を含む主題の続きを残す');
+assert.deepEqual(eineLead.filter(n=>n.step>=128).map(n=>[n.step,noteName(n.midi)]),[[128,'C6'],[130,'C6'],[132,'B5'],[134,'A5'],[135,'B5'],[136,'C6'],[138,'C6'],[140,'D6'],[142,'C6'],[143,'D6'],[144,'E6'],[146,'E6'],[148,'F6'],[150,'E6'],[151,'F6'],[152,'G6']],'第9〜10小節の16分音符と原譜の結び');
+assert.equal(serialize(eineScore.notes,160).split('\n')[156],'C4,E4,G4','第10小節の旋律の休符を低い主和音で支え、ループの拍を保つ');
 for(const [id,length]of [['csikos-post',128],['burgmuller-arabesque',64],['carmen-prelude',128]])assert.equal(templateScore(TEMPLATES.find(t=>t.id===id)).length,length,`${id}は主題のまとまりで閉じる`);
 const arabesque=TEMPLATES.find(t=>t.id==='burgmuller-arabesque'),arabesqueScore=templateScore(arabesque);
 assert.equal(arabesque.bpm,108);
