@@ -15,20 +15,20 @@
           <button id="play" class="button primary" aria-pressed="false">▶ 試聴</button>
           <label>テンポ <input id="bpm" type="number" min="20" max="300" value="120"> <span class="unit">BPM</span></label>
           <label>1ステップ <select id="subdivision"><option value="1">4分音符</option><option value="2">8分音符</option><option value="4" selected>16分音符</option><option value="8">32分音符</option><option value="3">8分三連符</option><option value="6">16分三連符</option></select></label>
-          <div class="export-actions"><button id="export" class="button">TXT保存</button><button id="copyText" class="button subtle">コピー</button></div>
+          <div class="export-actions"><button id="export" class="button">TXT保存</button><button id="exportMidi" class="button" title="対応外の音は省いて保存">MIDI保存</button><button id="copyText" class="button subtle">コピー</button></div>
         </div>
         <section id="midiPanel" class="midi-panel" hidden><details id="midiTracks"><summary id="trackSummary">トラック</summary><div class="track-actions"><button id="selectMelodic" class="button subtle">打楽器以外を選択</button><button id="clearTracks" class="button subtle">すべて外す</button></div><div id="trackList" class="track-list"></div></details><label for="transpose">音の高さ <input id="transpose" type="number" min="-24" max="24" step="1" value="0" title="半音単位。0で原曲の高さに戻ります。"> 半音</label><button id="suggest" class="button subtle">おすすめ</button></section>
         <section id="unsupportedPanel" class="unsupported-panel" hidden><p id="exportWarning" class="warning" hidden></p><button id="removeUnsupported" class="button danger">まとめて省く</button></section>
         <div id="rollViewport" class="roll-viewport"><div id="roll" class="roll" role="grid" aria-label="音とステップの編集マス目"></div></div>
         <div class="editor-footer"><span id="noteStats"></span><div><button id="shrink" class="button subtle" title="末尾の4ステップを削除">−4ステップ</button> <button id="extend" class="button subtle">＋4ステップ</button></div></div>
         <details id="settings" class="settings"><summary>設定</summary><div class="settings-content">
-          <div class="settings-fields"><label><input id="loop" type="checkbox"> ループ再生</label><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt</span></span></label></div>
+          <div class="settings-fields"><label><input id="loop" type="checkbox"> ループ再生</label><label>間隔 <input id="interval" type="number" min="10" max="5000" step="1" value="125"> <span class="unit">ms</span></label><label for="fileName">ファイル名 <span class="filename"><input id="fileName" value="music-box" maxlength="100"><span>.txt / .mid</span></span></label></div>
           <p class="template-info" id="templateInfo"><span id="templateDetails"></span><a id="templateSource" target="_blank" rel="noopener noreferrer">出典 ↗</a><a id="templateListen" target="_blank" rel="noopener noreferrer">原曲を聴く ↗</a><span id="templateCredit" hidden></span><a id="templateLicense" target="_blank" rel="noopener noreferrer" hidden></a></p>
           <label class="preview-heading" for="txtPreview">TXTプレビュー</label><textarea id="txtPreview" readonly spellcheck="false" aria-label="出力テキストのプレビュー"></textarea>
         </div></details>
         <p id="status" class="status" role="status" aria-live="polite"></p>
       </section>
   </main>
-  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=16b7925fc7621094&ui=dc45cd552dd10df9"></script>
+  <script src="vendor/midi.js"></script><script type="module" src="app.js?v=01e82e8fcb28047e&templates=6f9c9f1b8dd73a07&ui=72c9be45d4d4031f"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, suggestMidiTranspositions, validateMidiHeader, validateNote} from './core.js?v=9a09c8fd8cf2a413';
-import {TEMPLATES, templateScore} from './templates.js?v=16b7925fc7621094';
+import {TEMPLATES, templateScore} from './templates.js?v=6f9c9f1b8dd73a07';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
@@ -128,6 +128,24 @@ $('templateSelect').onchange=()=>{
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
 };
 $('export').onclick=()=>{try{const text=serialize(notes,length,Number($('interval').value));const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const anchor=document.createElement('a');anchor.href=url;anchor.download=($('fileName').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||'music-box')+'.txt';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);announce(`TXTを保存しました。間隔 ${$('interval').value}ms`);}catch(error){announce(error.message,true);}};
+$('exportMidi').onclick=()=>{
+  try{
+    const interval=Number($('interval').value),subdivision=Number($('subdivision').value);
+    if(!Number.isInteger(length)||length<1||length>MAX_STEPS)throw new Error('ステップ数が不正です。');
+    if(!Number.isFinite(interval)||interval<10||interval>5000)throw new Error('再生間隔は10〜5000msにしてください。');
+    if(![1,2,3,4,6,8].includes(subdivision))throw new Error('ステップ単位が不正です。');
+    const midi=new window.Midi(),scale=Math.ceil(interval*subdivision*1000/0xffffff),ticksPerStep=midi.header.ppq/subdivision*scale;
+    midi.header.setTempo(60000*scale/(interval*subdivision));midi.header.timeSignatures=[{ticks:0,timeSignature:[beatsPerBar,4]}];
+    const track=midi.addTrack(),unique=new Map();let omitted=0;track.name='Music Box';track.instrument.number=10;
+    for(const note of notes){validateNote(note,length);if(ALLOWED.has(note.midi))unique.set(keyOf(note),note);else omitted++;}
+    for(const note of [...unique.values()].sort((a,b)=>a.step-b.step||a.midi-b.midi))track.addNote({midi:note.midi,ticks:note.step*ticksPerStep,durationTicks:ticksPerStep,velocity:.8});
+    // このライブラリは末尾の休符を自動出力しないため、曲末に音を鳴らさないイベントを置く。
+    track.addCC({number:123,ticks:length*ticksPerStep,value:0});
+    const blob=new Blob([midi.toArray()],{type:'audio/midi'}),url=URL.createObjectURL(blob),anchor=document.createElement('a');
+    anchor.href=url;anchor.download=($('fileName').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||'music-box')+'.mid';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    announce(`MIDIを保存しました。${omitted?`対応外の${omitted}音を省きました。`:''}`);
+  }catch(error){announce(error.message,true);}
+};
 $('copyText').onclick=async()=>{
   let text;try{text=serialize(notes,length,Number($('interval').value));}catch(error){announce(error.message,true);return;}
   try{await navigator.clipboard.writeText(text);announce('コピーしました。');}
