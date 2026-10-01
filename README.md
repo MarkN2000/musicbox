@@ -30,9 +30,9 @@ npm start
 
 ## 公開
 
-公開予定のアドレスは `https://musicbox.markn2000.com` です。
+公開サイトは [musicbox.markn2000.com](https://musicbox.markn2000.com) です。
 
-Cloudflare PagesでこのGitHubリポジトリを接続し、次の設定で `dist/` を配信できます。ビルドによるファイル生成は不要です。
+ソースと変更履歴は [MarkN2000/musicbox](https://github.com/MarkN2000/musicbox) で管理します。Cloudflare PagesでこのGitHubリポジトリを接続し、次の設定で `dist/` を配信します。ビルドによるファイル生成は不要です。
 
 - 本番ブランチ：`main`
 - フレームワーク：なし
@@ -40,6 +40,12 @@ Cloudflare PagesでこのGitHubリポジトリを接続し、次の設定で `di
 - 出力ディレクトリ：`dist`
 
 `npm test` に成功した更新を公開します。ドメインはCloudflare Pagesのカスタムドメインで設定します。
+
+## 更新
+
+GitHubの `main` を本番のソースとし、変更後は `npm test` で確認してコミットします。GitHubを指す `origin` に `git push origin main` すると、Cloudflare Pagesが自動で公開を更新します。
+
+今後の公開先はCloudflare Pagesに統一します。旧Sitesの公開用設定はリポジトリから除外しています。
 
 ## 出典とライセンス表示
 
