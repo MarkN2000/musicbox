@@ -57,8 +57,8 @@ assert.throws(()=>convertMidi({header:{ppq:480},tracks:[{notes:Array(MAX_NOTES+1
 const smpte=bytes.slice();smpte[12]=0xe7;assert.throws(()=>validateMidiHeader(smpte.buffer),/SMPTE/);
 assert.throws(()=>validateMidiHeader(new ArrayBuffer(10*1024*1024+1)),/10MB/);
 const templateExpectations=[['ode-to-joy',252,['E5','E5','F5','G5']],['fur-elise',48,['E6','D#6','E6','D#6']],['twinkle',188,['C5','C5','G5','G5']],['minuet',184,['G5','C5','D5','E5']]];
-assert.equal(TEMPLATES.length,43);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,43);
-assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':32,'行進曲':7,'民謡など':4});
+assert.equal(TEMPLATES.length,44);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,44);
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック':33,'行進曲':7,'民謡など':4});
 assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
   const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
@@ -90,6 +90,26 @@ for(const n of templateScore({...entertainer,melody:[]}).notes)assert(n.midi<ent
 const entertainerRows=serialize(entertainerScore.notes,128).split('\n');
 for(const[step,row]of [[8,'G4,A#4,C5,E5'],[52,'A4,C5,F#5,C6'],[112,'F4,C5,G#5,D6'],[122,'C4,E4,G4,C6'],[126,'C4,E4,G4']])assert.equal(entertainerRows[step],row,'エンターテイナーのC7・D7・Fmと末尾の主和音');
 assert.deepEqual(entertainerRows.slice(0,3),['D5','D#5','C4,E5'],'エンターテイナーのループは末尾の主和音から弱起と主題へ戻る');
+const canCan=TEMPLATES.find(t=>t.id==='offenbach-can-can'),canCanScore=templateScore(canCan),canCanLead=templateScore({...canCan,accompaniment:[]}).notes;
+assert.equal(canCan.title,'天国と地獄・序曲');assert.equal(canCan.bpm,128);assert.equal(canCan.beatsPerBar,2);assert.equal(canCan.pickupBeats,1);assert.equal(canCanScore.length,128);
+// Bote & Bock版10779の印刷ページ124〜125。ピアノの下側を8va込みの実音で採り、歌唱声部の弱起と第1括弧までを照合する。
+const canCanOriginal=[
+  ['A4',4],
+  ['D5',8],['E5',2],['G5',2],['F#5',2],['E5',2],
+  ['A5',4],['A5',4],['A5',2],['B5',2],['F#5',2],['G5',2],
+  ['E5',4],['E5',4],['E5',2],['G5',2],['F#5',2],['E5',2],
+  ['D5',2],['D6',2],['C#6',2],['B5',2],['A5',2],['G5',2],['F#5',2],['E5',2],
+  ['D5',8],['E5',2],['G5',2],['F#5',2],['E5',2],
+  ['A5',4],['A5',4],['A5',2],['B5',2],['F#5',2],['G5',2],
+  ['E5',4],['E5',4],['E5',2],['G5',2],['F#5',2],['E5',2],
+  ['D5',2],['A5',2],['E5',2],['F#5',2],['D5',4],
+];
+assert.deepEqual(canCan.melody,canCanOriginal.map(([name,span])=>[noteName(noteNumber(name)+3),span]),'天国と地獄の後半主題・音域の動き・発音位置を原譜どおり一括で3半音上げる');
+for(const note of templateScore({...canCan,melody:[]}).notes)assert(note.midi<canCanLead.findLast(lead=>lead.step<=note.step).midi,'カンカンの伴奏は旋律より低く保ち、旋律を打ち直さない');
+const canCanRows=serialize(canCanScore.notes,128).split('\n');
+assert.deepEqual(canCanRows.slice(0,5),['C5','','','','F3,F5'],'天国と地獄は弱起1拍からよく知られた長い主音へ進む');
+assert.equal(canCanRows[124],'F3,A4,C5,F5','天国と地獄の最後の主音をヘ長調の主和音で支える');
+assert.equal(canCanLead.at(-1).step,124,'天国と地獄は反復用の弱起を冒頭にまとめ、末尾は主音で閉じる');
 const canon=TEMPLATES.find(template=>template.id==='pachelbel-canon');
 assert.equal(canon.bpm,55,'カノンは参照MIDIのゆったりしたテンポ');assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,192);
 assert(templateScore(canon).notes.every(note=>note.step<24*8),'カノンの25拍目以降は含めない');
@@ -567,4 +587,4 @@ for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[
 }
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const url=new URL(match[1],'https://musicbox.test/');if(url.origin==='https://musicbox.test')await readFile('dist/'+decodeURIComponent(url.pathname.slice(1)||'index.html'));}
 await import('./check-mp3.mjs');
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート43曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート44曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
