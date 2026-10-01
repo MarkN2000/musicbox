@@ -117,8 +117,21 @@ assert(marches['radetzky-march'].melody.some(([name])=>name==='A6'),'ラデツ�
 assert.equal(templateScore(marches['stars-and-stripes']).length,224,'星条旗は冒頭12小節と2小節の短い終止');
 assert.deepEqual(marches['stars-and-stripes'].melody.slice(12,18),[['G4',8],['E5',4],['',2],['E5',2],['E5',4],['E5',4]],'星条旗は導入から第1主題へ続け、トリオへ飛ばない');
 const snow= marches['yuki-no-shingun'];
-assert.equal(snow.bpm,120);assert.equal(snow.accompaniment.length,33,'雪の進軍の伴奏は装飾を減らし、基本2拍ごとの和音だけ');
-assert(snow.accompaniment.every(([names,span])=>names.split(',').length===3&&names.split(',').every(name=>noteNumber(name)<=noteNumber('D5'))&&[4,8].includes(span)),'雪の進軍の伴奏に高い装飾音や細かい走句を加えない');
+assert.equal(snow.bpm,120);assert.equal(snow.accompaniment.length,33,'雪の進軍の伴奏は装飾を減らし、基本1拍ごとの和音だけ');
+assert(snow.accompaniment.every(([names,span])=>names.split(',').length===3&&names.split(',').every(name=>noteNumber(name)<=noteNumber('D5'))&&[2,4].includes(span)),'雪の進軍の伴奏に高い装飾音や細かい走句を加えない');
+const snowScore=templateScore(snow);
+assert.equal(snowScore.length,128,'雪の進軍は間隔を約半分に詰め、32拍・16秒にする');
+for(const part of [snow.melody,snow.accompaniment])assert.equal(part.reduce((sum,[,span])=>sum+span,0),snowScore.length,'雪の進軍の末尾を短縮しない');
+assert.equal(snowScore.length%(snow.beatsPerBar*4),0,'雪の進軍のループで小節位置がずれています');
+assert.deepEqual(snow.melody.slice(0,7),[['C6',2],['C6',4],['A5',2],['G5',4],['G5',4],['C5',3],['D5',1]],'雪の進軍の音の間隔と付点リズム');
+assert.deepEqual(serialize(snowScore.notes,128).split('\n').slice(124,128),['C4,E4,G4,C5','','',''],'雪の進軍の最後の和音から冒頭まで1拍を保つ');
+const auld=TEMPLATES.find(t=>t.id==='auld-lang-syne'),auldBacking=templateScore({...auld,melody:[]}).notes;
+assert.equal(auld.bpm,88);assert.equal(auld.pickupBeats,1);assert.equal(templateScore(auld).length,128);
+assert.deepEqual(auld.melody.slice(5,9),[['D5',6],['C5',2],['D5',4],['E5',4]],'蛍の光の6〜9拍目の旋律を保つ');
+assert.deepEqual(auld.melody.slice(19),[['D5',6],['C5',2],['D5',4],['E5',2],['D5',2],['C5',6],['A4',2],['A4',4],['G4',4],['C5',12]],'蛍の光の22拍目以降の旋律を保つ');
+assert(auldBacking.filter(note=>(note.step>=20&&note.step<36)||note.step>=84).every(note=>note.midi<=noteNumber('C5')),'蛍の光の指定区間で伴奏が旋律より高くなっています');
+const auldRows=serialize(auldBacking,128).split('\n');
+for(const [step,chord]of [[20,'G3,D4'],[32,'C4,E4'],[84,'G3,D4'],[100,'F3,A4'],[108,'F3,A4'],[112,'G3,D4'],[116,'C4,E4'],[124,'C4,E4']])assert.equal(auldRows[step],chord,`蛍の光の和声の切り替え ${step}`);
 const gymnopedie=TEMPLATES.find(t=>t.id==='gymnopedie-1'),gymnopedieScore=templateScore(gymnopedie);
 assert.equal(gymnopedie.bpm,64);assert.equal(gymnopedieScore.length,52,'ジムノペディは後半に進まず13拍で閉じる');
 assert.deepEqual(gymnopedie.melody.slice(-2),[['G5',12],['E5',4]],'ジムノペディの冒頭主題と直後の終止音');
@@ -340,6 +353,11 @@ for(const [i,offset]of[0,.375,.5,.875,1].entries())near(played[playCount+i].time
 assert.equal(sound.playback().visual,3,'2周目の表示位置が先頭に戻っていません');element('loop').checked=false;advance(start+1.4);assert.equal(played.length-playCount,6,'オフにした周回を最後まで再生していません');advance(start+2.4);assert.equal(sound.playback(),null,'ループをオフにしても終了しません');
 element('loop').checked=true;await sound.play();const pendingTick=scheduledTick;sound.stop();playCount=played.length;pendingTick();assert.equal(played.length,playCount);assert.equal(sound.playback(),null);assert.equal(scheduledTick,null,'停止後もループのタイマーが残っています');
 sound.setScore([{step:0,midi:72}],1);element('interval').value=10;await sound.play();start=sound.playback().start;advance(start+.02);assert(sound.playback().next>1,'1ステップの楽譜をループできません');sound.stop();element('loop').checked=false;
+// 雪の進軍の実データで、末尾の1拍と複数周の開始時刻を確認する。
+sound.setScore(snowScore.notes,snowScore.length);element('interval').value=125;element('loop').checked=true;playCount=played.length;await sound.play();start=sound.playback().start;advance(start+32.02);
+assert.equal(played.length-playCount,snowScore.notes.length*2+4,'雪の進軍の2周と次の先頭和音');
+for(let cycle=0;cycle<3;cycle++)near(played[playCount+cycle*snowScore.notes.length].time,start+cycle*16);
+near(played[playCount+snowScore.notes.length-4].time,start+15.5);sound.stop();element('loop').checked=false;
 // 途中からの初回再生と、以降の全体ループは同じ音声クロックで進む。
 sound.setScore([{step:0,midi:72},{step:2,midi:76},{step:3,midi:79}],4);element('interval').value=125;sound.select(2);playCount=played.length;await sound.play();let firstTime=sound.playback().start+.25;
 assert.equal(sound.playback().visual,-1,'再生前に選択位置より前の列を表示しています');advance(firstTime+.01);assert.equal(sound.playback().visual,2);advance(firstTime+.25);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5'],'選択位置より前の音が鳴っています');near(played[playCount].time,firstTime);near(played[playCount+1].time,firstTime+.125);advance(firstTime+1.2);assert.equal(sound.playback(),null);assert.equal(sound.start(),0);
