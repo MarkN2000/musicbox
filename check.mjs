@@ -259,8 +259,13 @@ assert(html.includes(`src="app.js?v=${audioRevision}&templates=${templatesRevisi
 assert(html.includes(`href="style.css?v=${cssRevision}"`),'スタイルURLの更新識別子が内容と一致しません');
 for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert(html.includes(`id="${match[1]}"`),`UIがありません: ${match[1]}`);
 assert(!/confirmReplace|beforeunload|confirmDialog/.test(app+html),'不要な確認が残っています');
+assert(!/templateInfo|templateDetails|templateSource|templateListen|templateCredit|templateLicense|showTemplateInfo|原曲を聴く|出典 ↗|credits\.html/.test(app+html),'曲説明・出典・試聴リンクを画面に残さない');
+assert(!html.includes('id="fileName"')&&!app.includes("$('fileName')"),'曲名とは別のファイル名入力欄を残さない');
+assert(!html.includes('id="interval"')&&!app.includes("$('interval')"),'間隔の直接入力や隠れた間隔欄を残さない');
+assert(!html.includes('<summary>設定</summary>')&&html.includes('<summary>TXTプレビュー</summary>'));
+
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
-const controls=new Map(),listeners=new Map(),windowListeners=new Map();let nodeCount=0,outputWrites=0,focusedNode;
+const controls=new Map(),listeners=new Map(),windowListeners=new Map(),previewedKeys=[];let nodeCount=0,outputWrites=0,focusedNode;
 const nodeMethods={
   get firstElementChild(){return this.children[0];},get lastElementChild(){return this.children.at(-1);},
   get classList(){const cell=this;return {toggle(name,on){const names=new Set(cell.className.split(' ').filter(Boolean));if(on??!names.has(name))names.add(name);else names.delete(name);cell.className=[...names].join(' ');},add(name){this.toggle(name,true);},remove(name){this.toggle(name,false);}};},
@@ -268,31 +273,37 @@ const nodeMethods={
   append(...children){for(const child of children){child.parent=this;this.children.push(child);}},replaceChildren(){this.children=[];},
   remove(){const siblings=this.parent.children;if(siblings.at(-1)===this)siblings.pop();else siblings.splice(siblings.indexOf(this),1);this.parent=null;},
   querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector==='input:checked'?cell.checked:selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
-  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;}
+  addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;},blur(){this.events?.blur?.();}
 };
 const node=()=>{nodeCount++;return Object.assign(Object.create(nodeMethods),{value:'',textContent:'',className:'',hidden:false,open:false,checked:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},attributes:{}});};
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
-for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
-element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;
+for(const [id,value]of Object.entries({bpm:'84',subdivision:'6',transpose:'12'}))element(id).value=value;
+element('scoreTitle').value=element('scoreTitle').dataset.before='編集したMIDI';element('rollViewport').scrollLeft=90;
 const ui=runInNewContext(`
-  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},appliedMidiSettings={tracks:[1,3],subdivision:6,transpose:12},currentTemplate=null,currentCell={step:49,midi:72},focusedCell=null,drag=null,startStep=0;
+  let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},appliedMidiSettings={tracks:[1,3],subdivision:6,transpose:12},currentCell={step:49,midi:72},focusedCell=null,drag=null,startStep=0;
   const pitches=Array.from({length:41},(_,i)=>93-i);
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function renderGrid(){'))}
   ${app.slice(app.indexOf('function renderGrid(){'),app.indexOf('function renderOutput(){'))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("for(const [id,delta] of [['extend',4]"))}
   ${app.slice(app.indexOf("for(const [id,delta] of [['extend',4]"),app.indexOf('function undo(){'))}
-  ${app.slice(app.indexOf('function undo(){'),app.indexOf('for(const template of TEMPLATES)'))}
-  ${app.split('\n').find(line=>line.startsWith('function updateInterval(){'))}
-  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
-`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},showTemplateInfo(){},render(){},renderOutput(){outputWrites++;},previewTone(){},stopPlayback(){},announce(){}});
-const originalUI=JSON.stringify(ui.state());ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(element('interval').value,125);
+  ${app.slice(app.indexOf('function undo(){'),app.indexOf('function downloadName('))}
+  ${app.split('\n').find(line=>line.startsWith('function updateTiming(){'))}
+  ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
+  ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,interval:stepInterval,setScore:score=>{notes=score;},rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
+`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){},announce(){}});
+const originalUI=JSON.stringify(ui.state());element('loop').setAttribute('aria-pressed','true');ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(ui.interval(),125);assert.equal(element('loop').getAttribute('aria-pressed'),'true','リセットでループの選択を変えない');
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
-listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('fileName').value,'edited');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);
+listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('scoreTitle').value,'編集したMIDI');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);
 ui.reset();listeners.get('keydown')({...key(false),target:{closest:()=>({})}});assert.equal(ui.state().notes.length,0,'入力欄の標準取り消しを妨げています');listeners.get('keydown')(key(true));assert.equal(JSON.stringify(ui.state()),originalUI);
-ui.shrink();assert.equal(ui.state().length,46);assert.deepEqual(Array.from(ui.state().notes,note=>note.step),[9,45],'削除範囲の音が残っています');assert.equal(ui.state().currentCell.step,45);assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,46);
+// 曲名の確定・取消・空欄・日本語変換と、テンプレート選択後の履歴を確認する。
+const titleInput=element('scoreTitle'),titleKey=(key,isComposing=false)=>({key,isComposing,preventDefault(){}});
+titleInput.value='  私のオルゴール  ';titleInput.events.keydown(titleKey('Enter'));assert.equal(titleInput.value,'私のオルゴール');assert.equal(ui.state().historyLength,1);assert.deepEqual(Array.from(ui.state().notes,note=>note.step),[9,45,46,49]);listeners.get('keydown')(key(false));assert.equal(titleInput.value,'編集したMIDI');assert.equal(JSON.stringify(ui.state()),originalUI);
+titleInput.value='入力途中';titleInput.events.keydown(titleKey('Enter',true));assert.equal(ui.state().historyLength,0,'日本語変換中に曲名を確定しない');titleInput.events.keydown(titleKey('Escape'));assert.equal(titleInput.value,'編集したMIDI');assert.equal(ui.state().historyLength,0,'Escで不要な履歴を増やさない');
+titleInput.value=' 編集したMIDI ';titleInput.blur();assert.equal(titleInput.value,'編集したMIDI');assert.equal(ui.state().historyLength,0,'同じ曲名で履歴を増やさない');titleInput.value=' ';titleInput.blur();assert.equal(titleInput.value,'新しい楽譜');listeners.get('keydown')(key(false));assert.equal(titleInput.value,'編集したMIDI');
+titleInput.value='編集中の曲名';ui.extend();assert.equal(ui.state().historyLength,2);listeners.get('keydown')(key(false));assert.equal(titleInput.value,'編集中の曲名');assert.equal(ui.state().length,50,'曲名の編集中でも音の操作を先に取り消す');listeners.get('keydown')(key(false));assert.equal(titleInput.value,'編集したMIDI');assert.equal(JSON.stringify(ui.state()),originalUI);
+element('templateSelect').value='british-grenadiers';element('templateSelect').onchange();assert.equal(titleInput.value,'ブリティッシュ・グレナディアーズ');assert.equal(element('templateSelect').value,'');listeners.get('keydown')(key(false));assert.equal(titleInput.value,'編集したMIDI');assert.equal(JSON.stringify(ui.state()),originalUI);
+ui.shrink();assert.equal(ui.state().length,49);assert.deepEqual(Array.from(ui.state().notes,note=>note.step),[9,45,46],'削除した最後の1ステップだけの音を省く');assert.equal(ui.state().currentCell.step,48);assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,49);
 listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),originalUI,'削除した音や編集位置を復元できません');assert.equal(element('rollViewport').scrollLeft,90);
-for(let i=0;i<12;i++)ui.shrink();assert.equal(ui.state().length,2);const shortScore=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),shortScore,'4の倍数でない楽譜を削除しすぎています');ui.grid();assert(element('shrink').disabled);
-for(let i=0;i<12;i++)listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),originalUI);
 for(const start of [50,64,256]){
   if(start===64)ui.reset();
   while(ui.state().length<start)ui.extend();
@@ -301,16 +312,19 @@ for(const start of [50,64,256]){
   ui.extend();assert.equal(ui.state().length,oldLength+4);assert.equal(element('rollViewport').scrollLeft,element('rollViewport').scrollWidth);const extendedNotes=JSON.stringify(ui.state().notes);assert.equal(extendedNotes,JSON.stringify(JSON.parse(before).notes));
   ui.grid();const rows=element('roll').children;assert.equal(rows.length,42);assert(rows.every(row=>row.children.length===oldLength+5),'全ステップが描画されていません');assert.equal(Number(rows[0].children.at(-1).dataset.step),oldLength+3);
   assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,oldLength+4);
-  ui.shrink();assert.equal(ui.state().length,oldLength);assert.equal(JSON.stringify(ui.state().notes),extendedNotes,'空のステップ削除で既存の音が変わっています');listeners.get('keydown')(key(false));assert.equal(ui.state().length,oldLength+4);
+  ui.shrink();assert.equal(ui.state().length,oldLength+3);assert.equal(JSON.stringify(ui.state().notes),extendedNotes,'空のステップ削除で既存の音が変わっています');listeners.get('keydown')(key(false));assert.equal(ui.state().length,oldLength+4);
   listeners.get('keydown')(key(false));assert.equal(JSON.stringify({...ui.state(),historyLength:undefined}),before);assert.equal(element('rollViewport').scrollLeft,oldScroll);
 }
 while(ui.state().length+4<=MAX_STEPS)ui.extend();const capped=JSON.stringify(ui.state());ui.extend();assert.equal(JSON.stringify(ui.state()),capped,'上限を超えて追加しています');
 ui.grid();assert(element('extend').disabled,'上限で追加ボタンが無効になっていません');
-ui.reset();while(ui.state().length>4)ui.shrink();assert.equal(ui.state().length,4);const minimum=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),minimum,'空の楽譜まで削除しています');ui.grid();assert(element('shrink').disabled);assert(!element('extend').disabled);
-listeners.get('keydown')(key(false));assert.equal(ui.state().length,8);ui.grid();assert(!element('shrink').disabled);
+ui.reset();while(ui.state().length>1)ui.shrink();assert.equal(ui.state().length,1);const minimum=JSON.stringify(ui.state());ui.shrink();assert.equal(JSON.stringify(ui.state()),minimum,'空の楽譜まで削除しています');ui.grid();assert(element('shrink').disabled);assert(!element('extend').disabled);
+listeners.get('keydown')(key(false));assert.equal(ui.state().length,2);ui.grid();assert(!element('shrink').disabled);
 for(let i=0;i<35;i++)ui.reset();assert.equal(ui.state().historyLength,30);
 ui.grid();const firstCell=ui.cell(0,72),otherCell=ui.cell(1,72),row=element('roll').children[1];let created=nodeCount,writes=outputWrites;
 const pointer=cell=>({target:cell,button:0,pointerType:'mouse',preventDefault(){}});
+const keyButtons=element('roll').children.slice(1).flatMap(row=>row.children[0].children),beforeKeyPreview=JSON.stringify(ui.state());assert.equal(keyButtons.length,30,'対応30音だけを試聴ボタンにする');assert.equal(ui.cell(0,66).parent.children[0].children.length,0,'使用不可の鍵盤に試聴ボタンを置かない');
+const whiteKey=firstCell.parent.children[0].children[0],blackKey=ui.cell(0,73).parent.children[0].children[0];
+element('roll').events.pointerdown(pointer(whiteKey));element('roll').events.click({...pointer(whiteKey),detail:1});element('roll').events.click({...pointer(blackKey),pointerType:'touch',detail:1});element('roll').events.click({...pointer(whiteKey),detail:0});assert.deepEqual(previewedKeys,[72,73,72],'マウス・タッチ・キーボードで1回ずつ鍵盤の音を鳴らす');assert.equal(JSON.stringify(ui.state()),beforeKeyPreview,'鍵盤の試聴で楽譜や履歴を変更しない');assert.equal(outputWrites,writes);
 element('roll').events.pointerdown(pointer(firstCell));element('roll').events.pointerover(pointer(otherCell));assert.equal(outputWrites,writes,'ドラッグ中に出力を毎回作り直しています');windowListeners.get('pointerup')();assert.equal(outputWrites,writes+1);
 assert.equal(nodeCount,created,'音配置でマスを作り直しています');assert.equal(ui.cell(0,72),firstCell);assert.equal(firstCell.getAttribute('aria-pressed'),'true');assert.equal(otherCell.getAttribute('aria-pressed'),'true');
 element('roll').events.keydown({...pointer(firstCell),key:'ArrowRight'});assert.equal(focusedNode,otherCell);assert.equal(firstCell.tabIndex,-1);assert.equal(otherCell.tabIndex,0);
@@ -339,6 +353,7 @@ const sound=runInNewContext(`
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
   ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
   ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
+  ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
   ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
 `,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
@@ -350,51 +365,53 @@ let finishLoad;response=new Promise(resolve=>{finishLoad=resolve;});const loadsB
 response={ok:false};sound.edit(2,79,true);await settle();assert.equal(played.length,2);assert.equal(sound.state().length,3,'音源エラーで楽譜が失われています');assert.match(audioErrors.at(-1),/G5の音源を読み込めません/);
 let finishResume;resumeResult=new Promise(resolve=>{finishResume=resolve;});const previousFetches=fetched.length,pendingPreview=sound.preview(84);sound.stop();finishResume();await pendingPreview;assert.equal(fetched.length,previousFetches,'停止後に音源を読み込んでいます');
 response=resumeResult=undefined;const silentCount=played.length;await Promise.all([...ALLOWED].map(sound.load));assert.equal(played.length,silentCount,'先読みで音を鳴らしています');assert.equal(new Set(fetched).size,30,'共通30音源を準備できません');assert.equal(fetched.filter(url=>url.includes('/G5.ogg')).length,2,'失敗した音源を再試行できません');
-const loadedCount=fetched.length;sound.setScore([{step:0,midi:93}],4);element('interval').value=125;await sound.play();assert.equal(fetched.length,loadedCount,'別の楽譜で準備済みの音源を再取得しています');sound.stop();
+element('loop').setAttribute('aria-pressed','false');const loadedCount=fetched.length;sound.setScore([{step:0,midi:93}],4);element('bpm').value=120;element('subdivision').value=4;await sound.play();assert.equal(fetched.length,loadedCount,'別の楽譜で準備済みの音源を再取得しています');sound.stop();
 // 音源の余韻より短い曲でも、音声クロック上の同じ間隔で繰り返す。
-response=resumeResult=undefined;sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);element('interval').value=125;
+response=resumeResult=undefined;sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);element('bpm').value=120;element('subdivision').value=4;
 const advance=time=>{while(sound.time()<time&&scheduledTick){sound.setTime(Math.min(time,sound.time()+.025));scheduledTick();}},near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-8,`再生時刻がずれています: ${actual} / ${expected}`);
 let playCount=played.length;await sound.play();let start=sound.playback().start;advance(start+.5);assert.equal(played.length-playCount,2,'ループオフで繰り返しています');advance(start+1.3);assert(sound.playback(),'余韻を途中で止めています');advance(start+1.4);assert.equal(sound.playback(),null);
-playCount=played.length;await sound.play();start=sound.playback().start;element('loop').checked=true;advance(start+.45);advance(start+.95);
+playCount=played.length;await sound.play();start=sound.playback().start;element('loop').onclick();advance(start+.45);advance(start+.95);
 for(const [i,offset]of[0,.375,.5,.875,1].entries())near(played[playCount+i].time,start+offset);
-assert.equal(sound.playback().visual,3,'2周目の表示位置が先頭に戻っていません');element('loop').checked=false;advance(start+1.4);assert.equal(played.length-playCount,6,'オフにした周回を最後まで再生していません');advance(start+2.4);assert.equal(sound.playback(),null,'ループをオフにしても終了しません');
-element('loop').checked=true;await sound.play();const pendingTick=scheduledTick;sound.stop();playCount=played.length;pendingTick();assert.equal(played.length,playCount);assert.equal(sound.playback(),null);assert.equal(scheduledTick,null,'停止後もループのタイマーが残っています');
-sound.setScore([{step:0,midi:72}],1);element('interval').value=10;await sound.play();start=sound.playback().start;advance(start+.02);assert(sound.playback().next>1,'1ステップの楽譜をループできません');sound.stop();element('loop').checked=false;
+assert.equal(sound.playback().visual,3,'2周目の表示位置が先頭に戻っていません');element('loop').onclick();advance(start+1.4);assert.equal(played.length-playCount,6,'オフにした周回を最後まで再生していません');advance(start+2.4);assert.equal(sound.playback(),null,'ループをオフにしても終了しません');
+element('loop').onclick();await sound.play();const pendingTick=scheduledTick;sound.stop();playCount=played.length;pendingTick();assert.equal(played.length,playCount);assert.equal(sound.playback(),null);assert.equal(scheduledTick,null,'停止後もループのタイマーが残っています');
+sound.setScore([{step:0,midi:72}],1);element('bpm').value=300;element('subdivision').value=8;await sound.play();start=sound.playback().start;advance(start+.02);assert(sound.playback().next>1,'1ステップの楽譜をループできません');sound.stop();element('loop').onclick();
 // 雪の進軍の実データで、末尾の1拍と複数周の開始時刻を確認する。
-sound.setScore(snowScore.notes,snowScore.length);element('interval').value=125;element('loop').checked=true;playCount=played.length;await sound.play();start=sound.playback().start;advance(start+32.02);
+sound.setScore(snowScore.notes,snowScore.length);element('bpm').value=120;element('subdivision').value=4;element('loop').onclick();playCount=played.length;await sound.play();start=sound.playback().start;advance(start+32.02);
 assert.equal(played.length-playCount,snowScore.notes.length*2+4,'雪の進軍の2周と次の先頭和音');
 for(let cycle=0;cycle<3;cycle++)near(played[playCount+cycle*snowScore.notes.length].time,start+cycle*16);
-near(played[playCount+snowScore.notes.length-4].time,start+15.5);sound.stop();element('loop').checked=false;
+near(played[playCount+snowScore.notes.length-4].time,start+15.5);sound.stop();element('loop').onclick();
 // 途中からの初回再生と、以降の全体ループは同じ音声クロックで進む。
-sound.setScore([{step:0,midi:72},{step:2,midi:76},{step:3,midi:79}],4);element('interval').value=125;sound.select(2);playCount=played.length;await sound.play();let firstTime=sound.playback().start+.25;
+sound.setScore([{step:0,midi:72},{step:2,midi:76},{step:3,midi:79}],4);element('bpm').value=120;element('subdivision').value=4;sound.select(2);playCount=played.length;await sound.play();let firstTime=sound.playback().start+.25;
 assert.equal(sound.playback().visual,-1,'再生前に選択位置より前の列を表示しています');advance(firstTime+.01);assert.equal(sound.playback().visual,2);advance(firstTime+.25);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5'],'選択位置より前の音が鳴っています');near(played[playCount].time,firstTime);near(played[playCount+1].time,firstTime+.125);advance(firstTime+1.2);assert.equal(sound.playback(),null);assert.equal(sound.start(),0);
-element('loop').checked=true;sound.select(2);playCount=played.length;await sound.play();firstTime=sound.playback().start+.25;advance(firstTime+.76);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5','C5','E5','G5','C5']);for(const [i,offset]of[0,.125,.25,.5,.625,.75].entries())near(played[playCount+i].time,firstTime+offset);element('rollViewport').scrollLeft=300;await sound.play();assert.equal(sound.playback(),null);assert.equal(sound.start(),0);assert.equal(element('rollViewport').scrollLeft,0);assert(element('roll').children.every(row=>row.children.every(cell=>!cell.className.split(' ').includes('playing'))),'停止後に再生位置が残っています');element('loop').checked=false;
-sound.select(3);element('interval').value=1000;playCount=played.length;await sound.play();firstTime=sound.playback().start+3;advance(firstTime+1.05);assert.equal(played.length-playCount,1,'末尾からの再生で別の音を鳴らしています');assert.equal(sound.playback(),null);
+element('loop').onclick();sound.select(2);playCount=played.length;await sound.play();firstTime=sound.playback().start+.25;advance(firstTime+.76);assert.deepEqual(played.slice(playCount).map(voice=>voice.name),['E5','G5','C5','E5','G5','C5']);for(const [i,offset]of[0,.125,.25,.5,.625,.75].entries())near(played[playCount+i].time,firstTime+offset);element('rollViewport').scrollLeft=300;await sound.play();assert.equal(sound.playback(),null);assert.equal(sound.start(),0);assert.equal(element('rollViewport').scrollLeft,0);assert(element('roll').children.every(row=>row.children.every(cell=>!cell.className.split(' ').includes('playing'))),'停止後に再生位置が残っています');element('loop').onclick();
+sound.select(3);element('bpm').value=60;element('subdivision').value=1;playCount=played.length;await sound.play();firstTime=sound.playback().start+3;advance(firstTime+1.05);assert.equal(played.length-playCount,1,'末尾からの再生で別の音を鳴らしています');assert.equal(sound.playback(),null);
 resumeResult=new Promise(resolve=>{finishResume=resolve;});sound.select(2);playCount=played.length;const pendingPlay=sound.play();await sound.play();finishResume();await pendingPlay;assert.equal(played.length,playCount,'準備中の停止後に音が鳴っています');assert.equal(sound.start(),0);assert.equal(sound.playback(),null);resumeResult=undefined;
 // 実際の取り込み・設定イベントで、即時反映と変更前の設定への取り消しを確認する。
-const midiControls=new Map(),midiElement=id=>{if(!midiControls.has(id))midiControls.set(id,node());return midiControls.get(id);};
-for(const [id,value]of Object.entries({fileName:'before',bpm:'90',subdivision:'4',interval:'167',transpose:'0'}))midiElement(id).value=value;
-midiElement('scoreTitle').textContent='取り込み前の楽譜';
+const midiControls=new Map(),midiMessages=[],midiElement=id=>{if(!midiControls.has(id))midiControls.set(id,node());return midiControls.get(id);};let midiRenders=0;
+for(const [id,value]of Object.entries({bpm:'90',subdivision:'4',transpose:'0'}))midiElement(id).value=value;
+midiElement('scoreTitle').value=midiElement('scoreTitle').dataset.before='取り込み前の楽譜';
 const midiUI=runInNewContext(`
-  let notes=[{step:1,midi:72}],length=5,history=[],beatsPerBar=3,pickupBeats=0,sourceMidi=null,appliedMidiSettings=null,currentTemplate={id:'before'},currentCell={step:1,midi:72};
+  let notes=[{step:1,midi:72}],length=5,history=[],beatsPerBar=3,pickupBeats=0,sourceMidi=null,appliedMidiSettings=null,currentCell={step:1,midi:72};
   ${app.slice(app.indexOf('function snapshot(){'),app.indexOf('function getCell('))}
   ${app.slice(app.indexOf('function undo(){'),app.indexOf("document.addEventListener('keydown'"))}
-  ${app.slice(app.indexOf('function updateInterval(){'),app.indexOf('function stopPlayback(){'))}
+  ${app.slice(app.indexOf('function stepInterval(){'),app.indexOf('function stopPlayback(){'))}
   ${app.slice(app.indexOf('function midiSettings(){'),app.indexOf('const modelContext='))}
-  ({import:importFile,settings:midiSettings,state:()=>({notes,length,sourceMidi,currentTemplate,history}),edit:()=>{notes.push({step:0,midi:72});},undo});
-`,{$:midiElement,MAX_NOTES,ALLOWED,convertMidi,suggestMidiTranspositions,validateMidiHeader,window:{Midi},document:{createElement:node,addEventListener(){}},stopPlayback(){},announce(){},render(){},renderGrid(){},renderOutput(){},showTemplateInfo(){}});
+  ({import:importFile,settings:midiSettings,interval:stepInterval,state:()=>({notes,length,sourceMidi,history}),edit:()=>{notes.push({step:0,midi:72});},undo});
+`,{$:midiElement,MAX_NOTES,ALLOWED,convertMidi,suggestMidiTranspositions,validateMidiHeader,window:{Midi},document:{createElement:node,addEventListener(){}},stopPlayback(){},announce:message=>midiMessages.push(message),render(){midiRenders++;},renderGrid(){},renderOutput(){}});
 const midiFile={name:'選択用.mid',size:bytes.length,arrayBuffer:async()=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength)};
 const beforeImport=JSON.stringify(midiUI.state());await midiUI.import(midiFile);
-assert.equal(midiUI.state().notes.length,4);assert.equal(midiUI.state().length,18);assert.equal(midiUI.state().history.length,1);assert.equal(midiElement('settings').open,false);assert.equal(midiElement('midiTracks').open,false);
+assert.equal(midiElement('scoreTitle').value,'選択用','MIDIの拡張子を除いた名前を曲名に使う');
+assert.equal(midiUI.state().notes.length,4);assert.equal(midiUI.state().length,18);assert.equal(midiUI.state().history.length,1);assert.equal(midiElement('txtPreviewPanel').open,false);assert.equal(midiElement('midiTracks').open,false);
 assert.deepEqual(Array.from(midiUI.settings().tracks),[0],'打楽器以外は選択済み、打楽器は未選択');assert.match(midiElement('trackList').children[0].children[1].textContent,/Melody.*acoustic grand piano.*5音/);
 assert.equal(midiElement('suggest').textContent,'おすすめ：-1半音');midiElement('suggest').onclick();assert(midiUI.state().notes.every(note=>ALLOWED.has(note.midi)),'おすすめを押すと即座に楽譜が変わる');midiUI.undo();assert.equal(Number(midiElement('transpose').value),0);assert(midiUI.state().notes.some(note=>!ALLOWED.has(note.midi)));
 const drumCheck=midiElement('trackList').children[1].children[0];drumCheck.checked=true;drumCheck.events.change();assert.deepEqual(Array.from(midiUI.settings().tracks),[0,1]);assert.equal(midiUI.state().notes.length,5,'トラック変更をその場で楽譜に反映する');midiUI.undo();assert.deepEqual(Array.from(midiUI.settings().tracks),[0],'取り消しで変更前のトラックを戻す');assert.equal(midiUI.state().notes.length,4);
 midiElement('clearTracks').onclick();assert.equal(midiUI.state().notes.length,0);assert.equal(midiUI.state().length,18);assert(midiElement('suggest').disabled);midiUI.undo();assert.equal(midiUI.state().notes.length,4);
 const retainedMidi=JSON.stringify(midiUI.state());for(const value of ['', '25', '0.5']){midiElement('transpose').value=value;midiElement('transpose').events.input();assert.equal(JSON.stringify(midiUI.state()),retainedMidi,'不正入力では楽譜と履歴を保持する');}
 midiElement('transpose').value='12';midiElement('transpose').events.input();assert.deepEqual(Array.from(midiUI.state().notes,note=>note.midi),converted.notes.map(note=>note.midi+12));midiUI.undo();assert.equal(Number(midiElement('transpose').value),0);
-midiElement('subdivision').value='6';midiElement('subdivision').events.change();assert.equal(midiUI.state().length,27);assert.equal(midiElement('interval').value,83);midiUI.undo();assert.equal(midiUI.state().length,18);assert.equal(Number(midiElement('subdivision').value),4);assert.equal(Number(midiElement('interval').value),125,'取り消しでステップ単位と間隔を戻す');
+const beforeSubdivisionRender=midiRenders;midiElement('subdivision').value='6';midiElement('subdivision').events.change();assert.equal(midiRenders,beforeSubdivisionRender+1,'MIDIのステップ単位変更を画面とプレビューに反映する');assert.equal(midiMessages.at(-1),'MIDI設定を更新しました。');assert.equal(midiUI.state().length,27);assert.equal(midiUI.interval(),83);midiUI.undo();assert.equal(midiUI.state().length,18);assert.equal(Number(midiElement('subdivision').value),4);assert.equal(midiUI.interval(),125,'取り消しでステップ単位から求める間隔を戻す');
 midiElement('removeUnsupported').onclick();assert.equal(midiUI.state().notes.length,3);assert.equal(midiUI.state().length,18,'一括除外しても曲末と休符を保持する');midiUI.undo();assert.equal(midiUI.state().notes.length,4);
 midiUI.undo();assert.equal(JSON.stringify(midiUI.state()),beforeImport,'取り込みを取り消すと適用前の曲を復元する');
+assert.equal(midiElement('scoreTitle').value,'取り込み前の楽譜');
 await midiUI.import(midiFile);midiUI.edit();const editedMidi=JSON.stringify(midiUI.state());midiElement('transpose').value='0';midiElement('transpose').events.input();midiElement('selectMelodic').onclick();assert.equal(JSON.stringify(midiUI.state()),editedMidi,'同じ設定への操作で手動編集を消さない');
 await midiUI.import({name:'bad.mid',size:14,arrayBuffer:async()=>new ArrayBuffer(14)});assert.equal(JSON.stringify(midiUI.state()),editedMidi,'取り込み失敗で現在の楽譜を変えない');
 assert(!/midiDialog|previewMidi|applyMidi\b/.test(app+html),'専用の前面画面や試聴・適用ボタンを残さない');
@@ -403,21 +420,23 @@ let savedBlob,savedName,copiedText;const outputErrors=[],outputMessages=[];
 const textOutput=runInNewContext(`
   let notes=[{step:1,midi:76},{step:1,midi:72},{step:3,midi:79}],length=5,sourceMidi=null,beatsPerBar=3;
   ${app.slice(app.indexOf('function renderOutput(){'),app.indexOf('function paint('))}
-  ${app.slice(app.indexOf("$('export').onclick="),app.indexOf('function stopPlayback(){'))}
+  ${app.slice(app.indexOf('function downloadName('),app.indexOf('function stopPlayback(){'))}
   ({render:renderOutput,save:()=>$('export').onclick(),saveMidi:()=>$('exportMidi').onclick(),copy:()=>$('copyText').onclick(),setScore:(score,size)=>{notes=score;length=size;renderOutput();},state:()=>({notes,length})});
 `,{$:element,serialize,validateNote,keyOf,MAX_STEPS,ALLOWED,NOTE_NAMES,noteName,noteNumber,Blob,window:{Midi},URL:{createObjectURL:blob=>{savedBlob=blob;return 'blob:test';},revokeObjectURL(){}},navigator:{clipboard:{writeText:async text=>{copiedText=text;}}},document:{createElement:()=>({...node(),click(){savedName=this.download;}})},setTimeout(){},stopPlayback(){},renderGrid(){},previewConversion(){},announce:(message,error)=>{if(error)outputErrors.push(message);else outputMessages.push(message);}});
-for(const [id,value]of Object.entries({interval:125,bpm:120,subdivision:4,fileName:'test'}))element(id).value=value;
+for(const [id,value]of Object.entries({bpm:120,subdivision:4,scoreTitle:'私のオルゴール'}))element(id).value=value;
 textOutput.render();const expectedText='step_ms=125\n\nC5,E5\n\nG5\n\n';assert.equal(element('txtPreview').value,expectedText);
 textOutput.save();await textOutput.copy();assert.equal(await savedBlob.text(),expectedText);assert.equal(copiedText,expectedText);
+assert.equal(savedName,'私のオルゴール.txt');textOutput.saveMidi();assert.equal(savedName,'私のオルゴール.mid','TXTとMIDIは同じ曲名を使う');
+element('scoreTitle').value='  編集した曲?  ';textOutput.save();assert.equal(savedName,'編集した曲_.txt');textOutput.saveMidi();assert.equal(savedName,'編集した曲_.mid');
 element('bpm').value=60;element('bpm').events.change();assert.equal(element('txtPreview').value.replace(/^step_ms=.*\n/,''),expectedText.replace(/^step_ms=.*\n/,''));assert.match(element('txtPreview').value,/^step_ms=250\n/);
 element('subdivision').value=8;element('subdivision').events.change();assert.match(element('txtPreview').value,/^step_ms=125\n/);
-element('interval').value=173;element('interval').events.change();assert.match(element('txtPreview').value,/^step_ms=173\n/);textOutput.save();await textOutput.copy();assert.equal(await savedBlob.text(),element('txtPreview').value);assert.equal(copiedText,element('txtPreview').value);
-const retainedScore=JSON.stringify(textOutput.state()),previousBlob=savedBlob,previousCopy=copiedText;element('interval').value='';element('interval').events.change();assert.equal(element('txtPreview').value,'');textOutput.save();await textOutput.copy();assert.equal(savedBlob,previousBlob);assert.equal(copiedText,previousCopy);assert.match(outputErrors.at(-1),/再生間隔/);assert.equal(JSON.stringify(textOutput.state()),retainedScore,'不正な間隔で楽譜が失われています');
-element('interval').value=125;element('interval').events.change();assert.equal(element('txtPreview').value,expectedText);
+element('bpm').value=116;element('subdivision').value=3;element('bpm').events.change();assert.match(element('txtPreview').value,/^step_ms=172\n/);textOutput.save();await textOutput.copy();assert.equal(await savedBlob.text(),element('txtPreview').value);assert.equal(copiedText,element('txtPreview').value);
+const retainedScore=JSON.stringify(textOutput.state()),previousBlob=savedBlob,previousCopy=copiedText;element('bpm').value='';element('bpm').events.change();assert.equal(element('txtPreview').value,'');textOutput.save();await textOutput.copy();assert.equal(savedBlob,previousBlob);assert.equal(copiedText,previousCopy);assert.match(outputErrors.at(-1),/テンポ/);assert.equal(JSON.stringify(textOutput.state()),retainedScore,'不正なBPMで楽譜が失われています');
+element('bpm').value=120;element('subdivision').value=4;element('bpm').events.change();assert.equal(element('txtPreview').value,expectedText);
 // 保存ボタンの実際の処理を実行し、生成したMIDIを読み直して内容と休符を確認する。
 const midiExportScore=[{step:3,midi:72},{step:2,midi:72},{step:2,midi:76},{step:2,midi:76},{step:4,midi:66}];
-for(const [subdivision,interval]of [[1,10],[2,125.5],[3,173],[4,125],[6,83.333],[8,5000]]){
-  element('subdivision').value=subdivision;element('interval').value=interval;element('fileName').value='edited?score';textOutput.setScore(midiExportScore,7);
+for(const [bpm,subdivision]of [[20,1],[240,2],[116,3],[120,4],[120,6],[300,8]]){
+  const interval=Math.round(60000/bpm/subdivision);element('bpm').value=bpm;element('subdivision').value=subdivision;element('scoreTitle').value='edited?score';textOutput.setScore(midiExportScore,7);
   const beforeMidiSave=JSON.stringify(textOutput.state());textOutput.saveMidi();
   assert.equal(savedBlob.type,'audio/midi');assert.equal(savedName,'edited_score.mid');assert.match(outputMessages.at(-1),/対応外の1音を省き/);
   assert.equal(JSON.stringify(textOutput.state()),beforeMidiSave,'MIDI保存で赤い音や楽譜を変更しない');assert(element('export').disabled);assert(!element('exportMidi').disabled,'赤い音が残っていてもMIDIを保存できる');
@@ -428,12 +447,12 @@ for(const [subdivision,interval]of [[1,10],[2,125.5],[3,173],[4,125],[6,83.333],
   assert(Math.abs(restored.header.ticksToSeconds(track.endOfTrackTicks)-7*interval/1000)<1e-5,'末尾の休符を保持する');
 }
 for(const score of [[],[{step:1,midi:66}]]){
-  element('interval').value=125;element('subdivision').value=4;element('fileName').value=' ';textOutput.setScore(score,16);textOutput.saveMidi();
-  const restored=new Midi(new Uint8Array(await savedBlob.arrayBuffer()));assert.equal(savedName,'music-box.mid');assert.equal(restored.tracks[0].notes.length,0);assert.equal(restored.header.ticksToSeconds(restored.tracks[0].endOfTrackTicks),2,'全休符の長さを保持する');
+  element('bpm').value=120;element('subdivision').value=4;element('scoreTitle').value=' ';textOutput.setScore(score,16);textOutput.saveMidi();
+  const restored=new Midi(new Uint8Array(await savedBlob.arrayBuffer()));assert.equal(savedName,'新しい楽譜.mid');assert.equal(restored.tracks[0].notes.length,0);assert.equal(restored.header.ticksToSeconds(restored.tracks[0].endOfTrackTicks),2,'全休符の長さを保持する');
 }
 const previousMidiBlob=savedBlob;
-for(const [interval,subdivision,score,size]of [['',4,[],7],[9,4,[],7],[5001,4,[],7],[Infinity,4,[],7],[125,5,[],7],[125,4,[],0],[125,4,[],MAX_STEPS+1],[125,4,[{step:7,midi:72}],7],[125,4,[{step:1,midi:128}],7]]){
-  element('interval').value=interval;element('subdivision').value=subdivision;textOutput.setScore(score,size);const before=JSON.stringify(textOutput.state());textOutput.saveMidi();assert.equal(savedBlob,previousMidiBlob,'不正入力でファイルを保存しない');assert.equal(JSON.stringify(textOutput.state()),before);
+for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[Infinity,4,[],7],[120,5,[],7],[120,4,[],0],[120,4,[],MAX_STEPS+1],[120,4,[{step:7,midi:72}],7],[120,4,[{step:1,midi:128}],7]]){
+  element('bpm').value=bpm;element('subdivision').value=subdivision;textOutput.setScore(score,size);const before=JSON.stringify(textOutput.state());textOutput.saveMidi();assert.equal(savedBlob,previousMidiBlob,'不正入力でファイルを保存しない');assert.equal(JSON.stringify(textOutput.state()),before);
 }
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

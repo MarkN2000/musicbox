@@ -110,9 +110,6 @@ export const TEMPLATES = [
     detail:"ハ長調に移調 · 有名な変奏を24拍に抜粋 · ゆったりしたテンポ · 2声と定型低声 · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2047",
     listen:"https://www.youtube.com/watch?v=JvNQLJ1_HQ0",
-    credit:"参照譜：Michael Fischer v. Mollard / Mutopia（CC BY 4.0）。旋律2声を抜粋・移調し、低声の一部をオクターブ移動。伴奏と終止を再編。",
-    license:"https://creativecommons.org/licenses/by/4.0/",
-    licenseLabel:"この編曲：CC BY 4.0",
     melody:[
       ["G6",2],["E6",1],["F6",1],["G6",2],["E6",1],["F6",1],["G6",1],["G5",1],
       ["A5",1],["B5",1],["C6",1],["D6",1],["E6",1],["F6",1],["E6",2],["C6",1],
@@ -154,9 +151,6 @@ export const TEMPLATES = [
     detail:"ト長調に移調 · 冒頭6小節 · 旋律3声と半音で下がる低声 · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=242",
     listen:"https://www.youtube.com/watch?v=mpnLM322vJU",
-    credit:"参照譜：jeff covey / Mutopia（CC BY-SA 3.0）。旋律3声と低声を抜粋・移調し、対応外の音をオクターブ移動。短い終止を新規作成。",
-    license:"https://creativecommons.org/licenses/by-sa/4.0/",
-    licenseLabel:"この編曲：CC BY-SA 4.0",
     melody:[
       ["B5",36],["E6",2],["C6",2],["A5",2],["G5",2],["F#5",2],["G5",2],["F#5",8],
       ["D5",8],["D6",18],["B5",2],["F5",2],["E5",2],["A5",2],["G#5",2],["D6",2],
@@ -274,9 +268,6 @@ export const TEMPLATES = [
     detail:"ヘ長調に移調 · 冒頭4小節の有名な主題・反復前の終止まで · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590",
     listen:"https://www.youtube.com/watch?v=p29JUpsOSTE",
-    credit:"参照譜：Renato Biolcati Rinaldi / Mutopia（CC BY-SA 3.0）。旋律と左手を抜粋・移調し、低音をオクターブ移動。終止を短縮。",
-    license:"https://creativecommons.org/licenses/by-sa/4.0/",
-    licenseLabel:"この編曲：CC BY-SA 4.0",
     melody:[
       ["C5",2],["A5",8],["G5",2],["A5",2],["G5",6],["F5",4],["C5",2],["A5",4],
       ["D5",2],["D6",4],["A5",2],["C6",6],["A#5",4],["A5",2],["G5",6],["A5",4],
@@ -462,9 +453,6 @@ export const TEMPLATES = [
     detail:"ハ長調 · ワルツの第1主題・弱起と拍の位置を残す · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=519",
     listen:"https://www.youtube.com/watch?v=fHzhDKwYP2s",
-    credit:"参照譜：Nikos Kouremenos / Christian Mondrup / Mutopia（CC BY-SA 4.0）。旋律を抜粋・移調し、伴奏を新規作成。",
-    license:"https://creativecommons.org/licenses/by-sa/4.0/",
-    licenseLabel:"この編曲：CC BY-SA 4.0",
     melody:[
       ["C5",4],["C5",4],["E5",4],["G5",4],["G5",8],["G6",4],["G6",8],["E6",4],
       ["E6",8],["C5",4],["C5",4],["E5",4],["G5",4],["G5",8],["G6",4],["G6",8],
@@ -499,9 +487,6 @@ export const TEMPLATES = [
     detail:"ハ長調に移調 · 春のリトルネッロ · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=301",
     listen:"https://www.youtube.com/watch?v=Lp09AT48bKI",
-    credit:"参照譜：Anonymous / Mutopia（CC BY-SA 3.0）。旋律を抜粋・移調し、伴奏を新規作成。",
-    license:"https://creativecommons.org/licenses/by-sa/4.0/",
-    licenseLabel:"この編曲：CC BY-SA 4.0",
     melody:[
       ["C5",2],["E5",2],["E5",2],["E5",2],["D5",1],["C5",1],["G5",6],["G5",1],
       ["F5",1],["E5",2],["E5",2],["E5",2],["D5",1],["C5",1],["G5",6],["G5",1],
@@ -874,9 +859,6 @@ export const TEMPLATES = [
     detail:"ハ長調に移調 · 有名な冒頭16小節の主題と応答・原譜の終止 · オルゴール編曲",
     source:"https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=635",
     listen:"https://www.youtube.com/watch?v=PQI5LtRtrb0",
-    credit:"参照譜：Alex O’S / Mutopia（CC BY-SA 2.5）。旋律を抜粋・移調し、伴奏を新規作成。",
-    license:"https://creativecommons.org/licenses/by-sa/4.0/",
-    licenseLabel:"この編曲：CC BY-SA 4.0",
     melody:[
       ["C6",2],["C6",1],["C6",1],["C6",1],["G5",1],["F5",1],["G5",1],["C6",2],
       ["C6",1],["C6",1],["C6",1],["D6",1],["E6",1],["D6",1],["C6",2],["C6",1],
@@ -903,7 +885,7 @@ export const TEMPLATES = [
   },
   {
     id:"british-grenadiers",
-    title:"英国の擲弾兵",
+    title:"ブリティッシュ・グレナディアーズ",
     composer:"イギリス伝承曲",
     category:"行進曲",
     bpm:104,
