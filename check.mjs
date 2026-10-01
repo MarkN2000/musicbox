@@ -464,4 +464,5 @@ for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[
   element('bpm').value=bpm;element('subdivision').value=subdivision;textOutput.setScore(score,size);const before=JSON.stringify(textOutput.state());textOutput.saveMidi();assert.equal(savedBlob,previousMidiBlob,'不正入力でファイルを保存しない');assert.equal(JSON.stringify(textOutput.state()),before);
 }
 for(const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)){if(match[1].startsWith('data:')||match[1]==='./')continue;await readFile('dist/'+match[1].split('?')[0]);}
+await import('./check-mp3.mjs');
 process.stdout.write('確認成功: 30音・OGG音源・テンプレート42曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');

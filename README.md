@@ -2,12 +2,13 @@
 
 公開サイト：**[musicbox.markn2000.com](https://musicbox.markn2000.com)**
 
-30音のオルゴール向けに、楽譜を編集・試聴してTXTやMIDIを書き出すWebアプリです。
+30音のオルゴール向けに、楽譜を編集・試聴してTXT・MIDI・MP3を書き出すWebアプリです。
 
 - マス目をクリック・ドラッグして音を配置し、実際のオルゴール音源で試聴できます。
 - MIDIを読み込み、トラック・音の高さ・ステップ単位を調整できます。
 - クラシック・行進曲・民謡など42曲のオルゴール編曲を収録しています。
 - MIDIの読み込みと変換はブラウザ内で行い、入力ファイルをサーバーに送信しません。
+- 「MP3💾」で試聴と同じ音色を保存できます。先頭から1回分と余韻をブラウザ内で生成し、作成中は同じボタンで中止できます。
 
 詳しい操作と出力形式は [SPEC.md](./SPEC.md) を参照してください。
 
@@ -27,6 +28,7 @@ npm start
 
 - `dist/`：配信するHTML・CSS・JavaScript・30音のOGG音源。アプリのソースもこの中にあります。
 - `check.mjs`：TXT形式、MIDI変換、編集操作、試聴、音源、収録曲などの確認。
+- `check-mp3.mjs`：MP3変換と保存操作の確認。`npm test` で併せて実行します。
 - `serve.mjs`：ローカル確認用の静的ファイルサーバー。
 - `SPEC.md`：操作・出力・収録曲の仕様。
 - `wrangler.json`：Cloudflare Workersで `dist/` を配信する設定。
@@ -59,4 +61,4 @@ GitHub連携の設定時は、Cloudflare Workers and Pagesアプリに `MarkN200
 
 ## 利用ライブラリ
 
-MIDI解析ライブラリのライセンス文書は `dist/vendor/` に同梱しています。
+MIDI解析ライブラリのライセンス文書は `dist/vendor/` に同梱しています。MP3変換には [lamejs 1.2.1](https://github.com/zhuker/lamejs)（[LAME](https://lame.sourceforge.io/) のJavaScript移植、LGPL-3.0）を変更せず利用します。ライセンスと元のソース配布物も同梱し、詳細は `dist/vendor/LICENSE-lamejs.md` に記載しています。
