@@ -1,5 +1,5 @@
 import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, validateMidiHeader, validateNote} from './core.js?v=cc31448cb4f522c2';
-import {TEMPLATES, templateScore} from './templates.js?v=11d5194bcb6c71e1';
+import {TEMPLATES, templateScore} from './templates.js?v=750d6f809c008f1d';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 const initialTemplate=TEMPLATES[0],sample=templateScore(initialTemplate);
