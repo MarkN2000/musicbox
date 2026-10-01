@@ -140,10 +140,10 @@ for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert(html.includes(`id="${
 assert(!/confirmReplace|beforeunload|confirmDialog/.test(app+html),'不要な確認が残っています');
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
 const controls=new Map(),listeners=new Map();
-const node=()=>({value:'',textContent:'',hidden:false,open:false,scrollLeft:0,scrollTop:0,scrollWidth:2000,children:[],dataset:{},classList:{add(){},toggle(){}},setAttribute(){},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
+const node=()=>({value:'',textContent:'',hidden:false,open:false,scrollLeft:0,scrollWidth:2000,children:[],dataset:{},classList:{add(){},toggle(){}},setAttribute(){},append(...children){this.children.push(...children);},replaceChildren(){this.children=[];},querySelector(){return {};},querySelectorAll(){return [];}});
 const element=id=>{if(!controls.has(id))controls.set(id,node());return controls.get(id);};
 for(const [id,value]of Object.entries({fileName:'edited',bpm:'84',subdivision:'6',interval:'119',transpose:'12'}))element(id).value=value;
-element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;element('rollViewport').scrollTop=180;
+element('scoreTitle').textContent='編集したMIDI';element('rollViewport').scrollLeft=90;
 const ui=runInNewContext(`
   let notes=[{step:9,midi:72},{step:45,midi:76},{step:46,midi:79},{step:49,midi:84}],length=50,beatsPerBar=3,pickupBeats=.5,history=[],sourceMidi={name:'MIDI'},currentTemplate=null,currentCell={step:49,midi:72};
   const pitches=Array.from({length:41},(_,i)=>93-i);
@@ -156,7 +156,7 @@ const ui=runInNewContext(`
 `,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,document:{createElement:node,addEventListener:(name,handler)=>listeners.set(name,handler)},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},previewConversion(){},showTemplateInfo(){},render(){},stopPlayback(){},announce(){}});
 const originalUI=JSON.stringify(ui.state());ui.reset();assert.equal(ui.state().length,32);assert.equal(ui.state().notes.length,0);assert.equal(ui.state().sourceMidi,null);assert.equal(element('interval').value,125);
 let prevented=false;const key=meta=>({ctrlKey:!meta,metaKey:meta,shiftKey:false,altKey:false,key:'z',target:{closest:()=>null},preventDefault(){prevented=true;}});
-listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('fileName').value,'edited');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollTop,180);
+listeners.get('keydown')(key(false));assert(prevented);assert.equal(JSON.stringify(ui.state()),originalUI);assert.equal(element('bpm').value,'84');assert.equal(element('fileName').value,'edited');assert.deepEqual(Array.from(element('trackList').restored),[1,3]);assert.equal(element('rollViewport').scrollLeft,90);
 ui.reset();listeners.get('keydown')({...key(false),target:{closest:()=>({})}});assert.equal(ui.state().notes.length,0,'入力欄の標準取り消しを妨げています');listeners.get('keydown')(key(true));assert.equal(JSON.stringify(ui.state()),originalUI);
 ui.shrink();assert.equal(ui.state().length,46);assert.deepEqual(Array.from(ui.state().notes,note=>note.step),[9,45],'削除範囲の音が残っています');assert.equal(ui.state().currentCell.step,45);assert.equal(serialize(ui.state().notes,ui.state().length).split('\n').length-1,46);
 listeners.get('keydown')(key(false));assert.equal(JSON.stringify(ui.state()),originalUI,'削除した音や編集位置を復元できません');assert.equal(element('rollViewport').scrollLeft,90);

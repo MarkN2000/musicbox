@@ -10,7 +10,7 @@ let playbackRequest = 0;
 let currentCell = {step:0,midi:72};
 let beatsPerBar=initialTemplate.beatsPerBar,pickupBeats=initialTemplate.pickupBeats;
 function announce(text, error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
-function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft,scrollTop:$('rollViewport').scrollTop};}
+function snapshot(){return {notes:notes.map(note=>({...note})),length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell:{...currentCell},title:$('scoreTitle').textContent,values:Object.fromEntries(['fileName','bpm','subdivision','interval','transpose'].map(id=>[id,$(id).value])),tracks:sourceMidi?midiSettings().tracks:[],scrollLeft:$('rollViewport').scrollLeft};}
 // ponytail: 取り消し履歴はメモリ内の直近30操作。長期の履歴が必要になったら保存形式を別途決める。
 function remember(){history.push(snapshot());if(history.length>30)history.shift();}
 // ponytail: 全マスの描画量は41×ステップ数。実測で重くなった場合に可視範囲の描画を検討する。
@@ -58,7 +58,6 @@ function renderUnsupported(outside){
   }
 }
 function render(){renderGrid();renderOutput();}
-function scrollToPitch(midi){$('rollViewport').scrollTop=$('roll').querySelector(`[data-step="0"][data-midi="${midi}"]`).offsetTop-$('roll').firstElementChild.offsetHeight;}
 function paint(cell,on){
   const step=Number(cell.dataset.step),midi=Number(cell.dataset.midi),key=`${step}:${midi}`;
   if(!ALLOWED.has(midi)&&on)return;
@@ -82,7 +81,7 @@ function undo(){
   const previous=history.pop();if(!previous)return;stopPlayback();({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentTemplate,currentCell}=previous);
   for(const [id,value] of Object.entries(previous.values))$(id).value=value;
   $('scoreTitle').textContent=previous.title;$('midiPanel').hidden=!sourceMidi;$('suggestions').replaceChildren();
-  if(sourceMidi){renderTracks(previous.tracks);previewConversion();}showTemplateInfo();render();$('rollViewport').scrollLeft=previous.scrollLeft;$('rollViewport').scrollTop=previous.scrollTop;announce('取り消しました。');
+  if(sourceMidi){renderTracks(previous.tracks);previewConversion();}showTemplateInfo();render();$('rollViewport').scrollLeft=previous.scrollLeft;announce('取り消しました。');
 }
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&!event.altKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,select,[contenteditable]')){event.preventDefault();undo();}});
 $('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar=4;pickupBeats=0;currentCell={step:0,midi:72};sourceMidi=null;currentTemplate=null;$('midiPanel').hidden=true;$('settings').open=false;$('scoreTitle').textContent='新しい楽譜';$('fileName').value='music-box';$('bpm').value=120;$('subdivision').value=4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;announce('リセットしました。Ctrl+Zで戻せます。');};
@@ -104,7 +103,7 @@ $('templateSelect').onchange=()=>{
   try{
     const template=TEMPLATES.find(item=>item.id===$('templateSelect').value);if(!template)throw new Error('テンプレートを選択してください。');const score=templateScore(template);
     stopPlayback();remember();({notes,length}=score);sourceMidi=null;currentTemplate=template;beatsPerBar=template.beatsPerBar;pickupBeats=template.pickupBeats;currentCell={step:0,midi:notes[0].midi};
-    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=template.subdivision??4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;scrollToPitch(Math.min(93,Math.max(...notes.map(note=>note.midi))+2));
+    $('midiPanel').hidden=true;$('scoreTitle').textContent=template.title;$('fileName').value=template.id;$('bpm').value=template.bpm;$('subdivision').value=template.subdivision??4;updateInterval();showTemplateInfo();render();$('rollViewport').scrollLeft=0;
     announce(`「${template.title}」を読み込みました。`);
   }catch(error){announce(error.message,true);}finally{$('templateSelect').value='';}
 };
@@ -208,4 +207,4 @@ if(modelContext?.registerTool){
   window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});
 }
 $('scoreTitle').textContent=initialTemplate.title;$('fileName').value=initialTemplate.id;$('bpm').value=initialTemplate.bpm;
-updateInterval();render();requestAnimationFrame(()=>scrollToPitch(84));
+updateInterval();render();
