@@ -70,11 +70,13 @@ for(const template of TEMPLATES){
   const first=score.notes[0].midi;score.notes[0].midi=0;assert.equal(templateScore(template).notes[0].midi,first);
 }
 const canon=TEMPLATES.find(template=>template.id==='pachelbel-canon');
-assert.equal(canon.bpm,72);assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,268);
+assert.equal(canon.bpm,55,'カノンは参照MIDIのゆったりしたテンポ');assert.equal(canon.subdivision,8);assert.equal(templateScore(canon).length,192);
+assert(templateScore(canon).notes.every(note=>note.step<24*8),'カノンの25拍目以降は含めない');
 assert.deepEqual(canon.melody.slice(0,6),[['G6',2],['E6',1],['F6',1],['G6',2],['E6',1],['F6',1]],'カノンのよく知られた速い変奏');
 const canonBacking=new Set(templateScore({...canon,melody:[]}).notes.map(keyOf));
-for(let cycle=0;cycle<4;cycle++)['C5','G4','A4','E4','F4','C4','F4','G4'].forEach((name,beat)=>assert(canonBacking.has(`${cycle*64+beat*8}:${noteNumber(name)}`),'カノンの定型低声は原譜に合わせて1拍ごとに進む'));
-assert.deepEqual(canon.melody.slice(-3),[['G5',4],['B5',4],['C6',24]],'カノンの終止');
+for(let cycle=0;cycle<3;cycle++)['C5','G4','A4','E4','F4','C4','F4','G4'].forEach((name,beat)=>assert(canonBacking.has(`${cycle*64+beat*8}:${noteNumber(cycle===2&&beat===7?'G3':name)}`),'カノンの定型低声は原譜に合わせて1拍ごとに進む'));
+assert.deepEqual(canon.melody.slice(-3),[['G5',2],['B5',2],['C6',4]],'カノンは24拍目の中で終止する');
+assert.deepEqual(serialize(templateScore(canon).notes,192).split('\n').slice(188,192),['C4,E4,G4,C6','','',''],'カノンの最後の和音と余韻');
 const air=TEMPLATES.find(template=>template.id==='air-on-g'),airScore=templateScore(air);
 assert.equal(air.subdivision,8);assert.equal(airScore.length,196);
 assert.deepEqual(air.melody.slice(0,4),[['B5',36],['E6',2],['C6',2],['A5',2]],'アリアの長い冒頭と装飾');
