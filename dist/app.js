@@ -209,7 +209,10 @@ $('reset').onclick=()=>{stopPlayback();remember();notes=[];length=32;beatsPerBar
 for(const category of ['クラシック・民謡','行進曲・軍歌']){
   const group=document.createElement('optgroup');group.label=category;$('templateSelect').append(group);
   for(const template of TEMPLATES.filter(item=>item.category===category).sort((a,b)=>a.reading.localeCompare(b.reading,'ja'))){
-    const option=document.createElement('option');option.value=template.id;option.textContent=`${template.title}／${template.composer}`;group.append(option);
+    const option=document.createElement('option');option.value=template.id;
+    const label=document.createElement('span');label.className='template-label';label.textContent=template.title;
+    const composer=document.createElement('span');composer.className='template-composer';composer.textContent=`／${template.composer}`;
+    label.append(composer);option.append(label);group.append(option);
   }
 }
 $('templateSelect').onchange=()=>{
