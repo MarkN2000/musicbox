@@ -138,6 +138,9 @@ assert.deepEqual(oklahoma.melody.slice(2,10),[['F5',1],['E5',1],['F5',1],['G5',1
 assert.deepEqual(templateScore({...oklahoma,accompaniment:[]}).notes.filter(n=>[3,35,67,99].includes(n.step)).map(n=>[n.step,noteName(n.midi)]),[[3,'E5'],[35,'E5'],[67,'E5'],[99,'E5']],'オクラホマミキサーの主題A1・A5は2巡とも同じ半音の動きにする');
 assert.deepEqual(templateScore({...oklahoma,accompaniment:[]}).notes.filter(n=>n.step>=130&&n.step<138).map(n=>[n.step,noteName(n.midi)]),[[130,'A5'],[131,'C6'],[133,'C6'],[134,'C6'],[136,'C6']],'オクラホマミキサーの応答は3度跳躍と同音反復で始まる');
 assert.deepEqual(templateScore({...oklahoma,accompaniment:[]}).notes.filter(n=>n.step>=146&&n.step<162).map(n=>[n.step,noteName(n.midi)]),[[146,'A#5'],[147,'D6'],[149,'A#5'],[150,'D6'],[152,'D6'],[154,'A#5'],[155,'D6'],[157,'A#5'],[158,'D6'],[160,'D6'],[161,'E6']],'オクラホマミキサーの37〜41拍目は2回ともユーザー指定の掛け合いにする');
+const amaryllis=TEMPLATES.find(t=>t.id==='amaryllis'),amaryllisLead=templateScore({...amaryllis,accompaniment:[]}).notes;
+assert.deepEqual(amaryllisLead.filter(n=>n.step>=64&&n.step<120).map(n=>[n.step-64,n.midi]),amaryllisLead.filter(n=>n.step<56).map(n=>[n.step,n.midi]),'アマリリスの後半は同じ音域と歩幅で前半の主題を再現する');
+assert.deepEqual([amaryllis.bpm,templateScore(amaryllis).length,amaryllisLead.filter(n=>n.step>=120).map(n=>[n.step,noteName(n.midi)])],[132,128,[[120,'C5']]],'アマリリスはテンポと32拍を保ち、主音で閉じる');
 const shucho=TEMPLATES.find(t=>t.id==='shucho-no-musume');
 assert.deepEqual([shucho.bpm,shucho.subdivision,templateScore(shucho).length],[110,4,120],'酋長の娘は4・4・3・4拍を2巡し、110 BPM・120ステップ');
 assert.equal(createHash('sha256').update(serialize(templateScore(shucho).notes,120,136,{title:shucho.title})).digest('hex'),'b44af8f4f2a1e560707fe2221e507e2783d0b09ee2420193c35815ad83f7997a','酋長の娘は旋律と4・4・3・4拍を保ち、低音の分散和音と句末の間で伴奏に変化を付ける');
@@ -230,8 +233,9 @@ const marchHeads={
 };
 for(const [id,head]of Object.entries(marchHeads))assert.deepEqual(marches[id].melody.filter(([name])=>name).slice(0,head.length).map(([name])=>name),head,`${id}の指定主題の歌い出し`);
 assert.equal(marches['british-grenadiers'].beatsPerBar,2);
-assert.equal(marches['us-field-artillery'].melody.reduce((sum,[,span])=>sum+span,0),132,'野砲隊は弱起とコーラス16小節');
+assert.deepEqual([marches['us-field-artillery'].melody.reduce((sum,[,span])=>sum+span,0),templateScore(marches['us-field-artillery']).length],[128,128],'野砲隊は末尾の1拍を冒頭の弱起に置き換え、全32拍でループする');
 const fieldLead=templateScore({...marches['us-field-artillery'],accompaniment:[]}).notes;
+assert.deepEqual(fieldLead.filter(n=>n.step>=76&&n.step<84).map(n=>[n.step,noteName(n.midi)]),[[76,'G5'],[80,'G5'],[82,'G5']],'野砲隊の20〜21拍はユーザー指定の四分・八分・八分にする');
 for(const [step,name]of [[20,'A5'],[23,'B5'],[24,'C6'],[26,'A5'],[36,'C6'],[38,'C6'],[42,'B5'],[44,'A5'],[84,'A5'],[98,'F5'],[100,'G5'],[102,'F5'],[106,'D5']])assert(fieldLead.some(n=>n.step===step&&n.midi===noteNumber(name)),`野砲隊の原譜のコーラスの音程・調号 ${step}:${name}`);
 assert(!marches['us-field-artillery'].melody.some(([name])=>name==='G#5'),'野砲隊に原譜にない嬰ト音を加えない');
 assert.equal(marches['when-johnny'].bpm,120,'ジョニーは付点四分音符80で6/8の主題を演奏する');
