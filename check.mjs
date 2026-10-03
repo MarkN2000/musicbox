@@ -91,11 +91,21 @@ assert.equal(templateScore(sakkijarven).length,192,'最後の第2拍を次周の
 assert.deepEqual(TEMPLATES.find(t=>t.id==='army-goes-rolling-along').melody.slice(0,3),[['G5',2],['E5',2],['G5',4]],'陸軍は進んで行くは1918年版の歌い出しを使う');
 assert.deepEqual(TEMPLATES.find(t=>t.id==='funiculi-funicula').melody.slice(0,3),[['B5',3],['A5',1],['',2]],'フニクリ・フニクラは原譜の有名なサビのリズムを保つ');
 const williamTell=TEMPLATES.find(t=>t.id==='william-tell');
+const panzerlied=TEMPLATES.find(t=>t.id==='panzerlied'),panzerLead=templateScore({...panzerlied,accompaniment:[]}).notes;
+assert.deepEqual([panzerlied.bpm,panzerlied.subdivision,templateScore(panzerlied).length],[120,2,136],'パンツァー・リートは後半を直しても68拍を保つ');
+assert.deepEqual(panzerLead.filter(n=>n.step>=66&&n.step<90).map(n=>[n.step,noteName(n.midi)]),[[66,'G5'],[68,'B5'],[70,'D6'],[72,'D6'],[76,'B5'],[78,'G5'],[80,'G5'],[82,'D6'],[85,'G5'],[86,'D6'],[88,'E6']],'後半の歌い出しは1940年版85頁の上声を一括14半音移調する');
+assert.deepEqual(panzerLead.filter(n=>n.step>=90&&n.step<106).map(n=>[n.step,noteName(n.midi)]),[[90,'F6'],[96,'D6'],[98,'C6'],[100,'A5'],[104,'G5']],'後半の長音から下降句・休符・弱起へ原譜どおりにつなぐ');
+assert(!panzerLead.some(n=>n.step===74),'後半のタイを同音の打ち直しにしない');
 assert.deepEqual(templateScore({...williamTell,accompaniment:[]}).notes.filter(n=>n.step>=50&&n.step<58).map(n=>[n.step,noteName(n.midi)]),[[50,'F6'],[55,'D#6'],[56,'D6'],[57,'C6']],'ウィリアム・テル主題第7小節のタイと下降音型を原譜どおりに保つ');
 assert.deepEqual(templateScore({...williamTell,melody:[]}).notes.filter(n=>n.step===50).map(n=>noteName(n.midi)),['F3','C4'],'長い属音は原譜の属和声で支える');
-assert.equal(TEMPLATES.length,79);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,79);
+const tetsudo=TEMPLATES.find(t=>t.id==='tetsudo-shoka'),tetsudoLead=templateScore({...tetsudo,accompaniment:[]}).notes;
+assert.deepEqual([tetsudo.bpm,tetsudo.subdivision,tetsudo.beatsPerBar,tetsudo.pickupBeats,templateScore(tetsudo).length],[108,4,2,0,128],'鉄道唱歌は1番16小節を付点の二拍子で保つ');
+assert.deepEqual(tetsudoLead.slice(0,13).map(n=>[n.step,noteName(n.midi)]),[[0,'C5'],[3,'C5'],[4,'C5'],[7,'D5'],[8,'E5'],[11,'E5'],[12,'E5'],[15,'D5'],[16,'C5'],[19,'C5'],[20,'C5'],[23,'A4'],[24,'G4']],'鉄道唱歌は1911年訂正版の歌い出しを全体5半音上げ、付点と16分音符を残す');
+assert.deepEqual(tetsudoLead.slice(-5).map(n=>[n.step,noteName(n.midi)]),[[112,'E5'],[115,'E5'],[116,'D5'],[119,'D5'],[120,'C5']],'鉄道唱歌は原譜の終止で閉じ、最後の主音を打ち直さない');
+assert.equal(tetsudoLead.length,52,'鉄道唱歌の4つの句を省略せず、余分な旋律も足さない');
+assert.equal(TEMPLATES.length,80);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,80);
 for(const [id,title] of [['twinkle','きらきら星変奏曲'],['minuet','メヌエット'],['mozart-turkish-march','トルコ行進曲'],['brahms-lullaby','子守歌 Op.49-4'],['schubert-ave-maria','アヴェ・マリア D.839'],['clair-de-lune','月の光']])assert.equal(TEMPLATES.find(template=>template.id===id).title,title,'一般的な短い曲名を使う');
-assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':65,'行進曲・軍歌':14});
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':66,'行進曲・軍歌':14});
 assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
   assert(/^[ぁ-ゖー]+$/.test(template.reading),`${template.id}の曲名の読み`);
@@ -435,9 +445,9 @@ const ui=runInNewContext(`
 const templateOptions=element('templateSelect').children.flatMap(group=>group.children);
 assert.equal(templateOptions.length,TEMPLATES.length);
 for(const template of TEMPLATES){const option=templateOptions.find(option=>option.value===template.id),label=option.firstElementChild;assert.equal(label.className,'template-label');assert.equal(label.textContent,template.title);assert.equal(label.firstElementChild.className,'template-composer');assert.equal(label.firstElementChild.textContent,`／${template.composer}`,'全曲の作曲者だけを小さく表示し、通常の選択欄にも文字を残す');}
-assert.deepEqual(element('templateSelect').children.map(group=>[group.label,group.children.length]),[['クラシック・民謡',65],['行進曲・軍歌',14]],'分類とグループの表示順');
+assert.deepEqual(element('templateSelect').children.map(group=>[group.label,group.children.length]),[['クラシック・民謡',66],['行進曲・軍歌',14]],'分類とグループの表示順');
 assert.deepEqual(templateOptions.map(option=>option.value),[
-  "eine-kleine","salut-damour","schubert-ave-maria","aogeba-totoshi","akatombo","grieg-morning","amazing-grace","burgmuller-arabesque","ievan-polkka","mozart-dies-irae","pomp-and-circumstance","we-wish-you-a-merry-christmas","william-tell","blue-danube","beethoven-fate","fur-elise","grandfathers-clock","maidens-prayer","pachelbel-canon","carmen-prelude","ode-to-joy","silent-night","twinkle","csikos-post","greensleeves","nutcracker-march","sugar-plum-fairy","waltz-of-flowers","mendelssohn-wedding-march","minute-waltz","brahms-lullaby","wagner-bridal-chorus","air-on-g","the-entertainer","vivaldi-spring","vivaldi-winter-first","gymnopedie-1","jesu-joy","little-fugue","new-world-largo","new-world-fourth","clair-de-lune","offenbach-can-can","bach-toccata-fugue","mozart-turkish-march","dolls-dream","chopin-nocturne-2","swan-lake-scene","happy-birthday","taki-hana","mendelssohn-spring-song","handel-hallelujah","brahms-hungarian-dance-5","bizet-farandole","mozart-figaro-overture","furusato","chopin-prelude-7","mussorgsky-promenade","auld-lang-syne","ravel-bolero","handel-see-conquering-hero","minuet","jupiter","smetana-moldau","wagner-ride-of-valkyries","us-field-artillery","erika","military-march","sakkijarven-polkka","when-johnny","stars-and-stripes","panzerlied","funiculi-funicula","british-grenadiers","yuki-no-shingun","radetzky-march","army-goes-rolling-along","battle-hymn","sousa-washington-post"
+  "eine-kleine","salut-damour","schubert-ave-maria","aogeba-totoshi","akatombo","grieg-morning","amazing-grace","burgmuller-arabesque","ievan-polkka","mozart-dies-irae","pomp-and-circumstance","we-wish-you-a-merry-christmas","william-tell","blue-danube","beethoven-fate","fur-elise","grandfathers-clock","maidens-prayer","pachelbel-canon","carmen-prelude","ode-to-joy","silent-night","twinkle","csikos-post","greensleeves","nutcracker-march","sugar-plum-fairy","waltz-of-flowers","mendelssohn-wedding-march","minute-waltz","brahms-lullaby","wagner-bridal-chorus","air-on-g","the-entertainer","vivaldi-spring","vivaldi-winter-first","gymnopedie-1","jesu-joy","little-fugue","new-world-largo","new-world-fourth","clair-de-lune","tetsudo-shoka","offenbach-can-can","bach-toccata-fugue","mozart-turkish-march","dolls-dream","chopin-nocturne-2","swan-lake-scene","happy-birthday","taki-hana","mendelssohn-spring-song","handel-hallelujah","brahms-hungarian-dance-5","bizet-farandole","mozart-figaro-overture","furusato","chopin-prelude-7","mussorgsky-promenade","auld-lang-syne","ravel-bolero","handel-see-conquering-hero","minuet","jupiter","smetana-moldau","wagner-ride-of-valkyries","us-field-artillery","erika","military-march","sakkijarven-polkka","when-johnny","stars-and-stripes","panzerlied","funiculi-funicula","british-grenadiers","yuki-no-shingun","radetzky-march","army-goes-rolling-along","battle-hymn","sousa-washington-post"
 ],'曲名の読みの五十音順で、漢字・英字と同じ作品の曲を並べる');
 const initialControls=new Map(['scoreTitle','bpm','subdivision'].map(id=>[id,node()]));
 initialControls.get('bpm').value=html.match(/id="bpm"[^>]*value="([^"]+)"/)[1];initialControls.get('subdivision').value=html.match(/<option value="([^"]+)" selected>/)[1];
@@ -644,4 +654,4 @@ for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[
 }
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const url=new URL(match[1],'https://musicbox.test/');if(url.origin==='https://musicbox.test')await readFile('dist/'+decodeURIComponent(url.pathname.slice(1)||'index.html'));}
 await import('./check-mp3.mjs');
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート79曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート80曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
