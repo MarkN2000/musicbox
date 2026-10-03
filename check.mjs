@@ -32,9 +32,13 @@ assert(app.includes(`from './templates.js?v=${templatesRevision}'`),'テンプ�
 assert(!ALLOWED.has(noteNumber('F#4')));assert(!ALLOWED.has(noteNumber('F#6')));
 assert.equal(scoreText([{step:1,midi:72},{step:1,midi:79},{step:1,midi:72},{step:1,midi:76},{step:3,midi:74}],5),'\nC5,E5,G5\n\nD5\n\n');
 assert.equal(scoreText([],3),'\n\n\n');
-const textHeader='stepscore,version=1,step_ms=125';
+const textHeader='format=stepscore,version=1,step_ms=125';
 assert.equal(serialize([{step:1,midi:72},{step:1,midi:76},{step:3,midi:74}],5,125),`${textHeader}\n\nC5,E5\n\nD5\n\n`,'メタデータ行を加えても先頭・途中・末尾の休符を保つ');
 assert.equal(serialize([],3,125),`${textHeader}\n\n\n\n`);
+assert.equal(serialize([],1,125,{format:'別形式',version:'2',step_ms:'250'}),`${textHeader}\n\n`,'必須項目は現在の仕様と間隔で先頭に一度だけ出力する');
+for(const header of ['version=1,format=stepscore,step_ms=125','step_ms=125,version=1,format=stepscore']){
+  const score=parseText(`${header}\nC5\n`);assert.equal(score.metadata.format,'stepscore');assert.equal(serialize(score.notes,score.length,score.stepMs,score.metadata),`${textHeader}\nC5\n`,'formatの位置に依存せず読み込み、先頭に揃えて再出力する');
+}
 for(const interval of [1,10,125,5000,6000,Number.MAX_SAFE_INTEGER])assert.equal(parseText(serialize([],1,interval)).stepMs,interval,'形式の間隔をサイトの再生範囲で制限しない');
 for(const interval of [undefined,0,-1,125.5,Number.MAX_SAFE_INTEGER+1,NaN,Infinity,'125',null])assert.throws(()=>serialize([],1,interval),/再生間隔/);
 assert.throws(()=>scoreText([{step:0,midi:66}],1),/対応外/);assert.throws(()=>scoreText([{step:1,midi:72}],1),/不正/);
@@ -44,14 +48,14 @@ for(const title of [undefined,'カノン,短縮版 50%','文字列%2Cと%25、�
   const score=parseText(text);assert.equal(score.length,5);assert.equal(serialize(score.notes,score.length,score.stepMs,score.metadata),text,'メタデータ・先頭・途中・末尾の休符を読み戻す');
   if(title!==undefined){assert.equal(score.metadata.title,title);assert.equal(score.metadata.extra,metadata.extra);}
 }
-assert.deepEqual(parseText(`\uFEFF${textHeader}\r\n C5 , E5,C5\r\n\r\nF#4`),{notes:[{step:0,midi:72},{step:0,midi:76},{step:2,midi:66}],length:3,stepMs:125,metadata:{version:'1',step_ms:'125'},sourceCount:4},'BOM・CRLF・空白・重複・対応外を扱う');
+assert.deepEqual(parseText(`\uFEFF${textHeader}\r\n C5 , E5,C5\r\n\r\nF#4`),{notes:[{step:0,midi:72},{step:0,midi:76},{step:2,midi:66}],length:3,stepMs:125,metadata:{format:'stepscore',version:'1',step_ms:'125'},sourceCount:4},'BOM・CRLF・空白・重複・対応外を扱う');
 assert.equal(parseText(`${textHeader}\rC5\r\rD5\r`).length,3);assert.equal(parseText(`${textHeader}\nC5`).length,1);assert.equal(parseText(`${textHeader}\nC5\n`).length,1);assert.equal(parseText(`${textHeader}\nC5\n\n`).length,2);
 assert.equal(parseText(`${textHeader}\n\n`).length,1,'全休符の1ステップを保持する');
-assert.deepEqual(parseText('stepscore,title=曲名%252C%2525,step_ms=125,extra=a=b,version=1\nC5').metadata,{title:'曲名%2C%25',step_ms:'125',extra:'a=b',version:'1'},'項目順は自由で、等号は最初だけを区切りにし、復元は1回だけ');
+assert.deepEqual(parseText('title=曲名%252C%2525,step_ms=125,format=stepscore,extra=a=b,version=1\nC5').metadata,{title:'曲名%2C%25',step_ms:'125',format:'stepscore',extra:'a=b',version:'1'},'項目順は自由で、等号は最初だけを区切りにし、復元は1回だけ');
 const specialMetadata=parseText(`${textHeader},__proto__=安全,constructor=保持\nC5`).metadata;
 assert.equal(Object.getPrototypeOf(specialMetadata),Object.prototype);assert.equal(specialMetadata.__proto__,'安全');assert.equal(parseText(serialize([{step:0,midi:72}],1,125,specialMetadata)).metadata.constructor,'保持','未知のキーでオブジェクトの継承関係を変えない');
 for(const body of ['C5,','C5,,E5','Bb4','C5\n説明','C5\nstep_ms=125','C10'])assert.throws(()=>parseText(`${textHeader}\n${body}`),/不正/);
-for(const text of ['', '\n','C5','step_ms=125\nC5',`${textHeader}\n`,'stepscore,step_ms=125\nC5','stepscore,version=2,step_ms=125\nC5','stepscore,version=1\nC5','stepscore,version=1,step_ms=0\nC5','stepscore,version=1,step_ms=125.5\nC5','stepscore,version=1,step_ms=9007199254740992\nC5',`${textHeader},title=a,title=b\nC5`,`${textHeader},version=1\nC5`,`${textHeader},=値\nC5`,`${textHeader},説明\nC5`,`${textHeader},title=曲,名\nC5`,`${textHeader},title=100%\nC5`,`${textHeader},title=%20\nC5`])assert.throws(()=>parseText(text),/stepscore|不正|step_ms|ステップ|重複/);
+for(const text of ['', '\n','C5','step_ms=125\nC5',`${textHeader}\n`,'stepscore,version=1,step_ms=125\nC5','version=1,step_ms=125\nC5','format=,version=1,step_ms=125\nC5','format=other,version=1,step_ms=125\nC5','format=Stepscore,version=1,step_ms=125\nC5','format=stepscore,step_ms=125\nC5','format=stepscore,version=2,step_ms=125\nC5','format=stepscore,version=1\nC5','format=stepscore,version=1,step_ms=0\nC5','format=stepscore,version=1,step_ms=125.5\nC5','format=stepscore,version=1,step_ms=9007199254740992\nC5',`${textHeader},title=a,title=b\nC5`,`${textHeader},format=stepscore\nC5`,`${textHeader},version=1\nC5`,`${textHeader},=値\nC5`,`${textHeader},説明\nC5`,`${textHeader},title=曲,名\nC5`,`${textHeader},title=100%\nC5`,`${textHeader},title=%20\nC5`])assert.throws(()=>parseText(text),/stepscore|不正|step_ms|ステップ|重複/);
 for(const metadata of [{title:'改\n行'},{title:'改\r行'},{title:1},{'不正=キー':'値'},{'':'値'},{'不正,キー':'値'}])assert.throws(()=>serialize([],1,125,metadata),/メタデータ/);
 assert.equal(parseText(`${textHeader}\n`+'\n'.repeat(MAX_STEPS)).length,MAX_STEPS);assert.throws(()=>parseText(`${textHeader}\n`+'\n'.repeat(MAX_STEPS+1)),/ステップ/);
 assert.throws(()=>parseText(`${textHeader}\n`+Array(MAX_NOTES+1).fill('C5').join(',')),/上限/);
@@ -143,7 +147,7 @@ assert.deepEqual(amaryllisLead.filter(n=>n.step>=64&&n.step<120).map(n=>[n.step-
 assert.deepEqual([amaryllis.bpm,templateScore(amaryllis).length,amaryllisLead.filter(n=>n.step>=120).map(n=>[n.step,noteName(n.midi)])],[132,128,[[120,'C5']]],'アマリリスはテンポと32拍を保ち、主音で閉じる');
 const shucho=TEMPLATES.find(t=>t.id==='shucho-no-musume');
 assert.deepEqual([shucho.bpm,shucho.subdivision,templateScore(shucho).length],[110,4,120],'酋長の娘は4・4・3・4拍を2巡し、110 BPM・120ステップ');
-assert.equal(createHash('sha256').update(serialize(templateScore(shucho).notes,120,136,{title:shucho.title})).digest('hex'),'b44af8f4f2a1e560707fe2221e507e2783d0b09ee2420193c35815ad83f7997a','酋長の娘は旋律と4・4・3・4拍を保ち、低音の分散和音と句末の間で伴奏に変化を付ける');
+assert.equal(createHash('sha256').update(scoreText(templateScore(shucho).notes,120)).digest('hex'),'67722a545841a2d3c219d996f72c800876806965552689b2ac905fb35fac5050','酋長の娘は旋律と4・4・3・4拍を保ち、低音の分散和音と句末の間で伴奏に変化を付ける');
 assert.equal(TEMPLATES.length,97);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,97);
 for(const [id,title] of [['twinkle','きらきら星変奏曲'],['minuet','メヌエット'],['mozart-turkish-march','トルコ行進曲'],['brahms-lullaby','子守歌 Op.49-4'],['schubert-ave-maria','アヴェ・マリア D.839'],['clair-de-lune','月の光']])assert.equal(TEMPLATES.find(template=>template.id===id).title,title,'一般的な短い曲名を使う');
 assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':83,'行進曲・軍歌':14});
@@ -655,7 +659,7 @@ assert.equal(midiElement('scoreTitle').value,'取り込み前の楽譜');
 await midiUI.import(midiFile);midiUI.edit();const editedMidi=JSON.stringify(midiUI.state());midiElement('transpose').value='0';midiElement('transpose').events.input();midiElement('selectMelodic').onclick();assert.equal(JSON.stringify(midiUI.state()),editedMidi,'同じ設定への操作で手動編集を消さない');
 await midiUI.import({name:'bad.mid',size:14,arrayBuffer:async()=>new ArrayBuffer(14)});assert.equal(JSON.stringify(midiUI.state()),editedMidi,'取り込み失敗で現在の楽譜を変えない');
 const textFile=(text,name='読み込み用.txt')=>({name,size:Buffer.byteLength(text),arrayBuffer:async()=>new TextEncoder().encode(text).buffer});
-const textSource='stepscore,version=1,step_ms=172,title=確認%2C100%25,extra=未対応%252C=値\n\nC5,F#4,C5\n\nG5\n\n';
+const textSource='version=1,step_ms=172,title=確認%2C100%25,extra=未対応%252C=値,format=stepscore\n\nC5,F#4,C5\n\nG5\n\n';
 await midiUI.import(textFile(textSource));assert.equal(midiUI.interval(),172);assert.equal(midiUI.state().length,5);assert.equal(midiUI.state().notes.length,3);assert(midiElement('midiTracks').hidden);assert.equal(midiElement('scoreTitle').value,'確認,100%');
 assert.equal(midiUI.state().sourceMidi.metadata.extra,'未対応%2C=値');
 assert(midiUI.state().notes.some(note=>!ALLOWED.has(note.midi)),'TXTの対応外は自動置換・除外しない');
@@ -663,13 +667,13 @@ assert.deepEqual(suggestMidiTranspositions(midiUI.state().sourceMidi,midiUI.sett
 midiElement('transpose').value='12';midiElement('transpose').events.input();assert.deepEqual(Array.from(midiUI.state().notes,note=>note.midi),[84,78,91]);assert.equal(midiUI.state().sourceMidi.metadata.extra,'未対応%2C=値');midiUI.undo();assert.equal(midiUI.interval(),172);assert.equal(midiUI.state().length,5);assert.equal(midiElement('scoreTitle').value,'確認,100%');
 const restoredText=JSON.stringify(midiUI.state());midiElement('transpose').events.input();assert.equal(JSON.stringify(midiUI.state()),restoredText,'TXTの移調を取り消した後、同じ設定で履歴を増やさない');
 midiElement('removeUnsupported').onclick();assert.equal(midiUI.state().notes.length,2);assert.equal(midiUI.state().length,5);assert.equal(midiUI.state().sourceMidi.metadata.extra,'未対応%2C=値');midiUI.undo();assert.equal(midiUI.state().notes.length,3);
-for(const file of [textFile(`${textHeader}\nC5,invalid`),textFile('stepscore,version=1,step_ms=10\nC5'),textFile('C5'),textFile('step_ms=125\nC5'),textFile(`${textHeader},title=%20\nC5`),textFile(`${textHeader},extra=1,extra=2\nC5`),textFile('stepscore,version=2,step_ms=125\nC5'),textFile('C5','unsupported.csv'),{name:'large.txt',size:10*1024*1024+1},{name:'encoding.txt',size:2,arrayBuffer:async()=>Uint8Array.from([0xff,0xff]).buffer}]){
+for(const file of [textFile(`${textHeader}\nC5,invalid`),textFile('format=stepscore,version=1,step_ms=10\nC5'),textFile('C5'),textFile('step_ms=125\nC5'),textFile('stepscore,version=1,step_ms=125\nC5'),textFile('version=1,step_ms=125\nC5'),textFile(`${textHeader},format=stepscore\nC5`),textFile(`${textHeader},title=%20\nC5`),textFile(`${textHeader},extra=1,extra=2\nC5`),textFile('format=stepscore,version=2,step_ms=125\nC5'),textFile('C5','unsupported.csv'),{name:'large.txt',size:10*1024*1024+1},{name:'encoding.txt',size:2,arrayBuffer:async()=>Uint8Array.from([0xff,0xff]).buffer}]){
   const before=JSON.stringify(midiUI.state()),bpm=midiElement('bpm').value;await midiUI.import(file);assert.equal(JSON.stringify(midiUI.state()),before,'TXT取り込み失敗では楽譜と履歴を保持する');assert.equal(midiElement('bpm').value,bpm);
 }
 midiUI.undo();assert.equal(JSON.stringify(midiUI.state()),editedMidi,'TXT取り込みを取り消すと元のMIDIと手動編集を復元する');assert.equal(midiElement('midiTracks').hidden,false);
-for(const interval of [25,172,3000]){await midiUI.import(textFile(`stepscore,version=1,step_ms=${interval}\nC5\n\n`));assert.equal(midiUI.interval(),interval);assert.equal(midiUI.state().length,2);assert.equal(midiElement('scoreTitle').value,'読み込み用','title省略時はファイル名を使う');assert(!Object.hasOwn(midiUI.state().sourceMidi.metadata,'extra'),'別の取り込みでは前のメタデータを残さない');}
+for(const interval of [25,172,3000]){await midiUI.import(textFile(`format=stepscore,version=1,step_ms=${interval}\nC5\n\n`));assert.equal(midiUI.interval(),interval);assert.equal(midiUI.state().length,2);assert.equal(midiElement('scoreTitle').value,'読み込み用','title省略時はファイル名を使う');assert(!Object.hasOwn(midiUI.state().sourceMidi.metadata,'extra'),'別の取り込みでは前のメタデータを残さない');}
 for(const subdivision of [1,2,3,4,6,8]){
-  midiElement('bpm').value=120;midiElement('subdivision').value=subdivision;const interval=Math.round(60000/120/subdivision);await midiUI.import(textFile(`stepscore,version=1,step_ms=${interval}\nC5\n\n\n\n\n\n\n`));assert.equal(midiUI.state().length,7);assert.equal(midiUI.interval(),interval,'TXTの各単位で間隔とステップ数を保つ');
+  midiElement('bpm').value=120;midiElement('subdivision').value=subdivision;const interval=Math.round(60000/120/subdivision);await midiUI.import(textFile(`format=stepscore,version=1,step_ms=${interval}\nC5\n\n\n\n\n\n\n`));assert.equal(midiUI.state().length,7);assert.equal(midiUI.interval(),interval,'TXTの各単位で間隔とステップ数を保つ');
 }
 await midiUI.import(textFile(`${textHeader}\n\n\n\n`));assert.equal(midiUI.state().length,3);assert.equal(midiUI.state().notes.length,0);midiElement('transpose').value='1';midiElement('transpose').events.input();assert.equal(midiUI.state().length,3,'全休符も移調で短縮・拡張しない');
 let dropPrevented=false;importListeners.get('drop')({dataTransfer:{types:['Files'],files:[textFile(textSource)]},preventDefault(){dropPrevented=true;}});await new Promise(setImmediate);
@@ -687,7 +691,7 @@ const textOutput=runInNewContext(`
   ({render:renderOutput,save:()=>$('export').onclick(),saveMidi:()=>$('exportMidi').onclick(),copy:()=>$('copyText').onclick(),setScore:(score,size)=>{notes=score;length=size;renderOutput();},setSource:source=>{sourceMidi=source;renderOutput();},state:()=>({notes,length})});
 `,{$:element,serialize,validateNote,keyOf,MAX_STEPS,ALLOWED,NOTE_NAMES,noteName,noteNumber,Blob,window:{Midi},URL:{createObjectURL:blob=>{savedBlob=blob;return 'blob:test';},revokeObjectURL(){}},navigator:{clipboard:{writeText:async text=>{copiedText=text;}}},document:{createElement:()=>({...node(),click(){savedName=this.download;}})},setTimeout(){},stopPlayback(){},renderGrid(){},previewConversion(){},announce:(message,error)=>{if(error)outputErrors.push(message);else outputMessages.push(message);}});
 for(const [id,value]of Object.entries({bpm:120,subdivision:4,scoreTitle:'私のオルゴール'}))element(id).value=value;
-textOutput.render();const expectedText='stepscore,version=1,step_ms=125,title=私のオルゴール\n\nC5,E5\n\nG5\n\n';assert.equal(element('txtPreview').value,expectedText);
+textOutput.render();const expectedText='format=stepscore,version=1,step_ms=125,title=私のオルゴール\n\nC5,E5\n\nG5\n\n';assert.equal(element('txtPreview').value,expectedText);
 textOutput.save();await textOutput.copy();assert.equal(await savedBlob.text(),expectedText);assert.equal(copiedText,expectedText);
 assert.equal(savedName,'私のオルゴール.txt');textOutput.saveMidi();assert.equal(savedName,'私のオルゴール.mid','TXTとMIDIは同じ曲名を使う');
 element('scoreTitle').value='  編集した曲?  ';textOutput.save();assert.equal(savedName,'編集した曲_.txt');textOutput.saveMidi();assert.equal(savedName,'編集した曲_.mid');

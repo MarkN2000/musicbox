@@ -1,4 +1,4 @@
-import {noteNumber, serialize, keyOf} from './core.js?v=6d3a028549f1a595';
+import {noteNumber, serialize, keyOf} from './core.js?v=a46dd80e2e002cd4';
 
 // 各組は音名（和音はカンマ区切り）とステップ数。通常は16分音符、三連符はsubdivisionで指定。空文字は休符。
 // 伴奏はこのサイト用の編曲。半小節の分散和音と、3拍子の低音・和音を組み合わせる。

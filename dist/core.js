@@ -22,10 +22,10 @@ export function validateNote(note, length) {
 export function serialize(notes, length, stepMs, metadata = {}) {
   if (!Number.isInteger(length) || length < 1 || length > MAX_STEPS) throw new Error('ステップ数が不正です。');
   if (!Number.isSafeInteger(stepMs) || stepMs <= 0) throw new Error('再生間隔は正の整数msにしてください。');
-  const header = ['stepscore', 'version=1', `step_ms=${stepMs}`];
+  const header = ['format=stepscore', 'version=1', `step_ms=${stepMs}`];
   for (const [key, value] of Object.entries(metadata)) {
     if (!key || /[,=\r\n]/.test(key) || typeof value !== 'string' || /[\r\n]/.test(value)) throw new Error('メタデータが不正です。改行は使えません。');
-    if (!['version', 'step_ms'].includes(key)) header.push(`${key}=${value.replace(/%/g,'%25').replace(/,/g,'%2C')}`);
+    if (!['format', 'version', 'step_ms'].includes(key)) header.push(`${key}=${value.replace(/%/g,'%25').replace(/,/g,'%2C')}`);
   }
   const rows = Array.from({length}, () => new Set());
   for (const note of notes) {
@@ -39,7 +39,6 @@ export function parseText(text) {
   const rows=text.replace(/^\uFEFF/,'').replace(/\r\n?/g,'\n').split('\n');
   if(rows.length>1&&rows.at(-1)==='')rows.pop();
   const fields=rows.shift().split(','),values=new Map();
-  if(fields.shift()!=='stepscore')throw new Error('TXTの1行目にstepscoreのメタデータが必要です。');
   for(const field of fields){
     const separator=field.indexOf('='),key=field.slice(0,separator),value=field.slice(separator+1);
     if(separator<=0||values.has(key))throw new Error('メタデータの書式が不正か、キーが重複しています。');
@@ -47,6 +46,7 @@ export function parseText(text) {
     values.set(key,value.replace(/%25|%2C/g,escape=>escape==='%25'?'%':','));
   }
   const metadata=Object.fromEntries(values);
+  if(metadata.format!=='stepscore')throw new Error('TXTの1行目にはformat=stepscoreが必要です。');
   if(!values.has('version'))throw new Error('stepscoreにはversionが必要です。');
   if(metadata.version!=='1')throw new Error('対応していないstepscoreのversionです。');
   const stepMs=Number(metadata.step_ms);
