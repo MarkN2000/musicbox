@@ -73,7 +73,7 @@ export function validateMidiHeader(buffer) {
   if (!view.getUint16(12)) throw new Error('MIDIの時間解像度が不正です。');
 }
 export function convertMidi(midi, {tracks, subdivision, transpose = 0, minimumSteps = 16}) {
-  if (![1,2,3,4,6,8].includes(subdivision) || !Number.isInteger(transpose) || Math.abs(transpose) > 24) throw new Error('変換設定が不正です。');
+  if (![1,2,3,4,6,8,12].includes(subdivision) || !Number.isInteger(transpose) || Math.abs(transpose) > 24) throw new Error('変換設定が不正です。');
   if(![1,16].includes(minimumSteps))throw new Error('最小ステップ数が不正です。');
   if (!Number.isFinite(midi.header.ppq) || midi.header.ppq <= 0 || !tracks.length || tracks.some(index => !Number.isInteger(index) || !midi.tracks[index])) throw new Error('トラックを選択してください。');
   const selected = tracks.flatMap(index=>midi.tracks[index].notes);

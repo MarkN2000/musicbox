@@ -1,5 +1,5 @@
-import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, parseText, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, suggestMidiTranspositions, validateMidiHeader, validateNote} from './core.js?v=a46dd80e2e002cd4';
-import {TEMPLATES, templateScore} from './templates.js?v=7ec11e473ca69d4c';
+import {NOTE_NAMES, ALLOWED, noteName, noteNumber, serialize, parseText, keyOf, MAX_STEPS, MAX_NOTES, convertMidi, suggestMidiTranspositions, validateMidiHeader, validateNote} from './core.js?v=4db7e5b9011a6c43';
+import {TEMPLATES, templateScore} from './templates.js?v=131e294560500311';
 const $ = id => document.getElementById(id);
 const pitches = Array.from({length:41}, (_,i)=>93-i);
 let notes = [], length = 32, history = [];
@@ -247,7 +247,7 @@ $('copyText').onclick=async()=>{
   try{await navigator.clipboard.writeText(text);announce('コピーしました。');}
   catch{$('txtPreviewPanel').open=true;$('txtPreview').focus();$('txtPreview').select();announce('コピーできませんでした。選択したテキストをCtrl+Cでコピーしてください。',true);}
 };
-function stepInterval(){const bpm=Number($('bpm').value),subdivision=Number($('subdivision').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)throw new Error('テンポは20〜300 BPMにしてください。');if(![1,2,3,4,6,8].includes(subdivision))throw new Error('ステップ単位が不正です。');return Math.round(60000/bpm/subdivision);}
+function stepInterval(){const bpm=Number($('bpm').value),subdivision=Number($('subdivision').value);if(!Number.isFinite(bpm)||bpm<20||bpm>300)throw new Error('テンポは20〜300 BPMにしてください。');if(![1,2,3,4,6,8,12].includes(subdivision))throw new Error('ステップ単位が不正です。');return Math.round(60000/bpm/subdivision);}
 function updateTiming(){stopPlayback();renderOutput();}
 $('bpm').addEventListener('change',updateTiming);$('subdivision').addEventListener('change',()=>{if(sourceMidi)applyMidiSettings();else{updateTiming();renderGrid();}});
 function stopPlayback(){playbackRequest++;if(player){clearTimeout(player.timer);markStep(player.visual,false);player=null;}for(const voice of activeVoices){try{voice.stop();}catch{}}activeVoices.clear();selectStart(0);$('play').textContent='▶';$('play').setAttribute('aria-label','試聴');$('play').title='試聴';$('play').setAttribute('aria-pressed','false');}
@@ -341,8 +341,8 @@ async function importFile(file){
     if(/\.txt$/i.test(file.name)){
       let text;try{text=new TextDecoder('utf-8',{fatal:true}).decode(buffer);}catch{throw new Error('TXTはUTF-8で保存してください。');}
       const score=parseText(text);
-      subdivision=[subdivision,1,2,3,4,6,8].find(value=>{const bpm=60000/score.stepMs/value;return bpm>=20&&bpm<=300;});
-      if(subdivision===undefined)throw new Error('このサイトで取り込めるstep_msは25〜3000msです。');
+      subdivision=[subdivision,1,2,3,4,6,8,12].find(value=>{const bpm=60000/score.stepMs/value;return bpm>=20&&bpm<=300;});
+      if(subdivision===undefined)throw new Error('このサイトで取り込めるstep_msは17〜3000msです。');
       textBpm=60000/score.stepMs/subdivision;
       parsed=new window.Midi();parsed.isText=true;parsed.metadata=score.metadata;const track=parsed.addTrack(),ticksPerStep=parsed.header.ppq/subdivision;track.name='TXT';
       for(const note of score.notes)track.addNote({midi:note.midi,ticks:note.step*ticksPerStep,durationTicks:ticksPerStep});

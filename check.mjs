@@ -65,6 +65,7 @@ const drums=midi.addTrack();drums.channel=9;drums.name='Drums';drums.addNote({mi
 const bytes=midi.toArray();validateMidiHeader(bytes.buffer);const parsed=new Midi(bytes);assert(parsed.tracks[1].instrument.percussion);
 const converted=convertMidi(parsed,{tracks:[0],subdivision:4});assert.equal(converted.notes.length,4);assert.equal(converted.merged,1);assert.equal(converted.notes[0].step,4);assert.equal(converted.length,18);assert(converted.notes.some(note=>!ALLOWED.has(note.midi)));
 assert.equal(convertMidi(parsed,{tracks:[0],subdivision:3}).notes[0].step,3);
+assert.equal(convertMidi(parsed,{tracks:[0],subdivision:12}).notes[0].step,12);
 assert.equal(convertMidi(parsed,{tracks:[0],subdivision:4,transpose:12}).notes[0].midi,84);
 const transposeSettings={tracks:[0],subdivision:4},suggested=suggestMidiTranspositions(parsed,transposeSettings);
 assert.equal(suggested[0].transpose,-1);assert.equal(suggested[0].outside,0);assert.equal(suggested[0].total,4,'量子化後の重複を省かれる音数に含めない');
@@ -145,6 +146,13 @@ assert.deepEqual(templateScore({...oklahoma,accompaniment:[]}).notes.filter(n=>n
 const amaryllis=TEMPLATES.find(t=>t.id==='amaryllis'),amaryllisLead=templateScore({...amaryllis,accompaniment:[]}).notes;
 assert.deepEqual(amaryllisLead.filter(n=>n.step>=64&&n.step<120).map(n=>[n.step-64,n.midi]),amaryllisLead.filter(n=>n.step<56).map(n=>[n.step,n.midi]),'アマリリスの後半は同じ音域と歩幅で前半の主題を再現する');
 assert.deepEqual([amaryllis.bpm,templateScore(amaryllis).length,amaryllisLead.filter(n=>n.step>=120).map(n=>[n.step,noteName(n.midi)])],[132,128,[[120,'C5']]],'アマリリスはテンポと32拍を保ち、主音で閉じる');
+const alps=TEMPLATES.find(t=>t.id==='alps-ichimanjaku');
+assert.deepEqual([alps.bpm,templateScore(alps).length,alps.melody.slice(29,33),alps.melody.slice(-2)],[112,128,[['A5',3],['B5',1],['A5',2],['G5',2]],[['C6',4],['C6',4]]],'アルプス一万尺は後半の付点句と終止を含む16小節を1巡する');
+const westminster=TEMPLATES.find(t=>t.id==='westminster-chimes');
+assert.deepEqual([westminster.bpm,templateScore(westminster).length,westminster.melody.filter(([name])=>name).map(([name])=>name)],[144,96,['C5','E5','D5','G4','G4','D5','E5','C5','E5','C5','D5','G4','G4','D5','E5','C5']],'ウェストミンスターの鐘は学校チャイムの4句を1巡する');
+const toySoldiers=TEMPLATES.find(t=>t.id==='toy-soldiers');
+assert.deepEqual([toySoldiers.bpm,toySoldiers.subdivision,toySoldiers.pickupBeats,templateScore(toySoldiers).length,toySoldiers.melody.slice(0,9),toySoldiers.melody.slice(19,24)],[92,12,.5,384,[['G5',2],['G5',2],['G5',2],['E5',6],['G5',6],['G5',6],['G5',2],['G5',2],['G5',2]],[['G5',3],['F#5',3],['F5',3],['E5',3],['D5',6]]],'おもちゃの兵隊のマーチは16分音符を等間隔にし、三連符を保って原譜の再現へ続ける');
+assert.deepEqual(templateScore({...toySoldiers,accompaniment:[]}).notes.filter(n=>n.step>=318).map(n=>[n.step,noteName(n.midi)]),[[318,'F5'],[324,'A5'],[330,'A5'],[336,'C6'],[338,'C6'],[340,'C6'],[342,'E6'],[354,'D6'],[366,'C6']],'おもちゃの兵隊のマーチの再現は1911年譜の変化した結びを使う');
 const shucho=TEMPLATES.find(t=>t.id==='shucho-no-musume');
 assert.deepEqual([shucho.bpm,shucho.subdivision,templateScore(shucho).length],[110,4,120],'酋長の娘は4・4・3・4拍を2巡し、110 BPM・120ステップ');
 assert.equal(createHash('sha256').update(scoreText(templateScore(shucho).notes,120)).digest('hex'),'67722a545841a2d3c219d996f72c800876806965552689b2ac905fb35fac5050','酋長の娘は旋律と4・4・3・4拍を保ち、低音の分散和音と句末の間で伴奏に変化を付ける');
@@ -161,7 +169,7 @@ for(const template of TEMPLATES){
   assert(length>lastStep&&length-lastStep<=4,`${id}の末尾の空行が3ステップを超えています`);
   const interval=Math.round(60000/template.bpm/subdivision)/1000;
   assert(Math.max(length*interval,...score.notes.map(note=>note.step*interval+audioDurations.get(note.midi)))<=60,`${id}が音源の余韻を含めて60秒を超えています`);
-  assert([2,3,4,6,8].includes(subdivision),id);assert(template.listen.startsWith('https://'));
+  assert([2,3,4,6,8,12].includes(subdivision),id);assert(template.listen.startsWith('https://'));
   assert(template.bpm>=20&&template.bpm<=300);assert(template.source.startsWith('https://'));
   assert(score.notes.every(note=>ALLOWED.has(note.midi)),id);
   const melody=templateScore({...template,accompaniment:[]}),keys=new Set(score.notes.map(note=>`${note.step}:${note.midi}`));
@@ -671,8 +679,8 @@ for(const file of [textFile(`${textHeader}\nC5,invalid`),textFile('format=stepsc
   const before=JSON.stringify(midiUI.state()),bpm=midiElement('bpm').value;await midiUI.import(file);assert.equal(JSON.stringify(midiUI.state()),before,'TXT取り込み失敗では楽譜と履歴を保持する');assert.equal(midiElement('bpm').value,bpm);
 }
 midiUI.undo();assert.equal(JSON.stringify(midiUI.state()),editedMidi,'TXT取り込みを取り消すと元のMIDIと手動編集を復元する');assert.equal(midiElement('midiTracks').hidden,false);
-for(const interval of [25,172,3000]){await midiUI.import(textFile(`format=stepscore,version=1,step_ms=${interval}\nC5\n\n`));assert.equal(midiUI.interval(),interval);assert.equal(midiUI.state().length,2);assert.equal(midiElement('scoreTitle').value,'読み込み用','title省略時はファイル名を使う');assert(!Object.hasOwn(midiUI.state().sourceMidi.metadata,'extra'),'別の取り込みでは前のメタデータを残さない');}
-for(const subdivision of [1,2,3,4,6,8]){
+for(const interval of [17,25,172,3000]){await midiUI.import(textFile(`format=stepscore,version=1,step_ms=${interval}\nC5\n\n`));assert.equal(midiUI.interval(),interval);assert.equal(midiUI.state().length,2);assert.equal(midiElement('scoreTitle').value,'読み込み用','title省略時はファイル名を使う');assert(!Object.hasOwn(midiUI.state().sourceMidi.metadata,'extra'),'別の取り込みでは前のメタデータを残さない');}
+for(const subdivision of [1,2,3,4,6,8,12]){
   midiElement('bpm').value=120;midiElement('subdivision').value=subdivision;const interval=Math.round(60000/120/subdivision);await midiUI.import(textFile(`format=stepscore,version=1,step_ms=${interval}\nC5\n\n\n\n\n\n\n`));assert.equal(midiUI.state().length,7);assert.equal(midiUI.interval(),interval,'TXTの各単位で間隔とステップ数を保つ');
 }
 await midiUI.import(textFile(`${textHeader}\n\n\n\n`));assert.equal(midiUI.state().length,3);assert.equal(midiUI.state().notes.length,0);midiElement('transpose').value='1';midiElement('transpose').events.input();assert.equal(midiUI.state().length,3,'全休符も移調で短縮・拡張しない');
@@ -708,7 +716,7 @@ await midiUI.import(textFile(copiedText));assert.equal(midiElement('scoreTitle')
 textOutput.setSource(null);assert(!Object.hasOwn(parseText(element('txtPreview').value).metadata,'extra'),'取り込み元を解除すると未知のメタデータを残さない');
 // 保存ボタンの実際の処理を実行し、生成したMIDIを読み直して内容と休符を確認する。
 const midiExportScore=[{step:3,midi:72},{step:2,midi:72},{step:2,midi:76},{step:2,midi:76},{step:4,midi:66}];
-for(const [bpm,subdivision]of [[20,1],[240,2],[116,3],[120,4],[120,6],[300,8]]){
+for(const [bpm,subdivision]of [[20,1],[240,2],[116,3],[120,4],[120,6],[300,8],[120,12]]){
   const interval=Math.round(60000/bpm/subdivision);element('bpm').value=bpm;element('subdivision').value=subdivision;element('scoreTitle').value='edited?score';textOutput.setScore(midiExportScore,7);
   const beforeMidiSave=JSON.stringify(textOutput.state());textOutput.saveMidi();
   assert.equal(savedBlob.type,'audio/midi');assert.equal(savedName,'edited_score.mid');assert.match(outputMessages.at(-1),/対応外の1音を省き/);
