@@ -91,7 +91,7 @@ function clearMovePreview(){
   for(const cell of selectionCells)cell.classList.remove('moving');
 }
 function cancelNoteGesture(){
-  const gesture=noteGesture;noteGesture=null;if(gesture){cancelAnimationFrame(gesture.frame);suppressNoteClick=true;try{gesture.cell.releasePointerCapture(gesture.pointerId);}catch{}}
+  const gesture=noteGesture;noteGesture=null;if(gesture){cancelAnimationFrame(gesture.frame);suppressNoteClick=true;try{gesture.cell.releasePointerCapture(gesture.pointerId);}catch{}if(gesture.kind==='edit')renderOutput();}
   clearMovePreview();$('selectionBox').hidden=true;$('roll').classList.remove('selecting','moving-notes');
 }
 function clearNoteSelection(){
@@ -132,21 +132,37 @@ function gesturePosition(event){
 function updateNoteGesture(scroll=true){
   const gesture=noteGesture;if(!gesture)return;
   if(gesture.score!==notes){clearNoteSelection();return;}
-  gesture.moved ||= Math.hypot(gesture.x-gesture.startX,gesture.y-gesture.startY)>=5;if(!gesture.moved)return;
+  if(gesture.kind!=='edit'){
+    const origin=gesture.cell.getBoundingClientRect();
+    gesture.moved ||= Math.hypot(gesture.x-gesture.startX,gesture.y-gesture.startY)>=10&&(gesture.x<origin.left||gesture.x>=origin.right||gesture.y<origin.top||gesture.y>=origin.bottom);
+    if(!gesture.moved)return;
+  }
   const viewport=$('rollViewport'),rect=viewport.getBoundingClientRect(),before=viewport.scrollLeft,keyWidth=$('roll').children[1].children[0].getBoundingClientRect().width;
   if(scroll){if(gesture.x>rect.right-24)viewport.scrollLeft+=12;else if(gesture.x<rect.left+keyWidth+24)viewport.scrollLeft-=12;}
-  const position=gesturePosition({clientX:gesture.x,clientY:gesture.y});gesture.stepOffset=position.step-gesture.anchor.step;gesture.pitchOffset=position.midi-gesture.anchor.midi;
-  if(gesture.kind==='select'){
-    const loStep=Math.min(position.step,gesture.anchor.step),hiStep=Math.max(position.step,gesture.anchor.step),loMidi=Math.min(position.midi,gesture.anchor.midi),hiMidi=Math.max(position.midi,gesture.anchor.midi);
-    noteSelection=new Set(gesture.add?gesture.previous:[]);
-    for(const note of notes)if(note.step>=loStep&&note.step<=hiStep&&note.midi>=loMidi&&note.midi<=hiMidi)noteSelection.add(keyOf(note));renderNoteSelection();
-    const a=getCell(loStep,hiMidi).getBoundingClientRect(),b=getCell(hiStep,loMidi).getBoundingClientRect(),box=$('selectionBox');
-    box.hidden=false;Object.assign(box.style,{left:`${a.left-rect.left+viewport.scrollLeft}px`,top:`${a.top-rect.top}px`,width:`${b.right-a.left}px`,height:`${b.bottom-a.top}px`});
+  if(gesture.kind==='edit'){
+    const cell=document.elementFromPoint(gesture.x,gesture.y)?.closest('.cell');
+    if(cell){
+      const position={step:Number(cell.dataset.step),midi:Number(cell.dataset.midi)},from=gesture.last??position,distance=Math.max(Math.abs(position.step-from.step),Math.abs(position.midi-from.midi));
+      for(let i=0;i<=distance;i++){
+        const target=getCell(Math.round(from.step+(position.step-from.step)*(distance?i/distance:0)),Math.round(from.midi+(position.midi-from.midi)*(distance?i/distance:0)));
+        if(target&&!target.disabled)paint(target,gesture.on,false);
+      }
+      gesture.last=position;gesture.score=selectionScore=notes;focusCell(cell);
+    }else gesture.last=null;
   }else{
-    clearMovePreview();const {moved,valid}=selectionTarget(gesture.items,gesture.stepOffset,gesture.pitchOffset);
-    if(gesture.stepOffset||gesture.pitchOffset){
-      for(const cell of selectionCells)cell.classList.add('moving');
-      for(const note of moved){const cell=getCell(note.step,note.midi);if(cell){cell.classList.add('move-preview');cell.classList.toggle('move-invalid',!valid);moveCells.add(cell);}}
+    const position=gesturePosition({clientX:gesture.x,clientY:gesture.y});gesture.stepOffset=position.step-gesture.anchor.step;gesture.pitchOffset=position.midi-gesture.anchor.midi;
+    if(gesture.kind==='select'){
+      const loStep=Math.min(position.step,gesture.anchor.step),hiStep=Math.max(position.step,gesture.anchor.step),loMidi=Math.min(position.midi,gesture.anchor.midi),hiMidi=Math.max(position.midi,gesture.anchor.midi);
+      noteSelection=new Set(gesture.previous);
+      for(const note of notes)if(note.step>=loStep&&note.step<=hiStep&&note.midi>=loMidi&&note.midi<=hiMidi)noteSelection.add(keyOf(note));renderNoteSelection();
+      const a=getCell(loStep,hiMidi).getBoundingClientRect(),b=getCell(hiStep,loMidi).getBoundingClientRect(),box=$('selectionBox');
+      box.hidden=false;Object.assign(box.style,{left:`${a.left-rect.left+viewport.scrollLeft}px`,top:`${a.top-rect.top}px`,width:`${b.right-a.left}px`,height:`${b.bottom-a.top}px`});
+    }else{
+      clearMovePreview();const {moved,valid}=selectionTarget(gesture.items,gesture.stepOffset,gesture.pitchOffset);
+      if(gesture.stepOffset||gesture.pitchOffset){
+        for(const cell of selectionCells)cell.classList.add('moving');
+        for(const note of moved){const cell=getCell(note.step,note.midi);if(cell){cell.classList.add('move-preview');cell.classList.toggle('move-invalid',!valid);moveCells.add(cell);}}
+      }
     }
   }
   if(scroll&&viewport.scrollLeft!==before)scheduleNoteGesture();
@@ -156,38 +172,44 @@ function scheduleNoteGesture(){
 }
 function beginNoteGesture(event){
   suppressNoteClick=false;const cell=event.target.closest('.cell');
-  if(!cell||event.button!==0||event.pointerType==='touch')return;
+  if(!cell||event.button!==0||event.pointerType==='touch'||!event.shiftKey&&cell.disabled)return;
   event.preventDefault();stopPlayback();cancelNoteGesture();suppressNoteClick=false;
   const anchor={step:Number(cell.dataset.step),midi:Number(cell.dataset.midi)},previous=new Set(noteSelection),has=cell.getAttribute('aria-pressed')==='true';
-  const kind=has&&!event.shiftKey?'move':'select';
-  if(kind==='move'&&!noteSelection.has(keyOf(anchor)))noteSelection=new Set([keyOf(anchor)]);
-  noteGesture={kind,cell,anchor,previous,add:event.shiftKey,items:notes.filter(note=>noteSelection.has(keyOf(note))),score:notes,pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,x:event.clientX,y:event.clientY,moved:false,stepOffset:0,pitchOffset:0,frame:0};
-  renderNoteSelection();focusCell(cell,true);cell.setPointerCapture(event.pointerId);$('roll').classList.add(kind==='select'?'selecting':'moving-notes');
+  const kind=!event.shiftKey?'edit':has&&noteSelection.has(keyOf(anchor))?'move':'select';
+  if(kind==='edit'){clearNoteSelection();remember();paint(cell,!has,false);selectionScore=notes;}
+  noteGesture={kind,cell,anchor,previous:kind==='edit'?new Set():previous,on:!has,last:anchor,items:notes.filter(note=>noteSelection.has(keyOf(note))),score:notes,pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,x:event.clientX,y:event.clientY,moved:false,stepOffset:0,pitchOffset:0,frame:0};
+  renderNoteSelection();focusCell(cell,true);cell.setPointerCapture(event.pointerId);$('roll').classList.toggle('shift-editing',!!event.shiftKey);
+  if(kind!=='edit')$('roll').classList.add(kind==='select'?'selecting':'moving-notes');
 }
 function finishNoteGesture(event){
   const gesture=noteGesture;if(!gesture||gesture.pointerId!==event.pointerId)return;if(gesture.score!==notes){clearNoteSelection();return;}
-  gesture.x=event.clientX;gesture.y=event.clientY;updateNoteGesture(false);cancelNoteGesture();suppressNoteClick=gesture.moved;
+  gesture.x=event.clientX;gesture.y=event.clientY;updateNoteGesture(false);cancelNoteGesture();suppressNoteClick=gesture.kind==='edit'||gesture.moved;
+  if(gesture.kind==='edit'){focusCell(getCell(currentCell.step,currentCell.midi),true);return;}
   if(!gesture.moved)return;
-  if(gesture.kind==='move')moveNoteSelection(gesture.items,gesture.stepOffset,gesture.pitchOffset);else announce(`${noteSelection.size}音を選択しました。`);
+  if(gesture.kind==='move'){moveNoteSelection(gesture.items,gesture.stepOffset,gesture.pitchOffset);clearNoteSelection();}
+  else if(gesture.kind==='select')announce(`${noteSelection.size}音を選択しました。`);
 }
 function selectionKey(event,cell){
   if(event.key==='Escape'){event.preventDefault();clearNoteSelection();announce('選択を解除しました。');return true;}
   if(event.shiftKey&&['Enter',' '].includes(event.key)){event.preventDefault();toggleNoteSelection(cell);return true;}
   if(!noteSelection.size||event.ctrlKey||event.metaKey||event.altKey)return false;
   const direction={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,1],ArrowDown:[0,-1]}[event.key];
-  if(direction){event.preventDefault();stopPlayback();moveNoteSelection(notes.filter(note=>noteSelection.has(keyOf(note))),...direction);return true;}
+  if(direction&&event.shiftKey){event.preventDefault();stopPlayback();moveNoteSelection(notes.filter(note=>noteSelection.has(keyOf(note))),...direction);return true;}
   if(['Delete','Backspace'].includes(event.key)){event.preventDefault();stopPlayback();remember();notes=notes.filter(note=>!noteSelection.has(keyOf(note)));clearNoteSelection();render();announce('選択した音を削除しました。');return true;}
   return false;
 }
-function paint(cell,on){
+function paint(cell,on,output=true){
   const step=Number(cell.dataset.step),midi=Number(cell.dataset.midi),key=`${step}:${midi}`;
   if(!ALLOWED.has(midi)&&on)return;
   const has=notes.some(note=>keyOf(note)===key);if(has===on)return;
   if(on){notes.push({step,midi});void previewTone(midi);}else notes=notes.filter(note=>keyOf(note)!==key);
-  updateCell(cell,on);renderOutput();
+  updateCell(cell,on);if(output)renderOutput();
 }
 $('roll').addEventListener('pointerdown',beginNoteGesture);
-window.addEventListener('pointermove',event=>{if(!noteGesture||noteGesture.pointerId!==event.pointerId)return;noteGesture.x=event.clientX;noteGesture.y=event.clientY;scheduleNoteGesture();});
+window.addEventListener('keydown',event=>{if(event.key==='Shift')$('roll').classList.add('shift-editing');});
+window.addEventListener('keyup',event=>{if(event.key==='Shift')$('roll').classList.remove('shift-editing');});
+window.addEventListener('blur',()=>{$('roll').classList.remove('shift-editing');});
+window.addEventListener('pointermove',event=>{if(!noteGesture||noteGesture.pointerId!==event.pointerId)return;noteGesture.x=event.clientX;noteGesture.y=event.clientY;if(noteGesture.kind==='edit')updateNoteGesture();else scheduleNoteGesture();});
 window.addEventListener('pointerup',finishNoteGesture);window.addEventListener('pointercancel',event=>{if(noteGesture&&noteGesture.pointerId===event.pointerId){noteSelection=noteGesture.previous;cancelNoteGesture();renderNoteSelection();}});
 $('roll').addEventListener('lostpointercapture',()=>{if(noteGesture){noteSelection=noteGesture.previous;cancelNoteGesture();renderNoteSelection();}});
 $('roll').addEventListener('click',event=>{if(suppressNoteClick&&event.detail!==0){suppressNoteClick=false;return;}const key=event.target.closest('.key-preview');if(key){const midi=Number(key.dataset.midi);if(ALLOWED.has(midi)){stopPlayback();void previewTone(midi);}return;}const header=event.target.closest('.step-label');if(header){stopPlayback();selectStart(Number(header.dataset.step));return;}const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;if(event.shiftKey){toggleNoteSelection(cell);return;}clearNoteSelection();stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);});
