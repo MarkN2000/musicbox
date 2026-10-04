@@ -462,7 +462,7 @@ assert(html.includes('popovertarget="saveMenu"')&&html.includes('popover role="m
 assert.deepEqual([...html.match(/<div id="saveMenu".*?<\/div>/)[0].matchAll(/role="menuitem"[^>]*>(.*?)<\/button>/g)].map(match=>match[1]),['TXT','MIDI','MP3','OGG（Vorbis）']);
 
 // 最小限のDOMで、全ステップの描画と実際の履歴・リセット・キー操作を実行する。
-const controls=new Map(),listeners=new Map(),windowListeners=new Map(),previewedKeys=[];let nodeCount=0,outputWrites=0,focusedNode;
+const controls=new Map(),listeners=new Map(),windowListeners=new Map(),previewedKeys=[];let nodeCount=0,outputWrites=0,focusedNode,stopCalls=0;
 const nodeMethods={
   get firstElementChild(){return this.children[0];},get lastElementChild(){return this.children.at(-1);},
   get classList(){const cell=this;return {toggle(name,on){const names=new Set(cell.className.split(' ').filter(Boolean));if(on??!names.has(name))names.add(name);else names.delete(name);cell.className=[...names].join(' ');},add(...names){for(const name of names)this.toggle(name,true);},remove(...names){for(const name of names)this.toggle(name,false);}};},
@@ -472,10 +472,11 @@ const nodeMethods={
   querySelectorAll(selector){return this.children.flatMap(row=>row.children).filter(cell=>selector==='input:checked'?cell.checked:selector.split(',').some(name=>cell.className.split(' ').includes(name.slice(1))));},
   addEventListener(name,handler){(this.events??={})[name]=handler;},closest(selector){return this.className.split(' ').includes(selector.slice(1))?this:null;},focus(){focusedNode=this;},blur(){this.events?.blur?.();},
   setPointerCapture(){},releasePointerCapture(){},getBoundingClientRect(){
+    if(this.className.split(' ').includes('key-preview'))return this.parent.getBoundingClientRect();
     let left=0,top=0,width=500,height=1000;
     if(this.className.split(' ').includes('cell')){left=84+Number(this.dataset.step)*30-element('rollViewport').scrollLeft;top=28+(93-Number(this.dataset.midi))*23;width=30;height=23;}
     else if(this.className.split(' ').includes('grid-row')){top=28+(this.parent.children.indexOf(this)-1)*23;height=23;}
-    else if(this.className.split(' ').includes('key'))width=84;
+    else if(this.className.split(' ').includes('key')){width=84;top=this.parent.getBoundingClientRect().top;height=23;}
     return {left,top,width,height,right:left+width,bottom:top+height};
   }
 };
@@ -495,7 +496,7 @@ const ui=runInNewContext(`
   ${app.split('\n').find(line=>line.startsWith('function updateTiming(){'))}
   ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
   ({reset:()=>$('reset').onclick(),extend:()=>$('extend').onclick(),shrink:()=>$('shrink').onclick(),grid:renderGrid,cell:getCell,start:()=>startStep,interval:stepInterval,setScore:score=>{notes=score;},selectionScore:score=>{notes=score;history=[];renderGrid();},selected:()=>[...noteSelection].sort(),preview:()=>moveCells.size,updateGesture:updateNoteGesture,rhythm:(subdivision,beats,pickup)=>{$('subdivision').value=subdivision;beatsPerBar=beats;pickupBeats=pickup;},state:()=>({notes,length,beatsPerBar,pickupBeats,sourceMidi,currentCell,historyLength:history.length})});
-`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,elementFromPoint:(x,y)=>x>=84&&x<500&&y>=28?element('roll').children[1+Math.floor((y-28)/23)]?.children[1+Math.floor((x-84+element('rollViewport').scrollLeft)/30)]:null,addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},requestAnimationFrame:()=>1,cancelAnimationFrame(){},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){},announce(){}});
+`,{$:element,MAX_STEPS,ALLOWED,noteName,keyOf,TEMPLATES,templateScore,document:{createElement:node,elementFromPoint:(x,y)=>{const row=element('roll').children[1+Math.floor((y-28)/23)];return x>=0&&x<84&&y>=28?row?.children[0]?.children[0]:x>=84&&x<500&&y>=28?row?.children[1+Math.floor((x-84+element('rollViewport').scrollLeft)/30)]:null;},addEventListener:(name,handler)=>listeners.set(name,handler)},window:{addEventListener:(name,handler)=>windowListeners.set(name,handler)},requestAnimationFrame:()=>1,cancelAnimationFrame(){},midiSettings:()=>({tracks:[1,3]}),renderTracks:tracks=>{element('trackList').restored=tracks;},updateMidiRecommendation(){},render(){},renderOutput(){outputWrites++;},previewTone:midi=>previewedKeys.push(midi),stopPlayback(){stopCalls++;},announce(){}});
 const templateOptions=element('templateSelect').children.flatMap(group=>group.children);
 assert.equal(templateOptions.length,TEMPLATES.length);
 for(const template of TEMPLATES){const option=templateOptions.find(option=>option.value===template.id),label=option.firstElementChild;assert.equal(label.className,'template-label');assert.equal(label.textContent,template.title);assert.equal(label.firstElementChild.className,'template-composer');assert.equal(label.firstElementChild.textContent,`／${template.composer}`,'全曲の作曲者だけを小さく表示し、通常の選択欄にも文字を残す');}
@@ -546,7 +547,18 @@ ui.grid();const firstCell=ui.cell(0,72),otherCell=ui.cell(1,72),row=element('rol
 const pointer=cell=>{const rect=cell.getBoundingClientRect();return {target:cell,button:0,pointerType:'mouse',pointerId:1,clientX:rect.left+rect.width/2,clientY:rect.top+rect.height/2,preventDefault(){}};};
 const keyButtons=element('roll').children.slice(1).flatMap(row=>row.children[0].children),beforeKeyPreview=JSON.stringify(ui.state());assert.equal(keyButtons.length,30,'対応30音だけを試聴ボタンにする');assert.equal(ui.cell(0,66).parent.children[0].children.length,0,'使用不可の鍵盤に試聴ボタンを置かない');
 const whiteKey=firstCell.parent.children[0].children[0],blackKey=ui.cell(0,73).parent.children[0].children[0];
-element('roll').events.pointerdown(pointer(whiteKey));element('roll').events.click({...pointer(whiteKey),detail:1});element('roll').events.click({...pointer(blackKey),pointerType:'touch',detail:1});element('roll').events.click({...pointer(whiteKey),detail:0});assert.deepEqual(previewedKeys,[72,73,72],'マウス・タッチ・キーボードで1回ずつ鍵盤の音を鳴らす');assert.equal(JSON.stringify(ui.state()),beforeKeyPreview,'鍵盤の試聴で楽譜や履歴を変更しない');assert.equal(outputWrites,writes);
+const stopsBeforeKeys=stopCalls;
+element('roll').events.pointerdown(pointer(whiteKey));assert.deepEqual(previewedKeys,[72],'鍵盤は押した瞬間に鳴らす');windowListeners.get('pointerup')(pointer(whiteKey));element('roll').events.click({...pointer(whiteKey),detail:1});element('roll').events.pointerdown({...pointer(blackKey),pointerType:'touch'});windowListeners.get('pointerup')({...pointer(blackKey),pointerType:'touch'});element('roll').events.click({...pointer(blackKey),pointerType:'touch',detail:1});element('roll').events.click({...pointer(whiteKey),detail:0});assert.deepEqual(previewedKeys,[72,73,72],'マウス・タッチ・キーボードで1回ずつ鍵盤の音を鳴らす');
+const keyDragStart=previewedKeys.length,highKey=ui.cell(0,79).parent.children[0].children[0];
+element('roll').events.pointerdown(pointer(whiteKey));windowListeners.get('pointermove')(pointer(whiteKey));windowListeners.get('pointermove')(pointer(highKey));
+assert.deepEqual(previewedKeys.slice(keyDragStart),[72,73,74,75,76,77,78,79],'同じ鍵盤は繰り返さず、素早い移動で通過する対応音を鳴らす');
+windowListeners.get('pointermove')(pointer(whiteKey));assert.deepEqual(previewedKeys.slice(-7),[78,77,76,75,74,73,72],'戻ると逆順に鳴らす');
+windowListeners.get('pointermove')(pointer(firstCell));windowListeners.get('pointermove')(pointer(whiteKey));windowListeners.get('pointerup')(pointer(whiteKey));element('roll').events.click({...pointer(whiteKey),detail:1});
+const afterKeyRelease=previewedKeys.length;windowListeners.get('pointermove')(pointer(highKey));assert.equal(previewedKeys.length,afterKeyRelease,'離した後のclickや移動では鳴らさない');assert.equal(previewedKeys.at(-1),72,'鍵盤の外から戻った音を鳴らす');
+element('roll').events.pointerdown({...pointer(whiteKey),pointerType:'pen'});windowListeners.get('pointercancel')(pointer(whiteKey));windowListeners.get('pointermove')(pointer(highKey));assert.equal(previewedKeys.length,afterKeyRelease+1,'ペンの試聴も中断後は鳴らさない');
+element('roll').events.pointerdown(pointer(whiteKey));element('roll').events.lostpointercapture();windowListeners.get('pointermove')(pointer(highKey));assert.equal(previewedKeys.length,afterKeyRelease+2,'キャプチャを失ったら鍵盤試聴を終了する');
+const gapStart=previewedKeys.length,topKey=ui.cell(0,93).parent.children[0].children[0],gapKey=ui.cell(0,89).parent.children[0].children[0];element('roll').events.pointerdown(pointer(gapKey));windowListeners.get('pointermove')(pointer(topKey));windowListeners.get('pointerup')(pointer(topKey));element('roll').events.click({...pointer(gapKey),detail:1});assert.deepEqual(previewedKeys.slice(gapStart),[89,91,93],'通過した使用不可の鍵盤は鳴らさない');
+assert.equal(stopCalls,stopsBeforeKeys,'鍵盤試聴で再生を停止しない');assert.equal(JSON.stringify(ui.state()),beforeKeyPreview,'鍵盤からマス目へのドラッグでも楽譜や履歴を変更しない');assert.equal(outputWrites,writes);
 element('roll').events.pointerdown(pointer(firstCell));windowListeners.get('pointerup')(pointer(firstCell));element('roll').events.click({...pointer(firstCell),detail:1});assert.equal(outputWrites,writes+1);
 assert.equal(nodeCount,created,'音配置でマスを作り直しています');assert.equal(ui.cell(0,72),firstCell);assert.equal(firstCell.getAttribute('aria-pressed'),'true');assert.equal(otherCell.getAttribute('aria-pressed'),'false');
 element('roll').events.keydown({...pointer(firstCell),key:'ArrowRight'});assert.equal(focusedNode,otherCell);assert.equal(firstCell.tabIndex,-1);assert.equal(otherCell.tabIndex,0);
@@ -584,6 +596,7 @@ rollEvents.pointerdown(pointer(jitterCell));windowListeners.get('pointerup')(jit
 selectionFixture();drop(ui.cell(2,72),ui.cell(4,79));assert.deepEqual(selectedKeys(),['2:72','4:76','4:79'],'未選択の音からShiftドラッグで範囲選択できる');
 rollEvents.keydown({...pointer(ui.cell(2,72)),key:'Escape'});selectPhrase();
 assert.deepEqual(selectedKeys(),['2:72','4:76','4:79']);assert.equal(scoreState(),phraseBefore,'範囲選択で楽譜や履歴を変更しない');assert(element('selectionBox').hidden);assert.equal(ui.cell(2,72).getAttribute('aria-selected'),'true');
+const selectedBeforeKeys=selectedKeys(),selectedKey=ui.cell(0,72).parent.children[0].children[0];rollEvents.pointerdown(pointer(selectedKey));windowListeners.get('pointerup')(pointer(selectedKey));rollEvents.click({...pointer(selectedKey),detail:1});assert.deepEqual(selectedKeys(),selectedBeforeKeys,'鍵盤を鳴らしても音の選択を保つ');assert.equal(scoreState(),phraseBefore);
 drop(ui.cell(9,74),ui.cell(11,71),true);assert.deepEqual(selectedKeys(),['10:72','2:72','4:76','4:79'],'Shiftで範囲を追加する');
 rollEvents.click({...pointer(ui.cell(10,72)),shiftKey:true,detail:1});assert.deepEqual(selectedKeys(),['2:72','4:76','4:79'],'Shiftクリックで選択から解除する');
 drop(ui.cell(2,72),ui.cell(4,73),false);assert.deepEqual(scoreKeys(),['10:72','4:76','4:79','6:66'],'選択済みの音もShiftなしでは掴まず、押した音を削除する');assert.deepEqual(selectedKeys(),[],'通常入力へ戻ると選択を解除する');listeners.get('keydown')(key(false));ui.grid();assert.equal(scoreState(),phraseBefore);selectPhrase();
@@ -623,14 +636,15 @@ class TestAudio{
   createGain(){return {gain:{},connect(){},disconnect(){}};}
 }
 const sound=runInNewContext(`
-  let notes=[],length=4,audio=null,player=null,playbackRequest=0,drag=null,startStep=0;const audioBuffers=new Map(),audioLoads=new Map(),activeVoices=new Set();
+  let notes=[],length=4,audio=null,player=null,playbackRequest=0,drag=null,startStep=0,suppressNoteClick=false;const audioBuffers=new Map(),audioLoads=new Map(),activeVoices=new Set();
   ${app.slice(app.indexOf('function updateCell('),app.indexOf('function focusCell('))}
   ${app.slice(app.indexOf('function markStep('),app.indexOf('function renderOutput('))}
   ${app.slice(app.indexOf('function paint('),app.indexOf("$('roll').addEventListener('pointerdown'"))}
   ${app.slice(app.indexOf('function stopPlayback(){'),app.indexOf("$('play').onclick="))}
   ${app.slice(app.indexOf("$('play').onclick="),app.indexOf('function midiSettings(){'))}
+  ${app.split('\n').find(line=>line.startsWith("$('roll').addEventListener('click'"))}
   ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
-  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
+  ({edit:(step,midi,on)=>{stopPlayback();paint({dataset:{step,midi},classList:{toggle(){}},setAttribute(){}},on);},key:midi=>$('roll').events.click({target:{closest:selector=>selector==='.key-preview'?{dataset:{midi}}:null},detail:1}),stop:stopPlayback,select:step=>{stopPlayback();selectStart(step);},start:()=>startStep,preview:previewTone,load:loadTone,state:()=>notes,play:()=>$('play').onclick(),setScore:(score,steps)=>{notes=score;length=steps;},setTime:time=>{audio.currentTime=time;},time:()=>audio.currentTime,playback:()=>player});
 `,{$:element,ALLOWED,keyOf,noteName,window:{AudioContext:TestAudio},document:{addEventListener(){}},setTimeout:tick=>{scheduledTick=tick;return 1;},clearTimeout:()=>{scheduledTick=null;},renderOutput(){},announce:(message,error)=>{if(error)audioErrors.push(message);},fetch:async url=>{fetched.push(url);return response??{ok:true,arrayBuffer:async()=>({name:decodeURIComponent(url.split('/').at(-1).split('.ogg')[0])})};}});
 const settle=()=>new Promise(setImmediate);
 sound.edit(0,72,true);await settle();assert.deepEqual(played,[{name:'C5',time:12}]);assert.equal(sound.state().length,1);
@@ -645,6 +659,12 @@ element('loop').setAttribute('aria-pressed','false');const loadedCount=fetched.l
 // 音源の余韻より短い曲でも、音声クロック上の同じ間隔で繰り返す。
 response=resumeResult=undefined;sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);element('bpm').value=120;element('subdivision').value=4;
 const advance=time=>{while(sound.time()<time&&scheduledTick){sound.setTime(Math.min(time,sound.time()+.025));scheduledTick();}},near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-8,`再生時刻がずれています: ${actual} / ${expected}`);
+// 実際の鍵盤クリックを再生中に実行し、途中からの再生と発音時刻を保つ。
+const liveScore=[{step:0,midi:72},{step:2,midi:76},{step:3,midi:79}],liveCount=played.length;sound.setScore(liveScore,4);sound.select(2);await sound.play();
+const livePlayer=sound.playback(),liveFirst=livePlayer.start+.25,livePreviewTime=sound.time();sound.key(81);await settle();
+assert.equal(sound.playback(),livePlayer,'鍵盤を鳴らしても再生を継続する');assert.equal(sound.start(),2,'鍵盤試聴で開始位置を戻さない');assert.equal(element('play').getAttribute('aria-pressed'),'true');assert.equal(sound.state(),liveScore,'鍵盤試聴で楽譜を変更しない');
+advance(liveFirst+.13);assert.deepEqual(played.slice(liveCount).map(voice=>voice.name),['E5','A5','G5']);near(played[liveCount].time,liveFirst);near(played[liveCount+1].time,livePreviewTime);near(played[liveCount+2].time,liveFirst+.125);sound.stop();
+sound.setScore([{step:0,midi:72},{step:3,midi:72}],4);
 let playCount=played.length;await sound.play();let start=sound.playback().start;advance(start+.5);assert.equal(played.length-playCount,2,'ループオフで繰り返しています');advance(start+1.3);assert(sound.playback(),'余韻を途中で止めています');advance(start+1.4);assert.equal(sound.playback(),null);
 playCount=played.length;await sound.play();start=sound.playback().start;element('loop').onclick();advance(start+.45);advance(start+.95);
 for(const [i,offset]of[0,.375,.5,.875,1].entries())near(played[playCount+i].time,start+offset);

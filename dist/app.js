@@ -43,7 +43,7 @@ function renderGrid(){
     for(const midi of pitches){
       const allowed=ALLOWED.has(midi),black=noteName(midi).includes('#'),row=document.createElement('div');row.className='grid-row'+(!allowed?' unavailable':'');row.setAttribute('role','row');
       const key=document.createElement('div');key.className='key'+(black?' black':'')+(!allowed?' unavailable':'');key.setAttribute('role','rowheader');key.setAttribute('aria-label',`${noteName(midi)}${allowed?'':'、使用不可'}`);
-      if(allowed){const button=document.createElement('button');button.className='key-preview';button.dataset.midi=midi;button.textContent=noteName(midi);button.setAttribute('aria-label',`${noteName(midi)}を試聴`);button.title=`${noteName(midi)}を試聴`;key.append(button);}else key.textContent=noteName(midi);
+      if(allowed){const button=document.createElement('button');button.className='key-preview';button.dataset.midi=midi;button.textContent=noteName(midi);button.setAttribute('aria-label',`${noteName(midi)}を試聴`);button.title=`${noteName(midi)}を試聴（押したままなぞって連続試聴）`;key.append(button);}else key.textContent=noteName(midi);
       row.append(key);roll.append(row);
     }
   }
@@ -132,6 +132,17 @@ function gesturePosition(event){
 function updateNoteGesture(scroll=true){
   const gesture=noteGesture;if(!gesture)return;
   if(gesture.score!==notes){clearNoteSelection();return;}
+  if(gesture.kind==='preview'){
+    const key=document.elementFromPoint(gesture.x,gesture.y)?.closest('.key-preview');
+    if(!key){gesture.last=null;return;}
+    const midi=Number(key.dataset.midi);
+    if(midi!==gesture.last){
+      const from=gesture.last??midi,distance=Math.abs(midi-from);
+      for(let i=distance?1:0;i<=distance;i++){const pitch=from+Math.sign(midi-from)*i;if(ALLOWED.has(pitch))void previewTone(pitch);}
+      gesture.last=midi;
+    }
+    return;
+  }
   if(gesture.kind!=='edit'){
     const origin=gesture.cell.getBoundingClientRect();
     gesture.moved ||= Math.hypot(gesture.x-gesture.startX,gesture.y-gesture.startY)>=10&&(gesture.x<origin.left||gesture.x>=origin.right||gesture.y<origin.top||gesture.y>=origin.bottom);
@@ -171,8 +182,15 @@ function scheduleNoteGesture(){
   if(noteGesture&&!noteGesture.frame)noteGesture.frame=requestAnimationFrame(()=>{if(noteGesture){noteGesture.frame=0;updateNoteGesture();}});
 }
 function beginNoteGesture(event){
-  suppressNoteClick=false;const cell=event.target.closest('.cell');
-  if(!cell||event.button!==0||event.pointerType==='touch'||!event.shiftKey&&cell.disabled)return;
+  suppressNoteClick=false;if(event.button!==0||event.pointerType==='touch')return;
+  const key=event.target.closest('.key-preview');
+  if(key){
+    const midi=Number(key.dataset.midi);if(!ALLOWED.has(midi))return;
+    event.preventDefault();cancelNoteGesture();suppressNoteClick=false;
+    noteGesture={kind:'preview',cell:key,previous:new Set(noteSelection),score:notes,pointerId:event.pointerId,x:event.clientX,y:event.clientY,last:midi,frame:0};
+    key.focus({preventScroll:true});key.setPointerCapture(event.pointerId);void previewTone(midi);return;
+  }
+  const cell=event.target.closest('.cell');if(!cell||!event.shiftKey&&cell.disabled)return;
   event.preventDefault();stopPlayback();cancelNoteGesture();suppressNoteClick=false;
   const anchor={step:Number(cell.dataset.step),midi:Number(cell.dataset.midi)},previous=new Set(noteSelection),has=cell.getAttribute('aria-pressed')==='true';
   const kind=!event.shiftKey?'edit':has&&noteSelection.has(keyOf(anchor))?'move':'select';
@@ -183,7 +201,8 @@ function beginNoteGesture(event){
 }
 function finishNoteGesture(event){
   const gesture=noteGesture;if(!gesture||gesture.pointerId!==event.pointerId)return;if(gesture.score!==notes){clearNoteSelection();return;}
-  gesture.x=event.clientX;gesture.y=event.clientY;updateNoteGesture(false);cancelNoteGesture();suppressNoteClick=gesture.kind==='edit'||gesture.moved;
+  gesture.x=event.clientX;gesture.y=event.clientY;updateNoteGesture(false);cancelNoteGesture();suppressNoteClick=gesture.kind==='preview'||gesture.kind==='edit'||gesture.moved;
+  if(gesture.kind==='preview')return;
   if(gesture.kind==='edit'){focusCell(getCell(currentCell.step,currentCell.midi),true);return;}
   if(!gesture.moved)return;
   if(gesture.kind==='move'){moveNoteSelection(gesture.items,gesture.stepOffset,gesture.pitchOffset);clearNoteSelection();}
@@ -209,10 +228,10 @@ $('roll').addEventListener('pointerdown',beginNoteGesture);
 window.addEventListener('keydown',event=>{if(event.key==='Shift')$('roll').classList.add('shift-editing');});
 window.addEventListener('keyup',event=>{if(event.key==='Shift')$('roll').classList.remove('shift-editing');});
 window.addEventListener('blur',()=>{$('roll').classList.remove('shift-editing');});
-window.addEventListener('pointermove',event=>{if(!noteGesture||noteGesture.pointerId!==event.pointerId)return;noteGesture.x=event.clientX;noteGesture.y=event.clientY;if(noteGesture.kind==='edit')updateNoteGesture();else scheduleNoteGesture();});
+window.addEventListener('pointermove',event=>{if(!noteGesture||noteGesture.pointerId!==event.pointerId)return;noteGesture.x=event.clientX;noteGesture.y=event.clientY;if(noteGesture.kind==='edit'||noteGesture.kind==='preview')updateNoteGesture();else scheduleNoteGesture();});
 window.addEventListener('pointerup',finishNoteGesture);window.addEventListener('pointercancel',event=>{if(noteGesture&&noteGesture.pointerId===event.pointerId){noteSelection=noteGesture.previous;cancelNoteGesture();renderNoteSelection();}});
 $('roll').addEventListener('lostpointercapture',()=>{if(noteGesture){noteSelection=noteGesture.previous;cancelNoteGesture();renderNoteSelection();}});
-$('roll').addEventListener('click',event=>{if(suppressNoteClick&&event.detail!==0){suppressNoteClick=false;return;}const key=event.target.closest('.key-preview');if(key){const midi=Number(key.dataset.midi);if(ALLOWED.has(midi)){stopPlayback();void previewTone(midi);}return;}const header=event.target.closest('.step-label');if(header){stopPlayback();selectStart(Number(header.dataset.step));return;}const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;if(event.shiftKey){toggleNoteSelection(cell);return;}clearNoteSelection();stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);});
+$('roll').addEventListener('click',event=>{if(suppressNoteClick&&event.detail!==0){suppressNoteClick=false;return;}const key=event.target.closest('.key-preview');if(key){const midi=Number(key.dataset.midi);if(ALLOWED.has(midi))void previewTone(midi);return;}const header=event.target.closest('.step-label');if(header){stopPlayback();selectStart(Number(header.dataset.step));return;}const cell=event.target.closest('.cell');if(!cell||cell.disabled)return;if(event.shiftKey){toggleNoteSelection(cell);return;}clearNoteSelection();stopPlayback();remember();paint(cell,cell.getAttribute('aria-pressed')!=='true');focusCell(cell,true);});
 $('roll').addEventListener('keydown',event=>{const header=event.target.closest('.step-label');if(header){if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const step=Number(header.dataset.step)+(event.key==='ArrowLeft'?-1:1);if(step<0||step>=length)return;stopPlayback();selectStart(step);$('roll').firstElementChild.children[step+1].focus();return;}const cell=event.target.closest('.cell');if(!cell)return;if(selectionKey(event,cell))return;let step=Number(cell.dataset.step),midi=Number(cell.dataset.midi);if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();if(event.key==='ArrowLeft')step--;if(event.key==='ArrowRight')step++;if(event.key==='ArrowUp'||event.key==='ArrowDown'){const direction=event.key==='ArrowUp'?1:-1;do{midi+=direction;}while(midi>=53&&midi<=93&&!ALLOWED.has(midi));}if(step<0||step>=length||!ALLOWED.has(midi))return;focusCell(getCell(step,midi),true);});
 for(const [id,delta] of [['extend',4],['shrink',-1]])$(id).onclick=()=>{
   if(length+delta<1||length+delta>MAX_STEPS)return;
