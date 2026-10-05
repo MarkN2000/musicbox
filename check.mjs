@@ -6,6 +6,14 @@ import {runInNewContext} from 'node:vm';
 import {NOTE_NAMES,ALLOWED,noteName,noteNumber,serialize,parseText,convertMidi,suggestMidiTranspositions,validateMidiHeader,validateNote,keyOf,MAX_STEPS,MAX_NOTES} from './dist/core.js';
 import {TEMPLATES,templateScore} from './dist/templates.js';
 const require=createRequire(import.meta.url),{Midi}=require('@tonejs/midi');
+const server=await readFile('serve.mjs','utf8');
+const unpublishedStyles=runInNewContext(server.slice(server.indexOf('function unpublishedStyles('),server.indexOf('createServer('))+'\nunpublishedStyles;');
+const oldTitles="{id:'published-song',title:'既存曲'}",newTitles=oldTitles+'\n{id:"new-song",title:"追加曲"}';
+assert.equal(unpublishedStyles(newTitles,oldTitles),'#templateSelect option[value="new-song"]{color:#a03529}','未プッシュの追加曲だけを赤くする');
+assert.equal(unpublishedStyles(newTitles,newTitles),'','プッシュ後は通常の色へ戻る');
+assert.equal(unpublishedStyles('{"id":"old-song"},{"id":"new-song"}',"{id:'old-song'}"),'#templateSelect option[value="new-song"]{color:#a03529}','JSONの曲データも未プッシュの比較に含める');
+assert.equal(unpublishedStyles(oldTitles,oldTitles+'\n{id:"removed-song"}'),'','削除した曲と既存曲を赤くしない');
+for(const [id,title] of [['we-wish-you-a-merry-christmas','おめでとうクリスマス'],['happy-birthday','ハッピーバースデー'],['auld-lang-syne','蛍の光'],['frog-chorus','かえるの合唱'],['korobushka','コロブチカ'],['nedelka','一週間']])assert.equal(TEMPLATES.find(template=>template.id===id).title,title,'画面と保存に使う曲名は日本で使われる日本語名');
 // 編曲の検査では、新形式で書き出した本文だけを照合する。
 const scoreText=(notes,length)=>serialize(notes,length,125).split('\n').slice(1).join('\n');
 assert.equal(NOTE_NAMES.length,30);assert.equal(ALLOWED.size,30);
@@ -156,10 +164,64 @@ assert.deepEqual(templateScore({...toySoldiers,accompaniment:[]}).notes.filter(n
 const shucho=TEMPLATES.find(t=>t.id==='shucho-no-musume');
 assert.deepEqual([shucho.bpm,shucho.subdivision,templateScore(shucho).length],[110,4,120],'酋長の娘は4・4・3・4拍を2巡し、110 BPM・120ステップ');
 assert.equal(createHash('sha256').update(scoreText(templateScore(shucho).notes,120)).digest('hex'),'67722a545841a2d3c219d996f72c800876806965552689b2ac905fb35fac5050','酋長の娘は旋律と4・4・3・4拍を保ち、低音の分散和音と句末の間で伴奏に変化を付ける');
-assert.equal(TEMPLATES.length,97);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,97);
+const home=TEMPLATES.find(t=>t.id==='home-sweet-home'),homeLead=templateScore({...home,accompaniment:[]}).notes;
+assert.deepEqual([home.title,home.bpm,home.beatsPerBar,home.pickupBeats,home.subdivision,templateScore(home).length,home.melody.reduce((sum,[,span])=>sum+span,0)],['埴生の宿',104,4,1,4,128,128],'埴生の宿は歌唱主題の前半を一巡し、弱起と句末を合わせて32拍');
+assert.deepEqual(homeLead.slice(0,8).map(n=>[n.step,noteName(n.midi)]),[[0,'C5'],[3,'D5'],[4,'E5'],[10,'F5'],[12,'F5'],[18,'G5'],[20,'G5'],[26,'E5']],'PD歌唱譜の弱起と付点の発音位置');
+assert.deepEqual(homeLead.at(-1),{step:116,midi:72},'埴生の宿は前半の主音で結ぶ');
+assert(templateScore({...home,melody:[]}).notes.every(n=>n.midi<72),'埴生の宿の伴奏は全主旋律より低くし、長音を打ち直さない');
+const sunset=TEMPLATES.find(t=>t.id==='yuyake-koyake'),sunsetLead=templateScore({...sunset,accompaniment:[]}).notes;
+assert.deepEqual([sunset.bpm,sunset.beatsPerBar,sunset.pickupBeats,sunset.subdivision,templateScore(sunset).length,sunset.melody.reduce((sum,[,span])=>sum+span,0)],[84,2,0,4,128,128],'夕焼け小焼けは原譜の2拍子・84 BPMで歌唱部16小節を一巡する');
+assert.deepEqual(sunsetLead.filter(n=>n.step>=64&&n.step<72).map(n=>[n.step,noteName(n.midi)]),[[64,'C6'],[67,'D6'],[68,'C6'],[70,'A5']],'夕焼け小焼けの第9小節の付点8分と16分を保持する');
+assert.deepEqual(sunsetLead.at(-1),{step:120,midi:84});assert.equal(sunsetLead.length,51);
+assert.deepEqual(sunset.melody.at(-2),['C6',6]);assert.deepEqual(sunset.melody.at(-1),['',2],'夕焼け小焼けの原譜の終止と8分休符');
+assert(templateScore({...sunset,melody:[]}).notes.every(n=>n.midi<72),'夕焼け小焼けの伴奏は主旋律より低くする');
+for(const [id,bpm,meter,pickup,division,steps,first,last] of [["yuki",92,2,0,4,128,"G5","C5"],["kimigayo",82,4,0,4,176,"D5","D5"],["yokohama-shika",104,2,0,4,128,"A5","F5"],["chocho",112,2,0,4,128,"G5","C5"],["old-macdonald",132,4,0,4,192,"C6","C6"],["london-bridge",132,4,0,2,64,"G5","C5"],["hall-of-mountain-king",132,4,0,4,128,"A5","A5"],["neko-funjatta",120,4,1,4,128,"D6","F6"],["scotland-the-brave",120,4,0.5,4,128,"G5","E5"],["bun-bun-bun",112,2,0,4,96,"G5","C5"],["colonel-bogey",156,4,0,4,160,"G5","C5"],["kokyo-no-sora",108,2,0,4,128,"G5","C6"],["czardas",144,2,0,4,128,"D5","D5"],["chanson-oignon",116,2,1,6,192,"G4","C5"],["working-on-the-railroad",116,4,0,4,256,"G5","G5"],["soviet-anthem",88,4,0.5,4,130,"G5","G5"]]){
+  const song=TEMPLATES.find(t=>t.id===id);assert(song,id+'の収録');
+  assert.deepEqual([song.bpm,song.beatsPerBar,song.pickupBeats,song.subdivision,templateScore(song).length],[bpm,meter,pickup,division,steps],id+'の拍・弱起・一巡の長さ');
+  const lead=templateScore({...song,accompaniment:[]}).notes;assert.equal(noteName(lead[0].midi),first,id+'の歌い出し');assert.equal(noteName(lead.at(-1).midi),last,id+'の結び');
+  assert(templateScore({...song,melody:[]}).notes.every(n=>n.midi<Math.min(...lead.map(n=>n.midi))),id+'の伴奏が主旋律の音域に入らない');
+}
+const londonBridge=TEMPLATES.find(t=>t.id==='london-bridge');assert.deepEqual(londonBridge.melody.slice(-4),[['D5',4],['G5',4],['E5',2],['C5',6]],'ロンドン橋はPD公開譜のMy fair ladyの結び');
+assert.deepEqual(londonBridge.melody.slice(0,4),[['G5',3],['A5',1],['G5',2],['F5',2]],'ロンドン橋は付点のGから短いAに進む');
+assert.deepEqual(templateScore({...londonBridge,accompaniment:[]}).notes.filter(n=>noteName(n.midi)==='A5').map(n=>n.step),[3,35],'両方の付点句のAを2拍目の後半へ置く');
+const onionSong=TEMPLATES.find(t=>t.id==='chanson-oignon');assert.deepEqual(onionSong.melody.slice(0,4),[['G4',2],['G4',2],['G4',2],['C5',6]],'玉葱の歌は三分割の弱起から付点四分の拍へ進む');
+// 参照譜の拍子・弱起・抜粋の区切りと、タイ・三連符の位置を固定する。
+for(const [id,bpm,meter,pickup,division,length] of [["jingle-bells",120,4,0,4,256],["frog-chorus",88,2,0,4,64],["korobushka",112,4,0,2,64],["mars",144,5,0,6,240],["nedelka",116,2,0,4,128]]){
+ const t=TEMPLATES.find(t=>t.id===id);assert(t,id+'の収録');assert.deepEqual([t.bpm,t.beatsPerBar,t.pickupBeats,t.subdivision,templateScore(t).length],[bpm,meter,pickup,division,length],id+'の抜粋範囲');
+ const lead=templateScore({...t,accompaniment:[]}).notes;if(id!=='mars')assert(templateScore({...t,melody:[]}).notes.every(n=>n.midi<Math.min(...lead.map(n=>n.midi))),id+'の低い伴奏');
+}
+const jingleBells=TEMPLATES.find(t=>t.id==='jingle-bells');assert.deepEqual(jingleBells.melody.slice(15,20),[['E5',4],['E5',4],['E5',4],['E5',2],['E5',2]],'ジングルベル第22小節の3四分と2八分');
+const mars=TEMPLATES.find(t=>t.id==='mars');assert.deepEqual(mars.accompaniment.slice(0,8).map(e=>e[1]),[2,2,2,6,6,3,3,6],'火星は5拍の三連符と8分音符を6分割で表す');
+assert.deepEqual(mars.melody.slice(8,13),[['G4',18],['D5',12],['C#5',30],['C#5,A#4',18],['A#5,C#5',12]],'火星は主題の重複と長い保持を詰めて応答へつなぐ');
+assert.deepEqual(mars.melody.slice(13),[['G5',18],['E6',12],['D#6',18],['A#5',12],['G5',18],['E6',12],['D#6',30]],'火星は後半の応答を残し、終わりの保持は1小節にする');
+const marsBacking=templateScore({...mars,melody:[]}).notes;let marsAt=0;
+for(const [pitch,span] of mars.melody){
+ const lowest=Math.min(...pitch.split(',').map(noteNumber));
+ assert(marsBacking.filter(n=>n.step>=marsAt&&n.step<marsAt+span).every(n=>n.midi<lowest),'火星の伴奏は保持中の主旋律より低くし、主旋律を打ち直さない');
+ marsAt+=span;
+}
+assert.deepEqual(marsBacking.filter(n=>n.step>=120&&n.midi>=noteNumber('E4')).map(n=>[n.step,noteName(n.midi)]),[[120,'E4'],[138,'G4'],[150,'G4'],[168,'A#4'],[180,'G4'],[198,'G4'],[210,'A#4']],'火星は第121〜124小節の第2ファゴットの内声を添え、最後のタイは打ち直さない');
+assert.equal(templateScore(mars).notes.length,180,'火星の短い構成のまま伴奏を29音増やす');
+const nedelka=TEMPLATES.find(t=>t.id==='nedelka'),nedelkaLead=templateScore({...nedelka,accompaniment:[]}).notes;assert(nedelkaLead.some(n=>n.step===28&&noteName(n.midi)==='C6'));assert(!nedelkaLead.some(n=>[32,64,96,128].includes(n.step)),'一週間の小節をまたぐタイは再発音しない');
+
+assert(!TEMPLATES.some(t=>["flight-of-bumblebee","cha-tsumi","traumerei","hoshi-no-sekai"].includes(t.id)),'指定された4曲を削除');
+const snowLead=templateScore({...TEMPLATES.find(t=>t.id==='yuki'),accompaniment:[]}).notes;
+assert.deepEqual(snowLead.filter(n=>n.step>=48&&n.step<64).map(n=>[n.step,noteName(n.midi)]),[[48,'E5'],[51,'F5'],[52,'G5'],[54,'G5'],[56,'D5'],[59,'E5'],[60,'D5']],'雪の第7〜8小節は原譜のラ・シ♭・ド／ソ・ラ・ソ');
+const czardasLead=templateScore({...TEMPLATES.find(t=>t.id==='czardas'),accompaniment:[]}).notes;
+assert(czardasLead.some(n=>n.step===97&&noteName(n.midi)==='B4'),'チャルダッシュの第13小節はBナチュラル');
+const korob=TEMPLATES.find(t=>t.id==='korobushka'),korobLead=templateScore({...korob,accompaniment:[]}).notes;
+assert.deepEqual(korobLead.filter(n=>n.step<8).map(n=>[n.step,noteName(n.midi)]),[[0,'A5'],[2,'E5'],[3,'F5'],[4,'G5'],[6,'F5'],[7,'E5']],'コロブチカは馴染みのある高い第五音から始める');
+assert.deepEqual(korob.melody.slice(21,27),[['',1],['G5',2],['A#5',1],['D6',2],['C6',1],['A#5',1]],'コロブチカの応答は八分休符から付点句へつなぐ');
+assert.deepEqual(korob.melody.slice(-4),[['F5',2],['D5',2],['D5',2],['',2]],'コロブチカの主題と応答を各1巡で閉じる');
+assert.equal(Math.round(60000/korob.bpm/korob.subdivision),268,'体感速度を2倍にしてもステップは短くしない');
+assert.deepEqual(templateScore({...onionSong,accompaniment:[]}).notes.filter(n=>n.step>=102&&n.step<114).map(n=>noteName(n.midi)),['E5','E5','E5','G5'],'玉葱の歌のコーラスはB・B・B・Dを一括移調');
+assert.equal(onionSong.title,'玉葱の歌');
+assert.equal(TEMPLATES.find(t=>t.id==='yokohama-shika').category,'クラシック・民謡');
+assert.equal(TEMPLATES.filter(t=>t.id==='gymnopedie-1').length,1,'既存のジムノペディを重複収録しない');
+assert.equal(TEMPLATES.length,120);assert.equal(new Set(TEMPLATES.map(template=>template.id)).size,120);
 for(const [id,title] of [['twinkle','きらきら星変奏曲'],['minuet','メヌエット'],['mozart-turkish-march','トルコ行進曲'],['brahms-lullaby','子守歌 Op.49-4'],['schubert-ave-maria','アヴェ・マリア D.839'],['clair-de-lune','月の光']])assert.equal(TEMPLATES.find(template=>template.id===id).title,title,'一般的な短い曲名を使う');
-assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':83,'行進曲・軍歌':14});
-assert(!TEMPLATES.some(t=>/悲愴|埴生|トロイメライ|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
+assert.deepEqual(TEMPLATES.reduce((counts,t)=>({...counts,[t.category]:(counts[t.category]??0)+1}),{}),{'クラシック・民謡':102,'行進曲・軍歌':18});
+assert(!TEMPLATES.some(t=>/悲愴|セレナーデ|^白鳥$|月光|アニー|ロンドンデリー|ダニー|花の歌|紡ぎ歌|K\.545|ユーモレスク/.test(t.title)));
 for(const template of TEMPLATES){
   assert(/^[ぁ-ゖー]+$/.test(template.reading),`${template.id}の曲名の読み`);
   const {id}=template,score=templateScore(template),length=score.length,subdivision=template.subdivision??4;
@@ -192,7 +254,7 @@ const entertainerRows=scoreText(entertainerScore.notes,128).split('\n');
 for(const[step,row]of [[8,'G4,A#4,C5,E5'],[52,'A4,C5,F#5,C6'],[112,'F4,C5,G#5,D6'],[122,'C4,E4,G4,C6'],[126,'C4,E4,G4']])assert.equal(entertainerRows[step],row,'エンターテイナーのC7・D7・Fmと末尾の主和音');
 assert.deepEqual(entertainerRows.slice(0,3),['D5','D#5','C4,E5'],'エンターテイナーのループは末尾の主和音から弱起と主題へ戻る');
 const canCan=TEMPLATES.find(t=>t.id==='offenbach-can-can'),canCanScore=templateScore(canCan),canCanLead=templateScore({...canCan,accompaniment:[]}).notes;
-assert.equal(canCan.title,'天国と地獄・序曲');assert.equal(canCan.bpm,128);assert.equal(canCan.beatsPerBar,2);assert.equal(canCan.pickupBeats,1);assert.equal(canCanScore.length,128);
+assert.equal(canCan.title,'天国と地獄より「序曲」');assert.equal(canCan.bpm,128);assert.equal(canCan.beatsPerBar,2);assert.equal(canCan.pickupBeats,1);assert.equal(canCanScore.length,128);
 // Bote & Bock版10779の印刷ページ124〜125。ピアノの下側を8va込みの実音で採り、歌唱声部の弱起と第1括弧までを照合する。
 const canCanOriginal=[
   ['A4',4],
@@ -500,10 +562,8 @@ const ui=runInNewContext(`
 const templateOptions=element('templateSelect').children.flatMap(group=>group.children);
 assert.equal(templateOptions.length,TEMPLATES.length);
 for(const template of TEMPLATES){const option=templateOptions.find(option=>option.value===template.id),label=option.firstElementChild;assert.equal(label.className,'template-label');assert.equal(label.textContent,template.title);assert.equal(label.firstElementChild.className,'template-composer');assert.equal(label.firstElementChild.textContent,`／${template.composer}`,'全曲の作曲者だけを小さく表示し、通常の選択欄にも文字を残す');}
-assert.deepEqual(element('templateSelect').children.map(group=>[group.label,group.children.length]),[['クラシック・民謡',83],['行進曲・軍歌',14]],'分類とグループの表示順');
-assert.deepEqual(templateOptions.map(option=>option.value),[
-  "eine-kleine","salut-damour","schubert-ave-maria","aogeba-totoshi","akatombo","grieg-morning","amaryllis","amazing-grace","burgmuller-arabesque","alps-ichimanjaku","ievan-polkka","mozart-dies-irae","pomp-and-circumstance","we-wish-you-a-merry-christmas","william-tell","westminster-chimes","blue-danube","beethoven-fate","fur-elise","grandfathers-clock","oklahoma-mixer","maidens-prayer","oborozukiyo","toy-soldiers","kagome-kagome","pachelbel-canon","carmen-prelude","ode-to-joy","silent-night","twinkle","csikos-post","greensleeves","nutcracker-march","sugar-plum-fairy","waltz-of-flowers","mendelssohn-wedding-march","minute-waltz","kojo-no-tsuki","brahms-lullaby","wagner-bridal-chorus","sakura-sakura","air-on-g","the-entertainer","vivaldi-spring","vivaldi-winter-first","gymnopedie-1","shabondama","shucho-no-musume","jesu-joy","shojoji","little-fugue","new-world-largo","new-world-fourth","clair-de-lune","tetsudo-shoka","offenbach-can-can","toryanse","bach-toccata-fugue","mozart-turkish-march","nanatsu-no-ko","dolls-dream","chopin-nocturne-2","swan-lake-scene","happy-birthday","taki-hana","mendelssohn-spring-song","haru-no-ogawa","handel-hallelujah","brahms-hungarian-dance-5","bizet-farandole","mozart-figaro-overture","furusato","chopin-prelude-7","mussorgsky-promenade","auld-lang-syne","ravel-bolero","handel-see-conquering-hero","mushi-no-koe","minuet","jupiter","momiji","smetana-moldau","wagner-ride-of-valkyries","us-field-artillery","erika","military-march","sakkijarven-polkka","when-johnny","stars-and-stripes","panzerlied","funiculi-funicula","british-grenadiers","yuki-no-shingun","radetzky-march","army-goes-rolling-along","battle-hymn","sousa-washington-post"
-],'曲名の読みの五十音順で、漢字・英字と同じ作品の曲を並べる');
+assert.deepEqual(element('templateSelect').children.map(group=>[group.label,group.children.length]),[['クラシック・民謡',102],['行進曲・軍歌',18]],'分類とグループの表示順');
+assert.deepEqual(templateOptions.map(option=>option.value),["eine-kleine","salut-damour","schubert-ave-maria","aogeba-totoshi","akatombo","grieg-morning","amaryllis","amazing-grace","burgmuller-arabesque","alps-ichimanjaku","ievan-polkka","mozart-dies-irae","nedelka","pomp-and-circumstance","william-tell","westminster-chimes","blue-danube","beethoven-fate","fur-elise","grandfathers-clock","oklahoma-mixer","maidens-prayer","oborozukiyo","we-wish-you-a-merry-christmas","toy-soldiers","frog-chorus","kagome-kagome","pachelbel-canon","carmen-prelude","ode-to-joy","kimigayo","silent-night","twinkle","csikos-post","greensleeves","nutcracker-march","sugar-plum-fairy","waltz-of-flowers","mendelssohn-wedding-march","minute-waltz","kojo-no-tsuki","kokyo-no-sora","brahms-lullaby","korobushka","wagner-bridal-chorus","sakura-sakura","air-on-g","the-entertainer","vivaldi-spring","vivaldi-winter-first","gymnopedie-1","shabondama","shucho-no-musume","jesu-joy","shojoji","little-fugue","jingle-bells","new-world-largo","new-world-fourth","working-on-the-railroad","czardas","chocho","clair-de-lune","tetsudo-shoka","offenbach-can-can","toryanse","bach-toccata-fugue","mozart-turkish-march","nanatsu-no-ko","dolls-dream","neko-funjatta","chopin-nocturne-2","swan-lake-scene","happy-birthday","taki-hana","home-sweet-home","mendelssohn-spring-song","haru-no-ogawa","handel-hallelujah","brahms-hungarian-dance-5","bizet-farandole","mozart-figaro-overture","furusato","chopin-prelude-7","mussorgsky-promenade","bun-bun-bun","auld-lang-syne","ravel-bolero","handel-see-conquering-hero","mushi-no-koe","minuet","momiji","smetana-moldau","hall-of-mountain-king","yuyake-koyake","old-macdonald","yuki","yokohama-shika","london-bridge","mars","jupiter","wagner-ride-of-valkyries","us-field-artillery","erika","military-march","sakkijarven-polkka","when-johnny","stars-and-stripes","soviet-anthem","chanson-oignon","panzerlied","funiculi-funicula","british-grenadiers","colonel-bogey","scotland-the-brave","yuki-no-shingun","radetzky-march","army-goes-rolling-along","battle-hymn","sousa-washington-post"],'曲名の読みの五十音順で、漢字・英字と同じ作品の曲を並べる');
 const initialControls=new Map(['scoreTitle','bpm','subdivision'].map(id=>[id,node()]));
 initialControls.get('bpm').value=html.match(/id="bpm"[^>]*value="([^"]+)"/)[1];initialControls.get('subdivision').value=html.match(/<option value="([^"]+)" selected>/)[1];
 const initialUI=runInNewContext(`
@@ -781,4 +841,4 @@ for(const [bpm,subdivision,score,size]of [['',4,[],7],[19,4,[],7],[301,4,[],7],[
 }
 for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const url=new URL(match[1],'https://musicbox.test/');if(url.origin==='https://musicbox.test')await readFile('dist/'+decodeURIComponent(url.pathname.slice(1)||'index.html'));}
 await import('./check-mp3.mjs');
-process.stdout.write('確認成功: 30音・OGG音源・テンプレート97曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
+process.stdout.write('確認成功: 30音・OGG音源・テンプレート120曲の音域と和音と余韻込み60秒以内・配置時の試聴と取り消し・音源キャッシュと失敗時の楽譜保持・ループ再生と途中の切り替え・更新識別子・TXT形式・MIDI変換・上限・UI参照・全ステップ描画・4ステップの追加と1ステップの削除・スクロール・削除した音の復元・リセット・Ctrl/Command+Z・MIDI設定と履歴の復元\n');
