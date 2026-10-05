@@ -36,11 +36,9 @@ export function validateDefinitions(instruments,soundsets) {
   const prepare=list=>{if(!Array.isArray(list)||!list.length)throw new Error('楽器・音源の設定が不正です。');const ids=new Set();return list.map(item=>{if(typeof item?.id!=='string'||!/^[a-z0-9][a-z0-9-]*$/.test(item.id)||ids.has(item.id)||!['ja','en'].every(lang=>typeof item.name?.[lang]==='string'&&item.name[lang]))throw new Error('楽器・音源の設定が不正です。');ids.add(item.id);return {...item,allowed:definitionNotes(item)};});};
   const sounds=prepare(soundsets),profiles=prepare(instruments);
   for(const sound of sounds){
-    if(!['samples','synth'].includes(sound.kind)||sound.kind==='synth'&&(!sound.range||sound.files||sound.notes)||sound.kind==='samples'&&(sound.range||sound.notes))throw new Error('楽器・音源の設定が不正です。');
-    if(sound.kind==='samples'){
-      const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
-      if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
-    }
+    if(sound.kind!=='samples'||sound.range||sound.notes)throw new Error('楽器・音源の設定が不正です。');
+    const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
+    if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
   }
   for(const profile of profiles){const sound=sounds.find(item=>item.id===profile.defaultSoundset);if(!!profile.range===!!profile.notes||!sound||![...profile.allowed].every(n=>n>=21&&n<=108&&sound.allowed.has(n)))throw new Error('楽器・音源の設定が不正です。');}
   return {instruments:profiles,soundsets:sounds};
@@ -105,7 +103,7 @@ export function validateMidiHeader(buffer) {
   if (!view.getUint16(12)) throw new Error('MIDIの時間解像度が不正です。');
 }
 export function convertMidi(midi, {tracks, subdivision, transpose = 0}) {
-  if (!Number.isSafeInteger(subdivision) || subdivision<1 || !Number.isInteger(transpose) || Math.abs(transpose) > 24) throw new Error('変換設定が不正です。');
+  if (!Number.isSafeInteger(subdivision) || subdivision<1 || !Number.isInteger(transpose) || Math.abs(transpose) > 127) throw new Error('変換設定が不正です。');
   if (!Number.isFinite(midi.header.ppq) || midi.header.ppq <= 0 || !tracks.length || tracks.some(index => !Number.isInteger(index) || !midi.tracks[index])) throw new Error('トラックを選択してください。');
   const selected = tracks.flatMap(index=>midi.tracks[index].notes);
   if (selected.length > MAX_NOTES) throw new Error('ノート数の上限（100,000音）を超えています。');
@@ -125,7 +123,7 @@ export function convertMidi(midi, {tracks, subdivision, transpose = 0}) {
   return {notes, length, sourceCount:selected.length, merged:selected.length-notes.length};
 }
 export function convertScore(source,{subdivision,transpose=0}) {
-  if(!Number.isSafeInteger(subdivision)||subdivision<1||!Number.isInteger(transpose)||Math.abs(transpose)>24)throw new Error('変換設定が不正です。');
+  if(!Number.isSafeInteger(subdivision)||subdivision<1||!Number.isInteger(transpose)||Math.abs(transpose)>127)throw new Error('変換設定が不正です。');
   const ratio=subdivision/rhythmMetadata(source.metadata).subdivision,unique=new Map();
   let length=Math.max(1,Math.ceil(source.length*ratio));
   for(const note of source.notes){const moved={step:Math.round(note.step*ratio),midi:note.midi+transpose};validateNote(moved,MAX_STEPS);unique.set(keyOf(moved),moved);length=Math.max(length,moved.step+1);}

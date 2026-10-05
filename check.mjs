@@ -3,13 +3,19 @@ import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {Worker} from 'node:worker_threads';
+import {createContext,runInContext} from 'node:vm';
 import {noteName,noteNumber,serialize,parseText,convertMidi,convertScore,suggestTranspositions,validateMidiHeader,rhythmMetadata,validateDefinitions,MAX_STEPS} from './dist/core.js';
 import {catalogData} from './build-catalog.mjs';
 const json=async file=>JSON.parse(await readFile(file,'utf8'));
 const profiles=await json('dist/instruments.json'),sounds=await json('dist/audio/soundsets.json'),definitions=validateDefinitions(profiles,sounds);
 const allowed=definitions.instruments.find(item=>item.id==='musicbox-30').allowed;
 assert.equal(definitions.instruments[0].allowed.size,30);assert.equal(definitions.instruments[1].allowed.size,88);
+assert.equal(definitions.instruments[0].defaultSoundset,'musicbox-30');
 assert.equal(definitions.instruments[1].defaultSoundset,'vsco-piano');assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-piano').allowed],[...definitions.instruments[1].allowed],'録音ピアノは全88鍵を再生できる');
+const piano61=definitions.instruments.find(item=>item.id==='piano-61');assert.equal(piano61.defaultSoundset,'vsco-piano');assert.deepEqual([...piano61.allowed],Array.from({length:61},(_,i)=>36+i),'61鍵ピアノはC2〜C7');
+const marimba61=definitions.instruments.find(item=>item.id==='marimba-61');assert.equal(marimba61.defaultSoundset,'vsco-marimba');assert.deepEqual([...marimba61.allowed],Array.from({length:61},(_,i)=>36+i),'61音マリンバはC2〜C7');
+assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-marimba').allowed],[...marimba61.allowed],'マリンバ音源は61音だけ用意する');
+const xylophone32=definitions.instruments.find(item=>item.id==='xylophone-32');assert.equal(xylophone32.defaultSoundset,'vsco-xylophone');assert.deepEqual([...xylophone32.allowed],Array.from({length:32},(_,i)=>77+i),'32音木琴は学校用の実音F5〜C8');assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-xylophone').allowed],[...xylophone32.allowed],'木琴には専用音源の全32音を紐付ける');
 for(let midi=0;midi<=127;midi++)assert.equal(noteNumber(noteName(midi)),midi);
 const full=[{step:0,midi:0},{step:0,midi:127},{step:1,midi:66},{step:1,midi:66}],text=serialize(full,4,172,{title:'曲,%2C=値',extra:'100%',steps_per_quarter:'3',time_signature:'6/8'}),parsed=parseText(text);
 assert.deepEqual(parsed.notes,[full[0],full[1],full[2]]);assert.equal(parsed.length,4);assert.equal(parsed.stepMs,172);assert.equal(parsed.metadata.title,'曲,%2C=値');assert.equal(parsed.metadata.extra,'100%');assert.equal(rhythmMetadata(parsed.metadata).beatsPerBar,3);
@@ -26,7 +32,7 @@ assert.throws(()=>validateDefinitions(profiles,[{...sounds[0],base:'../private/'
 const expectedCatalog=await catalogData();assert.equal(await readFile('dist/samples/index.json','utf8'),expectedCatalog,'サンプルを編集したらnpm run buildで一覧を更新してください');
 const catalog=JSON.parse(expectedCatalog);
 for(const entry of catalog.samples){const score=parseText(await readFile('dist/samples/'+entry.file,'utf8'));for(const key of ['source','listen','detail','work_id','pickup_steps'])assert(!(key in score.metadata),'削除した項目をサンプルTXTに残さない：'+key);for(const [key,value] of Object.entries(score.metadata).filter(([key])=>key.startsWith('title_')))assert(value&&value!==score.metadata.title,'基本名と同じ表示名は省略する：'+entry.file+' '+key);assert.deepEqual(parseText(serialize(score.notes,score.length,score.stepMs,score.metadata)),score);}
-for(const sound of sounds.filter(item=>item.kind==='samples')){const hash=createHash('sha256');for(const file of Object.values(sound.files)){const bytes=await readFile('dist/'+sound.base+file);assert(bytes.length);if(file.endsWith('.ogg'))assert.equal(bytes.subarray(0,4).toString(),'OggS');hash.update(bytes);}assert.equal(hash.digest('hex').slice(0,16),sound.revision,'音源を変更したらnpm run buildで識別子を更新してください');}
+for(const sound of sounds){const hash=createHash('sha256');for(const file of Object.values(sound.files)){const bytes=await readFile('dist/'+sound.base+file);assert(bytes.length);if(file.endsWith('.ogg'))assert.equal(bytes.subarray(0,4).toString(),'OggS');hash.update(bytes);}assert.equal(hash.digest('hex').slice(0,16),sound.revision,'音源を変更したらnpm run buildで識別子を更新してください');}
 const ja=await json('dist/locales/ja.json'),en=await json('dist/locales/en.json');assert.deepEqual(Object.keys(ja).sort(),Object.keys(en).sort());for(const key of Object.keys(ja))assert.deepEqual([...ja[key].matchAll(/\{(\w+)\}/g)].map(match=>match[1]).sort(),[...en[key].matchAll(/\{(\w+)\}/g)].map(match=>match[1]).sort(),key);
 const {Midi}=createRequire(import.meta.url)('@tonejs/midi'),midi=new Midi();midi.header.setTempo(120);const track=midi.addTrack();track.addNote({midi:72,ticks:480,durationTicks:480});track.addCC({number:123,ticks:1920,value:0});const buffer=midi.toArray().buffer;
 validateMidiHeader(buffer);assert.equal(convertMidi(midi,{tracks:[0],subdivision:4}).length,8);assert.equal(convertMidi(new Midi(buffer),{tracks:[0],subdivision:4}).length,16,'元ファイルの曲末イベントまでの休符を保持');assert.throws(()=>validateMidiHeader(new ArrayBuffer(2)));
@@ -44,5 +50,22 @@ try{
   const large=new Midi(),largeTrack=large.addTrack();for(let step=0;step<16000;step++)for(let voice=0;voice<5;voice++)largeTrack.addNote({midi:21+(step+voice*13)%88,ticks:step*120,durationTicks:120});const largeBytes=large.toArray();await writeFile('.sites-runtime/large-import-check.mid',largeBytes);
   reply=await request({id:4,sourceId:3,kind:'midi',buffer:largeBytes.buffer,subdivision:4,allowed:[...definitions.instruments[1].allowed]});assert(!reply.error,reply.error);assert.equal(reply.result.notes.length,80000);assert.equal(reply.result.length,16000);console.log('80,000音のWorker処理（ms）:',reply.timing);
 }finally{await worker.terminate();}
+// 実際の再生処理を仮想時計で動かし、余韻中のループ切り替えとタイマー遅延を再現する。
+{
+  const app=await readFile('dist/app.js','utf8'),controls=new Map(['play','loop','rollViewport'].map(id=>[id,{pressed:'false',getAttribute(){return this.pressed;},setAttribute(name,value){if(name==='aria-pressed')this.pressed=value;}}])),audio={currentTime:10},events=[];let nextTick;
+  const context=createContext({$:id=>controls.get(id),audio,player:null,playbackRequest:0,startStep:0,length:8,notes:Array.from({length:8},(_,step)=>({step,midi:72+step})),ALLOWED:new Set(Array.from({length:8},(_,i)=>72+i)),stepInterval:()=>125,t:key=>key,showError:message=>{if(message)throw new Error(message);},resumeAudio:async()=>{},loadTone:async()=>{},selectStart(){},markStep(){},ensureStepVisible(){},playTone:(midi,time)=>{events.push({midi,time,now:audio.currentTime});return time+3;},setTimeout:fn=>{nextTick=fn;return 1;},document:{addEventListener(){}}});
+  context.stopPlayback=()=>{context.playbackRequest++;context.player=null;controls.get('play').pressed='false';};
+  runInContext(app.slice(app.indexOf("$('play').onclick=async()=>{"),app.indexOf('let importWorker=null')),context);
+  await controls.get('play').onclick();for(let tick=1;tick<=70;tick++){audio.currentTime=10+tick*.025;nextTick();}
+  assert.equal(events.length,8,'ループOFFで次の周回を予約しない');assert.equal(context.player.next,8);assert(audio.currentTime<context.player.end,'譜面終了後も余韻を保持');
+  for(let i=1;i<8;i++)assert(Math.abs(events[i].time-events[i-1].time-.125)<1e-9,'通常再生の間隔を維持');
+  controls.get('loop').onclick();nextTick();assert.equal(events.length,9,'余韻中のループONで溜まった音を一斉に予約しない');assert.equal(events[8].midi,72,'先頭の音から再開');assert(Math.abs(events[8].time-audio.currentTime-.06)<1e-9);
+  audio.currentTime=events[8].time+.01;nextTick();assert.equal(context.player.visual,0,'再開位置は先頭ステップ');
+  audio.currentTime=12.6;nextTick();assert.equal(events.length,10,'タイマーが遅れても音を一斉に予約しない');assert.equal(events[9].midi,73,'次の音を飛ばさずに再開');assert(Math.abs(events[9].time-audio.currentTime-.06)<1e-9);
+  controls.get('loop').onclick();for(let tick=1;tick<=200;tick++){audio.currentTime=12.6+tick*.025;nextTick();}
+  assert.equal(events.length,16,'ループOFF後は現在の周回を最後まで再生');assert.equal(context.player,null,'余韻の終了で停止');assert(events.every(event=>event.time>=event.now),'過去時刻の発音を予約しない');
+  for(let i=10;i<16;i++)assert(Math.abs(events[i].time-events[i-1].time-.125)<1e-9,'再開後も間隔を維持');
+  console.log('確認成功：余韻中のループON・タイマー遅延・先頭からの再開・通常再生の間隔・余韻後の停止');
+}
 await import('./check-mp3.mjs');
 console.log('確認成功：stepscore・サンプルの再入出力・楽器と音源・曲目一覧・翻訳・WorkerのTXT/MIDI変換');

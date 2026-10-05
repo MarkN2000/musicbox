@@ -20,7 +20,7 @@ export async function catalogData(){
 export async function build(){
   await writeFile(resolve(root,'samples/index.json'),await catalogData());
   const sounds=JSON.parse(await readFile(resolve(root,'audio/soundsets.json'),'utf8'));
-  for(const sound of sounds.filter(item=>item.kind==='samples')){const hash=createHash('sha256');for(const file of Object.values(sound.files))hash.update(await readFile(resolve(root,sound.base,file)));sound.revision=hash.digest('hex').slice(0,16);}
+  for(const sound of sounds){const hash=createHash('sha256');for(const file of Object.values(sound.files))hash.update(await readFile(resolve(root,sound.base,file)));sound.revision=hash.digest('hex').slice(0,16);}
   await writeFile(resolve(root,'audio/soundsets.json'),JSON.stringify(sounds,null,2)+'\n');
   const revision=async file=>createHash('sha256').update((await readFile(resolve(root,file),'utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,16);
   const coreRevision=await revision('core.js'),i18nRevision=await revision('i18n.js');

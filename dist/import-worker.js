@@ -1,4 +1,4 @@
-import {parseText,convertMidi,convertScore,suggestTranspositions,validateMidiHeader,MAX_NOTES} from './core.js?v=5fc2d433403ea49e';
+import {parseText,convertMidi,convertScore,suggestTranspositions,validateMidiHeader,MAX_NOTES} from './core.js?v=42e856d1d9211278';
 let sourceId,source;
 function midiConstructor(){return import('./vendor/midi.js').then(()=>self.Midi);}
 self.onmessage=async({data})=>{

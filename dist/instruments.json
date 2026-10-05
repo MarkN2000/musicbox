@@ -50,5 +50,41 @@
       108
     ],
     "defaultSoundset": "vsco-piano"
+  },
+  {
+    "id": "piano-61",
+    "name": {
+      "ja": "61鍵ピアノ",
+      "en": "61-key piano"
+    },
+    "range": [
+      36,
+      96
+    ],
+    "defaultSoundset": "vsco-piano"
+  },
+  {
+    "id": "marimba-61",
+    "name": {
+      "ja": "61音マリンバ",
+      "en": "61-note marimba"
+    },
+    "range": [
+      36,
+      96
+    ],
+    "defaultSoundset": "vsco-marimba"
+  },
+  {
+    "id": "xylophone-32",
+    "name": {
+      "ja": "32音木琴",
+      "en": "32-note xylophone"
+    },
+    "range": [
+      77,
+      108
+    ],
+    "defaultSoundset": "vsco-xylophone"
   }
 ]
