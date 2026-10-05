@@ -1,0 +1,56 @@
+[
+  {
+    "id": "musicbox-30",
+    "name": {
+      "ja": "録音オルゴール",
+      "en": "Recorded music box"
+    },
+    "kind": "samples",
+    "base": "audio/musicbox-30/",
+    "files": {
+      "F3": "F3.ogg",
+      "G3": "G3.ogg",
+      "C4": "C4.ogg",
+      "D4": "D4.ogg",
+      "E4": "E4.ogg",
+      "F4": "F4.ogg",
+      "G4": "G4.ogg",
+      "A4": "A4.ogg",
+      "A#4": "A#4.ogg",
+      "B4": "B4.ogg",
+      "C5": "C5.ogg",
+      "C#5": "C#5.ogg",
+      "D5": "D5.ogg",
+      "D#5": "D#5.ogg",
+      "E5": "E5.ogg",
+      "F5": "F5.ogg",
+      "F#5": "F#5.ogg",
+      "G5": "G5.ogg",
+      "G#5": "G#5.ogg",
+      "A5": "A5.ogg",
+      "A#5": "A#5.ogg",
+      "B5": "B5.ogg",
+      "C6": "C6.ogg",
+      "C#6": "C#6.ogg",
+      "D6": "D6.ogg",
+      "D#6": "D#6.ogg",
+      "E6": "E6.ogg",
+      "F6": "F6.ogg",
+      "G6": "G6.ogg",
+      "A6": "A6.ogg"
+    },
+    "revision": "5f9652f68cb13e68"
+  },
+  {
+    "id": "basic",
+    "name": {
+      "ja": "簡易音色",
+      "en": "Basic tone"
+    },
+    "kind": "synth",
+    "range": [
+      21,
+      108
+    ]
+  }
+]

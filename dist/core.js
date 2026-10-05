@@ -1,4 +1,3 @@
-export const NOTE_NAMES = 'F3 G3 C4 D4 E4 F4 G4 A4 A#4 B4 C5 C#5 D5 D#5 E5 F5 F#5 G5 G#5 A5 A#5 B5 C6 C#6 D6 D#6 E6 F6 G6 A6'.split(' ');
 const PITCHES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
 export const MAX_STEPS = 16384;
 export const MAX_NOTES = 100000;
@@ -14,7 +13,38 @@ export function noteNumber(name) {
   if (pitch < 0 || midi < 0 || midi > 127) throw new Error('音名が不正です。');
   return midi;
 }
-export const ALLOWED = new Set(NOTE_NAMES.map(noteNumber));
+export function rhythmMetadata(metadata = {}) {
+  const value=metadata.steps_per_quarter??'4',subdivision=Number(value);
+  if(!/^\d+$/.test(value)||!Number.isSafeInteger(subdivision)||subdivision<1)throw new Error('拍子・ステップ単位の設定が不正です。');
+  let signature=null;
+  if(metadata.time_signature!==undefined){
+    const match=/^(\d+)\/(\d+)$/.exec(metadata.time_signature);
+    if(!match)throw new Error('拍子・ステップ単位の設定が不正です。');
+    signature=match.slice(1).map(Number);
+    if(!signature.every(n=>Number.isSafeInteger(n)&&n>0)||!Number.isInteger(Math.log2(signature[1])))throw new Error('拍子・ステップ単位の設定が不正です。');
+  }
+  return {subdivision,signature,beatsPerBar:signature?signature[0]*4/signature[1]:0};
+}
+export function definitionNotes(definition) {
+  let values;
+  if(definition.range){const [lo,hi]=definition.range;if(definition.range.length!==2||!Number.isInteger(lo)||!Number.isInteger(hi)||lo<0||hi>127||lo>hi)throw new Error('楽器・音源の音域が不正です。');values=Array.from({length:hi-lo+1},(_,i)=>lo+i);}
+  else values=(definition.notes??Object.keys(definition.files??{})).map(noteNumber);
+  if(!values.length||new Set(values).size!==values.length)throw new Error('楽器・音源の音域が不正です。');
+  return new Set(values);
+}
+export function validateDefinitions(instruments,soundsets) {
+  const prepare=list=>{if(!Array.isArray(list)||!list.length)throw new Error('楽器・音源の設定が不正です。');const ids=new Set();return list.map(item=>{if(typeof item?.id!=='string'||!/^[a-z0-9][a-z0-9-]*$/.test(item.id)||ids.has(item.id)||!['ja','en'].every(lang=>typeof item.name?.[lang]==='string'&&item.name[lang]))throw new Error('楽器・音源の設定が不正です。');ids.add(item.id);return {...item,allowed:definitionNotes(item)};});};
+  const sounds=prepare(soundsets),profiles=prepare(instruments);
+  for(const sound of sounds){
+    if(!['samples','synth'].includes(sound.kind)||sound.kind==='synth'&&(!sound.range||sound.files||sound.notes)||sound.kind==='samples'&&(sound.range||sound.notes))throw new Error('楽器・音源の設定が不正です。');
+    if(sound.kind==='samples'){
+      const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
+      if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
+    }
+  }
+  for(const profile of profiles){const sound=sounds.find(item=>item.id===profile.defaultSoundset);if(!!profile.range===!!profile.notes||!sound||![...profile.allowed].every(n=>n>=21&&n<=108&&sound.allowed.has(n)))throw new Error('楽器・音源の設定が不正です。');}
+  return {instruments:profiles,soundsets:sounds};
+}
 export const keyOf = note => `${note.step}:${note.midi}`;
 export function validateNote(note, length) {
   if (!Number.isInteger(note.step) || note.step < 0 || note.step >= length || !Number.isInteger(note.midi) || note.midi < 0 || note.midi > 127) throw new Error('ステップまたは音の高さが不正です。');
@@ -22,6 +52,8 @@ export function validateNote(note, length) {
 export function serialize(notes, length, stepMs, metadata = {}) {
   if (!Number.isInteger(length) || length < 1 || length > MAX_STEPS) throw new Error('ステップ数が不正です。');
   if (!Number.isSafeInteger(stepMs) || stepMs <= 0) throw new Error('再生間隔は正の整数msにしてください。');
+  rhythmMetadata(metadata);
+  if(notes.length>MAX_NOTES)throw new Error('ノート数の上限（100,000音）を超えています。');
   const header = ['format=stepscore', 'version=1', `step_ms=${stepMs}`];
   for (const [key, value] of Object.entries(metadata)) {
     if (!key || /[,=\r\n]/.test(key) || typeof value !== 'string' || /[\r\n]/.test(value)) throw new Error('メタデータが不正です。改行は使えません。');
@@ -30,7 +62,6 @@ export function serialize(notes, length, stepMs, metadata = {}) {
   const rows = Array.from({length}, () => new Set());
   for (const note of notes) {
     validateNote(note, length);
-    if (!ALLOWED.has(note.midi)) throw new Error('対応外の音を解決してから出力してください。');
     rows[note.step].add(note.midi);
   }
   return header.join(',') + '\n' + rows.map(row => [...row].sort((a,b)=>a-b).map(noteName).join(',')).join('\n') + '\n';
@@ -51,6 +82,7 @@ export function parseText(text) {
   if(metadata.version!=='1')throw new Error('対応していないstepscoreのversionです。');
   const stepMs=Number(metadata.step_ms);
   if(!/^\d+$/.test(metadata.step_ms??'')||!Number.isSafeInteger(stepMs)||stepMs<=0)throw new Error('step_msは正の整数で指定してください。');
+  rhythmMetadata(metadata);
   if(!rows.length||rows.length>MAX_STEPS)throw new Error('TXTは1〜16,384ステップにしてください。');
   const unique=new Map();let sourceCount=0;
   for(const [step,row]of rows.entries()){
@@ -72,9 +104,8 @@ export function validateMidiHeader(buffer) {
   if (view.getUint16(12) & 0x8000) throw new Error('SMPTE時間形式のMIDIには対応していません。PPQ形式で書き出してください。');
   if (!view.getUint16(12)) throw new Error('MIDIの時間解像度が不正です。');
 }
-export function convertMidi(midi, {tracks, subdivision, transpose = 0, minimumSteps = 16}) {
-  if (![1,2,3,4,6,8,12].includes(subdivision) || !Number.isInteger(transpose) || Math.abs(transpose) > 24) throw new Error('変換設定が不正です。');
-  if(![1,16].includes(minimumSteps))throw new Error('最小ステップ数が不正です。');
+export function convertMidi(midi, {tracks, subdivision, transpose = 0}) {
+  if (!Number.isSafeInteger(subdivision) || subdivision<1 || !Number.isInteger(transpose) || Math.abs(transpose) > 24) throw new Error('変換設定が不正です。');
   if (!Number.isFinite(midi.header.ppq) || midi.header.ppq <= 0 || !tracks.length || tracks.some(index => !Number.isInteger(index) || !midi.tracks[index])) throw new Error('トラックを選択してください。');
   const selected = tracks.flatMap(index=>midi.tracks[index].notes);
   if (selected.length > MAX_NOTES) throw new Error('ノート数の上限（100,000音）を超えています。');
@@ -89,20 +120,28 @@ export function convertMidi(midi, {tracks, subdivision, transpose = 0, minimumSt
     unique.set(keyOf(converted), converted);
   }
   const notes = [...unique.values()];
-  const length = notes.reduce((end,note)=>Math.max(end,note.step+1),Math.max(minimumSteps,Math.ceil(endTick / midi.header.ppq * subdivision)));
+  const length = notes.reduce((end,note)=>Math.max(end,note.step+1),Math.max(1,Math.ceil(endTick / midi.header.ppq * subdivision)));
   if (length > MAX_STEPS) throw new Error('ステップ数の上限（16,384）を超えています。細かさを下げてください。');
   return {notes, length, sourceCount:selected.length, merged:selected.length-notes.length};
 }
-export function suggestMidiTranspositions(midi, settings) {
-  const original=convertMidi(midi,{...settings,transpose:0}),counts=new Map(),candidates=[];
-  for(const note of original.notes)counts.set(note.midi,(counts.get(note.midi)||0)+1);
+export function convertScore(source,{subdivision,transpose=0}) {
+  if(!Number.isSafeInteger(subdivision)||subdivision<1||!Number.isInteger(transpose)||Math.abs(transpose)>24)throw new Error('変換設定が不正です。');
+  const ratio=subdivision/rhythmMetadata(source.metadata).subdivision,unique=new Map();
+  let length=Math.max(1,Math.ceil(source.length*ratio));
+  for(const note of source.notes){const moved={step:Math.round(note.step*ratio),midi:note.midi+transpose};validateNote(moved,MAX_STEPS);unique.set(keyOf(moved),moved);length=Math.max(length,moved.step+1);}
+  if(length>MAX_STEPS)throw new Error('ステップ数の上限（16,384）を超えています。細かさを下げてください。');
+  return {notes:[...unique.values()],length,sourceCount:source.notes.length,merged:source.notes.length-unique.size};
+}
+export function suggestTranspositions(notes,allowed) {
+  const counts=new Map(),candidates=[];
+  for(const note of notes)counts.set(note.midi,(counts.get(note.midi)||0)+1);
   for(let transpose=-24;transpose<=24;transpose++){
     let outside=0,valid=true;
     for(const [pitch,count]of counts){
       const moved=pitch+transpose;if(moved<0||moved>127){valid=false;break;}
-      if(!ALLOWED.has(moved))outside+=count;
+      if(!allowed.has(moved))outside+=count;
     }
-    if(valid)candidates.push({transpose,outside,total:original.notes.length});
+    if(valid)candidates.push({transpose,outside,total:notes.length});
   }
   return candidates.sort((a,b)=>a.outside-b.outside||Math.abs(a.transpose)-Math.abs(b.transpose)||a.transpose-b.transpose).slice(0,3);
 }

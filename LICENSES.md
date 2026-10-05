@@ -5,14 +5,14 @@
 | 対象 | ライセンス |
 | --- | --- |
 | 本プロジェクトが作成したコード・文書 | [MIT](./LICENSE) |
-| MarkNが録音・作成した30音のOGG音源（`dist/audio/*.ogg`） | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) |
-| 収録サンプルの旋律・伴奏・編曲・楽譜データ（`dist/templates.js` のデータ部分） | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) |
+| MarkNが録音・作成した30音のOGG音源（`dist/audio/musicbox-30/*.ogg`） | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) |
+| 収録サンプルの編曲・楽譜データ（`dist/samples/*.txt` と曲目一覧） | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) |
 
 ## ソフトウェア：MIT
 
 本プロジェクトのコード・文書はMITライセンスで公開します。改変・再配布・商用利用が可能です。再配布時は著作権表示と許諾文を保持してください。本文は [LICENSE](./LICENSE) にあります。
 
-`dist/templates.js` に含まれるデータの展開などの処理コードもMITです。同梱の第三者ライブラリには、後述の元のライセンスが適用されます。
+楽譜の読み込み・編集・曲目一覧の生成コードもMITです。同梱の第三者ライブラリには、後述の元のライセンスが適用されます。
 
 ## 音源・サンプル楽譜：CC0
 

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "musicbox-30",
+    "name": {
+      "ja": "30弁オルゴール",
+      "en": "30-note music box"
+    },
+    "notes": [
+      "F3",
+      "G3",
+      "C4",
+      "D4",
+      "E4",
+      "F4",
+      "G4",
+      "A4",
+      "A#4",
+      "B4",
+      "C5",
+      "C#5",
+      "D5",
+      "D#5",
+      "E5",
+      "F5",
+      "F#5",
+      "G5",
+      "G#5",
+      "A5",
+      "A#5",
+      "B5",
+      "C6",
+      "C#6",
+      "D6",
+      "D#6",
+      "E6",
+      "F6",
+      "G6",
+      "A6"
+    ],
+    "defaultSoundset": "musicbox-30"
+  },
+  {
+    "id": "piano-88",
+    "name": {
+      "ja": "88鍵ピアノ",
+      "en": "88-key piano"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "basic"
+  }
+]

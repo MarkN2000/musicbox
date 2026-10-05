@@ -2,16 +2,22 @@
 
 公開サイト：**[musicbox.markn2000.com](https://musicbox.markn2000.com)**
 
-30音のオルゴール向けに、楽譜を編集・試聴してTXT・MIDI・MP3・OGG（Vorbis）を書き出すWebアプリです。
+30音オルゴールや88鍵の楽器向けに、楽譜を編集・試聴してTXT・MIDI・MP3・OGG（Vorbis）を書き出すWebアプリです。
 
-- マス目を押した瞬間に音を配置・削除し、実際のオルゴール音源で試聴できます。押したままなぞると連続入力でき、音のあるマスから始めると連続削除できます。ひと続きの操作はCtrl／Command＋Zでまとめて戻せます。
+- マス目を押した瞬間に音を配置・削除できます。押したままなぞると連続入力でき、音のあるマスから始めると連続削除できます。ひと続きの操作はCtrl／Command＋Zでまとめて戻せます。
 - 左の鍵盤で音を試聴できます。曲の再生中も音を重ねて鳴らせ、マウスで押したままなぞると連続して鳴らせます。
 - Shift＋ドラッグで範囲選択し、Shiftを押して選択済みの音を掴むとまとめて移動できます。離すと選択を解除します。Shift＋クリックで選択を追加・解除、Shift＋矢印キーで微調整、Deleteで一括削除、Escで解除できます。
+- 上部の各マスをクリックすると、そのステップを再生開始位置に設定します。ドラッグで範囲を選び、「削除」で音だけ消すか、「削除して詰める」で後ろを詰められます。Delete／Backspaceは音だけ削除、Shiftを加えると後ろを詰めます。左右矢印で1ステップずつ移動、Escで範囲選択解除、Ctrl／Command＋Zで取り消せます。
 - MIDI・stepscore形式のTXTをファイル選択やドラッグ＆ドロップで読み込み、音の高さ・ステップ単位を調整できます。MIDIはトラックも選べます。
-- 全120曲のオルゴール編曲を「クラシック・民謡」「行進曲・軍歌」にまとめ、曲名の読みの五十音順で選べます。
+- サンプルのオルゴール編曲を「クラシック・民謡」「行進曲・軍歌」にまとめ、日本語は五十音順、英語は英語の曲名順で選べます。選択した楽器で演奏できる編曲だけを表示します。
 - MIDI・TXTの読み込みと変換はブラウザ内で行い、入力ファイルをサーバーに送信しません。
-- 「コピー」でテキストをコピーし、「保存 ▾」からTXT・MIDI・MP3・OGG（Vorbis）を選べます。MP3・OGGは試聴と同じ音色で、先頭から1回分と余韻をブラウザ内で生成します。作成中は「中止 ■」で中止できます。
+- 「テキストでコピー」と「書き出す」は対応音だけを使用します。88鍵の音を保存したい場合は楽器をピアノに切り替えます。書き出しはTXT・MIDI・MP3・OGG（Vorbis）から選べます。音声は試聴と同じ音色で、先頭から1回分と余韻をブラウザ内で生成します。作成中は中止できます。
+- 楽器は30弁オルゴールと88鍵を切り替えられます。全88鍵で編集でき、非対応音は赤色と×印で表示します。試聴には提供された30音の録音と、88鍵用の簡易音色を使えます。
 - TXTは `format=stepscore,version=1,step_ms=125,title=曲名` のヘッダーと、1行1ステップの音名・休符で構成します。読み込み時の項目順は任意です。旧TXT形式には対応しません。
+
+サンプルの正本は **`dist/samples/*.txt`**。手で編集後、`npm run build` で一覧を更新できます。`npm start` でも一覧を更新します。楽器定義は `dist/instruments.json`、音源は `dist/audio/`、翻訳は `dist/locales/` にあります。
+
+MIDIはWorkerで取り込み、TXTは直接解析します。取り込み中も操作でき、中止・失敗時は編集中の楽譜を保持します。マス目は表示範囲だけを描画し、MIDIライブラリ・サンプル本文・音源は必要時に読み込みます。
 
 詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [STEPSCORE.md](./STEPSCORE.md) を参照してください。
 2026年10月の追加曲の底本・抜粋・移調・検証は [TEMPLATE_SOURCES.md](./TEMPLATE_SOURCES.md) に記録しています。
@@ -22,6 +28,7 @@ Node.jsを用意し、次のコマンドを実行します。
 
 ```sh
 npm ci
+npm run build
 npm test
 npm start
 ```
@@ -30,15 +37,24 @@ npm start
 
 同じLANの別端末で確認する場合は `npm start -- --lan` で起動し、別端末のブラウザで `http://PCのIPv4アドレス:4173/` を開きます。PCのアドレスはWindowsの `ipconfig` で確認できます。
 
-ローカルでは、まだプッシュしていない追加曲の題名を曲選択欄に赤く表示します。プッシュ後に再読み込みすると通常の色に戻ります。
+ブラウザの操作確認は、サーバーを起動した状態で `node check-browser.mjs` を実行します。事前に `npm test` が生成した大きなMIDIを使い、保存・再取り込み・編集・言語・楽器・中止・モバイル表示を確認します。既存のPlaywrightまたはCodex同梱ランタイムが必要です。Windowsではインストール済みのEdgeを使用します。
+
+## 楽譜と音源を編集する
+
+サンプルは `dist/samples/` のTXTを直接編集します。1行目に題名・作曲者・編曲対象・拍子など、2行目以降に音符を記録します。同じ作品の別編曲は同じ `work_id` と別のファイル名で追加します。編集後は `npm run build`、続いて `npm test` を実行します。曲目一覧の `index.json` は手で編集しません。
+
+楽器の対応音は `dist/instruments.json`、音源一覧は `dist/audio/soundsets.json` で指定します。録音ファイルは `dist/audio/<音源ID>/` に置き、音源一覧の `files` に音名とファイル名を対応付けます。変更後はビルドしてキャッシュ識別子を更新します。
 
 ## 構成
 
-- `dist/`：配信するHTML・CSS・JavaScript・30音のOGG音源。アプリのソースもこの中にあります。
-- `check.mjs`：TXT形式、MIDI変換、編集操作、試聴、音源、収録曲などの確認。
+- `dist/`：配信するHTML・CSS・JavaScript・楽器定義・多言語データ・音源。アプリのソースもこの中にあります。
+- `build-catalog.mjs`：サンプルの検証、曲目一覧・キャッシュ識別子の生成。
+- `check.mjs`：TXT形式、MIDI・TXTのWorker変換、楽器定義、音源、翻訳、収録曲と生成一覧の確認。
 - `check-mp3.mjs`：MP3・OGG変換と保存メニュー・保存操作の確認。`npm test` で併せて実行します。
+- `check-browser.mjs`：実際のブラウザでの操作・取り込み・描画・応答性の確認。
 - `serve.mjs`：ローカル確認用の静的ファイルサーバー。
-- `SPEC.md`：操作・出力・収録曲の仕様。
+- `SPEC.md`：操作・出力・データ管理の仕様。
+- `TEMPLATE_SOURCES.md`：サンプルの底本・権利確認・編曲の記録。
 - `STEPSCORE.md`：楽器に依存しないstepscore形式の仕様。
 - `wrangler.json`：Cloudflare Workersで `dist/` を配信する設定。
 
@@ -46,14 +62,14 @@ npm start
 
 公開サイトは [musicbox.markn2000.com](https://musicbox.markn2000.com) です。
 
-ソースと変更履歴は [MarkN2000/musicbox](https://github.com/MarkN2000/musicbox) で管理します。Cloudflare Workersの静的アセットとして `dist/` を配信します。ビルドによるファイル生成やWorkerのJavaScriptコードは不要です。
+ソースと変更履歴は [MarkN2000/musicbox](https://github.com/MarkN2000/musicbox) で管理します。Cloudflare Workersの静的アセットとして `dist/` を配信します。サンプルの一覧は `npm run build` で生成します。配信時のWorkerのJavaScriptコードは不要です。
 
 WorkersのGit連携にこのGitHubリポジトリを接続し、次の設定にします。
 
 - Worker名：`musicbox`
 - 本番ブランチと自動ビルド対象：`main`
 - ルートディレクトリ：空欄（リポジトリのルート）
-- ビルドコマンド：`npm test`
+- ビルドコマンド：`npm run build && npm test`
 - デプロイコマンド：`npx wrangler deploy`
 
 配信対象は `wrangler.json` の `assets.directory` で `./dist` に指定します。`name` はCloudflare上のWorker名と一致させます。Wranglerの互換日付は `2026-09-30` とします。ドメインはWorkersの「ドメインとルート」で設定します。
@@ -62,7 +78,7 @@ WorkersのGit連携にこのGitHubリポジトリを接続し、次の設定に�
 
 ## 更新
 
-GitHubの `main` を本番のソースとし、変更後は `npm test` で確認してコミットします。WorkersのGit連携と `main` の自動ビルドが有効なら、GitHubを指す `origin` に `git push origin main` するとCloudflareがテストとデプロイを実行します。公開完了はCloudflareのビルド履歴と公開サイトで確認します。
+GitHubの `main` を本番のソースとし、変更後は `npm run build` と `npm test` で確認してコミットします。WorkersのGit連携と `main` の自動ビルドが有効なら、GitHubを指す `origin` に `git push origin main` するとCloudflareがテストとデプロイを実行します。公開完了はCloudflareのビルド履歴と公開サイトで確認します。
 
 GitHub連携の設定時は、Cloudflare Workers and Pagesアプリに `MarkN2000/musicbox` へのアクセスを許可してください。連携を復旧した後は、最新の `main` のビルドとデプロイが成功したことを確認します。
 

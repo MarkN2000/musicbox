@@ -1,9 +1,12 @@
 import assert from 'node:assert/strict';
-import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createContext,runInContext,runInNewContext} from 'node:vm';
-import {ALLOWED,validateNote,keyOf,MAX_STEPS} from './dist/core.js';
+import {definitionNotes,validateNote,keyOf,MAX_STEPS} from './dist/core.js';
+const ALLOWED=definitionNotes(JSON.parse(await readFile('dist/instruments.json','utf8')).find(item=>item.id==='musicbox-30'));
 
+const translations=JSON.parse(await readFile('dist/locales/ja.json','utf8'));
+const t=(key,values={})=>(translations[key]??key).replace(/\{(\w+)\}/g,(_,name)=>String(values[name]??name));
 const app=await readFile('dist/app.js','utf8'),worker=await readFile('dist/mp3-worker.js','utf8'),library=await readFile('dist/vendor/lame-1.2.1.js','utf8');
 const revision=createHash('sha256').update(worker.replace(/\r\n/g,'\n')).digest('hex').slice(0,16);
 assert(app.includes(`mp3-worker.js?v=${revision}`),'MP3処理の更新識別子が内容と一致しません');
@@ -29,7 +32,6 @@ for(let offset=0;offset<bytes.length;frames++){
   offset+=Math.floor(144*128000/44100)+((bytes[offset+2]>>1)&1);assert(offset<=bytes.length,'MP3フレームが欠けている');
 }
 assert(frames*1152/44100>=1&&frames*1152/44100<1.06,'分割で音声を落としたり無音を挿入しない');
-await mkdir('.sites-runtime',{recursive:true});await writeFile('.sites-runtime/mp3-encoder-check.mp3',bytes);
 runtime.self.onmessage({data:{type:'encode',left:new Float32Array(1),right:new Float32Array(2)}});assert.match(reply.error,/不正/);
 
 // 実際のWebAssemblyでVorbisを変換し、全OggページのCRC・連番・終端と音声ヘッダーを確認する。
@@ -55,7 +57,6 @@ for(let offset=0;offset<oggBytes.length;pages++){
   if(end===oggBytes.length)assert.equal(oggBytes[offset+5]&4,4,'曲末');offset=end;
 }
 assert(pages>=3);assert.equal(lastGranule,44100n,'分割しても1秒分の全音声を保持');
-await writeFile('.sites-runtime/ogg-encoder-check.ogg',oggBytes);
 for(const invalid of [{left:new Float32Array(1),right:new Float32Array(2)},{left:new Float32Array([NaN]),right:new Float32Array(1)},{left:new Float32Array(44100*30+1),right:new Float32Array(44100*30+1)}]){
   await oggRuntime.self.onmessage({data:{type:'encode',...invalid}});assert.match(reply.error,/不正/);
 }
@@ -84,19 +85,20 @@ function scenario({format='mp3',score=[{step:1,midi:72},{step:1,midi:76},{step:1
   }
   const buffers=new Map([...ALLOWED].map(midi=>[midi,{midi,duration}]));
   const api=runInNewContext(`
-    let notes=initialScore,length=initialSize;
+    let notes=initialScore,length=initialSize,exactStepMs=Math.round(60000/initialBpm/initialSubdivision),soundset={id:'original'};
     ${app.split('\n').find(line=>line.startsWith('function downloadName('))}
     ${app.split('\n').find(line=>line.startsWith('function stepInterval(){'))}
+    ${app.split('\n').find(line=>line.startsWith('function timingFromInputs('))}
     ${app.slice(app.indexOf('let audioExportJob=null;'),app.indexOf('const saveMenu='))}
     ({save:()=>saveAudio(format),setScore:(score,size)=>{notes=score;length=size;},state:()=>JSON.stringify({notes,length})});
-  `,{$,format,initialScore:score,initialSize:size,window:{OfflineAudioContext:OfflineAudio,Worker},ALLOWED,validateNote,keyOf,MAX_STEPS,audioBuffers:buffers,loadTone:load,announce:(message,error)=>messages.push({message,error}),URL:{createObjectURL:blob=>{downloads.push({blob});return 'blob:mp3';},revokeObjectURL(){}},document:{createElement:()=>({click(){downloads.at(-1).name=this.download;}})},setTimeout(){}});
+  `,{$,format,initialScore:score,initialSize:size,initialBpm:bpm,initialSubdivision:subdivision,t,window:{OfflineAudioContext:OfflineAudio,Worker},ALLOWED,validateNote,keyOf,MAX_STEPS,audioBuffers:buffers,loadTone:async midi=>{await load();return buffers.get(midi);},announce:(message,error)=>messages.push({message,error}),URL:{createObjectURL:blob=>{downloads.push({blob});return 'blob:mp3';},revokeObjectURL(){}},document:{createElement:()=>({click(){downloads.at(-1).name=this.download;}})},setTimeout(){}});
   return {...api,$,messages,contexts,workers,downloads};
 }
 const settle=async()=>{for(let i=0;i<15;i++)await Promise.resolve();};
 for(const format of ['mp3','ogg']){
 const make=options=>scenario({...options,format});
 let test=make();const original=test.state();await test.save();assert.equal(test.downloads.length,1,JSON.stringify(test.messages));
-assert.equal(test.state(),original,'保存で楽譜を変えない');assert.equal(test.downloads[0].name,`私の曲_.${format}`);assert.equal(test.downloads[0].blob.type,format==='mp3'?'audio/mpeg':'audio/ogg');assert.match(test.messages.at(-1).message,/対応外の1音を省いて/);
+assert.equal(test.state(),original,'保存で楽譜を変えない');assert.equal(test.downloads[0].name,`私の曲_.${format}`);assert.equal(test.downloads[0].blob.type,format==='mp3'?'audio/mpeg':'audio/ogg');assert.equal(test.messages.at(-1).message,`${format.toUpperCase()}を書き出しました。`);
 assert.equal(test.contexts[0].frames,Math.ceil(1.125*44100),'最後の音の余韻を残す');assert.equal(test.contexts[0].channels,2);assert.equal(test.contexts[0].rate,44100);
 assert.deepEqual(test.contexts[0].voices.map(v=>[v.buffer.midi,v.time,v.offset,v.gain.value]),[[72,.125,0,.5/Math.sqrt(2)],[76,.125,0,.5/Math.sqrt(2)]],'和音・重複統合・先頭休符・音量');
 assert.equal(test.$('save')['aria-busy'],'false');assert(test.workers[0].terminated);
@@ -121,7 +123,7 @@ const releases=[];test=make({score:[{step:0,midi:72}],load:()=>new Promise(resol
 const cancelled=test.save();await test.save();const retry=test.save();releases[0]();await cancelled;
 assert.equal(test.$('save')['aria-busy'],'true','古い処理の終了で新しい保存ボタンを戻さない');assert.equal(test.downloads.length,0);
 releases[1]();await retry;assert.equal(test.downloads.length,1,'中止後も保存できる');
-for(const settings of [{bpm:''},{bpm:301},{subdivision:5},{size:0},{size:MAX_STEPS+1},{score:[{step:4,midi:72}]},{score:[{step:1,midi:128}]},{load:async()=>{throw new Error('音源エラー');}},{render:async()=>{throw new Error('生成エラー');}},{workerError:true}]){
+for(const settings of [{bpm:''},{bpm:0},{subdivision:0},{size:0},{size:MAX_STEPS+1},{score:[{step:4,midi:72}]},{score:[{step:1,midi:128}]},{load:async()=>{throw new Error('音源エラー');}},{render:async()=>{throw new Error('生成エラー');}},{workerError:true}]){
   test=make(settings);const retained=test.state();await test.save();assert.equal(test.downloads.length,0);assert(test.messages.at(-1).error);assert.equal(test.state(),retained);assert.equal(test.$('save')['aria-busy'],'false');
 }
 }

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node check.mjs", "start": "node serve.mjs" },
+  "scripts": { "build": "node build-catalog.mjs", "test": "node check.mjs", "start": "node build-catalog.mjs && node serve.mjs" },
   "dependencies": { "@tonejs/midi": "2.0.28" }
 }
