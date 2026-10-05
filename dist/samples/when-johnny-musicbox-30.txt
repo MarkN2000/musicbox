@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=When Johnny Comes Marching Home,title_ja=ジョニーが凱旋するとき,composer=パトリック・ギルモア,composer_ja=パトリック・ギルモア,composer_en=Patrick Gilmore,reading_ja=じょにーががいせんするとき,category=march,steps_per_quarter=4,time_signature=6/8
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=When Johnny Comes Marching Home,title_ja=ジョニーが凱旋するとき,composer=パトリック・ギルモア,composer_ja=パトリック・ギルモア,composer_en=Patrick Gilmore,reading_ja=じょにーががいせんするとき,steps_per_quarter=4,time_signature=6/8
 E5
 
 E4,A4,C5,A5

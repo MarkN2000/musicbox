@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=Messiah: Hallelujah,title_ja=ハレルヤ,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=はれるや,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox30,title=Messiah: Hallelujah,title_ja=ハレルヤ,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=はれるや,steps_per_quarter=4,time_signature=4/4
 C4,G4,C6
 
 E4,G4

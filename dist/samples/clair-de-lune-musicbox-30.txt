@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=278,arranged_for=musicbox-30,title=Clair de lune,title_ja=月の光,composer=ドビュッシー,composer_ja=ドビュッシー,composer_en=Claude Debussy,reading_ja=つきのひかり,category=classical-folk,steps_per_quarter=4,time_signature=9/8
+format=stepscore,version=1,step_ms=278,arranged_for=musicbox30,title=Clair de lune,title_ja=月の光,composer=ドビュッシー,composer_ja=ドビュッシー,composer_en=Claude Debussy,reading_ja=つきのひかり,steps_per_quarter=4,time_signature=9/8
 C4
 
 G4

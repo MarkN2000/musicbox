@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=We Wish You a Merry Christmas,title_ja=おめでとうクリスマス,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=おめでとうくりすます,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox30,title=We Wish You a Merry Christmas,title_ja=おめでとうクリスマス,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=おめでとうくりすます,steps_per_quarter=4,time_signature=3/4
 G5
 
 

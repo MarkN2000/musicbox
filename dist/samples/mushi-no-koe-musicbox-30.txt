@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=375,arranged_for=musicbox-30,title=虫のこえ,title_en=Mushi no Koe,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=むしのこえ,category=classical-folk,steps_per_quarter=2,time_signature=2/4
+format=stepscore,version=1,step_ms=375,arranged_for=musicbox30,title=虫のこえ,title_en=Mushi no Koe,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=むしのこえ,steps_per_quarter=2,time_signature=2/4
 C4,E4,G5
 G4,E5
 F3,C4,A5

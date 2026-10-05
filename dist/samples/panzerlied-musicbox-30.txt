@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=250,arranged_for=musicbox-30,title=Panzerlied,title_ja=パンツァー・リート,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=ぱんつぁーりーと,category=march,steps_per_quarter=2,time_signature=4/4
+format=stepscore,version=1,step_ms=250,arranged_for=musicbox30,title=Panzerlied,title_ja=パンツァー・リート,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=ぱんつぁーりーと,steps_per_quarter=2,time_signature=4/4
 G3,D4,G5
 
 C4,G4,C6

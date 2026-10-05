@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=シャボン玉,title_en=Shabondama,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しゃぼんだま,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox30,title=シャボン玉,title_en=Shabondama,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しゃぼんだま,steps_per_quarter=4,time_signature=2/4
 C4,E4,G4
 
 G3,C5

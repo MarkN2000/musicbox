@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=256,arranged_for=musicbox-30,title=Jesus bleibet meine Freude,title_ja=主よ、人の望みの喜びよ,title_en=Jesu%2C Joy of Man's Desiring,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しゅよひとののぞみのよろこびよ,category=classical-folk,steps_per_quarter=3,time_signature=3/4
+format=stepscore,version=1,step_ms=256,arranged_for=musicbox30,title=Jesus bleibet meine Freude,title_ja=主よ、人の望みの喜びよ,title_en=Jesu%2C Joy of Man's Desiring,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しゅよひとののぞみのよろこびよ,steps_per_quarter=3,time_signature=3/4
 C4,C5
 D5
 E5

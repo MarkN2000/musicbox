@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Old MacDonald Had a Farm,title_ja=愉快な牧場,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=ゆかいなまきば,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox30,title=Old MacDonald Had a Farm,title_ja=愉快な牧場,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=ゆかいなまきば,steps_per_quarter=4,time_signature=4/4
 C4,E4,C6
 
 E4

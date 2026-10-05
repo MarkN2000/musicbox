@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Jingle Bells,title_ja=ジングルベル,composer=ピアポント,composer_ja=ピアポント,composer_en=James Lord Pierpont,reading_ja=じんぐるべる,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Jingle Bells,title_ja=ジングルベル,composer=ピアポント,composer_ja=ピアポント,composer_en=James Lord Pierpont,reading_ja=じんぐるべる,steps_per_quarter=4,time_signature=4/4
 C4,E4,E5
 
 E4

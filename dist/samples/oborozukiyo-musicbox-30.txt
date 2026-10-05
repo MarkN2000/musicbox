@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=朧月夜,title_en=Oborozukiyo,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=おぼろづきよ,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox30,title=朧月夜,title_en=Oborozukiyo,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=おぼろづきよ,steps_per_quarter=4,time_signature=3/4
 E5
 
 E5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=128,arranged_for=musicbox-30,title=La prière d’une vierge,title_ja=乙女の祈り,title_en=A Maiden's Prayer,composer=バダジェフスカ,composer_ja=バダジェフスカ,composer_en=Tekla Bądarzewska,reading_ja=おとめのいのり,category=classical-folk,steps_per_quarter=6,time_signature=4/4
+format=stepscore,version=1,step_ms=128,arranged_for=musicbox30,title=La prière d’une vierge,title_ja=乙女の祈り,title_en=A Maiden's Prayer,composer=バダジェフスカ,composer_ja=バダジェフスカ,composer_en=Tekla Bądarzewska,reading_ja=おとめのいのり,steps_per_quarter=6,time_signature=4/4
 F3,F4
 
 C5

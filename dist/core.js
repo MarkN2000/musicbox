@@ -40,7 +40,12 @@ export function validateDefinitions(instruments,soundsets) {
     const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
     if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
   }
-  for(const profile of profiles){const sound=sounds.find(item=>item.id===profile.defaultSoundset);if(!!profile.range===!!profile.notes||!sound||![...profile.allowed].every(n=>n>=21&&n<=108&&sound.allowed.has(n)))throw new Error('楽器・音源の設定が不正です。');}
+  const arrangements=new Map();
+  for(const profile of profiles){
+    const sound=sounds.find(item=>item.id===profile.defaultSoundset),shared=arrangements.get(profile.arrangedFor);
+    if(typeof profile.arrangedFor!=='string'||!/^[a-z][a-z0-9]*$/.test(profile.arrangedFor)||!!profile.range===!!profile.notes||!sound||![...profile.allowed].every(n=>n>=21&&n<=108&&sound.allowed.has(n))||shared&&(shared.size!==profile.allowed.size||![...shared].every(n=>profile.allowed.has(n))))throw new Error('楽器・音源の設定が不正です。');
+    arrangements.set(profile.arrangedFor,profile.allowed);
+  }
   return {instruments:profiles,soundsets:sounds};
 }
 export const keyOf = note => `${note.step}:${note.midi}`;

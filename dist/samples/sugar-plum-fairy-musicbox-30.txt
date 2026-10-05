@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=Щелкунчик: Танец феи Драже,title_ja=くるみ割り人形より「金平糖の精の踊り」,title_en=The Nutcracker: Dance of the Sugar Plum Fairy,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこんぺいとうのせいのおどり,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox30,title=Щелкунчик: Танец феи Драже,title_ja=くるみ割り人形より「金平糖の精の踊り」,title_en=The Nutcracker: Dance of the Sugar Plum Fairy,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこんぺいとうのせいのおどり,steps_per_quarter=4,time_signature=2/4
 E4,G4
 
 B4,G5

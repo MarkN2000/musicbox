@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=67,arranged_for=musicbox-30,title=Щелкунчик: Вальс цветов,title_ja=くるみ割り人形より「花のワルツ」,title_en=The Nutcracker: Waltz of the Flowers,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりはなのわるつ,category=classical-folk,steps_per_quarter=8,time_signature=3/4
+format=stepscore,version=1,step_ms=67,arranged_for=musicbox30,title=Щелкунчик: Вальс цветов,title_ja=くるみ割り人形より「花のワルツ」,title_en=The Nutcracker: Waltz of the Flowers,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりはなのわるつ,steps_per_quarter=8,time_signature=3/4
 F3,A4,C5
 
 

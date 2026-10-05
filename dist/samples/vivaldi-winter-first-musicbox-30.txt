@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=94,arranged_for=musicbox-30,title=Le quattro stagioni: L’inverno%2C I. Allegro non molto,title_ja=四季より「冬」第1楽章,title_en=The Four Seasons: Winter%2C I. Allegro non molto,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりふゆだいいちがくしょう,category=classical-folk,steps_per_quarter=8,time_signature=4/4
+format=stepscore,version=1,step_ms=94,arranged_for=musicbox30,title=Le quattro stagioni: L’inverno%2C I. Allegro non molto,title_ja=四季より「冬」第1楽章,title_en=The Four Seasons: Winter%2C I. Allegro non molto,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりふゆだいいちがくしょう,steps_per_quarter=8,time_signature=4/4
 G3,C4,E4
 
 C4,E4,G4,G5

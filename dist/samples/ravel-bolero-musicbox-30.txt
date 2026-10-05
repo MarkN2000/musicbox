@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=Boléro,title_ja=ボレロ,composer=ラヴェル,composer_ja=ラヴェル,composer_en=Maurice Ravel,reading_ja=ぼれろ,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox30,title=Boléro,title_ja=ボレロ,composer=ラヴェル,composer_ja=ラヴェル,composer_en=Maurice Ravel,reading_ja=ぼれろ,steps_per_quarter=4,time_signature=3/4
 C4,E4,G4,C6
 
 

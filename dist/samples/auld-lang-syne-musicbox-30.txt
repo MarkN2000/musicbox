@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Auld Lang Syne,title_ja=蛍の光,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ほたるのひかり,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox30,title=Auld Lang Syne,title_ja=蛍の光,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ほたるのひかり,steps_per_quarter=4,time_signature=4/4
 G4
 
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Peer Gynt: I Dovregubbens hall,title_ja=山の魔王の宮殿にて,title_en=In the Hall of the Mountain King,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=やまのまおうのきゅうでんにて,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox30,title=Peer Gynt: I Dovregubbens hall,title_ja=山の魔王の宮殿にて,title_en=In the Hall of the Mountain King,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=やまのまおうのきゅうでんにて,steps_per_quarter=4,time_signature=4/4
 C4,A4,A5
 
 C4,B5

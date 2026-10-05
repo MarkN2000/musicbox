@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=136,arranged_for=musicbox-30,title=Canon,title_ja=カノン,composer=パッヘルベル,composer_ja=パッヘルベル,composer_en=Johann Pachelbel,reading_ja=かのん,category=classical-folk,steps_per_quarter=8,time_signature=4/4
+format=stepscore,version=1,step_ms=136,arranged_for=musicbox30,title=Canon,title_ja=カノン,composer=パッヘルベル,composer_ja=パッヘルベル,composer_en=Johann Pachelbel,reading_ja=かのん,steps_per_quarter=8,time_signature=4/4
 C5,C6,G6
 
 E6

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Püppchens Träumen und Erwachen,title_ja=人形の夢と目覚め,title_en=Doll's Dream and Awakening,composer=オースティン,composer_ja=オースティン,composer_en=Theodor Oesten,reading_ja=にんぎょうのゆめとめざめ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox30,title=Püppchens Träumen und Erwachen,title_ja=人形の夢と目覚め,title_en=Doll's Dream and Awakening,composer=オースティン,composer_ja=オースティン,composer_en=Theodor Oesten,reading_ja=にんぎょうのゆめとめざめ,steps_per_quarter=4,time_signature=4/4
 G5
 
 F5

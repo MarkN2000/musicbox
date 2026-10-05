@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=234,arranged_for=musicbox-30,title=Gymnopédie No. 1,title_ja=ジムノペディ第1番,composer=サティ,composer_ja=サティ,composer_en=Erik Satie,reading_ja=じむのぺでぃだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=234,arranged_for=musicbox30,title=Gymnopédie No. 1,title_ja=ジムノペディ第1番,composer=サティ,composer_ja=サティ,composer_en=Erik Satie,reading_ja=じむのぺでぃだいいちばん,steps_per_quarter=4,time_signature=3/4
 F3,A4
 
 C5

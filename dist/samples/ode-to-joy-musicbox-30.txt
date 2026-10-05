@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=An die Freude,title_ja=歓喜の歌,title_en=Ode to Joy,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=かんきのうた,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=An die Freude,title_ja=歓喜の歌,title_en=Ode to Joy,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=かんきのうた,steps_per_quarter=4,time_signature=4/4
 C4,E4,E5
 
 G4

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Walkürenritt,title_ja=ワルキューレの騎行,title_en=Ride of the Valkyries,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=わるきゅーれのきこう,category=classical-folk,steps_per_quarter=4,time_signature=9/8
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox30,title=Walkürenritt,title_ja=ワルキューレの騎行,title_en=Ride of the Valkyries,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=わるきゅーれのきこう,steps_per_quarter=4,time_signature=9/8
 D4,A4,D5
 
 

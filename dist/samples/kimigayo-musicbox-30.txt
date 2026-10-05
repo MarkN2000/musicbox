@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=183,arranged_for=musicbox-30,title=君が代,title_en=Kimigayo,composer=林廣守・林広季・奥好義,composer_ja=林廣守・林広季・奥好義,composer_en=Hiromori Hayashi%2C Akimori Hayashi and Yoshiisa Oku,reading_ja=きみがよ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=183,arranged_for=musicbox30,title=君が代,title_en=Kimigayo,composer=林廣守・林広季・奥好義,composer_ja=林廣守・林広季・奥好義,composer_en=Hiromori Hayashi%2C Akimori Hayashi and Yoshiisa Oku,reading_ja=きみがよ,steps_per_quarter=4,time_signature=4/4
 D4,F4,D5
 
 F4

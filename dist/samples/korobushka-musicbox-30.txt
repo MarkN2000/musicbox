@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=268,arranged_for=musicbox-30,title=Коробушка,title_ja=コロブチカ,title_en=Korobushka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=ころぶちか,category=classical-folk,steps_per_quarter=2,time_signature=4/4
+format=stepscore,version=1,step_ms=268,arranged_for=musicbox30,title=Коробушка,title_ja=コロブチカ,title_en=Korobushka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=ころぶちか,steps_per_quarter=2,time_signature=4/4
 D4,A5
 F4,A4
 A4,E5

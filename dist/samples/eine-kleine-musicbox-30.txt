@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Eine kleine Nachtmusik: I. Allegro,title_ja=アイネ・クライネ・ナハトムジークより「第1楽章」,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=あいねくらいねなはとむじーくよりだいいちがくしょう,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Eine kleine Nachtmusik: I. Allegro,title_ja=アイネ・クライネ・ナハトムジークより「第1楽章」,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=あいねくらいねなはとむじーくよりだいいちがくしょう,steps_per_quarter=4,time_signature=4/4
 C4,E4,G4,C6
 
 

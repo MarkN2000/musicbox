@@ -1,4 +1,4 @@
-import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions} from './core.js?v=42e856d1d9211278';
+import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions} from './core.js?v=45fa6b2982902f00';
 import {t,currentLanguage,preferredLanguage,loadLanguage,localized,translatePage} from './i18n.js?v=2f127a12b3570584';
 const $=id=>document.getElementById(id);
 const json=async path=>{const response=await fetch(path,{cache:'no-cache'});if(!response.ok)throw new Error('設定を読み込めませんでした。');return response.json();};
@@ -304,22 +304,33 @@ $('language').onchange=async()=>{
   catch(error){showError(error.message);}finally{$('language').disabled=false;}
 };
 function populateTemplates(){
-  const select=$('templateSelect');select.replaceChildren();const placeholder=document.createElement('option');placeholder.value='';placeholder.textContent=t('曲を選ぶ');select.append(placeholder);
-  const language=currentLanguage(),collator=new Intl.Collator(language),compatible=catalog.samples.filter(item=>item.usedNotes.every(note=>ALLOWED.has(note)));
-  for(const category of ['classical-folk','march']){
-    const group=document.createElement('optgroup');group.label=t(category);select.append(group);
-    const candidates=compatible.filter(item=>item.metadata.category===category).sort((a,b)=>collator.compare(language==='ja'?a.metadata.reading_ja||localized(a.metadata,'title'):localized(a.metadata,'title'),language==='ja'?b.metadata.reading_ja||localized(b.metadata,'title'):localized(b.metadata,'title'))||(a.metadata.arranged_for===instrument.id?-1:0)-(b.metadata.arranged_for===instrument.id?-1:0)||a.id.localeCompare(b.id));
-    for(const item of candidates){const option=document.createElement('option');option.value=item.id;const label=document.createElement('span');label.className='template-label';label.append(document.createTextNode(localized(item.metadata,'title',item.file)+' '));const composer=document.createElement('span');composer.className='template-composer';composer.textContent=localized(item.metadata,'composer');label.append(composer);option.append(label);group.append(option);}
+  const menu=$('templateMenu'),groups=new Map(),sizes=new Map(definitions.instruments.map(item=>[item.arrangedFor,item.allowed.size]));menu.replaceChildren();
+  for(const item of catalog.samples){
+    if(!item.usedNotes.every(note=>ALLOWED.has(note)))continue;
+    const key=JSON.stringify([item.metadata.title,item.metadata.composer]);
+    if(!groups.has(key))groups.set(key,[]);groups.get(key).push(item);
   }
+  const language=currentLanguage(),collator=new Intl.Collator(language),sortName=item=>language==='ja'?item.metadata.reading_ja||localized(item.metadata,'title'):localized(item.metadata,'title');
+  const songs=[...groups.values()].sort((a,b)=>collator.compare(sortName(a[0]),sortName(b[0]))||collator.compare(localized(a[0].metadata,'composer'),localized(b[0].metadata,'composer')));
+  for(const versions of songs){
+    versions.sort((a,b)=>(a.metadata.arranged_for!==instrument.arrangedFor)-(b.metadata.arranged_for!==instrument.arrangedFor)||sizes.get(b.metadata.arranged_for)-sizes.get(a.metadata.arranged_for)||a.metadata.arranged_for.localeCompare(b.metadata.arranged_for)||a.id.localeCompare(b.id));
+    const best=versions[0],row=document.createElement('div');row.className='template-song';
+    const title=document.createElement('button');title.className='template-title';title.dataset.sample=best.id;title.append(document.createTextNode(localized(best.metadata,'title',best.file)+' '));
+    const composer=document.createElement('span');composer.className='template-composer';composer.textContent=localized(best.metadata,'composer');title.append(composer);
+    const buttons=document.createElement('div');buttons.className='template-versions';
+    for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=item.metadata.arranged_for;if(item===best){button.classList.add('recommended');button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
+    row.append(title,buttons);menu.append(row);
+  }
+  $('templateButton').disabled=!songs.length;
 }
 let sampleRequest=0;
-$('templateSelect').onchange=async()=>{
-  const item=catalog.samples.find(sample=>sample.id===$('templateSelect').value);if(!item)return;
+async function loadTemplate(item){
   cancelImport();const request=++sampleRequest;
   try{const response=await fetch(`samples/${encodeURIComponent(item.file)}?v=${catalog.revision}`);if(!response.ok)throw new Error('楽譜を読み込めませんでした。');const score=parseText(await response.text());if(request!==sampleRequest)return;
     stopPlayback();remember();notes=score.notes;length=score.length;metadata=score.metadata;exactStepMs=score.stepMs;sourceMidi=null;appliedMidiSettings=null;currentCell={step:0,midi:72};$('midiPanel').hidden=true;setTitle(localized(metadata,'title',item.file));applyRhythm();$('rollViewport').scrollLeft=0;render();showError();
-  }catch(error){if(request===sampleRequest)showError(error.message);}finally{$('templateSelect').value='';}
-};
+  }catch(error){if(request===sampleRequest)showError(error.message);}
+}
+$('templateMenu').onclick=event=>{const item=catalog.samples.find(sample=>sample.id===event.target.closest('[data-sample]')?.dataset.sample);if(item)void loadTemplate(item);};
 function downloadName(extension){return ($('scoreTitle').value.trim().replace(/[<>:"/\\|?*\x00-\x1f]/g,'_')||t('新しい楽譜'))+'.'+extension;}
 function downloadText(){try{const text=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,stepInterval(),outputMetadata());const blob=new Blob([text],{type:'text/plain;charset=utf-8'});download(blob,'txt');showError();}catch(error){showError(error.message);}}
 function download(blob,extension,name=downloadName(extension)){const url=URL.createObjectURL(blob),anchor=document.createElement('a');anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -407,7 +418,7 @@ function cancelImport(){
 $('cancelImport').onclick=()=>cancelImport();
 function workerRequest(source,settings){
   if(!importWorker){
-    importWorker=new Worker(new URL('./import-worker.js?v=066d70c383e94a71',import.meta.url),{type:'module'});
+    importWorker=new Worker(new URL('./import-worker.js?v=40d46b720d32f182',import.meta.url),{type:'module'});
     importWorker.onmessage=({data})=>{const request=workerRequests.get(data.id);if(!request)return;workerRequests.delete(data.id);if(data.error)request.reject(new Error(data.error));else{workerSourceId=request.sourceId;request.resolve(data);}};
     importWorker.onerror=importWorker.onmessageerror=()=>{for(const request of workerRequests.values())request.reject(new Error('取り込み処理を読み込めませんでした。'));workerRequests.clear();importWorker?.terminate();importWorker=null;workerSourceId=null;};
   }
@@ -545,34 +556,37 @@ async function saveAudio(format){
 $('exportMp3').onclick=()=>saveAudio('mp3');
 $('exportOgg').onclick=()=>saveAudio('ogg');
 
-const saveMenu=$('saveMenu'),saveButton=$('save');
-let menuLast=false;
-const menuItems=()=>[...saveMenu.querySelectorAll('button:not(:disabled)')];
-function positionSaveMenu(){
-  if(!saveMenu.matches(':popover-open'))return;
-  const rect=saveButton.getBoundingClientRect(),width=saveMenu.offsetWidth,height=saveMenu.offsetHeight;
-  saveMenu.style.left=Math.max(8,Math.min(rect.right-width,window.innerWidth-width-8))+'px';
+const saveMenu=$('saveMenu'),saveButton=$('save'),menus=[[saveMenu,saveButton],[$('templateMenu'),$('templateButton')]];
+function positionMenu(menu,button){
+  if(!menu.matches(':popover-open'))return;
+  const rect=button.getBoundingClientRect(),width=menu.offsetWidth,height=menu.offsetHeight;
+  menu.style.left=Math.max(8,Math.min(rect.right-width,window.innerWidth-width-8))+'px';
   const below=rect.bottom+5;
-  saveMenu.style.top=Math.max(8,Math.min(below+height<=window.innerHeight-8?below:rect.top-height-5,window.innerHeight-height-8))+'px';
+  menu.style.top=Math.max(8,Math.min(below+height<=window.innerHeight-8?below:rect.top-height-5,window.innerHeight-height-8))+'px';
 }
 saveButton.onclick=event=>{if(audioExportJob){event.preventDefault();cancelAudioExport();}};
-saveButton.onkeydown=event=>{
-  if(!['ArrowDown','ArrowUp'].includes(event.key)||audioExportJob)return;
-  event.preventDefault();menuLast=event.key==='ArrowUp';
-  if(saveMenu.matches(':popover-open')){const items=menuItems();items[menuLast?items.length-1:0]?.focus();menuLast=false;}
-  else saveMenu.showPopover();
-};
-saveMenu.addEventListener('toggle',event=>{
-  const open=event.newState==='open';saveButton.setAttribute('aria-expanded',String(open));
-  if(open){positionSaveMenu();const items=menuItems();items[menuLast?items.length-1:0]?.focus();menuLast=false;}
-  else if(saveMenu.contains(document.activeElement))saveButton.focus();
-});
-saveMenu.onclick=event=>{if(event.target.closest('button')){saveMenu.hidePopover();saveButton.focus();}};
-saveMenu.onkeydown=event=>{
-  const items=menuItems(),index=items.indexOf(document.activeElement);
-  if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
-    event.preventDefault();items[event.key==='Home'?0:event.key==='End'?items.length-1:(index+(event.key==='ArrowDown'?1:-1)+items.length)%items.length]?.focus();
-  }else if(event.key==='Tab')saveMenu.hidePopover();
-};
-window.addEventListener('resize',positionSaveMenu);
-window.addEventListener('scroll',positionSaveMenu,true);
+for(const [menu,button]of menus){
+  let last=false;const items=()=>[...menu.querySelectorAll('button:not(:disabled)')];
+  button.onkeydown=event=>{
+    if(!['ArrowDown','ArrowUp'].includes(event.key)||button===saveButton&&audioExportJob)return;
+    event.preventDefault();last=event.key==='ArrowUp';
+    if(menu.matches(':popover-open')){const list=items();list[last?list.length-1:0]?.focus();last=false;}
+    else menu.showPopover();
+  };
+  menu.addEventListener('toggle',event=>{
+    const open=event.newState==='open';button.setAttribute('aria-expanded',String(open));
+    if(open){positionMenu(menu,button);const list=items();list[last?list.length-1:0]?.focus({preventScroll:true});menu.scrollTop=last?menu.scrollHeight:0;last=false;}
+    else if(menu.contains(document.activeElement))button.focus();
+  });
+  menu.addEventListener('click',event=>{if(event.target.closest('button')){menu.hidePopover();button.focus();}});
+  menu.onkeydown=event=>{
+    const list=items(),index=list.indexOf(document.activeElement);
+    if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
+      event.preventDefault();list[event.key==='Home'?0:event.key==='End'?list.length-1:(index+(event.key==='ArrowDown'?1:-1)+list.length)%list.length]?.focus();
+    }else if(event.key==='Tab'&&menu===saveMenu)menu.hidePopover();
+  };
+  menu.addEventListener('focusout',event=>{if(event.relatedTarget&&event.relatedTarget!==button&&!menu.contains(event.relatedTarget))menu.hidePopover();});
+}
+const positionMenus=()=>{for(const [menu,button]of menus)positionMenu(menu,button);};
+window.addEventListener('resize',positionMenus);
+window.addEventListener('scroll',positionMenus,true);

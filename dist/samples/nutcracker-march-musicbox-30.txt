@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=93,arranged_for=musicbox-30,title=Щелкунчик: Марш,title_ja=くるみ割り人形より「行進曲」,title_en=The Nutcracker: March,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこうしんきょく,category=classical-folk,steps_per_quarter=6,time_signature=4/4
+format=stepscore,version=1,step_ms=93,arranged_for=musicbox30,title=Щелкунчик: Марш,title_ja=くるみ割り人形より「行進曲」,title_en=The Nutcracker: March,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこうしんきょく,steps_per_quarter=6,time_signature=4/4
 F3,A4,C5,C6
 
 

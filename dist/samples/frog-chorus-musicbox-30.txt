@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Froschgesang,title_ja=かえるの合唱,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=かえるのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox30,title=Froschgesang,title_ja=かえるの合唱,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=かえるのがっしょう,steps_per_quarter=4,time_signature=2/4
 C4,E4,C5
 
 E4,D5

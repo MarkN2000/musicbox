@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=通りゃんせ,title_en=Tōryanse,composer=日本古謡,composer_ja=日本古謡,composer_en=Traditional Japanese melody,reading_ja=とおりゃんせ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox30,title=通りゃんせ,title_en=Tōryanse,composer=日本古謡,composer_ja=日本古謡,composer_en=Traditional Japanese melody,reading_ja=とおりゃんせ,steps_per_quarter=4,time_signature=4/4
 C4,G4
 
 

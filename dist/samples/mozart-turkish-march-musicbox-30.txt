@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Rondo alla turca,title_ja=トルコ行進曲,title_en=Turkish March,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=とるここうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Rondo alla turca,title_ja=トルコ行進曲,title_en=Turkish March,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=とるここうしんきょく,steps_per_quarter=4,time_signature=2/4
 E5
 D5
 C#5

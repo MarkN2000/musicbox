@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=129,arranged_for=musicbox-30,title=I've Been Working on the Railroad,title_ja=線路は続くよどこまでも,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=せんろはつづくよどこまでも,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=129,arranged_for=musicbox30,title=I've Been Working on the Railroad,title_ja=線路は続くよどこまでも,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=せんろはつづくよどこまでも,steps_per_quarter=4,time_signature=4/4
 G3,B4,G5
 
 B4

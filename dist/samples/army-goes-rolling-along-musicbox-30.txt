@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=The Army Goes Rolling Along,title_ja=陸軍は進んで行く,composer=グルーバー（スーザの1918年版による）,composer_ja=グルーバー（スーザの1918年版による）,composer_en=Edmund L. Gruber (Sousa's 1918 edition),reading_ja=りくぐんはすすんでいく,category=march,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=The Army Goes Rolling Along,title_ja=陸軍は進んで行く,composer=グルーバー（スーザの1918年版による）,composer_ja=グルーバー（スーザの1918年版による）,composer_en=Edmund L. Gruber (Sousa's 1918 edition),reading_ja=りくぐんはすすんでいく,steps_per_quarter=4,time_signature=2/4
 C4,E4,G4,G5
 
 E5

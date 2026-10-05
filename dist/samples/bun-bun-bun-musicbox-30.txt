@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Summ%2C summ%2C summ,title_ja=ぶんぶんぶん,composer=ボヘミア伝承曲,composer_ja=ボヘミア伝承曲,composer_en=Traditional Bohemian melody,reading_ja=ぶんぶんぶん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Summ%2C summ%2C summ,title_ja=ぶんぶんぶん,composer=ボヘミア伝承曲,composer_ja=ボヘミア伝承曲,composer_en=Traditional Bohemian melody,reading_ja=ぶんぶんぶん,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4

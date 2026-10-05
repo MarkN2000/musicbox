@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Treulich geführt,title_ja=婚礼の合唱,title_en=Bridal Chorus,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=こんれいのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox30,title=Treulich geführt,title_ja=婚礼の合唱,title_en=Bridal Chorus,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=こんれいのがっしょう,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 

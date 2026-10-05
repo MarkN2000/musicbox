@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Arabesque%2C Op. 100 No. 2,title_ja=アラベスク Op.100-2,composer=ブルグミュラー,composer_ja=ブルグミュラー,composer_en=Friedrich Burgmüller,reading_ja=あらべすく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=Arabesque%2C Op. 100 No. 2,title_ja=アラベスク Op.100-2,composer=ブルグミュラー,composer_ja=ブルグミュラー,composer_en=Friedrich Burgmüller,reading_ja=あらべすく,steps_per_quarter=4,time_signature=2/4
 E4,A4
 B4
 C5,E5

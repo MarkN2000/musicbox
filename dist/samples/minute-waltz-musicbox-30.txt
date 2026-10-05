@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=104,arranged_for=musicbox-30,title=Minute Waltz,title_ja=小犬のワルツ,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=こいぬのわるつ,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=104,arranged_for=musicbox30,title=Minute Waltz,title_ja=小犬のワルツ,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=こいぬのわるつ,steps_per_quarter=4,time_signature=3/4
 C4,E4,F#5
 
 C5,G5

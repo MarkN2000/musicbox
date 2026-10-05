@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=129,arranged_for=musicbox-30,title=Неделька,title_ja=一週間,title_en=Nedelka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=いっしゅうかん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=129,arranged_for=musicbox30,title=Неделька,title_ja=一週間,title_en=Nedelka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=いっしゅうかん,steps_per_quarter=4,time_signature=2/4
 G3,B4
 
 B4

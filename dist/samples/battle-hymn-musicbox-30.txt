@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=Battle Hymn of the Republic,title_ja=リパブリック讃歌,composer=19世紀アメリカの旋律,composer_ja=19世紀アメリカの旋律,composer_en=19th-century American melody,reading_ja=りぱぶりっくさんか,category=march,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox30,title=Battle Hymn of the Republic,title_ja=リパブリック讃歌,composer=19世紀アメリカの旋律,composer_ja=19世紀アメリカの旋律,composer_en=19th-century American melody,reading_ja=りぱぶりっくさんか,steps_per_quarter=4,time_signature=4/4
 G5
 
 C4,C5,G5

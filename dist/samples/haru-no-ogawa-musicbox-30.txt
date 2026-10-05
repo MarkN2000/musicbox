@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=春の小川,title_en=Haru no Ogawa,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=はるのおがわ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox30,title=春の小川,title_en=Haru no Ogawa,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=はるのおがわ,steps_per_quarter=4,time_signature=4/4
 C4,E4,E5
 
 G4

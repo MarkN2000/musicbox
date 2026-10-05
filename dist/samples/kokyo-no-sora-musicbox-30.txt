@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Comin' Through the Rye,title_ja=故郷の空,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=こきょうのそら,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=Comin' Through the Rye,title_ja=故郷の空,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=こきょうのそら,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4

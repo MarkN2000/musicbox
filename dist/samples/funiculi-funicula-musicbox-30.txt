@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=210,arranged_for=musicbox-30,title=Funiculì%2C Funiculà,title_ja=フニクリ・フニクラ,composer=デンツァ,composer_ja=デンツァ,composer_en=Luigi Denza,reading_ja=ふにくりふにくら,category=march,steps_per_quarter=2,time_signature=6/8
+format=stepscore,version=1,step_ms=210,arranged_for=musicbox30,title=Funiculì%2C Funiculà,title_ja=フニクリ・フニクラ,composer=デンツァ,composer_ja=デンツァ,composer_en=Luigi Denza,reading_ja=ふにくりふにくら,steps_per_quarter=2,time_signature=6/8
 G3,D4,B5
 
 D4,B4

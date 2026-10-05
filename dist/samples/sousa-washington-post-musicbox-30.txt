@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=104,arranged_for=musicbox-30,title=The Washington Post March,title_ja=ワシントン・ポスト,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=わしんとんぽすと,category=march,steps_per_quarter=4,time_signature=6/8
+format=stepscore,version=1,step_ms=104,arranged_for=musicbox30,title=The Washington Post March,title_ja=ワシントン・ポスト,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=わしんとんぽすと,steps_per_quarter=4,time_signature=6/8
 G3,D4,G5
 
 G5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Ungarischer Tanz Nr. 5,title_ja=ハンガリー舞曲第5番,title_en=Hungarian Dance No. 5,composer=ブラームス,composer_ja=ブラームス,composer_en=Johannes Brahms,reading_ja=はんがりーぶきょくだいごばん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Ungarischer Tanz Nr. 5,title_ja=ハンガリー舞曲第5番,title_en=Hungarian Dance No. 5,composer=ブラームス,composer_ja=ブラームス,composer_en=Johannes Brahms,reading_ja=はんがりーぶきょくだいごばん,steps_per_quarter=4,time_signature=2/4
 C4,E4,E5
 
 A4

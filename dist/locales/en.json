@@ -98,8 +98,6 @@
   "MIDI・TXTファイルを1つずつドロップしてください。": "Drop one MIDI / TXT file at a time.",
   "楽譜の88鍵とステップ範囲内へ移動してください。": "Move within the 88-key and step range of the score.",
   "pageTitle": "Music Box Score — Score Editor",
-  "classical-folk": "Classical & Traditional",
-  "march": "Marches & Military Songs",
   "cellLabel": "{note}, step {step}",
   "outsideLabel": ", unsupported",
   "noteOnLabel": ", note present",

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=Greensleeves,title_ja=グリーンスリーブス,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぐりーんすりーぶす,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox30,title=Greensleeves,title_ja=グリーンスリーブス,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぐりーんすりーぶす,steps_per_quarter=4,time_signature=3/4
 A5
 
 

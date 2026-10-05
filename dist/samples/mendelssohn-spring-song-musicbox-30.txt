@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=179,arranged_for=musicbox-30,title=Frühlingslied,title_ja=春の歌,title_en=Spring Song,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=はるのうた,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=179,arranged_for=musicbox30,title=Frühlingslied,title_ja=春の歌,title_en=Spring Song,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=はるのうた,steps_per_quarter=4,time_signature=2/4
 F3,A4,A5
 
 C5

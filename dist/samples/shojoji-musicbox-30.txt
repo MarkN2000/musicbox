@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=證城寺の狸囃子,title_en=Shōjōji no Tanuki Bayashi,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しょうじょうじのたぬきばやし,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox30,title=證城寺の狸囃子,title_en=Shōjōji no Tanuki Bayashi,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しょうじょうじのたぬきばやし,steps_per_quarter=4,time_signature=2/4
 C4,G4,C5
 
 E4,G4

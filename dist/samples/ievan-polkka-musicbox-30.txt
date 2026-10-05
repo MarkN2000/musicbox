@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=129,arranged_for=musicbox-30,title=Ievan polkka,title_ja=イエヴァン・ポルカ,title_en=Ievan Polkka,composer=フィンランド伝承曲（旋律のみ）,composer_ja=フィンランド伝承曲（旋律のみ）,composer_en=Traditional Finnish melody,reading_ja=いえゔぁんぽるか,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=129,arranged_for=musicbox30,title=Ievan polkka,title_ja=イエヴァン・ポルカ,title_en=Ievan Polkka,composer=フィンランド伝承曲（旋律のみ）,composer_ja=フィンランド伝承曲（旋律のみ）,composer_en=Traditional Finnish melody,reading_ja=いえゔぁんぽるか,steps_per_quarter=4,time_signature=2/4
 E4,A4,A5
 
 C5,E5

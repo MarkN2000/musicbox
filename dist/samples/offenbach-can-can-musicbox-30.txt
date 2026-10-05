@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=117,arranged_for=musicbox-30,title=Orphée aux enfers: Ouverture,title_ja=天国と地獄より「序曲」,title_en=Orpheus in the Underworld: Overture,composer=オッフェンバック,composer_ja=オッフェンバック,composer_en=Jacques Offenbach,reading_ja=てんごくとじごくよりじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=117,arranged_for=musicbox30,title=Orphée aux enfers: Ouverture,title_ja=天国と地獄より「序曲」,title_en=Orpheus in the Underworld: Overture,composer=オッフェンバック,composer_ja=オッフェンバック,composer_en=Jacques Offenbach,reading_ja=てんごくとじごくよりじょきょく,steps_per_quarter=4,time_signature=2/4
 C5
 
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=109,arranged_for=musicbox-30,title=Guillaume Tell: Ouverture,title_ja=ウィリアム・テル序曲,title_en=William Tell: Overture,composer=ロッシーニ,composer_ja=ロッシーニ,composer_en=Gioachino Rossini,reading_ja=うぃりあむてるじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=109,arranged_for=musicbox30,title=Guillaume Tell: Ouverture,title_ja=ウィリアム・テル序曲,title_en=William Tell: Overture,composer=ロッシーニ,composer_ja=ロッシーニ,composer_en=Gioachino Rossini,reading_ja=うぃりあむてるじょきょく,steps_per_quarter=4,time_signature=2/4
 F5
 F5
 F3,F4,F5

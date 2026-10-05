@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Hänschen klein,title_ja=ちょうちょう,title_en=Lightly Row,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=ちょうちょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Hänschen klein,title_ja=ちょうちょう,title_en=Lightly Row,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=ちょうちょう,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4,E5

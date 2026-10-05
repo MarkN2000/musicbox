@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=326,arranged_for=musicbox-30,title=紅葉,title_en=Momiji,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=もみじ,category=classical-folk,steps_per_quarter=2,time_signature=4/4
+format=stepscore,version=1,step_ms=326,arranged_for=musicbox30,title=紅葉,title_en=Momiji,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=もみじ,steps_per_quarter=2,time_signature=4/4
 F3,C4,A5
 
 F4,A4,G5

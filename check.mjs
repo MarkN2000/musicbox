@@ -14,6 +14,12 @@ assert.equal(definitions.instruments[0].defaultSoundset,'musicbox-30');
 assert.equal(definitions.instruments[1].defaultSoundset,'vsco-piano');assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-piano').allowed],[...definitions.instruments[1].allowed],'録音ピアノは全88鍵を再生できる');
 const piano61=definitions.instruments.find(item=>item.id==='piano-61');assert.equal(piano61.defaultSoundset,'vsco-piano');assert.deepEqual([...piano61.allowed],Array.from({length:61},(_,i)=>36+i),'61鍵ピアノはC2〜C7');
 const marimba61=definitions.instruments.find(item=>item.id==='marimba-61');assert.equal(marimba61.defaultSoundset,'vsco-marimba');assert.deepEqual([...marimba61.allowed],Array.from({length:61},(_,i)=>36+i),'61音マリンバはC2〜C7');
+assert.equal(piano61.arrangedFor,'piano61');assert.equal(marimba61.arrangedFor,piano61.arrangedFor,'同じ音域のピアノ・マリンバは編曲対象を共有する');
+assert.deepEqual([...new Set(definitions.instruments.map(item=>item.arrangedFor))],['musicbox30','piano88','piano61','xylophone32']);
+assert.throws(()=>validateDefinitions([{...profiles[0],arrangedFor:undefined}],sounds));
+assert.throws(()=>validateDefinitions([{...profiles[0],arrangedFor:['musicbox30']}],sounds));
+assert.throws(()=>validateDefinitions([{...profiles[0],arrangedFor:'musicbox-30'}],sounds));
+assert.throws(()=>validateDefinitions([profiles[1],{...profiles[2],arrangedFor:'piano88'}],sounds),'同じ基準名に異なる音域を割り当てない');
 assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-marimba').allowed],[...marimba61.allowed],'マリンバ音源は61音だけ用意する');
 const xylophone32=definitions.instruments.find(item=>item.id==='xylophone-32');assert.equal(xylophone32.defaultSoundset,'vsco-xylophone');assert.deepEqual([...xylophone32.allowed],Array.from({length:32},(_,i)=>77+i),'32音木琴は学校用の実音F5〜C8');assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-xylophone').allowed],[...xylophone32.allowed],'木琴には専用音源の全32音を紐付ける');
 for(let midi=0;midi<=127;midi++)assert.equal(noteNumber(noteName(midi)),midi);
@@ -32,6 +38,9 @@ assert.throws(()=>validateDefinitions(profiles,[{...sounds[0],base:'../private/'
 const expectedCatalog=await catalogData();assert.equal(await readFile('dist/samples/index.json','utf8'),expectedCatalog,'サンプルを編集したらnpm run buildで一覧を更新してください');
 const catalog=JSON.parse(expectedCatalog);
 for(const entry of catalog.samples){const score=parseText(await readFile('dist/samples/'+entry.file,'utf8'));for(const key of ['source','listen','detail','work_id','pickup_steps'])assert(!(key in score.metadata),'削除した項目をサンプルTXTに残さない：'+key);for(const [key,value] of Object.entries(score.metadata).filter(([key])=>key.startsWith('title_')))assert(value&&value!==score.metadata.title,'基本名と同じ表示名は省略する：'+entry.file+' '+key);assert.deepEqual(parseText(serialize(score.notes,score.length,score.stepMs,score.metadata)),score);}
+const sakkijarven=parseText(await readFile('dist/samples/sakkijarven-polkka-musicbox-30.txt','utf8'));
+for(const [step,name]of [[16,'B4'],[48,'B4'],[70,'A5'],[72,'A5'],[74,'A5'],[75,'B5'],[76,'A5'],[78,'G#5'],[80,'G#5'],[102,'A5'],[104,'A5'],[106,'A5'],[107,'B5'],[108,'A5'],[110,'G#5'],[112,'G#5'],[144,'B4'],[176,'B4']])assert.equal(Math.max(...sakkijarven.notes.filter(n=>n.step===step).map(n=>n.midi)),noteNumber(name),'サッキヤルヴェンの主旋律をCC0譜の音高に保つ：'+step);
+for(const step of [18,50,146,178])assert(!sakkijarven.notes.some(n=>n.step===step&&n.midi===noteNumber('B4')),'主旋律の四分音符B4を伴奏で打ち直さない');
 for(const sound of sounds){const hash=createHash('sha256');for(const file of Object.values(sound.files)){const bytes=await readFile('dist/'+sound.base+file);assert(bytes.length);if(file.endsWith('.ogg'))assert.equal(bytes.subarray(0,4).toString(),'OggS');hash.update(bytes);}assert.equal(hash.digest('hex').slice(0,16),sound.revision,'音源を変更したらnpm run buildで識別子を更新してください');}
 const ja=await json('dist/locales/ja.json'),en=await json('dist/locales/en.json');assert.deepEqual(Object.keys(ja).sort(),Object.keys(en).sort());for(const key of Object.keys(ja))assert.deepEqual([...ja[key].matchAll(/\{(\w+)\}/g)].map(match=>match[1]).sort(),[...en[key].matchAll(/\{(\w+)\}/g)].map(match=>match[1]).sort(),key);
 const {Midi}=createRequire(import.meta.url)('@tonejs/midi'),midi=new Midi();midi.header.setTempo(120);const track=midi.addTrack();track.addNote({midi:72,ticks:480,durationTicks:480});track.addCC({number:123,ticks:1920,value:0});const buffer=midi.toArray().buffer;

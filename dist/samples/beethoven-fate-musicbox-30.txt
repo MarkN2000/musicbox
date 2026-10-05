@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=104,arranged_for=musicbox-30,title=Symphonie Nr. 5: I. Allegro con brio,title_ja=運命,title_en=Symphony No. 5: I. Allegro con brio,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=うんめい,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=104,arranged_for=musicbox30,title=Symphonie Nr. 5: I. Allegro con brio,title_ja=運命,title_en=Symphony No. 5: I. Allegro con brio,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=うんめい,steps_per_quarter=4,time_signature=2/4
 
 
 C4,G4,D#5,G5

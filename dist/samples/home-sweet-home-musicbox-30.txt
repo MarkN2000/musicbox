@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=Home%2C Sweet Home,title_ja=埴生の宿,composer=ビショップ,composer_ja=ビショップ,composer_en=Henry Bishop,reading_ja=はにゅうのやど,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox30,title=Home%2C Sweet Home,title_ja=埴生の宿,composer=ビショップ,composer_ja=ビショップ,composer_en=Henry Bishop,reading_ja=はにゅうのやど,steps_per_quarter=4,time_signature=4/4
 C5
 
 

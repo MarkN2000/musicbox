@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=Pomp and Circumstance March No. 1,title_ja=威風堂々 第1番,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=いふうどうどうだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox30,title=Pomp and Circumstance March No. 1,title_ja=威風堂々 第1番,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=いふうどうどうだいいちばん,steps_per_quarter=4,time_signature=2/4
 G3,D4,B4,G5
 
 

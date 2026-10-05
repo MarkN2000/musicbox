@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=96,arranged_for=musicbox-30,title=Colonel Bogey March,title_ja=ボギー大佐,composer=アルフォード,composer_ja=アルフォード,composer_en=Kenneth J. Alford,reading_ja=ぼぎーたいさ,category=march,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=96,arranged_for=musicbox30,title=Colonel Bogey March,title_ja=ボギー大佐,composer=アルフォード,composer_ja=アルフォード,composer_en=Kenneth J. Alford,reading_ja=ぼぎーたいさ,steps_per_quarter=4,time_signature=4/4
 C4,E4,G5
 
 E4

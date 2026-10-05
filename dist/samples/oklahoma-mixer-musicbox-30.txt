@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Turkey in the Straw,title_ja=オクラホマミキサー,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=おくらほまみきさー,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Turkey in the Straw,title_ja=オクラホマミキサー,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=おくらほまみきさー,steps_per_quarter=4,time_signature=2/4
 A5
 G5
 F3,F5

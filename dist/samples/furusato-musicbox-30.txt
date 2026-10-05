@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=故郷,title_en=Furusato,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=ふるさと,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox30,title=故郷,title_en=Furusato,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=ふるさと,steps_per_quarter=4,time_signature=3/4
 C4,C5
 
 

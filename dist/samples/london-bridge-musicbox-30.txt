@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=227,arranged_for=musicbox-30,title=London Bridge Is Falling Down,title_ja=ロンドン橋落ちた,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ろんどんばしおちた,category=classical-folk,steps_per_quarter=2,time_signature=4/4
+format=stepscore,version=1,step_ms=227,arranged_for=musicbox30,title=London Bridge Is Falling Down,title_ja=ロンドン橋落ちた,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ろんどんばしおちた,steps_per_quarter=2,time_signature=4/4
 C4,G5
 E4,G4
 C4

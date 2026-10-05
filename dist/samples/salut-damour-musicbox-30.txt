@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=197,arranged_for=musicbox-30,title=Salut d’Amour,title_ja=愛の挨拶,title_en=Salut d'Amour,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=あいのあいさつ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=197,arranged_for=musicbox30,title=Salut d’Amour,title_ja=愛の挨拶,title_en=Salut d'Amour,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=あいのあいさつ,steps_per_quarter=4,time_signature=2/4
 C4,E4,E6
 
 G4

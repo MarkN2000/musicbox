@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=横浜市歌,title_en=Yokohama City Song,composer=南能衛,composer_ja=南能衛,composer_en=Yoshie Minami,reading_ja=よこはましか,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox30,title=横浜市歌,title_en=Yokohama City Song,composer=南能衛,composer_ja=南能衛,composer_en=Yoshie Minami,reading_ja=よこはましか,steps_per_quarter=4,time_signature=2/4
 F3,A4,A5
 
 A4

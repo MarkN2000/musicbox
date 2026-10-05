@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Hochzeitsmarsch,title_ja=結婚行進曲,title_en=Wedding March,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=けっこんこうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Hochzeitsmarsch,title_ja=結婚行進曲,title_en=Wedding March,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=けっこんこうしんきょく,steps_per_quarter=4,time_signature=4/4
 E4,A4,F#5,C6
 
 

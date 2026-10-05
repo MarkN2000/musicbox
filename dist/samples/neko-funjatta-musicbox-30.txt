@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Flohwalzer,title_ja=猫踏んじゃった,title_en=Flea Waltz,composer=作者不詳,composer_ja=作者不詳,composer_en=Anonymous,reading_ja=ねこふんじゃった,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Flohwalzer,title_ja=猫踏んじゃった,title_en=Flea Waltz,composer=作者不詳,composer_ja=作者不詳,composer_en=Anonymous,reading_ja=ねこふんじゃった,steps_per_quarter=4,time_signature=4/4
 D6
 
 C6

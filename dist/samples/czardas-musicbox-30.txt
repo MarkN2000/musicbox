@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=104,arranged_for=musicbox-30,title=Csárdás,title_ja=チャルダッシュ,composer=モンティ,composer_ja=モンティ,composer_en=Vittorio Monti,reading_ja=ちゃるだっしゅ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=104,arranged_for=musicbox30,title=Csárdás,title_ja=チャルダッシュ,composer=モンティ,composer_ja=モンティ,composer_en=Vittorio Monti,reading_ja=ちゃるだっしゅ,steps_per_quarter=4,time_signature=2/4
 D4,D5
 
 F4,D6

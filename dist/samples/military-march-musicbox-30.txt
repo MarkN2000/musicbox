@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Marche militaire No. 1,title_ja=軍隊行進曲 第1番,title_en=Military March No. 1,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=ぐんたいこうしんきょくだいいちばん,category=march,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox30,title=Marche militaire No. 1,title_ja=軍隊行進曲 第1番,title_en=Military March No. 1,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=ぐんたいこうしんきょくだいいちばん,steps_per_quarter=4,time_signature=2/4
 C4,G5
 
 E4,G4

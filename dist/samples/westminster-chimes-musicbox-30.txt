@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=Westminster Chimes,title_ja=ウェストミンスターの鐘,composer=ジョウェット（帰属に諸説）,composer_ja=ジョウェット（帰属に諸説）,composer_en=William Jowett (attribution disputed),reading_ja=うぇすとみんすたーのかね,category=classical-folk,steps_per_quarter=2,time_signature=4/4
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox30,title=Westminster Chimes,title_ja=ウェストミンスターの鐘,composer=ジョウェット（帰属に諸説）,composer_ja=ジョウェット（帰属に諸説）,composer_en=William Jowett (attribution disputed),reading_ja=うぇすとみんすたーのかね,steps_per_quarter=2,time_signature=4/4
 C4,E4,C5
 
 

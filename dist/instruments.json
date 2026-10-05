@@ -37,7 +37,8 @@
       "G6",
       "A6"
     ],
-    "defaultSoundset": "musicbox-30"
+    "defaultSoundset": "musicbox-30",
+    "arrangedFor": "musicbox30"
   },
   {
     "id": "piano-88",
@@ -49,7 +50,8 @@
       21,
       108
     ],
-    "defaultSoundset": "vsco-piano"
+    "defaultSoundset": "vsco-piano",
+    "arrangedFor": "piano88"
   },
   {
     "id": "piano-61",
@@ -61,7 +63,8 @@
       36,
       96
     ],
-    "defaultSoundset": "vsco-piano"
+    "defaultSoundset": "vsco-piano",
+    "arrangedFor": "piano61"
   },
   {
     "id": "marimba-61",
@@ -73,7 +76,8 @@
       36,
       96
     ],
-    "defaultSoundset": "vsco-marimba"
+    "defaultSoundset": "vsco-marimba",
+    "arrangedFor": "piano61"
   },
   {
     "id": "xylophone-32",
@@ -85,6 +89,7 @@
       77,
       108
     ],
-    "defaultSoundset": "vsco-xylophone"
+    "defaultSoundset": "vsco-xylophone",
+    "arrangedFor": "xylophone32"
   }
 ]

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=163,arranged_for=musicbox-30,title=雪〈雪やこんこ〉,title_en=Yuki,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=ゆき,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=163,arranged_for=musicbox30,title=雪〈雪やこんこ〉,title_en=Yuki,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=ゆき,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4

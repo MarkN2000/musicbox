@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=My Grandfather's Clock,title_ja=大きな古時計,composer=ワーク,composer_ja=ワーク,composer_en=Henry Clay Work,reading_ja=おおきなふるどけい,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=My Grandfather's Clock,title_ja=大きな古時計,composer=ワーク,composer_ja=ワーク,composer_en=Henry Clay Work,reading_ja=おおきなふるどけい,steps_per_quarter=4,time_signature=4/4
 C5
 
 

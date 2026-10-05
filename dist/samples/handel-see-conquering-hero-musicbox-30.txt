@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=See%2C the Conqu'ring Hero Comes,title_ja=見よ、勇者は帰る,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=みよゆうしゃはかえる,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox30,title=See%2C the Conqu'ring Hero Comes,title_ja=見よ、勇者は帰る,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=みよゆうしゃはかえる,steps_per_quarter=4,time_signature=4/4
 C4,E4,G5
 
 

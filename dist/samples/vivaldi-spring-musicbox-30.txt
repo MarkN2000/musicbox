@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Le quattro stagioni: La primavera%2C I. Allegro,title_ja=四季より「春」第1楽章,title_en=The Four Seasons: Spring%2C I. Allegro,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりはるだいいちがくしょう,category=classical-folk,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Le quattro stagioni: La primavera%2C I. Allegro,title_ja=四季より「春」第1楽章,title_en=The Four Seasons: Spring%2C I. Allegro,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりはるだいいちがくしょう,steps_per_quarter=4,time_signature=4/4
 C4,C5
 
 E4,G4,E5

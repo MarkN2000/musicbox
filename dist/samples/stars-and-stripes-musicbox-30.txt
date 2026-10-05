@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=67,arranged_for=musicbox-30,title=The Stars and Stripes Forever,title_ja=星条旗よ永遠なれ,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=せいじょうきよえいえんなれ,category=march,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=67,arranged_for=musicbox30,title=The Stars and Stripes Forever,title_ja=星条旗よ永遠なれ,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=せいじょうきよえいえんなれ,steps_per_quarter=4,time_signature=4/4
 F3,F5
 
 

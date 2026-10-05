@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=86,arranged_for=musicbox-30,title=Chanson de l’Oignon,title_ja=玉葱の歌,title_en=Chanson de l'Oignon,composer=フランス伝承曲,composer_ja=フランス伝承曲,composer_en=Traditional French melody,reading_ja=たまねぎのうた,category=march,steps_per_quarter=6,time_signature=2/4
+format=stepscore,version=1,step_ms=86,arranged_for=musicbox30,title=Chanson de l’Oignon,title_ja=玉葱の歌,title_en=Chanson de l'Oignon,composer=フランス伝承曲,composer_ja=フランス伝承曲,composer_en=Traditional French melody,reading_ja=たまねぎのうた,steps_per_quarter=6,time_signature=2/4
 G4
 
 G4

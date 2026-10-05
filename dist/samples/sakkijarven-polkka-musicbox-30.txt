@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Säkkijärven polkka,title_ja=サッキヤルヴェン・ポルカ,title_en=Säkkijärven Polkka,composer=フィンランド民謡,composer_ja=フィンランド民謡,composer_en=Traditional Finnish melody,reading_ja=さっきやるゔぇんぽるか,category=march,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Säkkijärven polkka,title_ja=サッキヤルヴェン・ポルカ,title_en=Säkkijärven Polkka,composer=フィンランド民謡,composer_ja=フィンランド民謡,composer_en=Traditional Finnish melody,reading_ja=さっきやるゔぇんぽるか,steps_per_quarter=4,time_signature=2/4
 E5
 
 
@@ -15,9 +15,9 @@ E4,C5
 
 E4,B4
 
-E4,C5
-
 E4,B4
+
+E4
 
 E4,E5
 
@@ -47,9 +47,9 @@ E4,C5
 
 E4,B4
 
-E4,C5
-
 E4,B4
+
+E4
 
 E4,E5
 
@@ -69,19 +69,19 @@ C4,E4
 
 A4,E5
 
-C4,E4,A4,G5
+C4,E4,A4,A5
 
-A4,G5
+A4,A5
 
-C4,E4,A4,G5
-A5
-D4,G5
+C4,E4,A4,A5
+B5
+E4,A5
 
-D4,A4,F#5
+E4,B4,D5,G#5
 
-D4,F#5
+E4,G#5
 
-D4,A4
+E4,B4,D5
 
 E4,E5
 
@@ -101,19 +101,19 @@ C4,E4,A4
 
 A4,E5
 
-C4,E4,A4,G5
+C4,E4,A4,A5
 
-A4,G5
+A4,A5
 
-C4,E4,A4,G5
-A5
-D4,G5
+C4,E4,A4,A5
+B5
+E4,A5
 
-D4,A4,F#5
+E4,B4,D5,G#5
 
-D4,F#5
+E4,G#5
 
-D4,A4
+E4,B4,D5
 
 E4,E5
 
@@ -143,9 +143,9 @@ E4,C5
 
 E4,B4
 
-E4,C5
-
 E4,B4
+
+E4
 
 E4,E5
 
@@ -175,9 +175,9 @@ E4,C5
 
 E4,B4
 
-E4,C5
-
 E4,B4
+
+E4
 
 E4,E5
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=12 Variationen über ‘Ah%2C vous dirai-je maman’%2C K. 265,title_ja=きらきら星変奏曲,title_en=Twinkle%2C Twinkle%2C Little Star Variations,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=きらきらぼしへんそうきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=12 Variationen über ‘Ah%2C vous dirai-je maman’%2C K. 265,title_ja=きらきら星変奏曲,title_en=Twinkle%2C Twinkle%2C Little Star Variations,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=きらきらぼしへんそうきょく,steps_per_quarter=4,time_signature=2/4
 C4,E4,C5
 
 G4

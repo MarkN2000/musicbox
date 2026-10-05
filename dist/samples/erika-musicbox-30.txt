@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=268,arranged_for=musicbox-30,title=Erika,title_ja=エーリカ行進曲,composer=ヘルムス・ニール,composer_ja=ヘルムス・ニール,composer_en=Herms Niel,reading_ja=えーりかこうしんきょく,category=march,steps_per_quarter=2,time_signature=2/4
+format=stepscore,version=1,step_ms=268,arranged_for=musicbox30,title=Erika,title_ja=エーリカ行進曲,composer=ヘルムス・ニール,composer_ja=ヘルムス・ニール,composer_en=Herms Niel,reading_ja=えーりかこうしんきょく,steps_per_quarter=2,time_signature=2/4
 C4,G4,E5
 
 E4,G4

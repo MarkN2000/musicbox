@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=The Entertainer,title_ja=ジ・エンターテイナー,composer=スコット・ジョプリン,composer_ja=スコット・ジョプリン,composer_en=Scott Joplin,reading_ja=じえんたーていなー,category=classical-folk,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox30,title=The Entertainer,title_ja=ジ・エンターテイナー,composer=スコット・ジョプリン,composer_ja=スコット・ジョプリン,composer_en=Scott Joplin,reading_ja=じえんたーていなー,steps_per_quarter=4,time_signature=2/4
 D5
 D#5
 C4,E5

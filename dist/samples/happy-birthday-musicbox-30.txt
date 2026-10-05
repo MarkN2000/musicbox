@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Happy Birthday to You,title_ja=ハッピーバースデー,composer=ミルドレッド・ヒル,composer_ja=ミルドレッド・ヒル,composer_en=Mildred J. Hill,reading_ja=はっぴーばーすでーとぅーゆー,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=Happy Birthday to You,title_ja=ハッピーバースデー,composer=ミルドレッド・ヒル,composer_ja=ミルドレッド・ヒル,composer_en=Mildred J. Hill,reading_ja=はっぴーばーすでーとぅーゆー,steps_per_quarter=4,time_signature=3/4
 G5
 
 G5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=227,arranged_for=musicbox-30,title=Nocturne No. 2%2C Op. 9 No. 2,title_ja=ノクターン第2番 Op.9-2,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=のくたーんだいにばん,category=classical-folk,steps_per_quarter=4,time_signature=12/8
+format=stepscore,version=1,step_ms=227,arranged_for=musicbox30,title=Nocturne No. 2%2C Op. 9 No. 2,title_ja=ノクターン第2番 Op.9-2,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=のくたーんだいにばん,steps_per_quarter=4,time_signature=12/8
 C5
 
 F3,A5

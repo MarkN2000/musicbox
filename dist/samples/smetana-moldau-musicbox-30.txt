@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Vltava,title_ja=モルダウ,title_en=The Moldau,composer=スメタナ,composer_ja=スメタナ,composer_en=Bedřich Smetana,reading_ja=もるだう,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=Vltava,title_ja=モルダウ,title_en=The Moldau,composer=スメタナ,composer_ja=スメタナ,composer_en=Bedřich Smetana,reading_ja=もるだう,steps_per_quarter=4,time_signature=3/4
 B4
 
 E4,B4,E5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=The U.S. Field Artillery March,title_ja=アメリカ野砲隊,composer=スーザ（1917年の原曲）,composer_ja=スーザ（1917年の原曲）,composer_en=John Philip Sousa (1917 original),reading_ja=あめりかやほうたい,category=march,steps_per_quarter=4,time_signature=2/4
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox30,title=The U.S. Field Artillery March,title_ja=アメリカ野砲隊,composer=スーザ（1917年の原曲）,composer_ja=スーザ（1917年の原曲）,composer_en=John Philip Sousa (1917 original),reading_ja=あめりかやほうたい,steps_per_quarter=4,time_signature=2/4
 G5
 
 G5

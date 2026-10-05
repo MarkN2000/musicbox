@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Menuet,title_ja=メヌエット,title_en=Minuet,composer=ペツォールト,composer_ja=ペツォールト,composer_en=Christian Petzold,reading_ja=めぬえっと,category=classical-folk,steps_per_quarter=4,time_signature=3/4
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox30,title=Menuet,title_ja=メヌエット,title_en=Minuet,composer=ペツォールト,composer_ja=ペツォールト,composer_en=Christian Petzold,reading_ja=めぬえっと,steps_per_quarter=4,time_signature=3/4
 C4,G5
 
 

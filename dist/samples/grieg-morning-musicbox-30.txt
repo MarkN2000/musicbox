@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=167,arranged_for=musicbox-30,title=Peer Gynt: Morgenstemning,title_ja=朝,title_en=Peer Gynt: Morning Mood,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=あさ,category=classical-folk,steps_per_quarter=4,time_signature=6/8
+format=stepscore,version=1,step_ms=167,arranged_for=musicbox30,title=Peer Gynt: Morgenstemning,title_ja=朝,title_en=Peer Gynt: Morning Mood,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=あさ,steps_per_quarter=4,time_signature=6/8
 F3,C4,C6
 
 A4,A5
