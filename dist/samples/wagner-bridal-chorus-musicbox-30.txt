@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=wagner-bridal-chorus,arranged_for=musicbox-30,title=婚礼の合唱,title_ja=婚礼の合唱,title_en=Bridal Chorus,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=こんれいのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://imslp.org/wiki/Lohengrin_(Wagner%2C_Wilhelm_Richard),listen=https://www.youtube.com/results?search_query=Wagner+Lohengrin+Bridal+Chorus,detail=ハ長調へ一括移調 · 有名な合唱主題と応答16小節 · 低い和音のオルゴール編曲
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Treulich geführt,title_ja=婚礼の合唱,title_en=Bridal Chorus,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=こんれいのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 

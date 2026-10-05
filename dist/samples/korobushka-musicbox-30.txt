@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=268,work_id=korobushka,arranged_for=musicbox-30,title=コロブチカ,title_ja=コロブチカ,title_en=Korobushka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=ころぶちか,category=classical-folk,steps_per_quarter=2,time_signature=4/4,source=https://github.com/uncle-sheepsky/duru-ai-cc0-bgm,listen=https://www.youtube.com/results?search_query=%25E3%2582%25B3%25E3%2583%25AD%25E3%2583%2596%25E3%2583%2581%25E3%2582%25AB%25E3%2580%2588%25D0%259A%25D0%25BE%25D1%2580%25D0%25BE%25D0%25B1%25D1%2583%25D1%2588%25D0%25BA%25D0%25B0%25E3%2580%2589%2520%25E3%2583%25AD%25E3%2582%25B7%25E3%2582%25A2%25E4%25BC%259D%25E6%2589%25BF%25E6%259B%25B2,detail=ニ短調 · 馴染みのある主題と応答を各1巡 · 1ステップ268 ms
+format=stepscore,version=1,step_ms=268,arranged_for=musicbox-30,title=Коробушка,title_ja=コロブチカ,title_en=Korobushka,composer=ロシア伝承曲,composer_ja=ロシア伝承曲,composer_en=Traditional Russian melody,reading_ja=ころぶちか,category=classical-folk,steps_per_quarter=2,time_signature=4/4
 D4,A5
 F4,A4
 A4,E5

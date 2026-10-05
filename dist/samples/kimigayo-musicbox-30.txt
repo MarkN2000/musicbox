@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=183,work_id=kimigayo,arranged_for=musicbox-30,title=君が代,title_ja=君が代,title_en=Kimigayo,composer=林廣守・林広季・奥好義,composer_ja=林廣守・林広季・奥好義,composer_en=Hiromori Hayashi%2C Akimori Hayashi and Yoshiisa Oku,reading_ja=きみがよ,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://commons.wikimedia.org/wiki/File:Kimigayo.jpg,listen=https://www.youtube.com/results?search_query=%25E5%2590%259B%25E3%2581%258C%25E4%25BB%25A3%2520%25E6%259E%2597%25E5%25BB%25A3%25E5%25AE%2588%25E3%2583%25BB%25E6%259E%2597%25E5%25BA%2583%25E5%25AD%25A3%25E3%2583%25BB%25E5%25A5%25A5%25E5%25A5%25BD%25E7%25BE%25A9,detail=原旋律を一巡 · ゆったりした低い和音
+format=stepscore,version=1,step_ms=183,arranged_for=musicbox-30,title=君が代,title_en=Kimigayo,composer=林廣守・林広季・奥好義,composer_ja=林廣守・林広季・奥好義,composer_en=Hiromori Hayashi%2C Akimori Hayashi and Yoshiisa Oku,reading_ja=きみがよ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 D4,F4,D5
 
 F4

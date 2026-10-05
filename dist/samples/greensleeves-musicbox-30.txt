@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,work_id=greensleeves,arranged_for=musicbox-30,title=グリーンスリーブス,title_ja=グリーンスリーブス,title_en=Greensleeves,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぐりーんすりーぶす,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=109,listen=https://www.youtube.com/watch?v=wARiOb80Zr0,detail=イ短調 · 歌い出しの主題・短調の分散和音 · オルゴール編曲
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=Greensleeves,title_ja=グリーンスリーブス,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぐりーんすりーぶす,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 A5
 
 

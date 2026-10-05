@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=69,work_id=radetzky-march,arranged_for=musicbox-30,title=ラデツキー行進曲,title_ja=ラデツキー行進曲,title_en=Radetzky March,composer=ヨハン・シュトラウス1世,composer_ja=ヨハン・シュトラウス1世,composer_en=Johann Strauss I,reading_ja=らでつきーこうしんきょく,category=march,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/Radetzky-Marsch%2C_Op.228_(Strauss_Sr.%2C_Johann),listen=https://youtu.be/rDGNyn4pUfA,detail=ヘ長調に移調 · 有名な導入4小節と第1主題8小節・行進の速さと跳躍を修正・短い終止 · オルゴール編曲
+format=stepscore,version=1,step_ms=69,arranged_for=musicbox-30,title=Radetzky-Marsch,title_ja=ラデツキー行進曲,title_en=Radetzky March,composer=ヨハン・シュトラウス1世,composer_ja=ヨハン・シュトラウス1世,composer_en=Johann Strauss I,reading_ja=らでつきーこうしんきょく,category=march,steps_per_quarter=4,time_signature=4/4
 F3,F4,F5
 
 A4,C5,F5

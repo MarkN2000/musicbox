@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=military-march,arranged_for=musicbox-30,title=軍隊行進曲 第1番,title_ja=軍隊行進曲 第1番,title_en=Military March No. 1,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=ぐんたいこうしんきょくだいいちばん,category=march,steps_per_quarter=4,time_signature=2/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1545,listen=https://www.youtube.com/results?search_query=Schubert+Military+March+No+1+D733,detail=ハ長調 · D.733第1番の主題と高音の応答12小節 · 全体を全音下げ、同じ主題の終止形で自然に閉じる二拍子の編曲
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Marche militaire No. 1,title_ja=軍隊行進曲 第1番,title_en=Military March No. 1,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=ぐんたいこうしんきょくだいいちばん,category=march,steps_per_quarter=4,time_signature=2/4
 C4,G5
 
 E4,G4

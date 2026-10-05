@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=179,work_id=mendelssohn-spring-song,arranged_for=musicbox-30,title=春の歌,title_ja=春の歌,title_en=Spring Song,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=はるのうた,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://imslp.org/wiki/Lieder_ohne_Worte%2C_Op.62_(Mendelssohn%2C_Felix),listen=https://youtu.be/5fcUBW3szik,detail=ヘ長調に移調 · 冒頭8小節・後半の歌う旋律と属和音からの結び · オルゴール編曲
+format=stepscore,version=1,step_ms=179,arranged_for=musicbox-30,title=Frühlingslied,title_ja=春の歌,title_en=Spring Song,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=はるのうた,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 F3,A4,A5
 
 C5

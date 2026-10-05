@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=250,work_id=fur-elise,arranged_for=musicbox-30,title=エリーゼのために,title_ja=エリーゼのために,title_en=Für Elise,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=えりーぜのために,category=classical-folk,steps_per_quarter=4,time_signature=3/8,source=https://commons.wikimedia.org/wiki/File:IMSLP103834-PMLP14377-F%25C3%25BCr_Elise%2C_Beethoven-WoO.059%2C_1867.pdf,listen=https://www.youtube.com/results?search_query=Beethoven+Fur+Elise,detail=冒頭8小節＋弱起 · 1オクターブ上 · 分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=250,arranged_for=musicbox-30,title=Für Elise,title_ja=エリーゼのために,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=えりーぜのために,category=classical-folk,steps_per_quarter=4,time_signature=3/8
 E6
 D#6
 E6

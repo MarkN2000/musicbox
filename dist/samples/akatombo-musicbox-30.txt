@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=250,work_id=akatombo,arranged_for=musicbox-30,title=赤とんぼ,title_ja=赤とんぼ,title_en=Akatombo,composer=山田耕筰,composer_ja=山田耕筰,composer_en=Kosaku Yamada,reading_ja=あかとんぼ,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://dl.ndl.go.jp/pid/1100014/1/10,listen=https://www.youtube.com/results?search_query=%25E5%25B1%25B1%25E7%2594%25B0%25E8%2580%2595%25E7%25AD%25B0+%25E8%25B5%25A4%25E3%2581%25A8%25E3%2582%2593%25E3%2581%25BC,detail=ヘ長調 · 原版の主題8小節 · 付点とゆったりした3拍子 · 低い和音
+format=stepscore,version=1,step_ms=250,arranged_for=musicbox-30,title=赤とんぼ,title_en=Akatombo,composer=山田耕筰,composer_ja=山田耕筰,composer_en=Kosaku Yamada,reading_ja=あかとんぼ,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 F3,C5
 
 F5

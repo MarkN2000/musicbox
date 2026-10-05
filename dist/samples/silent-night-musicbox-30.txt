@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,work_id=silent-night,arranged_for=musicbox-30,title=きよしこの夜,title_ja=きよしこの夜,title_en=Silent Night,composer=グルーバー,composer_ja=グルーバー,composer_en=Franz Xaver Gruber,reading_ja=きよしこのよる,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1295,listen=https://www.youtube.com/results?search_query=Gruber+Silent+Night,detail=ハ長調 · 伝統的な主題12小節 · 6/8の静かな分散和音と原譜の主音終止
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=Stille Nacht,title_ja=きよしこの夜,title_en=Silent Night,composer=グルーバー,composer_ja=グルーバー,composer_en=Franz Xaver Gruber,reading_ja=きよしこのよる,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 C4,G4,G5
 
 E4

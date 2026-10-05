@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=ode-to-joy,arranged_for=musicbox-30,title=歓喜の歌,title_ja=歓喜の歌,title_en=Ode to Joy,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=かんきのうた,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=528,listen=https://www.youtube.com/results?search_query=Beethoven+Ode+to+Joy,detail=ハ長調 · 主題16小節 · 和音と分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=An die Freude,title_ja=歓喜の歌,title_en=Ode to Joy,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=かんきのうた,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C4,E4,E5
 
 G4

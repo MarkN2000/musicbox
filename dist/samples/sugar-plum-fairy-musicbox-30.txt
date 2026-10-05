@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,work_id=sugar-plum-fairy,arranged_for=musicbox-30,title=くるみ割り人形より「金平糖の精の踊り」,title_ja=くるみ割り人形より「金平糖の精の踊り」,title_en=The Nutcracker: Dance of the Sugar Plum Fairy,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこんぺいとうのせいのおどり,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://imslp.org/wiki/The_Nutcracker_(suite)%2C_Op.71a_(Tchaikovsky%2C_Pyotr),listen=https://www.youtube.com/watch?v=mW3dQvv1A7Y,detail=ホ短調 · チェレスタの主題と応答8小節・旋律に合わせた低めの伴奏 · オルゴール編曲
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=Щелкунчик: Танец феи Драже,title_ja=くるみ割り人形より「金平糖の精の踊り」,title_en=The Nutcracker: Dance of the Sugar Plum Fairy,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこんぺいとうのせいのおどり,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 E4,G4
 
 B4,G5

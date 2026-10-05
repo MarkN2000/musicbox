@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=frog-chorus,arranged_for=musicbox-30,title=かえるの合唱,title_ja=かえるの合唱,title_en=Froschgesang,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=かえるのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://bilingualinjapan.home.blog/wp-content/uploads/2019/08/ganze-sommernc3a4chte-lang-a306.pdf,listen=https://www.youtube.com/results?search_query=%25E3%2581%258B%25E3%2581%2588%25E3%2582%258B%25E3%2581%25AE%25E5%2590%2588%25E5%2594%25B1%25E3%2580%2588Froschkonzert%25E3%2580%2589%2520%25E3%2583%2589%25E3%2582%25A4%25E3%2583%2584%25E4%25BC%259D%25E6%2589%25BF%25E6%259B%25B2,detail=ハ長調 · ドイツ伝承版の主題8小節 · 最終句の16分音符を保持
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Froschgesang,title_ja=かえるの合唱,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=かえるのがっしょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,C5
 
 E4,D5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=jingle-bells,arranged_for=musicbox-30,title=ジングルベル,title_ja=ジングルベル,title_en=Jingle Bells,composer=ピアポント,composer_ja=ピアポント,composer_en=James Lord Pierpont,reading_ja=じんぐるべる,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.yann-ollivier.org/music,listen=https://www.youtube.com/results?search_query=%25E3%2582%25B8%25E3%2583%25B3%25E3%2582%25B0%25E3%2583%25AB%25E3%2583%2599%25E3%2583%25AB%2520%25E3%2583%2594%25E3%2582%25A2%25E3%2583%259D%25E3%2583%25B3%25E3%2583%2588,detail=ハ長調 · PD合唱譜のサビ16小節 · 旋律を再照合し伴奏の濁りを整理
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Jingle Bells,title_ja=ジングルベル,composer=ピアポント,composer_ja=ピアポント,composer_en=James Lord Pierpont,reading_ja=じんぐるべる,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C4,E4,E5
 
 E4

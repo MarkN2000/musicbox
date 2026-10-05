@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,work_id=furusato,arranged_for=musicbox-30,title=故郷,title_ja=故郷,title_en=Furusato,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=ふるさと,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://dc.lib.hiroshima-u.ac.jp/da/ja/4078?viewer=uv,listen=https://www.youtube.com/results?search_query=%25E5%25B2%25A1%25E9%2587%258E%25E8%25B2%259E%25E4%25B8%2580%2520%25E6%2595%2585%25E9%2583%25B7,detail=ハ長調 · 唱歌の主題16小節 · 3拍子のやさしい和音
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=故郷,title_en=Furusato,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=ふるさと,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 C4,C5
 
 

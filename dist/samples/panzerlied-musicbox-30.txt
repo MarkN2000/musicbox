@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=250,work_id=panzerlied,arranged_for=musicbox-30,title=パンツァー・リート,title_ja=パンツァー・リート,title_en=Panzerlied,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=ぱんつぁーりーと,category=march,steps_per_quarter=2,time_signature=4/4,source=https://archive.org/details/pallmann-gerhard-soldaten-kameraden-liederbuch-fuer-wehrmacht-und-volk-1940-124-s.-scan-fraktur/page/n86/mode/1up,listen=https://www.youtube.com/watch?v=8JDkdc246QQ,detail=ハ長調に移調 · 有名な歌い出しから後半の応答まで · 反復を省いた行進の編曲
+format=stepscore,version=1,step_ms=250,arranged_for=musicbox-30,title=Panzerlied,title_ja=パンツァー・リート,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=ぱんつぁーりーと,category=march,steps_per_quarter=2,time_signature=4/4
 G3,D4,G5
 
 C4,G4,C6

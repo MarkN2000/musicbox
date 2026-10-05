@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,work_id=handel-see-conquering-hero,arranged_for=musicbox-30,title=見よ、勇者は帰る,title_ja=見よ、勇者は帰る,title_en=See%2C the Conqu'ring Hero Comes,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=みよゆうしゃはかえる,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/Special:ReverseLookup/98700,listen=https://www.youtube.com/results?search_query=Handel+See+the+Conquering+Hero+Comes,detail=ハ長調に移調 · 前奏を省いた高い主題8小節 · 付点を残した和音と分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=See%2C the Conqu'ring Hero Comes,title_ja=見よ、勇者は帰る,composer=ヘンデル,composer_ja=ヘンデル,composer_en=George Frideric Handel,reading_ja=みよゆうしゃはかえる,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C4,E4,G5
 
 

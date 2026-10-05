@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=shabondama,arranged_for=musicbox-30,title=シャボン玉,title_ja=シャボン玉,title_en=Shabondama,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しゃぼんだま,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs2/shabondfu1.jpg,listen=https://www.youtube.com/results?search_query=%25E3%2582%25B7%25E3%2583%25A3%25E3%2583%259C%25E3%2583%25B3%25E7%258E%2589+%25E4%25B8%25AD%25E5%25B1%25B1%25E6%2599%258B%25E5%25B9%25B3,detail=ハ長調 · 原譜の歌唱部20小節 · 結びの1小節を原伴奏最上声で校訂 · 低い分散和音
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=シャボン玉,title_en=Shabondama,composer=中山晋平,composer_ja=中山晋平,composer_en=Shinpei Nakayama,reading_ja=しゃぼんだま,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G4
 
 G3,C5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=93,work_id=nutcracker-march,arranged_for=musicbox-30,title=くるみ割り人形より「行進曲」,title_ja=くるみ割り人形より「行進曲」,title_en=The Nutcracker: March,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこうしんきょく,category=classical-folk,steps_per_quarter=6,time_signature=4/4,source=https://imslp.org/wiki/The_Nutcracker_(suite)%2C_Op.71a_(Tchaikovsky%2C_Pyotr),listen=https://www.youtube.com/watch?v=_NTRDHsabF4,detail=ヘ長調に移調 · ファンファーレと弦の旋律8小節・属和音から冒頭へ戻る弱起 · オルゴール編曲
+format=stepscore,version=1,step_ms=93,arranged_for=musicbox-30,title=Щелкунчик: Марш,title_ja=くるみ割り人形より「行進曲」,title_en=The Nutcracker: March,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりこうしんきょく,category=classical-folk,steps_per_quarter=6,time_signature=4/4
 F3,A4,C5,C6
 
 

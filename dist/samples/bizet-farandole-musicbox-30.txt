@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,work_id=bizet-farandole,arranged_for=musicbox-30,title=ファランドール,title_ja=ファランドール,title_en=L'Arlésienne: Farandole,composer=ビゼー,composer_ja=ビゼー,composer_en=Georges Bizet,reading_ja=ふぁらんどーる,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/L%2527Arl%25C3%25A9sienne_Suite_No.2_(Bizet%2C_Georges),listen=https://www.youtube.com/results?search_query=Bizet+Farandole+L%2527Arlesienne,detail=イ短調へ一括移調 · 「アルルの女」の王の行進 · 弱起から主題の終止まで · 低音と和音のオルゴール編曲
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=L’Arlésienne: Farandole,title_ja=ファランドール,title_en=L'Arlésienne: Farandole,composer=ビゼー,composer_ja=ビゼー,composer_en=Georges Bizet,reading_ja=ふぁらんどーる,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 E4,A4,C5,A5
 
 

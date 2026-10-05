@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=minuet,arranged_for=musicbox-30,title=メヌエット,title_ja=メヌエット,title_en=Minuet,composer=ペツォールト,composer_ja=ペツォールト,composer_en=Christian Petzold,reading_ja=めぬえっと,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://commons.wikimedia.org/wiki/File:IMSLP532968-PMLP357193-Pezold-BWV114a.pdf,listen=https://www.youtube.com/results?search_query=Petzold+Minuet+BWV114,detail=ハ長調に移調 · 冒頭16小節 · 3拍子のオルゴール編曲
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Menuet,title_ja=メヌエット,title_en=Minuet,composer=ペツォールト,composer_ja=ペツォールト,composer_en=Christian Petzold,reading_ja=めぬえっと,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 C4,G5
 
 

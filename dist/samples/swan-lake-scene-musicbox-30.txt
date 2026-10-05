@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,work_id=swan-lake-scene,arranged_for=musicbox-30,title=白鳥の湖より「情景」,title_ja=白鳥の湖より「情景」,title_en=Swan Lake: Scene,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=はくちょうのみずうみよりじょうけい,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/Swan_Lake_(suite)%2C_Op.20a_(Tchaikovsky%2C_Pyotr),listen=https://www.youtube.com/watch?v=qqjlocepj0o,detail=イ短調に移調 · 有名なオーボエの主題3小節・長音と付点リズムを原譜に合わせる · オルゴール編曲
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=Лебединое озеро: Сцена,title_ja=白鳥の湖より「情景」,title_en=Swan Lake: Scene,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=はくちょうのみずうみよりじょうけい,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 A4,C5,E6
 
 E5

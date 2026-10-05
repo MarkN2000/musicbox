@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,work_id=wagner-ride-of-valkyries,arranged_for=musicbox-30,title=ワルキューレの騎行,title_ja=ワルキューレの騎行,title_en=Ride of the Valkyries,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=わるきゅーれのきこう,category=classical-folk,steps_per_quarter=4,time_signature=9/8,source=https://imslp.org/wiki/Die_Walk%25C3%25BCre%2C_WWV_86B_(Wagner%2C_Richard),listen=https://www.youtube.com/results?search_query=Wagner+Ride+of+the+Valkyries,detail=ニ短調に移調 · 長い保持を省いた主題と応答 · 9/8の低音と和音、主音の余韻で終止
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Walkürenritt,title_ja=ワルキューレの騎行,title_en=Ride of the Valkyries,composer=ワーグナー,composer_ja=ワーグナー,composer_en=Richard Wagner,reading_ja=わるきゅーれのきこう,category=classical-folk,steps_per_quarter=4,time_signature=9/8
 D4,A4,D5
 
 

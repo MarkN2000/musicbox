@@ -91,14 +91,14 @@ function scenario({format='mp3',score=[{step:1,midi:72},{step:1,midi:76},{step:1
     ${app.split('\n').find(line=>line.startsWith('function timingFromInputs('))}
     ${app.slice(app.indexOf('let audioExportJob=null;'),app.indexOf('const saveMenu='))}
     ({save:()=>saveAudio(format),setScore:(score,size)=>{notes=score;length=size;},state:()=>JSON.stringify({notes,length})});
-  `,{$,format,initialScore:score,initialSize:size,initialBpm:bpm,initialSubdivision:subdivision,t,window:{OfflineAudioContext:OfflineAudio,Worker},ALLOWED,validateNote,keyOf,MAX_STEPS,audioBuffers:buffers,loadTone:async midi=>{await load();return buffers.get(midi);},announce:(message,error)=>messages.push({message,error}),URL:{createObjectURL:blob=>{downloads.push({blob});return 'blob:mp3';},revokeObjectURL(){}},document:{createElement:()=>({click(){downloads.at(-1).name=this.download;}})},setTimeout(){}});
+  `,{$,format,initialScore:score,initialSize:size,initialBpm:bpm,initialSubdivision:subdivision,t,window:{OfflineAudioContext:OfflineAudio,Worker},ALLOWED,validateNote,keyOf,MAX_STEPS,audioBuffers:buffers,loadTone:async midi=>{await load();return buffers.get(midi);},showError:(message='')=>messages.push(message),URL:{createObjectURL:blob=>{downloads.push({blob});return 'blob:mp3';},revokeObjectURL(){}},document:{createElement:()=>({click(){downloads.at(-1).name=this.download;}})},setTimeout(){}});
   return {...api,$,messages,contexts,workers,downloads};
 }
 const settle=async()=>{for(let i=0;i<15;i++)await Promise.resolve();};
 for(const format of ['mp3','ogg']){
 const make=options=>scenario({...options,format});
 let test=make();const original=test.state();await test.save();assert.equal(test.downloads.length,1,JSON.stringify(test.messages));
-assert.equal(test.state(),original,'保存で楽譜を変えない');assert.equal(test.downloads[0].name,`私の曲_.${format}`);assert.equal(test.downloads[0].blob.type,format==='mp3'?'audio/mpeg':'audio/ogg');assert.equal(test.messages.at(-1).message,`${format.toUpperCase()}を書き出しました。`);
+assert.equal(test.state(),original,'保存で楽譜を変えない');assert.equal(test.downloads[0].name,`私の曲_.${format}`);assert.equal(test.downloads[0].blob.type,format==='mp3'?'audio/mpeg':'audio/ogg');assert(!test.messages.some(Boolean),'音声保存の通常通知は表示しない');
 assert.equal(test.contexts[0].frames,Math.ceil(1.125*44100),'最後の音の余韻を残す');assert.equal(test.contexts[0].channels,2);assert.equal(test.contexts[0].rate,44100);
 assert.deepEqual(test.contexts[0].voices.map(v=>[v.buffer.midi,v.time,v.offset,v.gain.value]),[[72,.125,0,.5/Math.sqrt(2)],[76,.125,0,.5/Math.sqrt(2)]],'和音・重複統合・先頭休符・音量');
 assert.equal(test.$('save')['aria-busy'],'false');assert(test.workers[0].terminated);
@@ -117,14 +117,14 @@ for(const phase of ['load','render','encode']){
   finish=null;const gate=()=>new Promise(resolve=>{finish=resolve;});
   test=make({score:[{step:0,midi:72}],load:phase==='load'?gate:undefined,render:phase==='render'?gate:null,waiting:type=>phase==='encode'&&type==='encode'});
   const pending=test.save();await settle();const retained=test.state();await test.save();finish?.();await pending;
-  assert.equal(test.downloads.length,0,`${phase}中止後は保存しない`);assert.equal(test.state(),retained);assert.equal(test.$('save')['aria-busy'],'false');assert.match(test.messages.at(-1).message,/中止しました/);assert(test.workers.every(w=>w.terminated));
+  assert.equal(test.downloads.length,0,`${phase}中止後は保存しない`);assert.equal(test.state(),retained);assert.equal(test.$('save')['aria-busy'],'false');assert(!test.messages.some(Boolean),'中止の通知は表示しない');assert(test.workers.every(w=>w.terminated));
 }
 const releases=[];test=make({score:[{step:0,midi:72}],load:()=>new Promise(resolve=>releases.push(resolve))});
 const cancelled=test.save();await test.save();const retry=test.save();releases[0]();await cancelled;
 assert.equal(test.$('save')['aria-busy'],'true','古い処理の終了で新しい保存ボタンを戻さない');assert.equal(test.downloads.length,0);
 releases[1]();await retry;assert.equal(test.downloads.length,1,'中止後も保存できる');
 for(const settings of [{bpm:''},{bpm:0},{subdivision:0},{size:0},{size:MAX_STEPS+1},{score:[{step:4,midi:72}]},{score:[{step:1,midi:128}]},{load:async()=>{throw new Error('音源エラー');}},{render:async()=>{throw new Error('生成エラー');}},{workerError:true}]){
-  test=make(settings);const retained=test.state();await test.save();assert.equal(test.downloads.length,0);assert(test.messages.at(-1).error);assert.equal(test.state(),retained);assert.equal(test.$('save')['aria-busy'],'false');
+  test=make(settings);const retained=test.state();await test.save();assert.equal(test.downloads.length,0);assert(test.messages.at(-1));assert.equal(test.state(),retained);assert.equal(test.$('save')['aria-busy'],'false');
 }
 }
 // メニューのキー移動、無効なTXTのスキップ、中止と画面端の位置を実際のUI処理で確認する。

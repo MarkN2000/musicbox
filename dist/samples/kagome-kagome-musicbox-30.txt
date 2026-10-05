@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,work_id=kagome-kagome,arranged_for=musicbox-30,title=かごめかごめ,title_ja=かごめかごめ,title_en=Kagome Kagome,composer=日本伝承曲,composer_ja=日本伝承曲,composer_en=Traditional Japanese melody,reading_ja=かごめかごめ,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://dl.ndl.go.jp/pid/1213350/1/23,listen=https://www.youtube.com/results?search_query=%25E3%2581%258B%25E3%2581%2594%25E3%2582%2581%25E3%2581%258B%25E3%2581%2594%25E3%2582%2581+%25E3%2582%258F%25E3%2582%2589%25E3%2581%25B9%25E3%2581%2586%25E3%2581%259F,detail=野田地方の1933年採譜版 · 現在の一般形と異なる旋律 · 原譜の1節12小節 · 全旋律を1オクターブ上げた低い五度伴奏
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=かごめかごめ,title_en=Kagome Kagome,composer=日本伝承曲,composer_ja=日本伝承曲,composer_en=Traditional Japanese melody,reading_ja=かごめかごめ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,G4,C6
 
 G3,D4

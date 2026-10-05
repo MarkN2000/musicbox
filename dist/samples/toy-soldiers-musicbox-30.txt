@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=54,work_id=toy-soldiers,arranged_for=musicbox-30,title=おもちゃの兵隊のマーチ,title_ja=おもちゃの兵隊のマーチ,title_en=The Parade of the Tin Soldiers,composer=イェッセル,composer_ja=イェッセル,composer_en=Leon Jessel,reading_ja=おもちゃのへいたいのまーち,category=classical-folk,steps_per_quarter=12,time_signature=2/4,source=https://imslp.org/wiki/Special:ReverseLookup/140703,listen=https://lp.kewpie.co.jp/entertainment/3min_cooking/,detail=料理番組でおなじみの主題8小節＋原譜の再現8小節 · 通常の16分音符と三連符を保つ · ハ長調と低い伴奏
+format=stepscore,version=1,step_ms=54,arranged_for=musicbox-30,title=Die Parade der Zinnsoldaten,title_ja=おもちゃの兵隊のマーチ,title_en=The Parade of the Tin Soldiers,composer=イェッセル,composer_ja=イェッセル,composer_en=Leon Jessel,reading_ja=おもちゃのへいたいのまーち,category=classical-folk,steps_per_quarter=12,time_signature=2/4
 G5
 
 G5

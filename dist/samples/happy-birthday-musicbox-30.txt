@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,work_id=happy-birthday,arranged_for=musicbox-30,title=ハッピーバースデー,title_ja=ハッピーバースデー,title_en=Happy Birthday to You,composer=ミルドレッド・ヒル,composer_ja=ミルドレッド・ヒル,composer_en=Mildred J. Hill,reading_ja=はっぴーばーすでーとぅーゆー,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://commons.wikimedia.org/wiki/File:GoodMorningToAll_1893_song.jpg,listen=https://www.youtube.com/results?search_query=Happy+Birthday+to+You+melody,detail=ハ長調 · おなじみの旋律8小節 · 1拍の弱起と2拍の終止 · 原版の四分音符を各句の入りで八分2音に整理
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Happy Birthday to You,title_ja=ハッピーバースデー,composer=ミルドレッド・ヒル,composer_ja=ミルドレッド・ヒル,composer_en=Mildred J. Hill,reading_ja=はっぴーばーすでーとぅーゆー,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 G5
 
 G5

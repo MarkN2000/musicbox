@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,work_id=tetsudo-shoka,arranged_for=musicbox-30,title=鉄道唱歌,title_ja=鉄道唱歌,title_en=Tetsudō Shōka,composer=多梅稚,composer_ja=多梅稚,composer_en=Umechika Ono,reading_ja=てつどうしょうか,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://ndlsearch.ndl.go.jp/books/R100000039-I855601,listen=https://www.youtube.com/results?search_query=%25E9%2589%2584%25E9%2581%2593%25E5%2594%25B1%25E6%25AD%258C+%25E5%25A4%259A%25E6%25A2%2585%25E7%25A8%259A+%25E6%25B1%25BD%25E7%25AC%259B%25E4%25B8%2580%25E5%25A3%25B0,detail=ハ長調へ一括移調 · 「汽笛一声新橋を」の旋律16小節 · 付点の歌い出しと低い分散和音
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=鉄道唱歌,title_en=Tetsudō Shōka,composer=多梅稚,composer_ja=多梅稚,composer_en=Umechika Ono,reading_ja=てつどうしょうか,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,C5
 
 G4

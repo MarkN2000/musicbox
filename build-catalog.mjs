@@ -11,9 +11,9 @@ export async function catalogData(){
     const id=file.slice(0,-4);if(!/^[a-z0-9][a-z0-9-]*$/.test(id))throw new Error('サンプルのファイル名が不正です：'+file);
     const text=await readFile(resolve(root,'samples',file),'utf8'),score=parseText(text),usedNotes=[...new Set(score.notes.map(note=>note.midi))].sort((a,b)=>a-b);
     const {metadata}=score,profile=definitions.instruments.find(item=>item.id===metadata.arranged_for);
-    if(!/^[a-z0-9][a-z0-9-]*$/.test(metadata.work_id??'')||!['title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja'].every(key=>metadata[key])||!['classical-folk','march'].includes(metadata.category)||!profile||!usedNotes.every(note=>profile.allowed.has(note)))throw new Error('サンプルの設定・対応音が不正です：'+file);
-    const keys=['work_id','arranged_for','title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja','category'];
-    samples.push({id,file,metadata:Object.fromEntries(keys.map(key=>[key,metadata[key]])),usedNotes,length:score.length,stepMs:score.stepMs});hash.update(file).update(text);
+    if(!['title','composer','composer_ja','composer_en','reading_ja'].every(key=>metadata[key])||!['classical-folk','march'].includes(metadata.category)||!profile||!usedNotes.every(note=>profile.allowed.has(note)))throw new Error('サンプルの設定・対応音が不正です：'+file);
+    const keys=['arranged_for','title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja','category'];
+    samples.push({id,file,metadata:Object.fromEntries(keys.filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]])),usedNotes,length:score.length,stepMs:score.stepMs});hash.update(file).update(text);
   }
   return JSON.stringify({revision:hash.digest('hex').slice(0,16),samples})+'\n';
 }

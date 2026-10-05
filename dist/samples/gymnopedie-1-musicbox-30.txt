@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=234,work_id=gymnopedie-1,arranged_for=musicbox-30,title=ジムノペディ第1番,title_ja=ジムノペディ第1番,title_en=Gymnopédie No. 1,composer=サティ,composer_ja=サティ,composer_en=Erik Satie,reading_ja=じむのぺでぃだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=37,listen=https://www.youtube.com/watch?v=2WfaotSK3mI,detail=ハ長調に移調 · 冒頭の主題だけ・長七の和音で短く終止 · オルゴール編曲
+format=stepscore,version=1,step_ms=234,arranged_for=musicbox-30,title=Gymnopédie No. 1,title_ja=ジムノペディ第1番,composer=サティ,composer_ja=サティ,composer_en=Erik Satie,reading_ja=じむのぺでぃだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 F3,A4
 
 C5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=326,work_id=amazing-grace,arranged_for=musicbox-30,title=アメイジング・グレイス,title_ja=アメイジング・グレイス,title_en=Amazing Grace,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=あめいじんぐぐれいす,category=classical-folk,steps_per_quarter=2,time_signature=3/4,source=https://www.ccel.org/cceh/0001/000165a.pdf,listen=https://www.youtube.com/watch?v=HHx05uZHj1I,detail=ハ長調 · 有名な歌い出しから1番の終わりまで・8分音符のマス目と少し軽快なテンポ · 低いワルツ伴奏
+format=stepscore,version=1,step_ms=326,arranged_for=musicbox-30,title=Amazing Grace,title_ja=アメイジング・グレイス,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=あめいじんぐぐれいす,category=classical-folk,steps_per_quarter=2,time_signature=3/4
 G4,G5
 
 C4,C6

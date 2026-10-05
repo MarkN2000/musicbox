@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=326,work_id=momiji,arranged_for=musicbox-30,title=紅葉,title_ja=紅葉,title_en=Momiji,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=もみじ,category=classical-folk,steps_per_quarter=2,time_signature=4/4,source=https://dc.lib.hiroshima-u.ac.jp/da/ja/4102,listen=https://www.youtube.com/results?search_query=%25E7%25B4%2585%25E8%2591%2589+%25E5%25B2%25A1%25E9%2587%258E%25E8%25B2%259E%25E4%25B8%2580,detail=ヘ長調 · 歌唱主題の反復から終止まで原版の第5〜16小節 · 原テンポと休符を保ち1オクターブ上げた編曲
+format=stepscore,version=1,step_ms=326,arranged_for=musicbox-30,title=紅葉,title_en=Momiji,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=もみじ,category=classical-folk,steps_per_quarter=2,time_signature=4/4
 F3,C4,A5
 
 F4,A4,G5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=167,work_id=grieg-morning,arranged_for=musicbox-30,title=朝,title_ja=朝,title_en=Peer Gynt: Morning Mood,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=あさ,category=classical-folk,steps_per_quarter=4,time_signature=6/8,source=https://imslp.org/wiki/Peer_Gynt_Suite_No.1%2C_Op.46_(Grieg%2C_Edvard),listen=https://www.youtube.com/results?search_query=Grieg+Peer+Gynt+Morning+Mood,detail=ヘ長調へ一括移調 · フルート主題とオーボエの応答 · 最後は6/8の強拍で主音に着地
+format=stepscore,version=1,step_ms=167,arranged_for=musicbox-30,title=Peer Gynt: Morgenstemning,title_ja=朝,title_en=Peer Gynt: Morning Mood,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=あさ,category=classical-folk,steps_per_quarter=4,time_signature=6/8
 F3,C4,C6
 
 A4,A5

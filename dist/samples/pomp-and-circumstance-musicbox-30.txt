@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,work_id=pomp-and-circumstance,arranged_for=musicbox-30,title=威風堂々 第1番,title_ja=威風堂々 第1番,title_en=Pomp and Circumstance March No. 1,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=いふうどうどうだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=16964,listen=https://www.youtube.com/results?search_query=Elgar+Pomp+and+Circumstance+No+1+trio,detail=ト長調 · 有名な中間部の主題と応答16小節 · 原譜の属音と休符で区切る
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=Pomp and Circumstance March No. 1,title_ja=威風堂々 第1番,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=いふうどうどうだいいちばん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 G3,D4,B4,G5
 
 

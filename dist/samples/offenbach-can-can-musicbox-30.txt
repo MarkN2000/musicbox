@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=117,work_id=offenbach-can-can,arranged_for=musicbox-30,title=天国と地獄より「序曲」,title_ja=天国と地獄より「序曲」,title_en=Orpheus in the Underworld: Overture,composer=オッフェンバック,composer_ja=オッフェンバック,composer_en=Jacques Offenbach,reading_ja=てんごくとじごくよりじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://commons.wikimedia.org/wiki/File:Orph%25C3%25A9e_aux_enfers_(IA_imslp-aux-enfers-offenbach-jacques).pdf,listen=https://www.youtube.com/watch?v=0jHCQSlGqaM,detail=ヘ長調へ一括移調 · 運動会でおなじみの後半主題 · 低音と裏拍の和音 · オルゴール編曲
+format=stepscore,version=1,step_ms=117,arranged_for=musicbox-30,title=Orphée aux enfers: Ouverture,title_ja=天国と地獄より「序曲」,title_en=Orpheus in the Underworld: Overture,composer=オッフェンバック,composer_ja=オッフェンバック,composer_en=Jacques Offenbach,reading_ja=てんごくとじごくよりじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C5
 
 

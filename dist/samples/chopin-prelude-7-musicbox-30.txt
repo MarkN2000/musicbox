@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=231,work_id=chopin-prelude-7,arranged_for=musicbox-30,title=プレリュード第7番 Op.28-7,title_ja=プレリュード第7番 Op.28-7,title_en=Prelude No. 7%2C Op. 28 No. 7,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=ぷれりゅーどだいななばん,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=470,listen=https://youtu.be/1tCnAXF9aVQ?t=480,detail=ヘ長調に移調 · 主題が戻る後半8小節・原譜の和音と自然な終止 · オルゴール編曲
+format=stepscore,version=1,step_ms=231,arranged_for=musicbox-30,title=Prelude No. 7%2C Op. 28 No. 7,title_ja=プレリュード第7番 Op.28-7,composer=ショパン,composer_ja=ショパン,composer_en=Frédéric Chopin,reading_ja=ぷれりゅーどだいななばん,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 C5
 
 

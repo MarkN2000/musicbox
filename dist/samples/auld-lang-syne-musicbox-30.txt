@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=auld-lang-syne,arranged_for=musicbox-30,title=蛍の光,title_ja=蛍の光,title_en=Auld Lang Syne,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ほたるのひかり,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1121,listen=https://www.youtube.com/watch?v=ONdeqlkYIGw,detail=ハ長調 · 6〜9拍目・22拍目以降を低めの分散和音に変更 · オルゴール編曲
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Auld Lang Syne,title_ja=蛍の光,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ほたるのひかり,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 G4
 
 

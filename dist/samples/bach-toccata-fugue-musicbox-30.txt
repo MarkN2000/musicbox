@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=bach-toccata-fugue,arranged_for=musicbox-30,title=トッカータとフーガ BWV.565,title_ja=トッカータとフーガ BWV.565,title_en=Toccata and Fugue%2C BWV 565,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=とっかーたとふーが,category=classical-folk,steps_per_quarter=8,time_signature=4/4,source=https://s9.imslp.org/files/imglnks/usimg/f/f4/IMSLP01335-BWV0565.pdf,listen=https://www.youtube.com/results?search_query=Bach+Toccata+and+Fugue+BWV+565+organ,detail=ニ短調 · 有名な冒頭3音型と減七和音・主音への解決 · モルデントと下降をオクターブ声部で支える
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Toccata und Fuge%2C BWV 565,title_ja=トッカータとフーガ BWV.565,title_en=Toccata and Fugue%2C BWV 565,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=とっかーたとふーが,category=classical-folk,steps_per_quarter=8,time_signature=4/4
 A5,A6
 G5,G6
 E5,A5,A6

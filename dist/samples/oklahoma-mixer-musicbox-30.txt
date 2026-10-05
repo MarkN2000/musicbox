@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=oklahoma-mixer,arranged_for=musicbox-30,title=オクラホマミキサー,title_ja=オクラホマミキサー,title_en=Turkey in the Straw,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=おくらほまみきさー,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=29418,listen=https://ja.wikipedia.org/wiki/ファイル:Turkey_in_the_Straw.ogg,detail=1926年の伝承主題Aを2回、応答Bを1回 · 3度跳躍と同音反復 · ヘ長調へ一括移調 · 原譜の2拍子と音価を保つオルゴール編曲
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Turkey in the Straw,title_ja=オクラホマミキサー,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=おくらほまみきさー,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 A5
 G5
 F3,F5

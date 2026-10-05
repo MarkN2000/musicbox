@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=179,work_id=yuyake-koyake,arranged_for=musicbox-30,title=夕焼け小焼け,title_ja=夕焼け小焼け,title_en=Yūyake Koyake,composer=草川信,composer_ja=草川信,composer_en=Shin Kusakawa,reading_ja=ゆうやけこやけ,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://www.ne.jp/asahi/sayuri/home/doyokashi/yuyakekogakufu1.jpg,listen=https://www.youtube.com/results?search_query=夕焼け小焼け+草川信,detail=ハ長調 · 歌唱主題16小節を一巡 · 低い分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=179,arranged_for=musicbox-30,title=夕焼け小焼け,title_en=Yūyake Koyake,composer=草川信,composer_ja=草川信,composer_en=Shin Kusakawa,reading_ja=ゆうやけこやけ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 G4,G5

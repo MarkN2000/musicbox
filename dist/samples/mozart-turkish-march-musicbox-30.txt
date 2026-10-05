@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=mozart-turkish-march,arranged_for=musicbox-30,title=トルコ行進曲,title_ja=トルコ行進曲,title_en=Turkish March,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=とるここうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=108,listen=https://www.youtube.com/watch?v=aeEmGvm7kDk,detail=ニ短調へ一括移調 · 冒頭主題と応答・原譜の音程を保つ · オルゴール編曲
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Rondo alla turca,title_ja=トルコ行進曲,title_en=Turkish March,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=とるここうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 E5
 D5
 C#5

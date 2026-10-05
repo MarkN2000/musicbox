@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=278,work_id=clair-de-lune,arranged_for=musicbox-30,title=月の光,title_ja=月の光,title_en=Clair de lune,composer=ドビュッシー,composer_ja=ドビュッシー,composer_en=Claude Debussy,reading_ja=つきのひかり,category=classical-folk,steps_per_quarter=4,time_signature=9/8,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778,listen=https://www.youtube.com/watch?v=XkgyOZxIw0k,detail=ハ長調へ一括移調 · 冒頭8小節・原譜の音程とタイを保つ · オルゴール編曲
+format=stepscore,version=1,step_ms=278,arranged_for=musicbox-30,title=Clair de lune,title_ja=月の光,composer=ドビュッシー,composer_ja=ドビュッシー,composer_en=Claude Debussy,reading_ja=つきのひかり,category=classical-folk,steps_per_quarter=4,time_signature=9/8
 C4
 
 G4

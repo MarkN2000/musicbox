@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=156,work_id=aogeba-totoshi,arranged_for=musicbox-30,title=仰げば尊し,title_ja=仰げば尊し,title_en=Aogeba Tōtoshi,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=あおげばとうとし,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://dl.ndl.go.jp/pid/992053/1/10,listen=https://www.youtube.com/results?search_query=%25E4%25BB%25B0%25E3%2581%2592%25E3%2581%25B0%25E5%25B0%258A%25E3%2581%2597,detail=ハ長調へ一括移調 · 原版の主題16小節 · 6/8の弱起とタイ · 低い和音
+format=stepscore,version=1,step_ms=156,arranged_for=musicbox-30,title=仰げば尊し,title_en=Aogeba Tōtoshi,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=あおげばとうとし,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 E5
 
 C4,E5

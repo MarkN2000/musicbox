@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=twinkle,arranged_for=musicbox-30,title=きらきら星変奏曲,title_ja=きらきら星変奏曲,title_en=Twinkle%2C Twinkle%2C Little Star Variations,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=きらきらぼしへんそうきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://imslp.org/wiki/12_Variations_on_%2527Ah%2C_vous_dirai-je_maman%2527%2C_K.265/300e_(Mozart%2C_Wolfgang_Amadeus),listen=https://www.youtube.com/results?search_query=Mozart+K265+theme,detail=ハ長調 · フランス民謡を原旋律とする主題24小節 · 和音と分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=12 Variationen über ‘Ah%2C vous dirai-je maman’%2C K. 265,title_ja=きらきら星変奏曲,title_en=Twinkle%2C Twinkle%2C Little Star Variations,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=きらきらぼしへんそうきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,C5
 
 G4

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=alps-ichimanjaku,arranged_for=musicbox-30,title=アルプス一万尺,title_ja=アルプス一万尺,title_en=Yankee Doodle,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=あるぷすいちまんじゃく,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://en.wikisource.org/wiki/Page:Childs_own_music_book.djvu/57,listen=https://www.youtube.com/results?search_query=%25E3%2582%25A2%25E3%2583%25AB%25E3%2583%2597%25E3%2582%25B9%25E4%25B8%2580%25E4%25B8%2587%25E5%25B0%25BA%2520Yankee%2520Doodle,detail=前半8小節＋後半「ラララ…」8小節を1巡。軽い2拍子と低い和音。
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Yankee Doodle,title_ja=アルプス一万尺,composer=アメリカ伝承曲,composer_ja=アメリカ伝承曲,composer_en=Traditional American melody,reading_ja=あるぷすいちまんじゃく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,C6
 
 E4,G4,C6

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=67,work_id=stars-and-stripes,arranged_for=musicbox-30,title=星条旗よ永遠なれ,title_ja=星条旗よ永遠なれ,title_en=The Stars and Stripes Forever,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=せいじょうきよえいえんなれ,category=march,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=626,listen=https://youtu.be/3C_pI7MBJVM,detail=ヘ長調に移調 · 導入4小節と第1主題16小節・原譜の終止と行進の速さ · オルゴール編曲
+format=stepscore,version=1,step_ms=67,arranged_for=musicbox-30,title=The Stars and Stripes Forever,title_ja=星条旗よ永遠なれ,composer=スーザ,composer_ja=スーザ,composer_en=John Philip Sousa,reading_ja=せいじょうきよえいえんなれ,category=march,steps_per_quarter=4,time_signature=4/4
 F3,F5
 
 

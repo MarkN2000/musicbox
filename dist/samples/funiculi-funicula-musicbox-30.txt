@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=210,work_id=funiculi-funicula,arranged_for=musicbox-30,title=フニクリ・フニクラ,title_ja=フニクリ・フニクラ,title_en=Funiculì%2C Funiculà,composer=デンツァ,composer_ja=デンツァ,composer_en=Luigi Denza,reading_ja=ふにくりふにくら,category=march,steps_per_quarter=2,time_signature=6/8,source=https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=8401,listen=https://www.youtube.com/results?search_query=Funiculi+Funicula+Denza,detail=ハ長調へ一括移調 · 有名なサビと応答16小節 · 6/8の低音と和音 · 原譜の主音で結ぶ
+format=stepscore,version=1,step_ms=210,arranged_for=musicbox-30,title=Funiculì%2C Funiculà,title_ja=フニクリ・フニクラ,composer=デンツァ,composer_ja=デンツァ,composer_en=Luigi Denza,reading_ja=ふにくりふにくら,category=march,steps_per_quarter=2,time_signature=6/8
 G3,D4,B5
 
 D4,B4

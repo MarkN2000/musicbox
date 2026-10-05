@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=scotland-the-brave,arranged_for=musicbox-30,title=勇敢なるスコットランド,title_ja=勇敢なるスコットランド,title_en=Scotland the Brave,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ゆうかんなるすこっとらんど,category=march,steps_per_quarter=4,time_signature=4/4,source=https://commons.wikimedia.org/wiki/File:Scotland_the_Brave.jpg,listen=https://www.youtube.com/results?search_query=%25E5%258B%2587%25E6%2595%25A2%25E3%2581%25AA%25E3%2582%258B%25E3%2582%25B9%25E3%2582%25B3%25E3%2583%2583%25E3%2583%2588%25E3%2583%25A9%25E3%2583%25B3%25E3%2583%2589%2520%25E3%2582%25B9%25E3%2582%25B3%25E3%2583%2583%25E3%2583%2588%25E3%2583%25A9%25E3%2583%25B3%25E3%2583%2589%25E4%25BC%259D%25E6%2589%25BF%25E6%259B%25B2,detail=ハ調のミクソリディア · 1911年譜の8小節 · 最終弱起を冒頭と共有
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Scotland the Brave,title_ja=勇敢なるスコットランド,composer=スコットランド伝承曲,composer_ja=スコットランド伝承曲,composer_en=Traditional Scottish melody,reading_ja=ゆうかんなるすこっとらんど,category=march,steps_per_quarter=4,time_signature=4/4
 G5
 
 C4,E4,C5

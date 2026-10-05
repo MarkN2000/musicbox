@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=mendelssohn-wedding-march,arranged_for=musicbox-30,title=結婚行進曲,title_ja=結婚行進曲,title_en=Wedding March,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=けっこんこうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/A_Midsummer_Night%2527s_Dream%2C_incidental_music%2C_Op.61_(Mendelssohn%2C_Felix),listen=https://www.youtube.com/results?search_query=Mendelssohn+Wedding+March,detail=ハ長調 · 有名な主題8小節 · 低音と和音のオルゴール編曲
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Hochzeitsmarsch,title_ja=結婚行進曲,title_en=Wedding March,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=けっこんこうしんきょく,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 E4,A4,F#5,C6
 
 

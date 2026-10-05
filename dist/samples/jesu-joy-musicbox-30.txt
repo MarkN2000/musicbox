@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=256,work_id=jesu-joy,arranged_for=musicbox-30,title=主よ、人の望みの喜びよ,title_ja=主よ、人の望みの喜びよ,title_en=Jesu%2C Joy of Man's Desiring,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しゅよひとののぞみのよろこびよ,category=classical-folk,steps_per_quarter=3,time_signature=3/4,source=https://imslp.org/wiki/Herz_und_Mund_und_Tat_und_Leben%2C_BWV_147_(Bach%2C_Johann_Sebastian),listen=https://www.youtube.com/watch?v=kerRKiDj21A,detail=ハ長調に移調 · 三連符のリトルネッロ · オルゴール編曲
+format=stepscore,version=1,step_ms=256,arranged_for=musicbox-30,title=Jesus bleibet meine Freude,title_ja=主よ、人の望みの喜びよ,title_en=Jesu%2C Joy of Man's Desiring,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しゅよひとののぞみのよろこびよ,category=classical-folk,steps_per_quarter=3,time_signature=3/4
 C4,C5
 D5
 E5

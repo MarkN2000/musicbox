@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,work_id=home-sweet-home,arranged_for=musicbox-30,title=埴生の宿,title_ja=埴生の宿,title_en=Home%2C Sweet Home,composer=ビショップ,composer_ja=ビショップ,composer_en=Henry Bishop,reading_ja=はにゅうのやど,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=435,listen=https://www.youtube.com/results?search_query=Home+Sweet+Home+Bishop,detail=ハ長調 · 歌唱主題の前半8小節 · 弱起と句末を合わせた32拍
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=Home%2C Sweet Home,title_ja=埴生の宿,composer=ビショップ,composer_ja=ビショップ,composer_en=Henry Bishop,reading_ja=はにゅうのやど,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C5
 
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=268,work_id=erika,arranged_for=musicbox-30,title=エーリカ行進曲,title_ja=エーリカ行進曲,title_en=Erika,composer=ヘルムス・ニール,composer_ja=ヘルムス・ニール,composer_en=Herms Niel,reading_ja=えーりかこうしんきょく,category=march,steps_per_quarter=2,time_signature=2/4,source=https://www.arcanacabana.com/en/herms-niel-erika-marschlied-1938.html,listen=https://www.youtube.com/results?search_query=Erika+Herms+Niel+march,detail=ハ長調へ一括移調 · 有名な歌い出しと応答 · 休拍も低い行進拍で支える
+format=stepscore,version=1,step_ms=268,arranged_for=musicbox-30,title=Erika,title_ja=エーリカ行進曲,composer=ヘルムス・ニール,composer_ja=ヘルムス・ニール,composer_en=Herms Niel,reading_ja=えーりかこうしんきょく,category=march,steps_per_quarter=2,time_signature=2/4
 C4,G4,E5
 
 E4,G4

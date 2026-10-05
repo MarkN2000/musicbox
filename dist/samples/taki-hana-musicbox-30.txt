@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=taki-hana,arranged_for=musicbox-30,title=花,title_ja=花,title_en=Hana,composer=滝廉太郎,composer_ja=滝廉太郎,composer_en=Rentaro Taki,reading_ja=はな,category=classical-folk,steps_per_quarter=8,time_signature=2/4,source=https://imslp.org/wiki/Hana_(Taki%2C_Rentar%25C5%258D),listen=https://www.youtube.com/results?search_query=%25E6%25BB%259D%25E5%25BB%2589%25E5%25A4%25AA%25E9%2583%258E+%25E8%258A%25B1,detail=ハ長調 · 歌い出しから1番の終止まで16小節 · 付点と32分音符を残したオルゴール編曲
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=花,title_en=Hana,composer=滝廉太郎,composer_ja=滝廉太郎,composer_en=Rentaro Taki,reading_ja=はな,category=classical-folk,steps_per_quarter=8,time_signature=2/4
 C4,E4,G5
 
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=188,work_id=toryanse,arranged_for=musicbox-30,title=通りゃんせ,title_ja=通りゃんせ,title_en=Tōryanse,composer=日本古謡,composer_ja=日本古謡,composer_en=Traditional Japanese melody,reading_ja=とおりゃんせ,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://dl.ndl.go.jp/pid/1121414/1/6,listen=https://www.youtube.com/watch?v=BGashUMneng,detail=宇賀神味津男編『日本俚謡名曲集』（1943年）の独唱旋律から、歌い出しと細道のくだり、最後の「こわいながらも〜通りゃんせ」を9小節に抜粋。旋律を一括で13半音上げ、半音の響きを残した高音に、低い五度の和音と分散音を添えました。
+format=stepscore,version=1,step_ms=188,arranged_for=musicbox-30,title=通りゃんせ,title_en=Tōryanse,composer=日本古謡,composer_ja=日本古謡,composer_en=Traditional Japanese melody,reading_ja=とおりゃんせ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C4,G4
 
 

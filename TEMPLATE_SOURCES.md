@@ -2092,3 +2092,42 @@ OpenScoreのPDF24〜26頁、第110〜125小節（16小節）を収録。冒頭3�
 - オクラホマミキサーは1926年のMellie Dunham舞曲集No.8「Turkey in the Straw」（p.6）を使う。ユーザー指定録音の0:31〜0:53を主題の特定に使い、音高と音価はPD原譜から取る。主題Aを2回、応答Bを1回とし、特にBの3度跳躍・同音反復を保つ。原譜の2/4・16分音符単位と弱起0.5拍を保ち、テンポはユーザー指定で132から120 BPMへ下げる。全旋律を同じ10半音上げてヘ長調へ移し、低音と和音を添える。48拍・192ステップ、指定OGGの余韻込み約27秒とする。表示名は「オクラホマミキサー」を保持する。底本：<https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=29418>。
 - オクラホマミキサーの応答B第3・4小節は、ユーザー指定の編曲としてそれぞれ第3音をD6からA#5へ変更する。画面の37〜41拍目にある「A#5 D6 D6 D6 D6」を「A#5 D6 A#5 D6 D6」にし、発音位置・音価・伴奏・テンポ・全長を保持する。PD底本との差として編曲記録に残す。
 - オクラホマミキサーの主題A第1・5小節は、2巡とも冒頭のF5の8分音符をF5・E5の16分音符へ分け、続くF5へ半音で戻す。ユーザー指定で画面の1・9・17・25拍目の第4マスにE5を加える。後続の発音位置・伴奏・テンポ・全長を保持し、原譜との差として記録する。
+
+## サンプルTXTから移した出典
+
+TXTの `source` 削除に伴い、本文に未記録だった参照先を残す。編曲の確認記録は各曲の項目を参照。
+
+- `air-on-g-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=242
+- `auld-lang-syne-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1121
+- `battle-hymn-musicbox-30.txt`：https://www.loc.gov/item/2023782802/
+- `blue-danube-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=519
+- `brahms-lullaby-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1037
+- `british-grenadiers-musicbox-30.txt`：https://s9.imslp.org/files/imglnks/usimg/7/72/IMSLP450503-PMLP732681-englishminstrels02bari.pdf
+- `burgmuller-arabesque-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=203
+- `carmen-prelude-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=635
+- `chopin-nocturne-2-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1590
+- `chopin-prelude-7-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=470
+- `csikos-post-musicbox-30.txt`：https://www.free-scores.com/download-sheet-music.php?pdf=664
+- `dolls-dream-musicbox-30.txt`：https://imslp.org/wiki/Kinderscenen,_Op.202_(Oesten,_Theodore)
+- `fur-elise-musicbox-30.txt`：https://commons.wikimedia.org/wiki/File:IMSLP103834-PMLP14377-F%C3%BCr_Elise,_Beethoven-WoO.059,_1867.pdf
+- `greensleeves-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=109
+- `gymnopedie-1-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=37
+- `ievan-polkka-musicbox-30.txt`：https://kansalliskirjasto.finna.fi/Record/fikka.5069172
+- `jesu-joy-musicbox-30.txt`：https://imslp.org/wiki/Herz_und_Mund_und_Tat_und_Leben,_BWV_147_(Bach,_Johann_Sebastian)
+- `jupiter-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=527
+- `mendelssohn-spring-song-musicbox-30.txt`：https://imslp.org/wiki/Lieder_ohne_Worte,_Op.62_(Mendelssohn,_Felix)
+- `minuet-musicbox-30.txt`：https://commons.wikimedia.org/wiki/File:IMSLP532968-PMLP357193-Pezold-BWV114a.pdf
+- `minute-waltz-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=483
+- `nutcracker-march-musicbox-30.txt`：https://imslp.org/wiki/The_Nutcracker_(suite),_Op.71a_(Tchaikovsky,_Pyotr)
+- `ode-to-joy-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=528
+- `pachelbel-canon-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2047
+- `radetzky-march-musicbox-30.txt`：https://imslp.org/wiki/Radetzky-Marsch,_Op.228_(Strauss_Sr.,_Johann)
+- `salut-damour-musicbox-30.txt`：https://imslp.org/wiki/Salut_d%27amour,_Op.12_(Elgar,_Edward)
+- `stars-and-stripes-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=626
+- `sugar-plum-fairy-musicbox-30.txt`：https://imslp.org/wiki/The_Nutcracker_(suite),_Op.71a_(Tchaikovsky,_Pyotr)
+- `swan-lake-scene-musicbox-30.txt`：https://imslp.org/wiki/Swan_Lake_(suite),_Op.20a_(Tchaikovsky,_Pyotr)
+- `twinkle-musicbox-30.txt`：https://imslp.org/wiki/12_Variations_on_%27Ah,_vous_dirai-je_maman%27,_K.265/300e_(Mozart,_Wolfgang_Amadeus)
+- `vivaldi-spring-musicbox-30.txt`：https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=301
+- `waltz-of-flowers-musicbox-30.txt`：https://imslp.org/wiki/The_Nutcracker_(suite),_Op.71a_(Tchaikovsky,_Pyotr)
+- `when-johnny-musicbox-30.txt`：https://www.loc.gov/item/2023783068/
+- `yuki-no-shingun-musicbox-30.txt`：https://commons.wikimedia.org/wiki/File:Yukino_singun_1900.jpg

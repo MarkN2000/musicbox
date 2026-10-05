@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,work_id=amaryllis,arranged_for=musicbox-30,title=アマリリス,title_ja=アマリリス,title_en=Amaryllis,composer=フランス伝承曲（19世紀版）,composer_ja=フランス伝承曲（19世紀版）,composer_en=Traditional French melody (19th-century edition),reading_ja=あまりりす,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/ftp/PeaseAH/amaryllis/amaryllis-a4.pdf,listen=https://www.youtube.com/results?search_query=Amaryllis+Ghys,detail=ハ長調 · 前半の主題を後半でも再現 · 低い分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Amaryllis,title_ja=アマリリス,composer=フランス伝承曲（19世紀版）,composer_ja=フランス伝承曲（19世紀版）,composer_en=Traditional French melody (19th-century edition),reading_ja=あまりりす,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 G5
 
 

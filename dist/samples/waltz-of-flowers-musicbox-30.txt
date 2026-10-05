@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=67,work_id=waltz-of-flowers,arranged_for=musicbox-30,title=くるみ割り人形より「花のワルツ」,title_ja=くるみ割り人形より「花のワルツ」,title_en=The Nutcracker: Waltz of the Flowers,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりはなのわるつ,category=classical-folk,steps_per_quarter=8,time_signature=3/4,source=https://imslp.org/wiki/The_Nutcracker_(suite)%2C_Op.71a_(Tchaikovsky%2C_Pyotr),listen=https://youtu.be/k5Me3oZkk7s,detail=ヘ長調に移調 · ホルンの主題と続く軽やかな応答・ワルツの伴奏 · オルゴール編曲
+format=stepscore,version=1,step_ms=67,arranged_for=musicbox-30,title=Щелкунчик: Вальс цветов,title_ja=くるみ割り人形より「花のワルツ」,title_en=The Nutcracker: Waltz of the Flowers,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=くるみわりにんぎょうよりはなのわるつ,category=classical-folk,steps_per_quarter=8,time_signature=3/4
 F3,A4,C5
 
 

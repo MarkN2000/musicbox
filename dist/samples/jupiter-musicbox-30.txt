@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=227,work_id=jupiter,arranged_for=musicbox-30,title=惑星より「木星」,title_ja=惑星より「木星」,title_en=The Planets: Jupiter,composer=ホルスト,composer_ja=ホルスト,composer_en=Gustav Holst,reading_ja=わくせいよりもくせい,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=527,listen=https://www.youtube.com/watch?v=FTGpL1JPzIc,detail=ハ長調に移調 · 木星の中間部の主題 · オルゴール編曲
+format=stepscore,version=1,step_ms=227,arranged_for=musicbox-30,title=The Planets: Jupiter,title_ja=惑星より「木星」,composer=ホルスト,composer_ja=ホルスト,composer_en=Gustav Holst,reading_ja=わくせいよりもくせい,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 E5
 
 G5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,work_id=battle-hymn,arranged_for=musicbox-30,title=リパブリック讃歌,title_ja=リパブリック讃歌,title_en=Battle Hymn of the Republic,composer=19世紀アメリカの旋律,composer_ja=19世紀アメリカの旋律,composer_en=19th-century American melody,reading_ja=りぱぶりっくさんか,category=march,steps_per_quarter=4,time_signature=4/4,source=https://www.loc.gov/item/2023782802/,listen=https://youtu.be/snT9MJEg_8k,detail=ハ長調に移調 · 歌い出しの節8小節・付点の旋律と下降する結び · オルゴール編曲
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=Battle Hymn of the Republic,title_ja=リパブリック讃歌,composer=19世紀アメリカの旋律,composer_ja=19世紀アメリカの旋律,composer_en=19th-century American melody,reading_ja=りぱぶりっくさんか,category=march,steps_per_quarter=4,time_signature=4/4
 G5
 
 C4,C5,G5

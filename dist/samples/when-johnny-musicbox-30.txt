@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=when-johnny,arranged_for=musicbox-30,title=ジョニーが凱旋するとき,title_ja=ジョニーが凱旋するとき,title_en=When Johnny Comes Marching Home,composer=パトリック・ギルモア,composer_ja=パトリック・ギルモア,composer_en=Patrick Gilmore,reading_ja=じょにーががいせんするとき,category=march,steps_per_quarter=4,time_signature=6/8,source=https://www.loc.gov/item/2023783068/,listen=https://youtu.be/oO2PEpxs11M?t=3,detail=イ短調に移調 · 歌い出しから結びまで16小節・付点拍の伴奏 · オルゴール編曲
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=When Johnny Comes Marching Home,title_ja=ジョニーが凱旋するとき,composer=パトリック・ギルモア,composer_ja=パトリック・ギルモア,composer_en=Patrick Gilmore,reading_ja=じょにーががいせんするとき,category=march,steps_per_quarter=4,time_signature=6/8
 E5
 
 E4,A4,C5,A5

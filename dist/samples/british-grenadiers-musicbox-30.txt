@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=144,work_id=british-grenadiers,arranged_for=musicbox-30,title=ブリティッシュ・グレナディアーズ,title_ja=ブリティッシュ・グレナディアーズ,title_en=The British Grenadiers,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぶりてぃっしゅぐれなでぃあーず,category=march,steps_per_quarter=4,time_signature=2/4,source=https://s9.imslp.org/files/imglnks/usimg/7/72/IMSLP450503-PMLP732681-englishminstrels02bari.pdf,listen=https://youtu.be/5sGD3zWLBA4,detail=ハ長調に移調 · 歌い出しと後半の主題16小節を一巡・全体の反復なし · オルゴール編曲
+format=stepscore,version=1,step_ms=144,arranged_for=musicbox-30,title=The British Grenadiers,title_ja=ブリティッシュ・グレナディアーズ,composer=イギリス伝承曲,composer_ja=イギリス伝承曲,composer_en=Traditional British melody,reading_ja=ぶりてぃっしゅぐれなでぃあーず,category=march,steps_per_quarter=4,time_signature=2/4
 G5
 
 C4,C5,C6

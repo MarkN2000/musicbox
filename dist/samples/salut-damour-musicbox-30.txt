@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=197,work_id=salut-damour,arranged_for=musicbox-30,title=愛の挨拶,title_ja=愛の挨拶,title_en=Salut d'Amour,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=あいのあいさつ,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://imslp.org/wiki/Salut_d%2527amour%2C_Op.12_(Elgar%2C_Edward),listen=https://www.youtube.com/watch?v=NWrs5sGun-Y,detail=ハ長調に移調 · 冒頭の有名な主題・主音への解決と下降する分散和音で終止 · オルゴール編曲
+format=stepscore,version=1,step_ms=197,arranged_for=musicbox-30,title=Salut d’Amour,title_ja=愛の挨拶,title_en=Salut d'Amour,composer=エルガー,composer_ja=エルガー,composer_en=Edward Elgar,reading_ja=あいのあいさつ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,E6
 
 G4

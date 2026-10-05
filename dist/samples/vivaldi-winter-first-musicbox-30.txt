@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=94,work_id=vivaldi-winter-first,arranged_for=musicbox-30,title=四季より「冬」第1楽章,title_ja=四季より「冬」第1楽章,title_en=The Four Seasons: Winter%2C I. Allegro non molto,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりふゆだいいちがくしょう,category=classical-folk,steps_per_quarter=8,time_signature=4/4,source=https://s9.imslp.org/files/imglnks/usimg/4/40/IMSLP310709-PMLP126435-rv_297_violinos.pdf#page=1,listen=https://www.youtube.com/watch?v=PPgMbXAqkH4&t=70s,detail=ヘ短調 · 足を踏む主題から続く独奏まで · 原調 · 第28小節末の主音で結ぶ
+format=stepscore,version=1,step_ms=94,arranged_for=musicbox-30,title=Le quattro stagioni: L’inverno%2C I. Allegro non molto,title_ja=四季より「冬」第1楽章,title_en=The Four Seasons: Winter%2C I. Allegro non molto,composer=ヴィヴァルディ,composer_ja=ヴィヴァルディ,composer_en=Antonio Vivaldi,reading_ja=しきよりふゆだいいちがくしょう,category=classical-folk,steps_per_quarter=8,time_signature=4/4
 G3,C4,E4
 
 C4,E4,G4,G5

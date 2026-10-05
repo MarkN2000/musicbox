@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=139,work_id=smetana-moldau,arranged_for=musicbox-30,title=モルダウ,title_ja=モルダウ,title_en=The Moldau,composer=スメタナ,composer_ja=スメタナ,composer_en=Bedřich Smetana,reading_ja=もるだう,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://imslp.org/wiki/Vltava%2C_JB_1:112/2_(Smetana%2C_Bed%25C5%2599ich),listen=https://www.youtube.com/results?search_query=Smetana+Vltava+Moldau,detail=ホ短調 · 川の主題16小節と弱起 · 6/8の低音と分散和音のオルゴール編曲
+format=stepscore,version=1,step_ms=139,arranged_for=musicbox-30,title=Vltava,title_ja=モルダウ,title_en=The Moldau,composer=スメタナ,composer_ja=スメタナ,composer_en=Bedřich Smetana,reading_ja=もるだう,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 B4
 
 E4,B4,E5

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=109,work_id=william-tell,arranged_for=musicbox-30,title=ウィリアム・テル序曲,title_ja=ウィリアム・テル序曲,title_en=William Tell: Overture,composer=ロッシーニ,composer_ja=ロッシーニ,composer_en=Gioachino Rossini,reading_ja=うぃりあむてるじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://commons.wikimedia.org/wiki/File:William_Tell_(IA_b10331785).pdf,listen=https://www.youtube.com/results?search_query=Rossini+William+Tell+Overture+Finale,detail=変ロ長調へ一括移調 · 騎兵の終曲主題と応答23小節＋短い終止 · 活発な2拍子のオルゴール編曲
+format=stepscore,version=1,step_ms=109,arranged_for=musicbox-30,title=Guillaume Tell: Ouverture,title_ja=ウィリアム・テル序曲,title_en=William Tell: Overture,composer=ロッシーニ,composer_ja=ロッシーニ,composer_en=Gioachino Rossini,reading_ja=うぃりあむてるじょきょく,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 F5
 F5
 F3,F4,F5

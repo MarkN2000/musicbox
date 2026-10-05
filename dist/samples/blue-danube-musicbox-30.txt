@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=blue-danube,arranged_for=musicbox-30,title=美しく青きドナウ,title_ja=美しく青きドナウ,title_en=The Blue Danube,composer=ヨハン・シュトラウス2世,composer_ja=ヨハン・シュトラウス2世,composer_en=Johann Strauss II,reading_ja=うつくしくあおきどなう,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=519,listen=https://www.youtube.com/watch?v=fHzhDKwYP2s,detail=ハ長調 · ワルツの第1主題・弱起と拍の位置を残す · オルゴール編曲
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=An der schönen blauen Donau,title_ja=美しく青きドナウ,title_en=The Blue Danube,composer=ヨハン・シュトラウス2世,composer_ja=ヨハン・シュトラウス2世,composer_en=Johann Strauss II,reading_ja=うつくしくあおきどなう,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 C5
 
 

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=chocho,arranged_for=musicbox-30,title=ちょうちょう,title_ja=ちょうちょう,title_en=Lightly Row,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=ちょうちょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://dc.lib.hiroshima-u.ac.jp/da/ja/2956,listen=https://www.youtube.com/results?search_query=%25E3%2581%25A1%25E3%2582%2587%25E3%2581%2586%25E3%2581%25A1%25E3%2582%2587%25E3%2581%2586%2520%25E3%2583%2589%25E3%2582%25A4%25E3%2583%2584%25E4%25BC%259D%25E6%2589%25BF%25E6%259B%25B2,detail=ハ長調 · 1888年「小学唱歌集」第17曲 · 主音で結ぶ一巡
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Hänschen klein,title_ja=ちょうちょう,title_en=Lightly Row,composer=ドイツ伝承曲,composer_ja=ドイツ伝承曲,composer_en=Traditional German melody,reading_ja=ちょうちょう,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4,E5

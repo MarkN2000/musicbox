@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=125,work_id=neko-funjatta,arranged_for=musicbox-30,title=猫踏んじゃった,title_ja=猫踏んじゃった,title_en=Flea Waltz,composer=作者不詳,composer_ja=作者不詳,composer_en=Anonymous,reading_ja=ねこふんじゃった,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://commons.wikimedia.org/wiki/File:Flohwalzer.pdf,listen=https://www.youtube.com/results?search_query=%25E7%258C%25AB%25E8%25B8%258F%25E3%2582%2593%25E3%2581%2598%25E3%2582%2583%25E3%2581%25A3%25E3%2581%259F%2520%25E4%25BD%259C%25E8%2580%2585%25E4%25B8%258D%25E8%25A9%25B3,detail=ヘ長調 · 左右交互の前半主題32拍 · 全体を一括移調
+format=stepscore,version=1,step_ms=125,arranged_for=musicbox-30,title=Flohwalzer,title_ja=猫踏んじゃった,title_en=Flea Waltz,composer=作者不詳,composer_ja=作者不詳,composer_en=Anonymous,reading_ja=ねこふんじゃった,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 D6
 
 C6

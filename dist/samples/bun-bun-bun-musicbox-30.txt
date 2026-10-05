@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=134,work_id=bun-bun-bun,arranged_for=musicbox-30,title=ぶんぶんぶん,title_ja=ぶんぶんぶん,title_en=Summ%2C summ%2C summ,composer=ボヘミア伝承曲,composer_ja=ボヘミア伝承曲,composer_en=Traditional Bohemian melody,reading_ja=ぶんぶんぶん,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://commons.wikimedia.org/wiki/File:Summ_summ_summ.jpg,listen=https://www.youtube.com/results?search_query=%25E3%2581%25B6%25E3%2582%2593%25E3%2581%25B6%25E3%2582%2593%25E3%2581%25B6%25E3%2582%2593%2520%25E3%2583%259C%25E3%2583%2598%25E3%2583%259F%25E3%2582%25A2%25E4%25BC%259D%25E6%2589%25BF%25E6%259B%25B2,detail=ハ長調 · 1843年「Biene」の主題12小節を一巡
+format=stepscore,version=1,step_ms=134,arranged_for=musicbox-30,title=Summ%2C summ%2C summ,title_ja=ぶんぶんぶん,composer=ボヘミア伝承曲,composer_ja=ボヘミア伝承曲,composer_en=Traditional Bohemian melody,reading_ja=ぶんぶんぶん,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=83,work_id=mozart-dies-irae,arranged_for=musicbox-30,title=怒りの日,title_ja=怒りの日,title_en=Requiem: Dies irae,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=いかりのひ,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=364,listen=https://www.youtube.com/results?search_query=Mozart+Requiem+Dies+Irae,detail=ニ短調 · 「レクイエム」の冒頭合唱8小節 · 1オクターブ上 · 低い和音と短い主和音の終止
+format=stepscore,version=1,step_ms=83,arranged_for=musicbox-30,title=Requiem: Dies irae,title_ja=怒りの日,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=いかりのひ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 D4,F4,A4,D6
 
 

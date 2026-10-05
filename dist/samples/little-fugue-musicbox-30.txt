@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=little-fugue,arranged_for=musicbox-30,title=小フーガ,title_ja=小フーガ,title_en=Little Fugue%2C BWV 578,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しょうふーが,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/Fugue_in_G_minor%2C_BWV_578_(Bach%2C_Johann_Sebastian),listen=https://www.youtube.com/results?search_query=Bach+Little+Fugue+BWV+578,detail=ト短調 · BWV.578の冒頭主題5小節＋短い下降終止 · 旋律を1オクターブ上げ、控えめな低音和声を添えた編曲
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Fuge%2C BWV 578,title_ja=小フーガ,title_en=Little Fugue%2C BWV 578,composer=バッハ,composer_ja=バッハ,composer_en=Johann Sebastian Bach,reading_ja=しょうふーが,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 G3,D4,G5
 
 

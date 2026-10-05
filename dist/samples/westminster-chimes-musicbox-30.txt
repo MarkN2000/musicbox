@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,work_id=westminster-chimes,arranged_for=musicbox-30,title=ウェストミンスターの鐘,title_ja=ウェストミンスターの鐘,title_en=Westminster Chimes,composer=ジョウェット（帰属に諸説）,composer_ja=ジョウェット（帰属に諸説）,composer_en=William Jowett (attribution disputed),reading_ja=うぇすとみんすたーのかね,category=classical-folk,steps_per_quarter=2,time_signature=4/4,source=https://commons.wikimedia.org/wiki/File:Westminster_Chimes_(IA_jstor-3369957).pdf,listen=https://www.youtube.com/results?search_query=Westminster+Quarters+full+hour+chimes,detail=ハ長調 · 学校のチャイムでおなじみの16音の並び · 低い和音と句間の余韻
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=Westminster Chimes,title_ja=ウェストミンスターの鐘,composer=ジョウェット（帰属に諸説）,composer_ja=ジョウェット（帰属に諸説）,composer_en=William Jowett (attribution disputed),reading_ja=うぇすとみんすたーのかね,category=classical-folk,steps_per_quarter=2,time_signature=4/4
 C4,E4,C5
 
 

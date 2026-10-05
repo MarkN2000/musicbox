@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=278,work_id=schubert-ave-maria,arranged_for=musicbox-30,title=アヴェ・マリア D.839,title_ja=アヴェ・マリア D.839,title_en=Ave Maria%2C D. 839,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=あゔぇまりあ,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1054,listen=https://www.youtube.com/watch?v=XpYGgtrMTYs,detail=ト長調に一括移調 · 歌い出しと「アヴェ・マリア」の再現・原譜の主音終止 · 低い分散和音
+format=stepscore,version=1,step_ms=278,arranged_for=musicbox-30,title=Ave Maria%2C D. 839,title_ja=アヴェ・マリア D.839,composer=シューベルト,composer_ja=シューベルト,composer_en=Franz Schubert,reading_ja=あゔぇまりあ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 G3,B4,G5
 
 D5

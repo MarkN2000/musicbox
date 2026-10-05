@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=soviet-anthem,arranged_for=musicbox-30,title=ソビエト国歌,title_ja=ソビエト国歌,title_en=State Anthem of the Soviet Union,composer=アレクサンドロフ,composer_ja=アレクサンドロフ,composer_en=Alexander Alexandrov,reading_ja=そびえとこっか,category=march,steps_per_quarter=4,time_signature=4/4,source=https://imslp.org/wiki/State_Anthem_of_the_Union_of_Soviet_Socialist_Republics_(Alexandrov%2C_Alexander_Vasilyevich),listen=https://www.youtube.com/results?search_query=%25E3%2582%25BD%25E3%2583%2593%25E3%2582%25A8%25E3%2583%2588%25E5%259B%25BD%25E6%25AD%258C%2520%25E3%2582%25A2%25E3%2583%25AC%25E3%2582%25AF%25E3%2582%25B5%25E3%2583%25B3%25E3%2583%2589%25E3%2583%25AD%25E3%2583%2595,detail=ハ長調 · 1944年版の冒頭歌唱8小節 · 日本で期間満了した旋律
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=Государственный гимн СССР,title_ja=ソビエト国歌,title_en=State Anthem of the Soviet Union,composer=アレクサンドロフ,composer_ja=アレクサンドロフ,composer_en=Alexander Alexandrov,reading_ja=そびえとこっか,category=march,steps_per_quarter=4,time_signature=4/4
 G5
 
 C4,E4,C6

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=163,work_id=yuki,arranged_for=musicbox-30,title=雪〈雪やこんこ〉,title_ja=雪〈雪やこんこ〉,title_en=Yuki,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=ゆき,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://dc.lib.hiroshima-u.ac.jp/da/ja/4102,listen=https://www.youtube.com/results?search_query=%25E9%259B%25AA%25E3%2580%2588%25E9%259B%25AA%25E3%2582%2584%25E3%2581%2593%25E3%2582%2593%25E3%2581%2593%25E3%2580%2589%2520%25E6%2596%2587%25E9%2583%25A8%25E7%259C%2581%25E5%2594%25B1%25E6%25AD%258C%25EF%25BC%2588%25E4%25BD%259C%25E8%2580%2585%25E4%25B8%258D%25E8%25A9%25B3%25EF%25BC%2589,detail=ハ長調 · 1911年版の16小節 · 第8小節の付点句と休符を原譜どおりに修正
+format=stepscore,version=1,step_ms=163,arranged_for=musicbox-30,title=雪〈雪やこんこ〉,title_en=Yuki,composer=文部省唱歌（作者不詳）,composer_ja=文部省唱歌（作者不詳）,composer_en=Japanese school song (composer unknown),reading_ja=ゆき,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 C4,E4,G5
 
 E4

@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,work_id=hall-of-mountain-king,arranged_for=musicbox-30,title=山の魔王の宮殿にて,title_ja=山の魔王の宮殿にて,title_en=In the Hall of the Mountain King,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=やまのまおうのきゅうでんにて,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1888,listen=https://www.youtube.com/results?search_query=%25E5%25B1%25B1%25E3%2581%25AE%25E9%25AD%2594%25E7%258E%258B%25E3%2581%25AE%25E5%25AE%25AE%25E6%25AE%25BF%25E3%2581%25AB%25E3%2581%25A6%2520%25E3%2582%25B0%25E3%2583%25AA%25E3%2583%25BC%25E3%2582%25B0,detail=イ短調 · 主題8小節 · 半音の動きと主音への結び
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=Peer Gynt: I Dovregubbens hall,title_ja=山の魔王の宮殿にて,title_en=In the Hall of the Mountain King,composer=グリーグ,composer_ja=グリーグ,composer_en=Edvard Grieg,reading_ja=やまのまおうのきゅうでんにて,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 C4,A4,A5
 
 C4,B5

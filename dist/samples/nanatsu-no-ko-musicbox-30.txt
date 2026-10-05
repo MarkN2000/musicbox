@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=170,work_id=nanatsu-no-ko,arranged_for=musicbox-30,title=七つの子,title_ja=七つの子,title_en=Nanatsu no Ko,composer=本居長世,composer_ja=本居長世,composer_en=Nagayo Motoori,reading_ja=ななつのこ,category=classical-folk,steps_per_quarter=4,time_signature=4/4,source=https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs/nanatu01.jpg,listen=https://www.youtube.com/results?search_query=%25E4%25B8%2583%25E3%2581%25A4%25E3%2581%25AE%25E5%25AD%2590+%25E6%259C%25AC%25E5%25B1%2585%25E9%2595%25B7%25E4%25B8%2596,detail=1921年『金の船』初出譜 · 歌い出しの主題8小節 · 全旋律を1オクターブ上げた低い分散和音
+format=stepscore,version=1,step_ms=170,arranged_for=musicbox-30,title=七つの子,title_en=Nanatsu no Ko,composer=本居長世,composer_ja=本居長世,composer_en=Nagayo Motoori,reading_ja=ななつのこ,category=classical-folk,steps_per_quarter=4,time_signature=4/4
 G3,D4,B5
 
 B4

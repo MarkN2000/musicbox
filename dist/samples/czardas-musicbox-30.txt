@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=104,work_id=czardas,arranged_for=musicbox-30,title=チャルダッシュ,title_ja=チャルダッシュ,title_en=Csárdás,composer=モンティ,composer_ja=モンティ,composer_en=Vittorio Monti,reading_ja=ちゃるだっしゅ,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://cantorion.org/music/3110/Cs%25C3%25A1rd%25C3%25A1s-Violin-part,listen=https://www.youtube.com/results?search_query=%25E3%2583%2581%25E3%2583%25A3%25E3%2583%25AB%25E3%2583%2580%25E3%2583%2583%25E3%2582%25B7%25E3%2583%25A5%2520%25E3%2583%25A2%25E3%2583%25B3%25E3%2583%2586%25E3%2582%25A3,detail=原譜のニ短調 · Allegro vivoの主題16小節 · ナチュラルを修正
+format=stepscore,version=1,step_ms=104,arranged_for=musicbox-30,title=Csárdás,title_ja=チャルダッシュ,composer=モンティ,composer_ja=モンティ,composer_en=Vittorio Monti,reading_ja=ちゃるだっしゅ,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 D4,D5
 
 F4,D6

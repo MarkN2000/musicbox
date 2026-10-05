@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=128,work_id=maidens-prayer,arranged_for=musicbox-30,title=乙女の祈り,title_ja=乙女の祈り,title_en=A Maiden's Prayer,composer=バダジェフスカ,composer_ja=バダジェフスカ,composer_en=Tekla Bądarzewska,reading_ja=おとめのいのり,category=classical-folk,steps_per_quarter=6,time_signature=4/4,source=https://commons.wikimedia.org/wiki/File:La_pri%25C3%25A8re_d%2527une_vierge_%253D_(The_maiden%2527s_prayer)_(IA_b10198374).pdf,listen=https://www.youtube.com/watch?v=HDAofQTcwQE,detail=ヘ長調に一括移調 · 有名な第1主題8小節 · 三連符の上行と応答 · 主和音へ落ち着く結び · オルゴール編曲
+format=stepscore,version=1,step_ms=128,arranged_for=musicbox-30,title=La prière d’une vierge,title_ja=乙女の祈り,title_en=A Maiden's Prayer,composer=バダジェフスカ,composer_ja=バダジェフスカ,composer_en=Tekla Bądarzewska,reading_ja=おとめのいのり,category=classical-folk,steps_per_quarter=6,time_signature=4/4
 F3,F4
 
 C5

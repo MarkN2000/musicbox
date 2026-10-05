@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=117,work_id=csikos-post,arranged_for=musicbox-30,title=クシコス・ポスト,title_ja=クシコス・ポスト,title_en=Csikós Post,composer=ネッケ,composer_ja=ネッケ,composer_en=Hermann Necke,reading_ja=くしこすぽすと,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://www.free-scores.com/download-sheet-music.php?pdf=664,listen=https://youtu.be/Kzd5I6lB1Qw,detail=イ短調からホ短調へ · 最後の属和音から冒頭の主題へ戻るループ · オルゴール編曲
+format=stepscore,version=1,step_ms=117,arranged_for=musicbox-30,title=Csikós Post,title_ja=クシコス・ポスト,composer=ネッケ,composer_ja=ネッケ,composer_en=Hermann Necke,reading_ja=くしこすぽすと,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 E4,A4,A5
 
 C5,E5

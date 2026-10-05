@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=114,work_id=we-wish-you-a-merry-christmas,arranged_for=musicbox-30,title=おめでとうクリスマス,title_ja=おめでとうクリスマス,title_en=We Wish You a Merry Christmas,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=おめでとうくりすます,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://www.yann-ollivier.org/Music/merry3+2.pdf,listen=https://www.youtube.com/results?search_query=We+Wish+You+a+Merry+Christmas+traditional,detail=ハ長調へ一括移調 · 主題と応答16小節 · 8分音符の後の休符 · 低い3拍子の伴奏
+format=stepscore,version=1,step_ms=114,arranged_for=musicbox-30,title=We Wish You a Merry Christmas,title_ja=おめでとうクリスマス,composer=伝承曲,composer_ja=伝承曲,composer_en=Traditional,reading_ja=おめでとうくりすます,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 G5
 
 

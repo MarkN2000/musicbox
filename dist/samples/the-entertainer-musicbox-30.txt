@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,work_id=the-entertainer,arranged_for=musicbox-30,title=ジ・エンターテイナー,title_ja=ジ・エンターテイナー,title_en=The Entertainer,composer=スコット・ジョプリン,composer_ja=スコット・ジョプリン,composer_en=Scott Joplin,reading_ja=じえんたーていなー,category=classical-folk,steps_per_quarter=4,time_signature=2/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=263,listen=https://www.youtube.com/results?search_query=Scott+Joplin+The+Entertainer,detail=ハ長調 · 有名な第1主題を1巡 · 約27秒 · 低音と裏拍の和音のオルゴール編曲
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=The Entertainer,title_ja=ジ・エンターテイナー,composer=スコット・ジョプリン,composer_ja=スコット・ジョプリン,composer_en=Scott Joplin,reading_ja=じえんたーていなー,category=classical-folk,steps_per_quarter=4,time_signature=2/4
 D5
 D#5
 C4,E5

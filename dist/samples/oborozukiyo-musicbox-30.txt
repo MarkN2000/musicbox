@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,work_id=oborozukiyo,arranged_for=musicbox-30,title=朧月夜,title_ja=朧月夜,title_en=Oborozukiyo,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=おぼろづきよ,category=classical-folk,steps_per_quarter=4,time_signature=3/4,source=https://dc.lib.hiroshima-u.ac.jp/da/ja/4078?viewer=uv,listen=https://www.youtube.com/results?search_query=%25E6%259C%25A7%25E6%259C%2588%25E5%25A4%259C+%25E5%25B2%25A1%25E9%2587%258E%25E8%25B2%259E%25E4%25B8%2580,detail=ハ長調へ一括移調 · 1914年原譜の冒頭8小節 · 1拍弱起と付点を保つ · 低い和音のオルゴール編曲
+format=stepscore,version=1,step_ms=208,arranged_for=musicbox-30,title=朧月夜,title_en=Oborozukiyo,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=おぼろづきよ,category=classical-folk,steps_per_quarter=4,time_signature=3/4
 E5
 
 E5

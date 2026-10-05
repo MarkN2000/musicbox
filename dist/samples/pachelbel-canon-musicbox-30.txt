@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=136,work_id=pachelbel-canon,arranged_for=musicbox-30,title=カノン,title_ja=カノン,title_en=Canon,composer=パッヘルベル,composer_ja=パッヘルベル,composer_en=Johann Pachelbel,reading_ja=かのん,category=classical-folk,steps_per_quarter=8,time_signature=4/4,source=https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=2047,listen=https://www.youtube.com/watch?v=JvNQLJ1_HQ0,detail=ハ長調に移調 · 有名な変奏を24拍に抜粋 · ゆったりしたテンポ · 2声と定型低声 · オルゴール編曲
+format=stepscore,version=1,step_ms=136,arranged_for=musicbox-30,title=Canon,title_ja=カノン,composer=パッヘルベル,composer_ja=パッヘルベル,composer_en=Johann Pachelbel,reading_ja=かのん,category=classical-folk,steps_per_quarter=8,time_signature=4/4
 C5,C6,G6
 
 E6
