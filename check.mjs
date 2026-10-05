@@ -9,6 +9,7 @@ const json=async file=>JSON.parse(await readFile(file,'utf8'));
 const profiles=await json('dist/instruments.json'),sounds=await json('dist/audio/soundsets.json'),definitions=validateDefinitions(profiles,sounds);
 const allowed=definitions.instruments.find(item=>item.id==='musicbox-30').allowed;
 assert.equal(definitions.instruments[0].allowed.size,30);assert.equal(definitions.instruments[1].allowed.size,88);
+assert.equal(definitions.instruments[1].defaultSoundset,'vsco-piano');assert.deepEqual([...definitions.soundsets.find(item=>item.id==='vsco-piano').allowed],[...definitions.instruments[1].allowed],'録音ピアノは全88鍵を再生できる');
 for(let midi=0;midi<=127;midi++)assert.equal(noteNumber(noteName(midi)),midi);
 const full=[{step:0,midi:0},{step:0,midi:127},{step:1,midi:66},{step:1,midi:66}],text=serialize(full,4,172,{title:'曲,%2C=値',extra:'100%',steps_per_quarter:'3',time_signature:'6/8'}),parsed=parseText(text);
 assert.deepEqual(parsed.notes,[full[0],full[1],full[2]]);assert.equal(parsed.length,4);assert.equal(parsed.stepMs,172);assert.equal(parsed.metadata.title,'曲,%2C=値');assert.equal(parsed.metadata.extra,'100%');assert.equal(rhythmMetadata(parsed.metadata).beatsPerBar,3);
