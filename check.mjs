@@ -37,7 +37,43 @@ for(const bad of [[{...profiles[0],id:undefined}], [{...profiles[0],range:[21,10
 assert.throws(()=>validateDefinitions(profiles,[{...sounds[0],base:'../private/'},sounds[1]]));
 const expectedCatalog=await catalogData();assert.equal(await readFile('dist/samples/index.json','utf8'),expectedCatalog,'サンプルを編集したらnpm run buildで一覧を更新してください');
 const catalog=JSON.parse(expectedCatalog);
+// 実際の一覧の並べ替えを実行し、曲名から読み込む版とおすすめの共通順位を検査する。
+{
+  const app=await readFile('dist/app.js','utf8'),sort=app.split('\n').find(line=>line.includes('versions.sort('));assert(sort);
+  const sizes=new Map(definitions.instruments.map(item=>[item.arrangedFor,item.allowed.size]));
+  for(const [target,candidates,expected]of [
+    ['piano88',['xylophone32','musicbox30'],'musicbox30'],
+    ['piano61',['xylophone32','musicbox30'],'musicbox30'],
+    ['xylophone32',['musicbox30','xylophone32'],'xylophone32'],
+    ['musicbox30',['xylophone32','musicbox30'],'musicbox30'],
+    ['piano88',['xylophone32','musicbox30','piano61'],'piano61'],
+    ['piano88',['musicbox30','piano88'],'piano88'],
+    ['piano88',['xylophone32'],'xylophone32'],
+  ]){const versions=candidates.map(id=>({id,metadata:{arranged_for:id}}));runInContext(sort,createContext({versions,instrument:{arrangedFor:target},sizes}));assert.equal(versions[0].id,expected,'編曲版の優先順位：'+target+' '+candidates.join(','));}
+}
 for(const entry of catalog.samples){const score=parseText(await readFile('dist/samples/'+entry.file,'utf8'));for(const key of ['source','listen','detail','work_id','pickup_steps'])assert(!(key in score.metadata),'削除した項目をサンプルTXTに残さない：'+key);for(const [key,value] of Object.entries(score.metadata).filter(([key])=>key.startsWith('title_')))assert(value&&value!==score.metadata.title,'基本名と同じ表示名は省略する：'+entry.file+' '+key);assert.deepEqual(parseText(serialize(score.notes,score.length,score.stepMs,score.metadata)),score);}
+for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='musicbox30')){
+  const wood=catalog.samples.find(s=>s.id===entry.id.replace(/-musicbox-30$/,'-xylophone-32'));assert(wood,'木琴版がない：'+entry.id);
+  const original=parseText(await readFile('dist/samples/'+entry.file,'utf8')),score=parseText(await readFile('dist/samples/'+wood.file,'utf8'));
+  assert.equal(score.length,original.length,'木琴版の末尾休符も含む長さ：'+wood.id);assert.equal(score.stepMs,original.stepMs,'木琴版の速度：'+wood.id);
+  assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'xylophone32'},'版を同じ曲として表示し拍単位を保つ：'+wood.id);
+  const counts=new Map();for(const n of score.notes){assert(xylophone32.allowed.has(n.midi),'木琴の対応音：'+wood.id);counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=2,'木琴は同時2音まで：'+wood.id);
+}
+// Primo第7〜22小節を連続採用。原譜の全音を同じ+10半音で移し、第58・62小節へ差し替えない。
+const militaryWood=parseText(await readFile('dist/samples/military-march-xylophone-32.txt','utf8'));
+for(const [step,name]of [[0,'G6'],[6,'E6'],[24,'G5'],[27,'A5'],[32,'G6'],[40,'A6'],[63,'C7'],[72,'E7'],[76,'G7'],[84,'F7'],[112,'F#7'],[114,'G7'],[116,'A7'],[119,'B7'],[120,'G7']])assert(militaryWood.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'木琴の原譜声部・調・句の高低差：'+step);
+const sugarWood=parseText(await readFile('dist/samples/sugar-plum-fairy-xylophone-32.txt','utf8'));
+for(const [step,name]of [[2,'G7'],[24,'B6'],[34,'G6'],[38,'F#6'],[40,'C7'],[42,'B6'],[44,'G7'],[48,'F7'],[56,'D#7'],[64,'E7']])assert(sugarWood.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'金平糖の原譜のオクターブ差と終止：'+step);
+const twinkleWood=parseText(await readFile('dist/samples/twinkle-xylophone-32.txt','utf8'));
+assert(twinkleWood.notes.some(n=>n.step===184&&n.midi===noteNumber('C6')),'木琴の最後の主音');assert(!twinkleWood.notes.some(n=>n.step===28&&n.midi===noteNumber('G6')),'長い旋律音を伴奏で打ち直さない');
+for(const id of ['military-march','sugar-plum-fairy','bach-toccata-fugue']){
+  const original=parseText(await readFile(`dist/samples/${id}-musicbox-30.txt`,'utf8')),score=parseText(await readFile(`dist/samples/${id}-piano-61.txt`,'utf8'));
+  assert(catalog.samples.some(s=>s.id===id+'-piano-61'),'61鍵版の一覧');assert.equal(score.length,original.length);assert.equal(score.stepMs,original.stepMs);assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'piano61'});
+  const counts=new Map();for(const n of score.notes){assert(piano61.allowed.has(n.midi));counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=4);
+  const expected=id==='military-march'?[[112,'F#6'],[114,'G6'],[116,'A6'],[119,'B6'],[120,'G6']]:id==='sugar-plum-fairy'?[[2,'G6'],[34,'G5'],[40,'C6'],[44,'G6'],[48,'F6'],[64,'E6']]:[[62,'D4'],[63,'C#4'],[64,'D4'],[72,'D3'],[72,'C#4'],[92,'G4'],[94,'E4'],[96,'F#4']];
+  for(const [step,pitch]of expected)assert(score.notes.some(n=>n.step===step&&n.midi===noteNumber(pitch)),'61鍵版で音域制約の変更を復元：'+id+' step'+step);
+  if(id==='sugar-plum-fairy')assert(!score.notes.some(n=>n.step===2&&n.midi===noteNumber('G5')),'変更前の旋律を同時に残さない');
+}
 const sakkijarven=parseText(await readFile('dist/samples/sakkijarven-polkka-musicbox-30.txt','utf8'));
 for(const [step,name]of [[16,'B4'],[48,'B4'],[70,'A5'],[72,'A5'],[74,'A5'],[75,'B5'],[76,'A5'],[78,'G#5'],[80,'G#5'],[102,'A5'],[104,'A5'],[106,'A5'],[107,'B5'],[108,'A5'],[110,'G#5'],[112,'G#5'],[144,'B4'],[176,'B4']])assert.equal(Math.max(...sakkijarven.notes.filter(n=>n.step===step).map(n=>n.midi)),noteNumber(name),'サッキヤルヴェンの主旋律をCC0譜の音高に保つ：'+step);
 for(const step of [18,50,146,178])assert(!sakkijarven.notes.some(n=>n.step===step&&n.midi===noteNumber('B4')),'主旋律の四分音符B4を伴奏で打ち直さない');

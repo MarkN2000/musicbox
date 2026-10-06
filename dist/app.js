@@ -313,12 +313,12 @@ function populateTemplates(){
   const language=currentLanguage(),collator=new Intl.Collator(language),sortName=item=>language==='ja'?item.metadata.reading_ja||localized(item.metadata,'title'):localized(item.metadata,'title');
   const songs=[...groups.values()].sort((a,b)=>collator.compare(sortName(a[0]),sortName(b[0]))||collator.compare(localized(a[0].metadata,'composer'),localized(b[0].metadata,'composer')));
   for(const versions of songs){
-    versions.sort((a,b)=>(a.metadata.arranged_for!==instrument.arrangedFor)-(b.metadata.arranged_for!==instrument.arrangedFor)||sizes.get(b.metadata.arranged_for)-sizes.get(a.metadata.arranged_for)||a.metadata.arranged_for.localeCompare(b.metadata.arranged_for)||a.id.localeCompare(b.id));
+    versions.sort((a,b)=>(a.metadata.arranged_for!==instrument.arrangedFor)-(b.metadata.arranged_for!==instrument.arrangedFor)||(a.metadata.arranged_for==='xylophone32')-(b.metadata.arranged_for==='xylophone32')||sizes.get(b.metadata.arranged_for)-sizes.get(a.metadata.arranged_for)||a.metadata.arranged_for.localeCompare(b.metadata.arranged_for)||a.id.localeCompare(b.id));
     const best=versions[0],row=document.createElement('div');row.className='template-song';
     const title=document.createElement('button');title.className='template-title';title.dataset.sample=best.id;title.append(document.createTextNode(localized(best.metadata,'title',best.file)+' '));
     const composer=document.createElement('span');composer.className='template-composer';composer.textContent=localized(best.metadata,'composer');title.append(composer);
     const buttons=document.createElement('div');buttons.className='template-versions';
-    for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=item.metadata.arranged_for;if(item===best){button.classList.add('recommended');button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
+    for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=definitions.instruments.find(profile=>profile.arrangedFor===item.metadata.arranged_for)?.name[language]||item.metadata.arranged_for;if(item===best){button.classList.add('recommended');button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
     row.dataset.search=normalizeSearch(versions.flatMap(item=>Object.entries(item.metadata).filter(([key])=>/^(title|composer)(_|$)|^reading_ja$/.test(key)).map(([,value])=>value)).join(' '));
     row.append(title,buttons);menu.append(row);
   }
