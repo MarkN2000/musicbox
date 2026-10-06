@@ -1,5 +1,77 @@
 format=stepscore,version=1,step_ms=156,arranged_for=musicbox30,title=Картинки с выставки: Прогулка,title_ja=プロムナード,title_en=Pictures at an Exhibition: Promenade,composer=ムソルグスキー,composer_ja=ムソルグスキー,composer_en=Modest Mussorgsky,reading_ja=ぷろむなーど,steps_per_quarter=4
+D5
+
+
+
+C5
+
+
+
+F5
+
+
+
+G5
+
+C6
+
+A5
+
+
+
+G5
+
+C6
+
+A5
+
+
+
+F5
+
+
+
+G5
+
+
+
+D5
+
+
+
+C5
+
+
+
+D4,F4,A4,D5
+
+
+
+C4,E4,G4,C5
+
+
+
+D4,F4,A4,F5
+
+
+
+C4,E4,G4,G5
+
+C6
+
 A4,C5,E5,A5
+
+
+
+C4,E4,G4,G5
+
+C6
+
+F3,A4,C5,A5
+
+
+
+D4,F4,A4,F5
 
 
 
@@ -7,83 +79,55 @@ G3,B4,D5,G5
 
 
 
-A4,C5,E5,C6
+D4,F4,A4,D5
 
 
 
-G3,B4,D5,D6
-
-G6
-
-E4,G4,B4,E6
+C4,E4,G4,C5
 
 
 
-G3,B4,D5,D6
-
-G6
-
-C4,E4,G4,E6
+C5
 
 
 
-A4,C5,E5,C6
+D5
 
 
 
-A4,D5,F#5,D6
+A4
 
 
 
-A4,C5,E5,A5
+C5
+
+D5
+
+G4
 
 
 
-G3,B4,D5,G5
+D5
+
+E5
+
+C5
 
 
 
-A4,C5,E5,A5
+C4,C5,C6
 
 
 
-G3,B4,D5,G5
+F3,F4,C5,A5
 
 
 
-A4,C5,E5,C6
+D4,C5,G5
 
+F5
 
-
-G3,B4,D5,D6
-
-G6
-
-E4,G4,B4,E6
-
-
-
-G3,B4,D5,D6
-
-G6
-
-C4,E4,G4,E6
-
-
-
-A4,C5,E5,C6
-
-
-
-A4,D5,F#5,D6
-
-
-
-A4,C5,E5,A5
-
-
-
-G3,B4,D5,G5
+C4,C5
 
 
 

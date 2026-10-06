@@ -1,4 +1,4 @@
-format=stepscore,version=1,step_ms=208,arranged_for=musicbox30,title=Лебединое озеро: Сцена,title_ja=白鳥の湖より「情景」,title_en=Swan Lake: Scene,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=はくちょうのみずうみよりじょうけい,steps_per_quarter=4,time_signature=4/4
+format=stepscore,version=1,step_ms=179,arranged_for=musicbox30,title=Лебединое озеро: Сцена,title_ja=白鳥の湖より「情景」,title_en=Swan Lake: Scene,composer=チャイコフスキー,composer_ja=チャイコフスキー,composer_en=Pyotr Ilyich Tchaikovsky,reading_ja=はくちょうのみずうみよりじょうけい,steps_per_quarter=4,time_signature=4/4
 A4,C5,E6
 
 E5
@@ -37,17 +37,93 @@ E5
 
 E4,C5
 
-E5,C6
+E5,A5
 
-E4,G#5,D6
+E4,G#5,C6
+
+B4,A5
+
+D5,F5
 
 B4,C6
 
-D5,G#5,B5
+A4,C5,A5
 
-B4,D6
+E5
 
-A4,C5,E5,A5
+E4,C5
 
+E5
 
+A4,C5
+
+E5,E6
+
+E4,C5,D6
+
+E5,C6
+
+A4,C5,E6
+
+E5
+
+E4,C5
+
+E5
+
+A4,C5,A5
+
+E5,B5
+
+E4,C5,C6
+
+E5,D6
+
+A4,C5,E6
+
+E5
+
+E4,C5
+
+E5,C6
+
+A4,C5,E6
+
+E5
+
+E4,C5
+
+E5,C6
+
+A4,C5,E6
+
+E5
+
+E4,C5
+
+E5,A5
+
+E4,G#5,C6
+
+B4,A5
+
+D5,F5
+
+B4,C6
+
+A4,C5,A5
+
+E5
+
+E4,C5
+
+E5
+
+A4,C5
+
+E5
+
+E4,C5,A5
+
+E5
 
