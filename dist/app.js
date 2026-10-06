@@ -318,7 +318,7 @@ function populateTemplates(){
     const title=document.createElement('button');title.className='template-title';title.dataset.sample=best.id;title.append(document.createTextNode(localized(best.metadata,'title',best.file)+' '));
     const composer=document.createElement('span');composer.className='template-composer';composer.textContent=localized(best.metadata,'composer');title.append(composer);
     const buttons=document.createElement('div');buttons.className='template-versions';
-    for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=definitions.instruments.find(profile=>profile.arrangedFor===item.metadata.arranged_for)?.name[language]||item.metadata.arranged_for;if(item===best){button.classList.add('recommended');button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
+    for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=definitions.instruments.find(profile=>profile.arrangedFor===item.metadata.arranged_for)?.name[language]||item.metadata.arranged_for;if(item.metadata.arranged_for===instrument.arrangedFor)button.classList.add('matching');if(item===best){button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
     row.dataset.search=normalizeSearch(versions.flatMap(item=>Object.entries(item.metadata).filter(([key])=>/^(title|composer)(_|$)|^reading_ja$/.test(key)).map(([,value])=>value)).join(' '));
     row.append(title,buttons);menu.append(row);
   }
@@ -351,6 +351,29 @@ $('exportMidi').onclick=async()=>{
     for(const note of [...unique.values()].sort((a,b)=>a.step-b.step||a.midi-b.midi))track.addNote({midi:note.midi,ticks:note.step*ticksPerStep,durationTicks:ticksPerStep,velocity:.8});
     track.addCC({number:123,ticks:size*ticksPerStep,value:0});download(new Blob([midi.toArray()],{type:'audio/midi'}),'mid',name);showError();
   }catch(error){showError(error.message);}
+};
+let sheetModule,sheetPreview,sheetPage=0;
+function showSheetPage(){
+  sheetModule.drawSheetPage(sheetPreview,sheetPage,$('sheetCanvas'));$('sheetPage').textContent=`${sheetPage+1} / ${sheetPreview.pages.length}`;
+  $('sheetPrevious').disabled=sheetPage===0;$('sheetNext').disabled=sheetPage===sheetPreview.pages.length-1;
+  $('sheetDialog').querySelector('.sheet-preview').scrollTop=0;
+}
+$('exportSheet').onclick=async()=>{
+  const button=$('exportSheet');button.disabled=true;button.setAttribute('aria-busy','true');
+  try{
+    const name=downloadName('webp').replace(/\.webp$/,''),input={notes:notes.filter(note=>ALLOWED.has(note.midi)).map(note=>({...note})),length,subdivision:Number($('subdivision').value),signature:rhythmMetadata(metadata).signature,stepMs:stepInterval(),title:$('scoreTitle').value.trim()||t('新しい楽譜'),footer:t('自動生成の簡易譜面')};
+    sheetModule??=await import('./sheet.js?v=49e29bb96426da46');const sheet=await sheetModule.createSheet(input);sheet.name=name;
+    sheetPreview=sheet;sheetPage=0;showSheetPage();$('sheetDialog').showModal();showError();
+  }catch(error){showError(error.message);}finally{button.disabled=false;button.setAttribute('aria-busy','false');}
+};
+$('sheetPrevious').onclick=()=>{if(sheetPage>0){sheetPage--;showSheetPage();}};
+$('sheetNext').onclick=()=>{if(sheetPage<sheetPreview.pages.length-1){sheetPage++;showSheetPage();}};
+$('sheetDialog').onkeydown=event=>event.stopPropagation();
+$('sheetClose').onclick=()=>$('sheetDialog').close();
+$('sheetDialog').addEventListener('close',()=>{sheetPreview=null;$('sheetCanvas').width=0;$('sheetCanvas').height=0;$('save').focus();});
+$('sheetSave').onclick=async()=>{
+  const button=$('sheetSave');button.disabled=true;
+  try{const name=`${sheetPreview.name}-${String(sheetPage+1).padStart(2,'0')}.webp`,blob=await sheetModule.sheetBlob($('sheetCanvas'));download(blob,'webp',name);}catch(error){$('sheetDialog').close();showError(error.message);}finally{button.disabled=false;}
 };
 $('copyText').onclick=async()=>{let text;try{text=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,stepInterval(),outputMetadata());}catch(error){showError(error.message);return;}try{await navigator.clipboard.writeText(text);showError();}catch{$('txtPreviewPanel').open=true;$('txtPreview').focus();$('txtPreview').select();showError('コピーできませんでした。選択したテキストをCtrl+Cでコピーしてください。');}};
 function stepInterval(){return timingFromInputs(exactStepMs);}

@@ -137,16 +137,16 @@ const control=id=>{
     showPopover(){this.open=true;this.toggle({newState:'open'});},hidePopover(){this.open=false;this.toggle({newState:'closed'});}});
   return menuControls.get(id);
 };
-control('saveMenu').items=['export','exportMidi','exportMp3','exportOgg'].map(control);control('export').disabled=true;
+control('saveMenu').items=['export','exportMidi','exportMp3','exportOgg','exportSheet'].map(control);control('export').disabled=true;
 const menuApi=runInNewContext(`let audioExportJob=null;function cancelAudioExport(){cancel();audioExportJob=null;}
 ${app.slice(app.indexOf('const saveMenu='))}
 ({busy:()=>{audioExportJob={};}});`,{$:control,window:menuWindow,document:menuDocument,cancel:()=>cancelled++});
 const key=(target,key)=>control(target).onkeydown({key,preventDefault(){prevented++;}});
 key('save','ArrowDown');assert.equal(menuDocument.activeElement.id,'exportMidi');assert.equal(control('save').attributes['aria-expanded'],'true');
-key('saveMenu','ArrowUp');assert.equal(menuDocument.activeElement.id,'exportOgg');key('saveMenu','Home');assert.equal(menuDocument.activeElement.id,'exportMidi');key('saveMenu','End');assert.equal(menuDocument.activeElement.id,'exportOgg');
+key('saveMenu','ArrowUp');assert.equal(menuDocument.activeElement.id,'exportSheet');key('saveMenu','Home');assert.equal(menuDocument.activeElement.id,'exportMidi');key('saveMenu','End');assert.equal(menuDocument.activeElement.id,'exportSheet');
 assert.equal(control('saveMenu').style.left,'142px');assert.equal(control('saveMenu').style.top,'8px','下に収まらないメニューも画面内に収める');
 control('saveMenu').click({target:{closest:()=>control('exportOgg')}});assert.equal(control('save').attributes['aria-expanded'],'false');assert.equal(menuDocument.activeElement.id,'save');
-key('save','ArrowUp');assert.equal(menuDocument.activeElement.id,'exportOgg');
+key('save','ArrowUp');assert.equal(menuDocument.activeElement.id,'exportSheet');
 key('save','ArrowUp');control('saveMenu').hidePopover();control('saveMenu').showPopover();assert.equal(menuDocument.activeElement.id,'exportMidi','開いている間の上矢印を次回のクリックへ持ち越さない');
 menuDocument.activeElement=control('bpm');control('saveMenu').hidePopover();assert.equal(menuDocument.activeElement.id,'bpm','外側の操作先からフォーカスを奪わない');
 key('save','ArrowDown');key('saveMenu','Tab');assert(!control('saveMenu').open);

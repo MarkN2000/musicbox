@@ -139,5 +139,16 @@
   "読み込む": "Import",
   "曲名を編集": "Edit title",
   "曲名・作曲者で検索": "Search title or composer",
-  "該当する曲がありません": "No matching songs"
+  "該当する曲がありません": "No matching songs",
+  "五線譜画像": "Sheet music image",
+  "閉じる": "Close",
+  "簡易五線譜のプレビュー": "Simplified sheet music preview",
+  "前へ": "Previous",
+  "次へ": "Next",
+  "自動生成の簡易譜面": "Automatically generated simplified score",
+  "楽譜の設定が不正です。": "Invalid score settings.",
+  "このステップ単位は五線譜画像に対応していません。": "This step subdivision is not supported for sheet music images.",
+  "小節境界がステップの途中に来るため、五線譜画像にできません。": "A bar boundary falls within a step; this score cannot be rendered as sheet music.",
+  "音が密集しているため、五線譜画像の幅に収まりません。": "The notes are too dense to fit the sheet music page.",
+  "このブラウザではWebP画像を保存できません。": "This browser cannot save WebP images."
 }

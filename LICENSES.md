@@ -52,6 +52,7 @@ MarkNは、上記の録音・編曲・楽譜データについて保有する著
 
 | ライブラリ | ライセンスと文書 |
 | --- | --- |
+| VexFlow 4.2.5（簡易五線譜の描画） | MIT — [LICENSE-vexflow.txt](./dist/vendor/LICENSE-vexflow.txt)。公式npm配布物のBravura同梱版を使用し、出力時のみ読み込む。Bravura音楽フォントはSIL OFL 1.1 — [LICENSE-bravura.txt](./dist/vendor/LICENSE-bravura.txt)。 |
 | @tonejs/midi | MIT — [LICENSE-midi.md](./dist/vendor/LICENSE-midi.md) |
 | midi-file | MIT — [LICENSE-midi-file.md](./dist/vendor/LICENSE-midi-file.md) |
 | array-flatten | MIT — [LICENSE-array-flatten.txt](./dist/vendor/LICENSE-array-flatten.txt) |

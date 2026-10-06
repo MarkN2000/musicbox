@@ -25,7 +25,8 @@ export async function build(){
   const revision=async file=>createHash('sha256').update((await readFile(resolve(root,file),'utf8')).replace(/\r\n/g,'\n')).digest('hex').slice(0,16);
   const coreRevision=await revision('core.js'),i18nRevision=await revision('i18n.js');
   let worker=await readFile(resolve(root,'import-worker.js'),'utf8');worker=worker.replace(/from '\.\/core\.js(?:\?v=\w+)?'/,`from './core.js?v=${coreRevision}'`);await writeFile(resolve(root,'import-worker.js'),worker);
-  let app=await readFile(resolve(root,'app.js'),'utf8');app=app.replace(/from '\.\/core\.js(?:\?v=\w+)?'/,`from './core.js?v=${coreRevision}'`).replace(/from '\.\/i18n\.js(?:\?v=\w+)?'/,`from './i18n.js?v=${i18nRevision}'`).replace(/new URL\('\.\/import-worker\.js(?:\?v=\w+)?'/,`new URL('./import-worker.js?v=${await revision('import-worker.js')}'`);await writeFile(resolve(root,'app.js'),app);
+  let sheet=await readFile(resolve(root,'sheet.js'),'utf8');sheet=sheet.replace(/from '\.\/core\.js(?:\?v=\w+)?'/,`from './core.js?v=${coreRevision}'`);await writeFile(resolve(root,'sheet.js'),sheet);
+  let app=await readFile(resolve(root,'app.js'),'utf8');app=app.replace(/from '\.\/core\.js(?:\?v=\w+)?'/,`from './core.js?v=${coreRevision}'`).replace(/from '\.\/i18n\.js(?:\?v=\w+)?'/,`from './i18n.js?v=${i18nRevision}'`).replace(/new URL\('\.\/import-worker\.js(?:\?v=\w+)?'/,`new URL('./import-worker.js?v=${await revision('import-worker.js')}'`);app=app.replace(/import\('\.\/sheet\.js(?:\?v=\w+)?'\)/,`import('./sheet.js?v=${await revision('sheet.js')}')`);await writeFile(resolve(root,'app.js'),app);
   const style=await readFile(resolve(root,'style.css'),'utf8');
   const scriptHash=createHash('sha256').update(app);
   for(const file of ['core.js','import-worker.js','i18n.js','locales/ja.json','locales/en.json','instruments.json','audio/soundsets.json','samples/index.json'])scriptHash.update(await readFile(resolve(root,file)));
