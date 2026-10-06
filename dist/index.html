@@ -5,12 +5,12 @@
   <title>オルゴール譜 — 楽譜エディター</title>
   <meta name="description" content="MIDI・TXTを取り込み、30音オルゴールの楽譜をマス目で編集。試聴してTXT・MIDI・MP3・OGGで保存できます。">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23163e57'/%3E%3Cpath d='M8 9h16M8 16h16M8 23h16' stroke='%23ffffff' stroke-width='2'/%3E%3Crect x='10' y='6' width='5' height='6' fill='%2391d8f6'/%3E%3Crect x='19' y='13' width='5' height='6' fill='%2391d8f6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="style.css?v=f85be5343cc5eed4">
+  <link rel="stylesheet" href="style.css?v=dc03b4a05a3937cf">
 </head>
 <body>
   <main>
       <section class="editor" id="dropZone" aria-label="楽譜エディター" data-i18n-label="楽譜エディター">
-        <div class="editor-heading"><h1><input id="scoreTitle" type="text" value="新しい楽譜" aria-label="曲名" data-i18n-label="曲名" title="曲名を編集" data-i18n-title="曲名を編集" maxlength="100" autocomplete="off" spellcheck="false"></h1><div class="heading-actions"><button id="templateButton" class="button" popovertarget="templateMenu" aria-haspopup="dialog" aria-expanded="false" aria-label="曲を選ぶ" data-i18n-label="曲を選ぶ" data-i18n="曲を選ぶ">曲を選ぶ</button><div id="templateMenu" class="template-menu" popover role="dialog" aria-label="曲を選ぶ" data-i18n-label="曲を選ぶ"></div><button id="pickFile" class="button" title="MIDI・TXTを読み込む" data-i18n-title="MIDI・TXTを読み込む" data-i18n="読み込む">読み込む</button><input id="fileInput" type="file" accept=".mid,.midi,.txt,audio/midi,audio/x-midi,text/plain" hidden><button id="reset" class="button subtle" title="空の楽譜に戻す" data-i18n-title="空の楽譜に戻す" data-i18n="リセット">リセット</button></div></div>
+        <div class="editor-heading"><h1><input id="scoreTitle" type="text" value="新しい楽譜" aria-label="曲名" data-i18n-label="曲名" title="曲名を編集" data-i18n-title="曲名を編集" maxlength="100" autocomplete="off" spellcheck="false"></h1><div class="heading-actions"><button id="templateButton" class="button" popovertarget="templateMenu" aria-haspopup="dialog" aria-expanded="false" aria-label="曲を選ぶ" data-i18n-label="曲を選ぶ" data-i18n="曲を選ぶ">曲を選ぶ</button><div id="templateMenu" class="template-menu" popover role="dialog" aria-label="曲を選ぶ" data-i18n-label="曲を選ぶ"><div class="template-search"><input id="templateSearch" type="search" aria-label="曲名・作曲者で検索" data-i18n-label="曲名・作曲者で検索" autocomplete="off"></div><div id="templateSongs"></div><div id="templateEmpty" data-i18n="該当する曲がありません" hidden>該当する曲がありません</div></div><button id="pickFile" class="button" title="MIDI・TXTを読み込む" data-i18n-title="MIDI・TXTを読み込む" data-i18n="読み込む">読み込む</button><input id="fileInput" type="file" accept=".mid,.midi,.txt,audio/midi,audio/x-midi,text/plain" hidden><button id="reset" class="button subtle" title="空の楽譜に戻す" data-i18n-title="空の楽譜に戻す" data-i18n="リセット">リセット</button></div></div>
         <div class="toolbar">
           <div class="playback-actions"><button id="play" class="button primary" aria-label="試聴" data-i18n-label="試聴" title="試聴" data-i18n-title="試聴" aria-pressed="false">▶</button><button id="loop" class="button" aria-label="ループ再生" data-i18n-label="ループ再生" title="ループ再生" data-i18n-title="ループ再生" aria-pressed="false">↻</button></div>
           <label><input id="bpm" type="number" min="1" step="1" value="120" aria-label="テンポ" data-i18n-label="テンポ" title="テンポ" data-i18n-title="テンポ"> <span class="unit">BPM</span></label>
@@ -31,6 +31,6 @@
       </section>
   </main>
   <footer class="site-footer"><a href="https://markn2000.com/" target="_blank" rel="noopener" aria-label="MarkNのホームページ" data-i18n-label="MarkNのホームページ">markn2000.com</a><span><span data-i18n="footerLicense">音源・サンプル楽譜</span> <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a> · <a href="https://github.com/MarkN2000/musicbox/blob/main/LICENSES.md" target="_blank" rel="noopener" aria-label="ライセンスの詳細" data-i18n-label="ライセンスの詳細" data-i18n="詳細">詳細</a></span></footer>
-  <script type="module" src="app.js?v=6b832c8b4a8b5a74"></script>
+  <script type="module" src="app.js?v=d2aaa5080e80deda"></script>
 </body>
 </html>

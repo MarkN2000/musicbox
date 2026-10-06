@@ -304,7 +304,7 @@ $('language').onchange=async()=>{
   catch(error){showError(error.message);}finally{$('language').disabled=false;}
 };
 function populateTemplates(){
-  const menu=$('templateMenu'),groups=new Map(),sizes=new Map(definitions.instruments.map(item=>[item.arrangedFor,item.allowed.size]));menu.replaceChildren();
+  const menu=$('templateSongs'),groups=new Map(),sizes=new Map(definitions.instruments.map(item=>[item.arrangedFor,item.allowed.size]));menu.replaceChildren();
   for(const item of catalog.samples){
     if(!item.usedNotes.every(note=>ALLOWED.has(note)))continue;
     const key=JSON.stringify([item.metadata.title,item.metadata.composer]);
@@ -319,10 +319,15 @@ function populateTemplates(){
     const composer=document.createElement('span');composer.className='template-composer';composer.textContent=localized(best.metadata,'composer');title.append(composer);
     const buttons=document.createElement('div');buttons.className='template-versions';
     for(const item of versions){const button=document.createElement('button');button.className='button';button.dataset.sample=item.id;button.textContent=item.metadata.arranged_for;if(item===best){button.classList.add('recommended');button.title=t('おすすめ');button.setAttribute('aria-label',button.textContent+' ('+t('おすすめ')+')');}buttons.append(button);}
+    row.dataset.search=normalizeSearch(versions.flatMap(item=>Object.entries(item.metadata).filter(([key])=>/^(title|composer)(_|$)|^reading_ja$/.test(key)).map(([,value])=>value)).join(' '));
     row.append(title,buttons);menu.append(row);
   }
   $('templateButton').disabled=!songs.length;
+  $('templateSearch').placeholder=t('曲名・作曲者で検索');filterTemplates();
 }
+function normalizeSearch(value){return value.normalize('NFKC').toLowerCase().replace(/[ァ-ヶ]/g,char=>String.fromCharCode(char.charCodeAt(0)-0x60));}
+function filterTemplates(){const query=normalizeSearch($('templateSearch').value.trim());let visible=0;for(const row of $('templateSongs').children){row.hidden=!row.dataset.search.includes(query);if(!row.hidden)visible++;}$('templateEmpty').hidden=!!visible;}
+$('templateSearch').oninput=filterTemplates;
 let sampleRequest=0;
 async function loadTemplate(item){
   cancelImport();const request=++sampleRequest;
@@ -559,14 +564,16 @@ $('exportOgg').onclick=()=>saveAudio('ogg');
 const saveMenu=$('saveMenu'),saveButton=$('save'),menus=[[saveMenu,saveButton],[$('templateMenu'),$('templateButton')]];
 function positionMenu(menu,button){
   if(!menu.matches(':popover-open'))return;
-  const rect=button.getBoundingClientRect(),width=menu.offsetWidth,height=menu.offsetHeight;
+  const rect=button.getBoundingClientRect(),below=rect.bottom+5;
+  if(menu.id==='templateMenu')menu.style.maxHeight=Math.max(0,window.innerHeight-below-8)+'px';
+  const width=menu.offsetWidth,height=menu.offsetHeight;
   menu.style.left=Math.max(8,Math.min(rect.right-width,window.innerWidth-width-8))+'px';
-  const below=rect.bottom+5;
+  if(menu.id==='templateMenu'){menu.style.top=below+'px';return;}
   menu.style.top=Math.max(8,Math.min(below+height<=window.innerHeight-8?below:rect.top-height-5,window.innerHeight-height-8))+'px';
 }
 saveButton.onclick=event=>{if(audioExportJob){event.preventDefault();cancelAudioExport();}};
 for(const [menu,button]of menus){
-  let last=false;const items=()=>[...menu.querySelectorAll('button:not(:disabled)')];
+  let last=false;const items=()=>[...menu.querySelectorAll('button:not(:disabled)')].filter(item=>!item.closest('[hidden]'));
   button.onkeydown=event=>{
     if(!['ArrowDown','ArrowUp'].includes(event.key)||button===saveButton&&audioExportJob)return;
     event.preventDefault();last=event.key==='ArrowUp';
@@ -581,8 +588,9 @@ for(const [menu,button]of menus){
   menu.addEventListener('click',event=>{if(event.target.closest('button')){menu.hidePopover();button.focus();}});
   menu.onkeydown=event=>{
     const list=items(),index=list.indexOf(document.activeElement);
+    if(event.target===$('templateSearch')&&!['ArrowDown','ArrowUp'].includes(event.key))return;
     if(['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
-      event.preventDefault();list[event.key==='Home'?0:event.key==='End'?list.length-1:(index+(event.key==='ArrowDown'?1:-1)+list.length)%list.length]?.focus();
+      event.preventDefault();list[event.key==='Home'?0:event.key==='End'?list.length-1:index<0?(event.key==='ArrowDown'?0:list.length-1):(index+(event.key==='ArrowDown'?1:-1)+list.length)%list.length]?.focus();
     }else if(event.key==='Tab'&&menu===saveMenu)menu.hidePopover();
   };
   menu.addEventListener('focusout',event=>{if(event.relatedTarget&&event.relatedTarget!==button&&!menu.contains(event.relatedTarget))menu.hidePopover();});

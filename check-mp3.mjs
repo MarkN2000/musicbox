@@ -132,7 +132,7 @@ const menuDocument={activeElement:null},menuWindow={innerWidth:320,innerHeight:2
 const control=id=>{
   if(!menuControls.has(id))menuControls.set(id,{id,style:{},attributes:{},offsetWidth:170,offsetHeight:162,
     setAttribute(name,value){this.attributes[name]=value;},focus(){menuDocument.activeElement=this;},
-    matches(){return Boolean(this.open);},contains(node){return this.items?.includes(node);},querySelectorAll(){return this.items.filter(item=>!item.disabled);},
+    closest(){return null;},matches(){return Boolean(this.open);},contains(node){return this.items?.includes(node);},querySelectorAll(){return this.items.filter(item=>!item.disabled);},
     getBoundingClientRect:()=>({top:32,bottom:70,right:312}),addEventListener(name,callback){this[name]=callback;},
     showPopover(){this.open=true;this.toggle({newState:'open'});},hidePopover(){this.open=false;this.toggle({newState:'closed'});}});
   return menuControls.get(id);

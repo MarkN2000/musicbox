@@ -137,5 +137,7 @@
   "StepScore形式のテキストでコピー": "Copy text in StepScore format",
   "OGG保存": "Save OGG",
   "読み込む": "Import",
-  "曲名を編集": "Edit title"
+  "曲名を編集": "Edit title",
+  "曲名・作曲者で検索": "Search title or composer",
+  "該当する曲がありません": "No matching songs"
 }
