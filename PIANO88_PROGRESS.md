@@ -1,6 +1,6 @@
 # 88鍵版の作業状況（2026-10-06）
 
-全120曲が対象。現在は78曲を追加済み。専用版を省略して既存版を使う判断は31曲。未完了は11曲。
+全120曲が対象。現在は89曲を追加済み。専用版を省略して既存版を使う判断は31曲。未完了は0曲。
 
 原調・声部・原譜の流れを基本に、全曲または有名な主題を含む長い連続セクションを収録。原譜の反復を展開し、88鍵版のループ接続は不要。step_msは50ms以上、100ms前後を目安にする。6分以上の範囲はユーザーに相談する。
 
@@ -25,14 +25,14 @@
 | エリーゼのために | ローカル追加済み・156.00秒 | [88鍵版](dist/samples/fur-elise-piano-88.txt) |
 | オクラホマミキサー | 専用版を省略・ユーザー指定の録音区間に対応するまとまった主題・応答を収録済み。指定された音程・速度を保って利用する。 | [既存版の底本](https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=29418) |
 | おめでとうクリスマス | 専用版を省略・主題と応答16小節が一巡揃っている。 | [既存版の底本](https://www.yann-ollivier.org/Music/merry3+2.pdf) |
-| おもちゃの兵隊のマーチ | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Special:ReverseLookup/140703) |
+| おもちゃの兵隊のマーチ | ローカル追加済み・140.80秒、Imperial古ロール全体 | [88鍵版](dist/samples/toy-soldiers-piano-88.txt) |
 | かえるの合唱 | 専用版を省略・伝承版の8小節全体と最後の細かい音を収録済み。 | [既存版の底本](https://bilingualinjapan.home.blog/wp-content/uploads/2019/08/ganze-sommernc3a4chte-lang-a306.pdf) |
 | かごめかごめ | 専用版を省略・1933年採譜版の1節12小節が揃っている。現在の歌唱形への置換はしない。 | [既存版の底本](https://dl.ndl.go.jp/pid/1213350/1/23) |
 | カノン | ローカル追加済み・230.00秒 | [88鍵版](dist/samples/pachelbel-canon-piano-88.txt) |
 | カルメンより「第1幕への前奏曲」 | ローカル追加済み・124.03秒 | [88鍵版](dist/samples/carmen-prelude-piano-88.txt) |
 | きよしこの夜 | ローカル追加済み・43.20秒 | [88鍵版](dist/samples/silent-night-piano-88.txt) |
 | きらきら星変奏曲 | ローカル追加済み・230.40秒 | [88鍵版](dist/samples/twinkle-piano-88.txt) |
-| クシコス・ポスト | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://www.free-scores.com/download-sheet-music.php?pdf=664) |
+| クシコス・ポスト | ローカル追加済み・112.00秒、旧連弾譜No.22の導入〜終止 | [88鍵版](dist/samples/csikos-post-piano-88.txt) |
 | グリーンスリーブス | ローカル追加済み・36.47秒 | [88鍵版](dist/samples/greensleeves-piano-88.txt) |
 | くるみ割り人形より「花のワルツ」 | ローカル追加済み・351.26秒 | [88鍵版](dist/samples/waltz-of-flowers-piano-88.txt) |
 | くるみ割り人形より「金平糖の精の踊り」 | ローカル追加済み・122.11秒 | [88鍵版](dist/samples/sugar-plum-fairy-piano-88.txt) |
@@ -55,17 +55,17 @@
 | ハレルヤ | ローカル追加済み・189.00秒 | [88鍵版](dist/samples/handel-hallelujah-piano-88.txt) |
 | ハンガリー舞曲第5番 | ローカル追加済み・133.50秒 | [88鍵版](dist/samples/brahms-hungarian-dance-5-piano-88.txt) |
 | パンツァー・リート | 専用版を省略・弱起から17小節の歌唱主題を一巡収録済み。既存の伴奏を利用する。 | [既存版の底本](https://archive.org/details/pallmann-gerhard-soldaten-kameraden-liederbuch-fuer-wehrmacht-und-volk-1940-124-s.-scan-fraktur/page/n86/mode/1up) |
-| ファランドール | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/L%27Arl%C3%A9sienne_Suite_No.2_(Bizet,_Georges)) |
+| ファランドール | ローカル追加済み・118.00秒、導入から最初の舞曲セクションまで | [88鍵版](dist/samples/bizet-farandole-piano-88.txt) |
 | フィガロの結婚より「序曲」 | ローカル追加済み・353.40秒 | [88鍵版](dist/samples/mozart-figaro-overture-piano-88.txt) |
 | フニクリ・フニクラ | ローカル追加済み・195.39秒 | [88鍵版](dist/samples/funiculi-funicula-piano-88.txt) |
 | ブリティッシュ・グレナディアーズ | 専用版を省略・伝承旋律の16小節が一巡揃っている。既存の装飾と伴奏を利用する。 | [既存版の底本](https://s9.imslp.org/files/imglnks/usimg/7/72/IMSLP450503-PMLP732681-englishminstrels02bari.pdf) |
 | プレリュード第7番 Op.28-7 | ローカル追加済み・45.08秒 | [88鍵版](dist/samples/chopin-prelude-7-piano-88.txt) |
 | プロムナード | ローカル追加済み・93.62秒 | [88鍵版](dist/samples/mussorgsky-promenade-piano-88.txt) |
 | ぶんぶんぶん | 専用版を省略・1843年のBieneの12小節を一巡収録済み。 | [既存版の底本](https://commons.wikimedia.org/wiki/File:Summ_summ_summ.jpg) |
-| ボギー大佐 | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://yorkspace.library.yorku.ca/items/d49b9b2b-5b65-4a83-8e63-90c54e90222b) |
+| ボギー大佐 | ローカル追加済み・182.30秒、QRS古ロール全体 | [88鍵版](dist/samples/colonel-bogey-piano-88.txt) |
 | ボレロ | ローカル追加済み・191.27秒 | [88鍵版](dist/samples/ravel-bolero-piano-88.txt) |
 | メヌエット | ローカル追加済み・82.18秒 | [88鍵版](dist/samples/minuet-piano-88.txt) |
-| モルダウ | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Vltava,_JB_1:112/2_(Smetana,_Bed%C5%99ich)) |
+| モルダウ | ローカル追加済み・132.18秒、原譜40〜79小節と55〜79小節の反復 | [88鍵版](dist/samples/smetana-moldau-piano-88.txt) |
 | ラデツキー行進曲 | ローカル追加済み・186.09秒 | [88鍵版](dist/samples/radetzky-march-piano-88.txt) |
 | リパブリック讃歌 | ローカル追加済み・126.96秒 | [88鍵版](dist/samples/battle-hymn-piano-88.txt) |
 | ロンドン橋落ちた | 専用版を省略・馴染みのある歌唱旋律の8小節全体を収録済み。ユーザーが調整した付点と速度を利用する。 | [既存版の底本](https://achesonpiano.com/wp-content/uploads/London-Bridge-easy-piano-1.pdf) |
@@ -86,7 +86,7 @@
 | 蛍の光 | ローカル追加済み・39.94秒 | [88鍵版](dist/samples/auld-lang-syne-piano-88.txt) |
 | 結婚行進曲 | ローカル追加済み・297.08秒 | [88鍵版](dist/samples/mendelssohn-wedding-march-piano-88.txt) |
 | 月の光 | ローカル追加済み・324.00秒 | [88鍵版](dist/samples/clair-de-lune-piano-88.txt) |
-| 見よ、勇者は帰る | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Special:ReverseLookup/98700) |
+| 見よ、勇者は帰る | ローカル追加済み・165.09秒 | [88鍵版](dist/samples/handel-see-conquering-hero-piano-88.txt) |
 | 故郷 | 専用版を省略・16小節の一節全体が揃っている。 | [既存版の底本](https://dc.lib.hiroshima-u.ac.jp/da/ja/4078?viewer=uv) |
 | 故郷の空 | 専用版を省略・明治唱歌の歌唱主題を一巡収録済み。 | [既存版の底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs7/kokyo003a.jpg) |
 | 紅葉 | ローカル追加済み・41.98秒 | [88鍵版](dist/samples/momiji-piano-88.txt) |
@@ -94,19 +94,19 @@
 | 婚礼の合唱 | ローカル追加済み・185.83秒 | [88鍵版](dist/samples/wagner-bridal-chorus-piano-88.txt) |
 | 山の魔王の宮殿にて | ローカル追加済み・153.47秒 | [88鍵版](dist/samples/hall-of-mountain-king-piano-88.txt) |
 | 四季より「春」第1楽章 | ローカル追加済み・141.45秒 | [88鍵版](dist/samples/vivaldi-spring-piano-88.txt) |
-| 四季より「冬」第1楽章 | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://s9.imslp.org/files/imglnks/usimg/4/40/IMSLP310709-PMLP126435-rv_297_violinos.pdf#page=1) |
+| 四季より「冬」第1楽章 | ローカル追加済み・191.76秒、第1楽章全63小節 | [88鍵版](dist/samples/vivaldi-winter-first-piano-88.txt) |
 | 子守歌 Op.49-4 | ローカル追加済み・108.00秒 | [88鍵版](dist/samples/brahms-lullaby-piano-88.txt) |
 | 七つの子 | 専用版を省略・1921年初出譜の8小節の歌唱主題を収録済み。 | [既存版の底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs/nanatu01.jpg) |
 | 主よ、人の望みの喜びよ | ローカル追加済み・171.57秒 | [88鍵版](dist/samples/jesu-joy-piano-88.txt) |
 | 酋長の娘 | 専用版を省略・ユーザー指定の一節と4・4・3・4拍の反復が揃っている。この指定版を利用する。 | [既存版の底本](https://dl.ndl.go.jp/pid/8272739) |
-| 春の歌 | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Lieder_ohne_Worte,_Op.62_(Mendelssohn,_Felix)) |
+| 春の歌 | ローカル追加済み・161.80秒 | [88鍵版](dist/samples/mendelssohn-spring-song-piano-88.txt) |
 | 春の小川 | ローカル追加済み・36.86秒 | [88鍵版](dist/samples/haru-no-ogawa-piano-88.txt) |
 | 小フーガ | ローカル追加済み・190.70秒 | [88鍵版](dist/samples/little-fugue-piano-88.txt) |
 | 小犬のワルツ | ローカル追加済み・89.88秒 | [88鍵版](dist/samples/minute-waltz-piano-88.txt) |
 | 埴生の宿 | ローカル追加済み・63.74秒 | [88鍵版](dist/samples/home-sweet-home-piano-88.txt) |
 | 新世界より「第2楽章」 | ローカル追加済み・207.36秒 | [88鍵版](dist/samples/new-world-largo-piano-88.txt) |
 | 新世界より「第4楽章」 | ローカル追加済み・202.75秒 | [88鍵版](dist/samples/new-world-fourth-piano-88.txt) |
-| 人形の夢と目覚め | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Kinderscenen,_Op.202_(Oesten,_Theodore)) |
+| 人形の夢と目覚め | ローカル追加済み・167.70秒 | [88鍵版](dist/samples/dolls-dream-piano-88.txt) |
 | 星条旗よ永遠なれ | ローカル追加済み・213.70秒 | [88鍵版](dist/samples/stars-and-stripes-piano-88.txt) |
 | 赤とんぼ | 専用版を省略・歌唱主題8小節が一節全体として揃っている。既存の付点と伴奏を利用する。 | [既存版の底本](https://dl.ndl.go.jp/pid/1100014/1/10) |
 | 雪〈雪やこんこ〉 | 専用版を省略・1911年版の一節全16小節を収録済み。 | [既存版の底本](https://dc.lib.hiroshima-u.ac.jp/da/ja/4102) |
@@ -117,7 +117,7 @@
 | 朝 | ローカル追加済み・174.63秒 | [88鍵版](dist/samples/grieg-morning-piano-88.txt) |
 | 通りゃんせ | ローカル追加済み・58.66秒 | [88鍵版](dist/samples/toryanse-piano-88.txt) |
 | 鉄道唱歌 | 専用版を省略・一節16小節を収録済み。歌詞の全番分を同じ旋律で繰り返す専用版は作らない。 | [既存版の底本](https://ndlsearch.ndl.go.jp/books/R100000039-I855601) |
-| 天国と地獄より「序曲」 | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://commons.wikimedia.org/wiki/File:Orph%C3%A9e_aux_enfers_(IA_imslp-aux-enfers-offenbach-jacques).pdf) |
+| 天国と地獄より「序曲」 | ローカル追加済み・133.29秒、ガロップの前奏から終止 | [88鍵版](dist/samples/offenbach-can-can-piano-88.txt) |
 | 怒りの日 | ローカル追加済み・90.30秒 | [88鍵版](dist/samples/mozart-dies-irae-piano-88.txt) |
 | 猫踏んじゃった | ローカル追加済み・32.50秒 | [88鍵版](dist/samples/neko-funjatta-piano-88.txt) |
 | 白鳥の湖より「情景」 | ローカル追加済み・184.99秒 | [88鍵版](dist/samples/swan-lake-scene-piano-88.txt) |
@@ -126,7 +126,23 @@
 | 勇敢なるスコットランド | ローカル追加済み・33.00秒 | [88鍵版](dist/samples/scotland-the-brave-piano-88.txt) |
 | 夕焼け小焼け | 専用版を省略・歌唱主題16小節が一巡揃っている。 | [既存版の底本](https://www.ne.jp/asahi/sayuri/home/doyokashi/yuyakekogakufu1.jpg) |
 | 陸軍は進んで行く | ローカル追加済み・36.43秒 | [88鍵版](dist/samples/army-goes-rolling-along-piano-88.txt) |
-| 惑星より「火星」 | 長い収録範囲・PD底本の選定／転記が残る | [既存版の底本](https://imslp.org/wiki/Special:ReverseLookup/757891) |
+| 惑星より「火星」 | ローカル追加済み・211.97秒、後半の盛り上がりから終止まで | [88鍵版](dist/samples/mars-piano-88.txt) |
 | 惑星より「木星」 | ローカル追加済み・43.20秒 | [88鍵版](dist/samples/jupiter-piano-88.txt) |
 | 朧月夜 | ローカル追加済み・39.94秒 | [88鍵版](dist/samples/oborozukiyo-piano-88.txt) |
 | 證城寺の狸囃子 | ローカル追加済み・85.73秒 | [88鍵版](dist/samples/shojoji-piano-88.txt) |
+
+
+
+資料選定メモ：
+
+- クシコス・ポスト：原曲と異なるラグ編曲を不採用。Op.286の旧連弾譜No.22を導入から終止まで転記し、独奏向けに縮約した88鍵版を追加済み。現代のホ短調の独奏版そのものの復元とは称さない。
+- ファランドール：短いCC0抜粋を不採用。Sibleyの公開配布から1879年Choudensのピアノ譜を取得し、冒頭100小節を独奏用に整理して追加済み。
+- モルダウ：CC0転記5911315を全曲扱いにせず、旧譜との対応を確認した主題40〜68小節だけ利用。旧譜から69〜79小節を補い、55〜79小節の反復も収録して追加済み。抜粋後の終止は独自に添える。
+- 冬：第三者編曲の表示がある4586066、途中の即興・簡略化がある5862945、CC BY-SAのMutopia版を不採用。musikmannのPD転記135805と1725年旧譜を採用し、第1楽章全63小節を追加済み。
+- 火星：ユーザー指定の後半約3分30秒をCC0底本から追加済み。資料はPD・CC0のみとする。
+
+2026-10-06の追加調査：
+
+- 冬の別候補Flat 63f9811a5190dcabe655baadは公開CC0表示だったが、公式MusicXMLエクスポートがHTTP 402（契約外）となったため取得を中止し、採用していない。Mutopiaの旧版もMutopiaBSDでPD・CC0ではないため採用しない。
+- 古い紙ロールの公開目録をタイトル順で確認したが、対象のクシコス・ポスト／ファランドール／モルダウの適切な配布データは確認できなかった。
+- クシコス・ポストは旧連弾譜No.22の2ページのPrimo（PDF17・19頁）を確認。Solo版とは調と声部配置が異なるため、独奏版のまま復元したものと称さない。

@@ -55,9 +55,21 @@ for(const entry of catalog.samples){const score=parseText(await readFile('dist/s
 for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='musicbox30')){
   const wood=catalog.samples.find(s=>s.id===entry.id.replace(/-musicbox-30$/,'-xylophone-32'));assert(wood,'木琴版がない：'+entry.id);
   const original=parseText(await readFile('dist/samples/'+entry.file,'utf8')),score=parseText(await readFile('dist/samples/'+wood.file,'utf8'));
-  assert.equal(score.length,original.length,'木琴版の末尾休符も含む長さ：'+wood.id);assert.equal(score.stepMs,original.stepMs,'木琴版の速度：'+wood.id);
+  assert.equal(score.length,entry.id==='bach-toccata-fugue-musicbox-30'?100:original.length,'木琴版の末尾休符も含む長さ：'+wood.id);assert.equal(score.stepMs,original.stepMs,'木琴版の速度：'+wood.id);
   assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'xylophone32'},'版を同じ曲として表示し拍単位を保つ：'+wood.id);
   const counts=new Map();for(const n of score.notes){assert(xylophone32.allowed.has(n.midi),'木琴の対応音：'+wood.id);counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=2,'木琴は同時2音まで：'+wood.id);
+}
+// 2026-10-07：オルゴールだけ移調と範囲を修正。他楽器のトッカータは従来の100ステップ。
+for(const [id,length,expected]of [
+ ['military-march',128,[[0,'C5'],[6,'A4'],[24,'C4'],[27,'D4'],[112,'B5'],[114,'C6'],[116,'D6'],[119,'E6'],[120,'C6']]],
+ ['sugar-plum-fairy',68,[[2,'F6'],[24,'A5'],[34,'F5'],[35,'D5'],[38,'E5'],[40,'A#5'],[44,'F6'],[48,'D#6'],[56,'C#6'],[64,'D6']]],
+ ['bach-toccata-fugue',24,[[0,'A6'],[1,'G6'],[2,'A6'],[11,'G6'],[12,'F6'],[13,'E6'],[14,'D6'],[15,'C#6'],[16,'D6']]],
+]){
+ const score=parseText(await readFile(`dist/samples/${id}-musicbox-30.txt`,'utf8'));
+ assert.equal(score.length,length,'オルゴール版の収録範囲');
+ for(const [step,name]of expected)assert.equal(Math.max(...score.notes.filter(n=>n.step===step).map(n=>n.midi)),noteNumber(name),'原譜の一括移調と高低差：'+id+' '+step);
+ const counts=new Map();for(const n of score.notes)counts.set(n.step,(counts.get(n.step)??0)+1);assert(Math.max(...counts.values())<=4,'オルゴールの伴奏を整理');
+ if(id==='bach-toccata-fugue')assert(!score.notes.some(n=>n.step>16),'最初の音型の着地後は余韻');
 }
 // Primo第7〜22小節を連続採用。原譜の全音を同じ+10半音で移し、第58・62小節へ差し替えない。
 const militaryWood=parseText(await readFile('dist/samples/military-march-xylophone-32.txt','utf8'));
@@ -68,7 +80,7 @@ const twinkleWood=parseText(await readFile('dist/samples/twinkle-xylophone-32.tx
 assert(twinkleWood.notes.some(n=>n.step===184&&n.midi===noteNumber('C6')),'木琴の最後の主音');assert(!twinkleWood.notes.some(n=>n.step===28&&n.midi===noteNumber('G6')),'長い旋律音を伴奏で打ち直さない');
 for(const id of ['military-march','sugar-plum-fairy','bach-toccata-fugue']){
   const original=parseText(await readFile(`dist/samples/${id}-musicbox-30.txt`,'utf8')),score=parseText(await readFile(`dist/samples/${id}-piano-61.txt`,'utf8'));
-  assert(catalog.samples.some(s=>s.id===id+'-piano-61'),'61鍵版の一覧');assert.equal(score.length,original.length);assert.equal(score.stepMs,original.stepMs);assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'piano61'});
+  assert(catalog.samples.some(s=>s.id===id+'-piano-61'),'61鍵版の一覧');assert.equal(score.length,id==='bach-toccata-fugue'?100:original.length);assert.equal(score.stepMs,original.stepMs);assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'piano61'});
   const counts=new Map();for(const n of score.notes){assert(piano61.allowed.has(n.midi));counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=4);
   const expected=id==='military-march'?[[112,'F#6'],[114,'G6'],[116,'A6'],[119,'B6'],[120,'G6']]:id==='sugar-plum-fairy'?[[2,'G6'],[34,'G5'],[40,'C6'],[44,'G6'],[48,'F6'],[64,'E6']]:[[62,'D4'],[63,'C#4'],[64,'D4'],[72,'D3'],[72,'C#4'],[92,'G4'],[94,'E4'],[96,'F#4']];
   for(const [step,pitch]of expected)assert(score.notes.some(n=>n.step===step&&n.midi===noteNumber(pitch)),'61鍵版で音域制約の変更を復元：'+id+' step'+step);
@@ -96,11 +108,76 @@ for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='piano88'
   assert(score.notes.every(n=>n.midi>=21&&n.midi<=108),'88鍵版の音域：'+entry.id);
   assert.equal(new Set(score.notes.map(n=>n.step+':'+n.midi)).size,score.notes.length,'88鍵版の重複：'+entry.id);
 }
+// Peters版の前打音を独立ステップで鳴らさず、後続和音を本来の拍へ戻す。
+const danube88=parseText(await readFile('dist/samples/blue-danube-piano-88.txt','utf8'));
+for(const [step,name]of [[20,'F#5'],[116,'G5'],[128,'C#5'],[128,'G5'],[164,'D5'],[212,'D6'],[1212,'C6'],[1228,'G5']])assert(danube88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'青きドナウ：前打音後の和音の拍位置');
+for(const [step,name]of [[20,'A4'],[116,'C#5'],[129,'C#5'],[129,'G5'],[212,'D5'],[1212,'F5'],[1228,'A5']])assert(!danube88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'青きドナウ：独立した前打音・遅れた重複を除く');
+const doll88=parseText(await readFile('dist/samples/dolls-dream-piano-88.txt','utf8'));
+assert.equal(doll88.length,1677);assert.equal(doll88.stepMs,100);
+for(const [step,name]of [[0,'E4'],[0,'G4'],[0,'C3'],[982,'E6'],[1089,'F#5'],[1552,'E7'],[1657,'C4']])assert(doll88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'人形の夢と目覚め：旧譜の開始・踊り・8va・終止');
+assert(!doll88.notes.some(n=>n.step===982&&n.midi===noteNumber('G6')),'踊りの最初の加線を読み違えない');
+assert(!doll88.notes.some(n=>n.step>1657),'最後の和音に2秒の余韻');
+const hero88=parseText(await readFile('dist/samples/handel-see-conquering-hero-piano-88.txt','utf8'));
+assert.equal(hero88.length,1232);assert.equal(hero88.stepMs,134);
+for(const [step,name]of [[0,'A#5'],[0,'G5'],[8,'G5'],[14,'G#5']])assert(hero88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'見よ、勇者は帰る：底本の主題・付点の配置');
+assert(!hero88.notes.some(n=>n.step>=1216),'最終小節後に4拍の余韻');
+const spring88=parseText(await readFile('dist/samples/mendelssohn-spring-song-piano-88.txt','utf8'));
+assert.equal(spring88.length,1618);assert.equal(spring88.stepMs,100);
+for(const [step,name]of [[0,'C#5'],[0,'A1'],[11,'D5'],[13,'D#5'],[15,'E5'],[18,'A5'],[1578,'A6'],[1595,'A1']])assert(spring88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'春の歌：古譜の冒頭・終止と100ms配置');
+assert(!spring88.notes.some(n=>n.step>=1596),'春の歌の最後に余韻を置く');
+const cancan88=parseText(await readFile('dist/samples/offenbach-can-can-piano-88.txt','utf8'));
+assert.equal(cancan88.length,1418);assert.equal(cancan88.stepMs,94);
+for(const [step,name]of [[8,'F#6'],[9,'F6'],[152,'A4'],[154,'E5'],[156,'E5'],[158,'F#5'],[1389,'D5']])assert(cancan88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ガロップ：導入の半音・器楽主題・終止');
+assert(!cancan88.notes.some(n=>n.step>1389),'ガロップの終止後に余韻を残す');
+const bogey88=parseText(await readFile('dist/samples/colonel-bogey-piano-88.txt','utf8'));
+assert.equal(bogey88.length,1823);assert.equal(bogey88.stepMs,100);
+for(const [step,name]of [[0,'A6'],[1,'B6'],[3,'C#7'],[4,'D7'],[1800,'G1'],[1799,'G5']])assert(bogey88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ボギー大佐：紙ロールの導入・トリオの終止');
+assert(!bogey88.notes.some(n=>n.step>1800),'ボギー大佐の終止後の余韻');
+const toy88=parseText(await readFile('dist/samples/toy-soldiers-piano-88.txt','utf8'));
+assert.equal(toy88.length,1408);assert.equal(toy88.stepMs,100);
+for(const [step,name]of [[0,'E5'],[552,'A4'],[554,'D5'],[555,'F#4'],[1387,'A2']])assert(toy88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'兵隊のマーチ：原調へ戻した導入・有名な主題・終止');
+assert(!toy88.notes.some(n=>n.step>1387),'兵隊のマーチの終止後の余韻');
+const mars88=parseText(await readFile('dist/samples/mars-piano-88.txt','utf8'));
+assert.equal(mars88.length,3072);assert.equal(mars88.stepMs,69);
+for(const [step,name]of [[0,'F4'],[0,'C4'],[0,'G#3'],[3036,'C1'],[3036,'C2'],[3036,'G3']])assert(mars88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'火星：後半の開始と最終和音');
+assert(!mars88.notes.some(n=>n.step>3036),'火星の終止後の余韻');
+const csikos88=parseText(await readFile('dist/samples/csikos-post-piano-88.txt','utf8'));
+assert.equal(csikos88.length,896);assert.equal(csikos88.stepMs,125);
+for(const [step,name]of [[0,'A#6'],[48,'G6'],[54,'D#6'],[56,'A#5'],[70,'B5'],[864,'G#5'],[872,'D#6']])assert(csikos88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'クシコス・ポスト：旧譜の導入・主題・臨時記号・終止');
+assert(!csikos88.notes.some(n=>n.step>872),'クシコス・ポストの終止後の余韻');
+const farandole88=parseText(await readFile('dist/samples/bizet-farandole-piano-88.txt','utf8'));
+assert.equal(farandole88.length,944);assert.equal(farandole88.stepMs,125);
+for(const [step,name]of [[8,'D5'],[144,'D5'],[152,'F5'],[704,'B5'],[706,'C#6'],[708,'D6'],[798,'D7'],[800,'C#7'],[924,'D2']])assert(farandole88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ファランドール：導入・移行・舞曲・8va・終止');
+assert(!farandole88.notes.some(n=>n.step>924),'ファランドールの終止後の余韻');
+const moldau88=parseText(await readFile('dist/samples/smetana-moldau-piano-88.txt','utf8'));
+assert.equal(moldau88.length,1612);assert.equal(moldau88.stepMs,82);
+for(const [step,name]of [[4,'E5'],[736,'F#5'],[748,'D#5'],[772,'A5'],[796,'E5'],[804,'F#5'],[808,'G#5'],[844,'C6'],[1564,'E2']])assert(moldau88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'モルダウ：主題・臨時記号・連続部分・終止');
+assert(!moldau88.notes.some(n=>n.step>1564),'モルダウの終止後の余韻');
+const winter88=parseText(await readFile('dist/samples/vivaldi-winter-first-piano-88.txt','utf8'));
+assert.equal(winter88.length,2040);assert.equal(winter88.stepMs,94);
+for(const [step,name]of [[0,'F3'],[32,'G4'],[64,'C#5'],[96,'A#5'],[1984,'F2'],[1984,'G#3'],[1984,'F4']])assert(winter88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'冬：原譜の声部入口と終止');
+assert(!winter88.notes.some(n=>n.step>1984),'冬の終止後の余韻');
 // 原譜第30小節前半で終える。フーガ入口を含めず、最後に2拍の余韻を残す。
 const toccata88=parseText(await readFile('dist/samples/bach-toccata-fugue-piano-88.txt','utf8'));
 assert.equal(toccata88.length,960);assert.equal(toccata88.stepMs,125);
 for(const name of ['D2','D3','A3','D4'])assert(toccata88.notes.some(n=>n.step===928&&n.midi===noteNumber(name)));
 assert(!toccata88.notes.some(n=>n.step>=944),'トッカータ終止後の余韻');
+// 底本で前打音に続く主音の記譜位置を確認。通常音・別声部のユニゾンも残す。
+for(const [id,on,off]of [
+ ['radetzky-march',[[60,'F#5']],[[60,'G5'],[61,'F#5']]],
+ ['mendelssohn-wedding-march',[[162,'F4'],[162,'G4'],[162,'D5']],[[162,'B4'],[163,'C5'],[164,'D5']]],
+ ['wagner-bridal-chorus',[[756,'D#5']],[[756,'F5']]],
+ ['new-world-fourth',[[448,'B5'],[608,'E3'],[609,'E3']],[[448,'G4'],[449,'B5']]],
+ ['salut-damour',[[240,'C#5']],[[240,'E5'],[241,'C#5']]],
+ ['mozart-figaro-overture',[[216,'C#6']],[[216,'D6'],[217,'B5'],[218,'C#6']]],
+ ['nutcracker-march',[[284,'E5'],[284,'B5']],[[284,'A#5'],[285,'B5']]],
+ ['chopin-nocturne-2',[[304,'G5']],[[304,'E5'],[305,'F5'],[305,'G5']]],
+ ['air-on-g',[[80,'E5']],[[80,'F#5'],[81,'E5']]],
+]){
+ const score=parseText(await readFile(`dist/samples/${id}-piano-88.txt`,'utf8'));
+ for(const [step,name]of on)assert(score.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),id+'：主音・通常音を残す '+step+' '+name);
+ for(const [step,name]of off)assert(!score.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),id+'：前打音・遅れた重複を除く '+step+' '+name);
+}
 const ode88=parseText(await readFile('dist/samples/ode-to-joy-piano-88.txt','utf8'));
 const twinkle88=parseText(await readFile('dist/samples/twinkle-piano-88.txt','utf8'));
 for(const [id,length,ms,expected]of [
