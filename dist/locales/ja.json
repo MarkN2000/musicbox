@@ -107,7 +107,7 @@
   "削除して詰める": "削除して詰める",
   "noteStats": "{notes}音 · {steps}ステップ",
   "omittedWarning": "非対応：{count}音（再生・出力から除外）",
-  "customSubdivision": "四分音符に{count}ステップ",
+  "customSubdivision": "4分音符を{count}分割",
   "trackSummary": "トラック {count} / {total}",
   "trackLabel": "{index}. {name} · {instrument} · {count}音",
   "percussionLabel": "（打楽器）",

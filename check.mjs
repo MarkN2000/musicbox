@@ -178,6 +178,13 @@ for(const [id,on,off]of [
  for(const [step,name]of on)assert(score.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),id+'：主音・通常音を残す '+step+' '+name);
  for(const [step,name]of off)assert(!score.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),id+'：前打音・遅れた重複を除く '+step+' '+name);
 }
+const march88=parseText(await readFile('dist/samples/nutcracker-march-piano-88.txt','utf8'));
+for(const beat of [1,9,33,41,97,105,129,137,193,201,225,233,289,297,321,329]){
+ for(const name of ['G4','B4','D5']){
+  for(const offset of [0,3])assert(march88.notes.some(n=>n.step===beat*4+offset&&n.midi===noteNumber(name)),'行進曲：反復三連符を拍頭と末尾の2音に整理');
+  assert(!march88.notes.some(n=>n.step===beat*4+1&&n.midi===noteNumber(name)),'行進曲：詰まった中央の打ち直しを省く');
+ }
+}
 const ode88=parseText(await readFile('dist/samples/ode-to-joy-piano-88.txt','utf8'));
 const twinkle88=parseText(await readFile('dist/samples/twinkle-piano-88.txt','utf8'));
 for(const [id,length,ms,expected]of [
