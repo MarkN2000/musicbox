@@ -20,7 +20,7 @@
 
 MIDIはWorkerで取り込み、TXTは直接解析します。取り込み中も操作でき、中止・失敗時は編集中の楽譜を保持します。マス目は表示範囲だけを描画し、MIDIライブラリ・サンプル本文・音源は必要時に読み込みます。
 
-詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [STEPSCORE.md](./STEPSCORE.md) を参照してください。
+詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [StepScore v1](https://github.com/MarkN2000/stepscore/blob/v1/SPEC.md) を参照してください。
 2026年10月の追加曲の底本・抜粋・移調・検証は [TEMPLATE_SOURCES.md](./TEMPLATE_SOURCES.md) に記録しています。
 
 ## ローカルで使う
@@ -58,7 +58,6 @@ npm start
 - `serve.mjs`：ローカル確認用の静的ファイルサーバー。
 - `SPEC.md`：操作・出力・データ管理の仕様。
 - `TEMPLATE_SOURCES.md`：サンプルの底本・権利確認・編曲の記録。
-- `STEPSCORE.md`：楽器に依存しないstepscore形式の仕様。
 - `wrangler.json`：Cloudflare Workersで `dist/` を配信する設定。
 
 ## 公開
