@@ -1,5 +1,5 @@
 format=stepscore,version=1,step_ms=134,arranged_for=xylophone32,title=Eine kleine Nachtmusik: I. Allegro,title_ja=アイネ・クライネ・ナハトムジークより「第1楽章」,composer=モーツァルト,composer_ja=モーツァルト,composer_en=Wolfgang Amadeus Mozart,reading_ja=あいねくらいねなはとむじーくよりだいいちがくしょう,steps_per_quarter=4,time_signature=4/4
-G5,C6
+C6
 
 
 
@@ -7,61 +7,13 @@ G5,C6
 
 G5
 
-G5,C6
+C6
 
 
 
 
 
 G5
-
-G5,C6
-
-G5
-
-G5,C6
-
-C6,E6
-
-C6,G6
-
-
-
-
-
-
-
-G5,F6
-
-
-
-
-
-B5,D6
-
-G5,F6
-
-
-
-
-
-B5,D6
-
-G5,F6
-
-B5,D6
-
-G5,B5
-
-B5,D6
-
-G5
-
-
-
-
-
-
 
 C6
 
@@ -69,93 +21,141 @@ G5
 
 C6
 
-G5
+E6
+
+G6
 
 
 
-G5,E6
-
-D6
-
-G5,C6
-
-G5,C6
-
-G5,B5
-
-B5
 
 
 
-G5
 
-G5,D6
-
-B5,F6
-
-B5
-
-C6,D6
-
-G5,C6
-
-C6
-
-G5
-
-
-
-G5,E6
-
-D6
-
-G5,C6
-
-G5,C6
-
-G5,B5
-
-B5
-
-
-
-G5
-
-G5,D6
-
-B5,F6
-
-B5
-
-C6
-
-G5,C6
-
-F5,B5
-
-G5,A5
-B5
-G5,C6
-
-C6
-
-G5,D6
-
-F5,C6
-D6
-C6,E6
-
-G5,E6
-
-D6,F6
-
-G5,E6
 F6
-E6,G6
+
+
+
+
+
+D6
+
+F6
+
+
+
+
+
+D6
+
+F6
+
+D6
+
+B5
+
+D6
+
+G5
+
+
+
+
 
 
 
 C6
+
+
+
+C6
+
+
+
+
+
+E6
+
+D6
+
+C6
+
+C6
+
+B5
+
+B5
+
+
+
+
+
+D6
+
+F6
+
+B5
+
+D6
+
+C6
+
+C6
+
+
+
+
+
+E6
+
+D6
+
+C6
+
+C6
+
+B5
+
+B5
+
+
+
+
+
+D6
+
+F6
+
+B5
+
+C6
+
+C6
+
+B5
+
+A5
+B5
+C6
+
+C6
+
+D6
+
+C6
+D6
+E6
+
+E6
+
+F6
+
+E6
+F6
+G6
+
+
+
+
 
 
 

@@ -1,129 +1,129 @@
 format=stepscore,version=1,step_ms=125,arranged_for=xylophone32,title=Hochzeitsmarsch,title_ja=結婚行進曲,title_en=Wedding March,composer=メンデルスゾーン,composer_ja=メンデルスゾーン,composer_en=Felix Mendelssohn,reading_ja=けっこんこうしんきょく,steps_per_quarter=4,time_signature=4/4
-E6,C8
+C8
 
 
 
-A5
 
 
 
-A5,B7
+
+B7
 
 
 
-A5
+
 
 F#7
 
-E6,A7
+A7
 
 
 
-E6,G7
+G7
 
 
 
-F5,F7
+F7
 
-
-
-F5,D7
-
-
-
-G5,C7
-
-
-
-G5
-
-
-
-G5,D7
-
-
-
-G5,G6
 
 
 D7
-C6,E7
 
 
 
-G5,C6
-
-C6,E6
-
-G5,G6
-
-C6,C7
-
-C6,E7
-
-E6,G7
-
-E6,C8
+C7
 
 
 
-A5
 
 
 
-A5,B7
+
+D7
 
 
 
-A5
-
-F#7
-
-E6,A7
+G6
 
 
-
-E6,G7
-
-
-
-F5,F7
-
-
-
-F5,D7
-
-
-
-G5,C7
-
-
-
-G5
-
-
-
-G5,E7
-
-
-
-G5,D7
-
-
+D7
 E7
-C6,D7
-
-
-
-G5
-
-
-
-C6,C7
 
 
 
 C6
+
+E6
+
+G6
+
+C7
+
+E7
+
+G7
+
+C8
+
+
+
+
+
+
+
+B7
+
+
+
+
+
+F#7
+
+A7
+
+
+
+G7
+
+
+
+F7
+
+
+
+D7
+
+
+
+C7
+
+
+
+
+
+
+
+E7
+
+
+
+D7
+
+
+E7
+D7
+
+
+
+
+
+
+
+C7
+
+
+
+
 
 
 

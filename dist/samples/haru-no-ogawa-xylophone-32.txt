@@ -1,129 +1,129 @@
 format=stepscore,version=1,step_ms=144,arranged_for=xylophone32,title=春の小川,title_en=Haru no Ogawa,composer=岡野貞一,composer_ja=岡野貞一,composer_en=Teiichi Okano,reading_ja=はるのおがわ,steps_per_quarter=4,time_signature=4/4
-C6,E6
+E6
 
-G5
 
-E6,G6
-
-G5
-
-C6,A6
 
 G6
 
-E6,G6
 
-G5
 
-C6,E6
+A6
 
-G5
 
-E6,G6
-
-G5
-
-C6,C7
 
 G6
 
-E6,C7
 
-G6
-
-F5,A6
-
-A5
-
-F5,A6
-
-A5
-
-C6,G6
-
-G5
 
 E6
 
-G5
 
-C6
-
-G5
-
-D6
-
-G5
-
-G5,E6
-
-G5
-
-B5
-
-D6
-
-C6,E6
-
-G5
-
-E6,G6
-
-G5
-
-C6,A6
 
 G6
 
-E6,G6
 
-G5
 
-C6,E6
+C7
 
-G5
 
-E6,G6
 
-G5
+C7
 
-C6,C7
+
+
+A6
+
+
+
+A6
+
+
 
 G6
 
-E6,C7
 
-G6
-
-F5,A6
-
-A5
-
-F5,A6
-
-A5
-
-C6,G6
-
-G5
 
 E6
 
-G5
 
-G5,D6
-
-G5
-
-B5,E6
-
-D6
 
 C6
 
-G5
 
-G5
+
+D6
+
+
+
+E6
+
+
+
+
+
+
+
+E6
+
+
+
+G6
+
+
+
+A6
+
+
+
+G6
+
+
+
+E6
+
+
+
+G6
+
+
+
+C7
+
+
+
+C7
+
+
+
+A6
+
+
+
+A6
+
+
+
+G6
+
+
+
+E6
+
+
+
+D6
+
+
+
+E6
+
+
+
+C6
+
+
+
+
 
 
 

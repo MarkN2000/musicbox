@@ -1,129 +1,129 @@
 format=stepscore,version=1,step_ms=104,arranged_for=xylophone32,title=Symphonie Nr. 5: I. Allegro con brio,title_ja=運命,title_en=Symphony No. 5: I. Allegro con brio,composer=ベートーヴェン,composer_ja=ベートーヴェン,composer_en=Ludwig van Beethoven,reading_ja=うんめい,steps_per_quarter=4,time_signature=2/4
 
 
-D#6,G6
-
-G5,G6
-
-C6,G6
-
-C6,D#6
-
-
-
-
-
-
-
-C6
-
-D#6,D#7
-
-G5,D#7
-
-C6,D#7
-
-C6,C7
-
-D#6
-
-G5
-
-C6
-
-C6
-
-
-
-G5
+G6
 
 G6
 
-G5
-
-
-
-G5
-
-B5
-
-G5
-
-B5,F7
-
-G5,F7
-
-D6,F7
-
-G5,D7
-
-B5
-
-G5
-
-D6
-
-G5
-
-B5,G7
-
-G5,G7
-
-D6,F7
-
-C6,D#7
+G6
 
 D#6
 
-G5
-
-C6
-
-G5,D7
-
-B5,G7
-
-G5,G7
-
-D6,F7
-
-C6,D#7
-
-D#6
-
-G5
-
-C6
-
-G5,D7
-
-B5,G7
-
-G5,G7
-
-D6,F7
-
-C6,D#7
 
 
 
-G5
 
 
 
-A5,C7
+
+
+D#7
+
+D#7
+
+D#7
+
+C7
 
 
 
-D6
 
 
 
-G5,G7
 
 
 
-G5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+F7
+
+F7
+
+F7
+
+D7
+
+
+
+
+
+
+
+
+
+G7
+
+G7
+
+F7
+
+D#7
+
+
+
+
+
+
+
+D7
+
+G7
+
+G7
+
+F7
+
+D#7
+
+
+
+
+
+
+
+D7
+
+G7
+
+G7
+
+F7
+
+D#7
+
+
+
+
+
+
+
+C7
+
+
+
+
+
+
+
+G7
+
+
+
+
 
 
 

@@ -1,129 +1,129 @@
 format=stepscore,version=1,step_ms=134,arranged_for=xylophone32,title=The Army Goes Rolling Along,title_ja=陸軍は進んで行く,composer=グルーバー（スーザの1918年版による）,composer_ja=グルーバー（スーザの1918年版による）,composer_en=Edmund L. Gruber (Sousa's 1918 edition),reading_ja=りくぐんはすすんでいく,steps_per_quarter=4,time_signature=2/4
-C6,G6
+G6
 
 E6
 
-C6,G6
+G6
+
+
+
+G6
 
 E6
 
-C6,G6
+G6
 
-G5,E6
 
-C6,G6
 
-E6
-
-C6,G6
-
-G5,E6
-
-C6,G6
+G6
 
 E6
+
+G6
+
+
 A6
-C6,G6
-
-G5,E6
-
-C6,G6
+G6
 
 E6
 
-C6,E6
+G6
 
-E6,F6
 
-G5,G6
-
-B5,F6
-
-G5
-
-B5,D6
-
-G5,G6
-
-B5,F6
-
-G5
-
-B5,D6
-
-G5,C6
-
-G5
-
-G5
-
-G5
-
-G5
-
-G5
-
-C6,G6
-
-G5,E6
-
-C6,G6
 
 E6
 
-C6,G6
+F6
 
-G5,E6
+G6
 
-C6,G6
+F6
+
+
+
+D6
+
+G6
+
+F6
+
+
+
+D6
+
+C6
+
+
+
+
+
+
+
+
+
+
+
+G6
 
 E6
 
-C6,G6
+G6
 
-G5,E6
 
-C6,G6
+
+G6
 
 E6
+
+G6
+
+
+
+G6
+
+E6
+
+G6
+
+
 A6
-C6,G6
-
-G5,E6
-
-C6,G6
+G6
 
 E6
 
-C6,E6
+G6
 
-E6,F6
 
-G5,G6
 
-B5,F6
+E6
 
-G5
+F6
 
-B5,D6
+G6
 
-G5,G6
+F6
 
-B5,F6
 
-G5
 
-B5,D6
+D6
 
-G5,C6
+G6
 
-G5
+F6
 
-G5
 
-G5
 
-G5
+D6
+
+C6
+
+
+
+
+
+
+
+
 
 
 

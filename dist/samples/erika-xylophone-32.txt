@@ -1,105 +1,105 @@
 format=stepscore,version=1,step_ms=268,arranged_for=xylophone32,title=Erika,title_ja=エーリカ行進曲,composer=ヘルムス・ニール,composer_ja=ヘルムス・ニール,composer_en=Herms Niel,reading_ja=えーりかこうしんきょく,steps_per_quarter=2,time_signature=2/4
-C6,E6
+E6
 
-G5
+
 F6
-C6,G6
+G6
 
-E6,G6
+G6
 
-C6,G6
+G6
 
-E6,C7
+C7
 
-C6,C7
+C7
 
-E6,E7
+E7
 
-C6,E7
+E7
 
-E6
+
 D7
-C6,C7
+C7
 
-E6
 
-C6
 
-E6
 
-G5,B6
 
-E6,C7
 
-G5,D7
 
-F5
+B6
 
-G5
+C7
 
-F5
-
-C6,E7
-
-E6
 D7
-C6,C7
+
+
+
+
+
+
+
+E7
+
+
+D7
+C7
+
+
+
+
+
+
 
 E6
 
-C6
 
-E6
-
-C6,E6
-
-G5
 F6
-C6,G6
+G6
 
-E6,G6
+G6
 
-C6,G6
+G6
 
-E6,C7
+C7
 
-C6,C7
+C7
 
-E6,E7
+E7
 
-C6,E7
+E7
 
-E6
+
 D7
-C6,C7
+C7
 
-E6
 
-C6
 
-E6
 
-G5,B6
 
-E6,C7
 
-G5,D7
 
-F5
+B6
 
-G5
+C7
 
-F5
-
-C6,E7
-
-E6
 D7
-C6,C7
 
-E6
 
-C6
 
-E6
+
+
+
+
+E7
+
+
+D7
+C7
+
+
+
+
+
+
 

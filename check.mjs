@@ -57,7 +57,17 @@ for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='musicbox
   const original=parseText(await readFile('dist/samples/'+entry.file,'utf8')),score=parseText(await readFile('dist/samples/'+wood.file,'utf8'));
   assert.equal(score.length,entry.id==='bach-toccata-fugue-musicbox-30'?100:original.length,'木琴版の末尾休符も含む長さ：'+wood.id);assert.equal(score.stepMs,original.stepMs,'木琴版の速度：'+wood.id);
   assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'xylophone32'},'版を同じ曲として表示し拍単位を保つ：'+wood.id);
-  const counts=new Map();for(const n of score.notes){assert(xylophone32.allowed.has(n.midi),'木琴の対応音：'+wood.id);counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=2,'木琴は同時2音まで：'+wood.id);
+  const counts=new Map();for(const n of score.notes){assert(xylophone32.allowed.has(n.midi),'木琴の対応音：'+wood.id);counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=2,'木琴は主旋律と簡単な伴奏で同時2音まで：'+wood.id);
+}
+// ユーザー提示の配置：A・A・B♭・Aを八分音符で並べ、同型の反復も揃える。
+for(const [kind,octave]of [['musicbox-30',5],['xylophone-32',6]]){
+ const score=parseText(await readFile(`dist/samples/grandfathers-clock-${kind}.txt`,'utf8'));
+ assert.equal(score.length,256);assert.equal(score.stepMs,139);
+ for(const base of [20,84,212]){
+  for(const [offset,name]of [[0,'A'],[2,'A'],[4,'A#'],[6,'A']])assert(score.notes.some(n=>n.step===base+offset&&n.midi===noteNumber(name+octave)),'古時計の歌唱リズム：'+kind+' '+base);
+  assert(!score.notes.some(n=>n.step===base+7&&n.midi===noteNumber('A'+octave)),'付点の末尾を八分位置へ移す');
+ }
+ assert(!score.notes.some(n=>n.step===213&&n.midi===noteNumber('A'+octave)),'余分な16分音符の打ち直しを省く');
 }
 // 2026-10-07：オルゴールだけ移調と範囲を修正。他楽器のトッカータは従来の100ステップ。
 for(const [id,length,expected]of [

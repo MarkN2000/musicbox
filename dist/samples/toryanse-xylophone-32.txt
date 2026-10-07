@@ -1,145 +1,145 @@
 format=stepscore,version=1,step_ms=188,arranged_for=xylophone32,title=通りゃんせ,title_en=Tōryanse,composer=日本古謡,composer_ja=日本古謡,composer_en=Traditional Japanese melody,reading_ja=とおりゃんせ,steps_per_quarter=4,time_signature=4/4
-C6,C7
+C7
 
 
 
-F5
 
 
 
-G5,C7
+
+C7
 
 
-
-C6,A#6
-
-
-
-F5,C7
-
-
-
-F5,C7
 
 A#6
 
-C6,G6
 
-
-
-F5
-
-
-
-F5,C#7
-
-
-
-A#5,C#7
-
-C#7
-
-F5,F7
-
-
-
-G5,C#7
 
 C7
 
-C6,C#7
+
 
 C7
-
-F5,A#6
 
 A#6
-
-C6,C7
-
-
-
-F5
-
-
-
-F5,C#7
-
-
-
-A#5,C#7
-
-C#7
-
-F5
-
-F7
-
-C6,C#7
-
-C7
-
-C6,C#7
-
-C7
-
-F5,A#6
-
-A#6
-
-C6,C7
-
-
-
-F5
-
-
-
-F5
-
-C6
-
-C6,F6
 
 G6
 
-F5,A#6
-
-C7
-
-C6,C#7
-
-C7
-
-F5,C#7
 
 
 
-C6,F7
 
 
 
-A#5,G7
+C#7
+
+
+
+C#7
+
+C#7
 
 F7
 
-C6,C#7
-
-F7
-
-C6,C7
 
 
+C#7
 
-F5,C7
+C7
+
+C#7
+
+C7
 
 A#6
 
-C6,C7
+A#6
+
+C7
+
+
+
+
+
+
+
+C#7
+
+
+
+C#7
+
+C#7
+
+
+
+F7
+
+C#7
+
+C7
+
+C#7
+
+C7
+
+A#6
+
+A#6
+
+C7
+
+
+
+
+
+
 
 
 
 C6
+
+F6
+
+G6
+
+A#6
+
+C7
+
+C#7
+
+C7
+
+C#7
+
+
+
+F7
+
+
+
+G7
+
+F7
+
+C#7
+
+F7
+
+C7
+
+
+
+C7
+
+A#6
+
+C7
+
+
+
+
 
 
 

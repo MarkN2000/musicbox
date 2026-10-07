@@ -1,33 +1,33 @@
 format=stepscore,version=1,step_ms=69,arranged_for=xylophone32,title=Radetzky-Marsch,title_ja=ラデツキー行進曲,title_en=Radetzky March,composer=ヨハン・シュトラウス1世,composer_ja=ヨハン・シュトラウス1世,composer_en=Johann Strauss I,reading_ja=らでつきーこうしんきょく,steps_per_quarter=4,time_signature=4/4
-F5,F6
+F6
 
 F6
 
-F5,F6
+F6
 
 
-
-F5,F6
 
 F6
 
-F5,F6
+F6
+
+F6
 
 
 
-F5,A6
+A6
 
 
 
-F5,G6
+G6
 
 
 
-F5,F6
+F6
 
 
 
-F5
+
 
 E6
 
@@ -39,171 +39,171 @@ D6
 
 E6
 
-F5,F6
+F6
 
 
-
-C6,G6
-
-
-
-G5,C6
-
-
-
-G5
-
-
-
-G5
-
-
-
-C6,A6
-
-G#6
-
-F5,A6
-
-
-
-F5,A6
-
-G#6
-
-F5,A6
-
-
-
-F5,A6
 
 G6
 
-F5,A6
+
+
+C6
 
 
 
-F5,G6
 
 
 
-F5,F6
 
 
 
-F5,A6
 
-G#6
-
-F5,A6
-
-
-
-F5,A6
-
-G#6
-
-F5,A6
-
-
-
-F5,A6
-
-G6
-
-F5,A6
-
-
-
-F5,C7
-
-
-
-C6,A#6
-
-
-
-C6,A#6
 
 A6
 
-F5,A#6
-
-
-
-F5,D7
-
-
-
-F5,C7
-
-
-
-F5,C7
+G#6
 
 A6
 
-F5,A6
+
+
+A6
+
+G#6
+
+A6
 
 
 
-F5,C7
-
-
-
-C6,A#6
-
-
-
-C6,A#6
+A6
 
 G6
 
-C6,G6
+A6
 
 
 
-C6,E7
+G6
 
 
 
-C6,F6
+F6
 
 
 
-C6,D7
+A6
+
+G#6
+
+A6
 
 
 
-C6,C7
+A6
+
+G#6
+
+A6
 
 
 
-C6,C7
+A6
 
-B6
+G6
 
-C6,C7
+A6
 
-D7
 
-C6,C7
+
+C7
+
+
 
 A#6
 
-F5,A6
+
+
+A#6
+
+A6
+
+A#6
 
 
 
-C6,G6
+D7
 
 
 
-F5,F6
+C7
 
 
 
-F5
+C7
+
+A6
+
+A6
+
+
+
+C7
+
+
+
+A#6
+
+
+
+A#6
+
+G6
+
+G6
+
+
+
+E7
+
+
+
+F6
+
+
+
+D7
+
+
+
+C7
+
+
+
+C7
+
+B6
+
+C7
+
+D7
+
+C7
+
+A#6
+
+A6
+
+
+
+G6
+
+
+
+F6
+
+
+
+
 
 
 
