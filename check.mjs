@@ -59,6 +59,28 @@ for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='musicbox
   assert.deepEqual(score.metadata,{...original.metadata,arranged_for:'xylophone32'},'版を同じ曲として表示し拍単位を保つ：'+wood.id);
   const counts=new Map();for(const n of score.notes){assert(xylophone32.allowed.has(n.midi),'木琴の対応音：'+wood.id);counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=2,'木琴は主旋律と簡単な伴奏で同時2音まで：'+wood.id);
 }
+// シューマンOp.54：通常の付点・八分音符を8分割で正確に保持し、タイは再発音しない。
+{
+ const score=parseText(await readFile('dist/samples/schumann-piano-concerto-first-musicbox-30.txt','utf8'));
+ assert.equal(score.length,352);assert.equal(score.stepMs,55);assert.equal(score.metadata.steps_per_quarter,'8');
+ const allowed=definitions.instruments.find(i=>i.arrangedFor==='musicbox30').allowed,counts=new Map();
+ for(const n of score.notes){assert(allowed.has(n.midi));counts.set(n.step,(counts.get(n.step)??0)+1);}assert(Math.max(...counts.values())<=4);
+ for(const [beat,name]of [[.75,'E6'],[1,'F6'],[2.75,'C#6'],[3,'D6'],[3.75,'A5'],[12,'C6'],[14,'B5'],[15.5,'A5'],[18.5,'A5'],[19,'B5'],[19.5,'C6'],[40,'G#5'],[41,'A5']])assert(score.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'オルゴールの原譜の拍位置：'+beat+' '+name);
+ for(const [beat,name]of [[5.75,'E5'],[7.75,'A4']])assert(score.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'冒頭の下降旋律を内声の折り返しで覆わない');
+ for(const [beat,name]of [[5.75,'G#5'],[7.75,'A5']])assert(!score.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'余分な上の音を入れない');
+ assert(!score.notes.some(n=>n.step===70),'対応外のG♯4の短い和音は折り返さず省略する');
+ for(const [beat,name]of [[8,'A#4'],[9,'A4'],[9.75,'F4'],[10,'E4'],[11,'G#5'],[11,'A4']])assert(score.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'第3小節の下降と原譜の最後の高い和音');
+ for(const [beat,name]of [[18,'A5'],[24,'C6']])assert(!score.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'管のタイを再発音しない');
+ const piano=parseText(await readFile('dist/samples/schumann-piano-concerto-first-piano-88.txt','utf8'));
+ assert.equal(piano.length,2160);assert.equal(piano.stepMs,55);assert.equal(piano.metadata.steps_per_quarter,'8');
+ for(const [beat,name]of [[.75,'E6'],[1,'F6'],[2.75,'C#6'],[15.5,'A4'],[18.5,'A4'],[19.5,'C5'],[40,'G#4'],[41,'A4'],[180,'C#5'],[232,'E5'],[232,'C5'],[240,'G5'],[240,'C#5'],[249,'F5'],[253,'D5'],[255,'C5'],[264,'C2'],[264,'C4'],[264,'E4'],[264,'E5']])assert(piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'88鍵版の旧譜の拍位置：'+beat+' '+name);
+ for(const [beat,name]of [[12,'E6'],[244,'C#5']])assert(piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'強奏の抜けと後半の臨時記号');
+ for(const [beat,name]of [[124,'E1'],[124,'E2'],[128,'F4'],[244,'B4']])assert(!piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'伴奏のタイと後半の読み違いを修正');
+ for(const [beat,name]of [[18,'A4'],[24,'C5'],[56,'C6'],[62,'A6'],[252,'E5']])assert(!piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'88鍵版のタイを再発音しない：'+beat+' '+name);
+ // 五連符は8分割へ近似。主題の通常音符を五連符格子へ丸めない。
+ for(const [offset,name]of [[2,'G3'],[3,'B3'],[5,'E4'],[6,'G3']])assert(piano.notes.some(n=>n.step===75*8+offset&&n.midi===noteNumber(name)));
+ assert(piano.notes.every(n=>n.step<=2112&&definitions.instruments.find(i=>i.arrangedFor==='piano88').allowed.has(n.midi)),'88鍵の音域と最後の和音後の余韻');
+}
 // ユーザー提示の配置：A・A・B♭・Aを八分音符で並べ、同型の反復も揃える。
 for(const [kind,octave]of [['musicbox-30',5],['xylophone-32',6]]){
  const score=parseText(await readFile(`dist/samples/grandfathers-clock-${kind}.txt`,'utf8'));
