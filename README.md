@@ -20,7 +20,7 @@
 
 MIDIはWorkerで取り込み、TXTは直接解析します。取り込み中も操作でき、中止・失敗時は編集中の楽譜を保持します。マス目は表示範囲だけを描画し、MIDIライブラリ・サンプル本文・音源は必要時に読み込みます。
 
-詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [StepScore v1](https://github.com/MarkN2000/stepscore/blob/v1/SPEC.md) を参照してください。
+詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [StepScore v1](https://github.com/MarkN2000/stepscore/blob/v1.0.1/SPEC.ja.md) を参照してください。
 2026年10月の追加曲の底本・抜粋・移調・検証は [TEMPLATE_SOURCES.md](./TEMPLATE_SOURCES.md) に記録しています。
 
 ## ローカルで使う
