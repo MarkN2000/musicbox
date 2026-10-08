@@ -1,7 +1,8 @@
 format=stepscore,version=1,step_ms=100,arranged_for=piano88,title=Csárdás,title_ja=チャルダッシュ,composer=モンティ,composer_ja=モンティ,composer_en=Vittorio Monti,reading_ja=ちゃるだっしゅ,steps_per_quarter=4
 D2,D3,F3,A3,D4,F4,A4,D5,F5,D6
-F4,A4
-D5
+
+
+
 
 
 
@@ -9,8 +10,9 @@ D5
 
 
 A#1,A#2,D3,F3,A#3,D4,F4,A4,A#4,D5,F5,D6,F6
-A#4,D5
-F5
+
+
+
 
 
 
@@ -26,11 +28,14 @@ G1,G2,G3,A#3,D4,E4,G4,A#4,D5,E5,A#5,E6,A#6
 
 
 
+
 A1,A2,A3,C#4,E4,A4,C#5,E5,A5,A6
 
 
 
+
 A3
+
 
 
 
@@ -40,17 +45,18 @@ A3
 
 
 A#3
-A3
-G#3
-A3,C#4
-E4
+
+
+
+
 A#4
+
 
 
 
 A2,A3,E4,G4,C#5
 
-A2,G3,A3,C#4
+
 
 
 D2,D3,F3,A3,D4
@@ -63,8 +69,7 @@ D2,D3,F3,A3,D4
 
 
 
-F3,A3,D4,F4,A4
-D5
+F3,A3,D4,F4,A4,D5
 
 
 
@@ -73,8 +78,9 @@ D5
 
 
 
-F3,A3,D4,F4,A4
-F5
+
+F3,A3,D4,F4,A4,F5
+
 
 
 
@@ -83,7 +89,7 @@ A3
 
 
 
-A#3,C4
+A#3
 
 
 
@@ -104,7 +110,7 @@ D2,D3,A4
 
 
 F3,A3,D4,F4,A4,D5
-D5
+
 
 
 
@@ -114,7 +120,7 @@ D5
 
 
 F3,A3,D4,F4,A4,F5
-F5
+
 
 
 
@@ -133,8 +139,8 @@ G4
 
 
 
-G2,G3,F4,G4
-F4
+G2,G3,F4
+
 
 
 
@@ -144,7 +150,6 @@ E4
 
 
 G3,D4,E4,A#4,E5
-E5
 
 
 
@@ -153,8 +158,9 @@ E5
 
 
 
-G3,A#3,D4,E4,A#4,D5,A#5
-A#5
+
+G3,A#3,E4,A#4,D5,A#5
+
 
 
 
@@ -184,7 +190,7 @@ A3
 
 
 A3,C#4,E4,G4,A4,C#5,A5
-A5
+
 
 
 
@@ -204,7 +210,7 @@ G4
 
 
 A3,E4,F4,G4,A4,C#5,A5
-A5
+
 
 
 
@@ -223,18 +229,18 @@ D4
 
 
 
-F3,A3,D4,E4,F4,A4,D5,A5
-D4,A5
-C#4
+F3,A3,D4,A4,D5,A5
+
+
 
 
 D4
 
-E4
+
 
 
 A3,D4,F4,A4,D5,A5
-A5
+
 
 
 
@@ -243,7 +249,7 @@ A3
 
 
 
-A#3,C4
+A#3
 
 
 
@@ -264,7 +270,7 @@ D2,D3,A4
 
 
 F3,A3,D4,F4,A4,D5
-D5
+
 
 
 
@@ -274,7 +280,7 @@ D5
 
 
 F3,A3,D4,F4,A4,F5
-F5
+
 
 
 
@@ -293,8 +299,8 @@ G4
 
 
 
-G2,G3,F4,G4
-F4
+G2,G3,F4
+
 
 
 
@@ -304,7 +310,6 @@ E4
 
 
 G3,D4,E4,A#4,E5
-E5
 
 
 
@@ -313,8 +318,9 @@ E5
 
 
 
-G3,A#3,D4,E4,A#4,D5,A#5
-A#5
+
+G3,A#3,E4,A#4,D5,A#5
+
 
 
 
@@ -343,8 +349,8 @@ A3
 
 
 
-A3,D4,E4,G4,A4,C#5,E5,A5
-A5
+A3,D4,E4,G4,A4,E5,A5
+
 
 
 
@@ -353,7 +359,7 @@ C#4
 
 
 
-A1,A2,G4,A4
+A1,A2,G4
 
 
 
@@ -364,7 +370,7 @@ A1,A2,G4,A4
 
 
 A3,E4,G4,A4,C#5,A5
-A5
+
 
 
 
@@ -373,7 +379,7 @@ E4
 
 
 
-D2,D3,F3,E4
+D2,D3,E4
 
 
 
@@ -384,13 +390,13 @@ D4
 
 
 A2,G3,A3,D4,E4,G4,D5
-D4
 
 
 
 
 
-C#4,E4,G4,C#5
+
+
 
 
 D2,D3,F3,A3,D4,F4,A4,D5
@@ -413,7 +419,7 @@ D2,D3,F3,A3,D4,F4,A4,D5
 
 
 
-E2,E3,C4,A#4
+C4,A#4
 
 
 
@@ -424,24 +430,24 @@ E2,E3,C4,A#4
 
 
 A#3,C4,E4,G4
-E4
 
-G4
+
+
 
 A#4
-D5
+
+
+
+
+A#3,C4,E4,G5
+
+
+
 
 E5
 
-C2,C3,A#3,C4,E4,G5
 
 
-F5
-
-E5
-
-
-D5
 
 A#3,C4,E4,G4,C5
 
@@ -470,10 +476,10 @@ A3,C4,F4,A4
 
 
 
-G#4
 
 
-F2,A3,C4,F4,A4
+
+A3,C4,F4,A4
 
 
 
@@ -493,7 +499,7 @@ A3,C4,F4
 
 
 
-C#2,C#3,A3,G4
+A3,G4
 
 
 
@@ -504,16 +510,16 @@ C#2,C#3,A3,G4
 
 
 A3,E4,G4
-C#4
 
-E4
+
+
 
 G4
-A4
 
-C#5
 
-A1,A2,A3,G4,A4,E5
+
+
+A3,G4,A4,E5
 
 
 
@@ -533,7 +539,7 @@ A4
 
 
 
-D2,D3,A3,A4,E5
+A3,A4,E5
 
 
 
@@ -545,12 +551,12 @@ D5
 
 A3,D4,F4,D5
 
-C#5
+
 
 
 D5
 
-E5
+
 
 
 A3,D4,F4,A4,F5
@@ -573,7 +579,7 @@ F5
 
 
 
-G1,G2,G3,F5
+G1,G2,F5
 
 
 
@@ -583,8 +589,7 @@ G1,G2,G3,F5
 
 
 
-E3,G3,A#3,E4,G4,A#4,D5
-D5
+G3,A#3,E4,G4,A#4,D5
 
 
 
@@ -593,23 +598,24 @@ D5
 
 
 
-G2,G3,A#3,E4,G4,A#4,D5,A#5
-E5,A#5
-F5
-E5
+
+G3,A#3,E4,G4,A#4,D5,A#5
+
+
+
 
 D#5
-E5
-F5
-E5
+
+
+
 
 G5
 
 
-F5
 
 
-E5
+
+
 
 
 
@@ -624,7 +630,6 @@ A4
 
 
 F3,A3,D4,F4,A4,F5
-F5
 
 
 
@@ -633,47 +638,48 @@ F5
 
 
 
-A2,F3,A3,D4,A4,F5,A5
-A5
+
+F3,A3,D4,A4,F5,A5
+
 
 
 
 G#4
 
-A4
+
 
 
 A#4
 
-A4
+
 
 
 C5
 
 
+
+
 A#4
 
-C#2,C#3,A#4,C5
-A#4
+
+
+
 A4
 
 
-A4,A#4
-A4
-G4
 
 
-A3,E4,G4,A4
-G4
+A3,E4,G4
+
+
+
+
 F4
 
 
-F4,G4
-F4
-E4
 
 
-A1,A2,G3,A3,A4
+G3,A3,A4
 
 
 
@@ -693,7 +699,7 @@ E4
 
 
 
-D2,D3,F3,E4
+D3,F3,E4
 
 
 
@@ -703,17 +709,17 @@ D4
 
 
 
-A2,G3,A3,D4,E4
-D4
+G3,A3,D4
 
 
 
 
 
-C#4
 
 
-D2,D3,F3,A3,D4
+
+
+D3,F3,A3,D4
 
 
 
@@ -753,359 +759,383 @@ D2,A#2,D3,F3,A3,D4,F4,D5,F5,A5,D6
 
 
 
-D2,D3,A3,D4,F4,A4,D5
+D3,A3,D4,F4,A4,D5
 
 A3,D4,F4,D6
-A1,A2
+
+
 
 A3,D4,F4,A#5
 
-D2,D3
+
 
 A3,D4,F4,A5
 
-A1,A2
+
 
 A3,D4,F4,F5
 
-D2,D3,E5
+E5
 
 A3,D4,F4,D5
-A1,A2
+
+
 
 A3,D4,F4,C#5
 
-D2,D3,D5
+D5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 E5
 A3,D4,F4,F5
-A1,A2,D5,E5
+E5
+D5
 E5
 A3,D4,F4,F5
 D5
-D2,D3,D5
+D5
 E5
 A3,D4,F4,F5
 E5
-A1,A2,D5
+D5
 E5
 A3,D4,F4,F5
 D5
-G1,G2,A#3,G4,F5
+A#3,G4,F5
 
-A#3,D4,E4,G4,E5,G5
-A#1,A#2,A4,A5
+A#3,D4,E4,E5,G5
 
-G3,D4,E4,A#4,D#5,A#5
+A5
 
-G2,G3,G4,E5,G5
+G3,D4,E4,D#5,A#5
+
+E5,G5
 
 A#3,D4,E4,E5
 
-G1,G2,D4,D5
+D5
 
 A#3,D4,E4,E5
 
-E2,E3,A#3,E4,G4,G5
-A5
-A#3,D4,E4,G4,A#5
-A#1,A#2,G5,A5
+A#3,E4,G4,G5
 A5
 A#3,D4,E4,G4,A#5
 A5
-E2,E3,G5
+G5
 A5
 A#3,D4,E4,G4,A#5
 A5
-G1,G2,G5
+G5
+A5
+A#3,D4,E4,G4,A#5
+A5
+G5
 A5
 A#3,D4,E4,G4,A#5
 G5
-A1,A2,A3,D4,F4,F5
-G5
-A3,D4,F4,A5
-D2,D3,F5,G5
+A3,D4,F4,F5
 G5
 A3,D4,F4,A5
 G5
-F2,F3,F5
+F5
 G5
 A3,D4,F4,A5
 G5
-A1,A2,F5
+F5
+G5
+A3,D4,F4,A5
+G5
+F5
 A5
 A3,D4,F4,G5
 F5
-E2,E3,A3,C#4,A4
+A3,C#4,A4
 A#4
-A3,C#4,G4,C#5,G5
-A1,A2,D5,E5
+A3,C#4,G4,C#5
+D5
+E5
 F5
-A3,C#4,E4,G4,C#5,G5
+A3,C#4,E4,G4,G5
 A5
-C#2,C#3,E4,A4,A#5
+E4,A#5
 A5
 A3,C#4,E4,G4,G5
 F5
-G2,G3,E4,E5
+E5
 D5
 A3,C#4,E4,C#5
 E5
-F2,F3,F4,E5
+F4,E5
 
 A3,D4,F4,D5
-E2,E3
+
+
 
 A3,E4,G4,C#5
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-D2,D3,A3,D4,F4,A4,D5
+D3,A3,D4,F4,A4,D5
 
 A3,D4,F4,D6
-A1,A2
+
+
 
 A3,D4,F4,A#5
 
-D2,D3
+
 
 A3,D4,F4,A5
 
-A1,A2
+
 
 A3,D4,F4,F5
 
-D2,D3,E5
+E5
 
 A3,D4,F4,D5
-A1,A2
+
+
 
 A3,D4,F4,C#5
 
-D2,D3,D5
+D5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 E5
 A3,D4,F4,F5
-A1,A2,D5,E5
+E5
+D5
 E5
 A3,D4,F4,F5
 D5
-D2,D3,D5
+D5
 E5
 A3,D4,F4,F5
 E5
-A1,A2,D5
+D5
 E5
 A3,D4,F4,F5
 D5
-G1,G2,A#3,G4,F5
+A#3,G4,F5
 
-A#3,D4,E4,G4,E5,G5
-A#1,A#2,A4,A5
+A#3,D4,E4,E5,G5
 
-G3,D4,E4,A#4,D#5,A#5
+A5
 
-G2,G3,G4,E5,G5
+G3,D4,E4,D#5,A#5
+
+E5,G5
 
 A#3,D4,E4,E5
 
-G1,G2,D4,D5
+D5
 
 A#3,D4,E4,E5
 
-E2,E3,A#3,E4,G4,G5
-A5
-A#3,D4,E4,G4,A#5
-A#1,A#2,G5,A5
+A#3,E4,G4,G5
 A5
 A#3,D4,E4,G4,A#5
 A5
-E2,E3,G5
+G5
 A5
 A#3,D4,E4,G4,A#5
 A5
-G1,G2,G5
+G5
+A5
+A#3,D4,E4,G4,A#5
+A5
+G5
 A5
 A#3,D4,E4,G4,A#5
 G5
-A1,A2,A3,D4,F4,F5
-G5
-A3,D4,F4,A5
-D2,D3,F5,G5
+A3,D4,F4,F5
 G5
 A3,D4,F4,A5
 G5
-F2,F3,F5
+F5
 G5
 A3,D4,F4,A5
 G5
-A1,A2,F5
+F5
+G5
+A3,D4,F4,A5
+G5
+F5
 A5
 A3,D4,F4,G5
 F5
-E2,E3,A3,C#4,A4
+A3,C#4,A4
 A#4
-A3,C#4,G4,C#5,G5
-A1,A2,D5,E5
+A3,C#4,G4,C#5
+D5
+E5
 F5
-A3,C#4,E4,G4,C#5,G5
+A3,C#4,E4,G4,G5
 A5
-C#2,C#3,E4,A4,A#5
+E4,A#5
 A5
 A3,C#4,E4,G4,G5
 F5
-G2,G3,E4,E5
+E5
 D5
 A3,C#4,E4,C#5
 E5
-F2,F3,F4,E5
+F4,E5
 
 A3,D4,F4,D5
-E2,E3
+
+
 
 A3,E4,G4,C#5
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-C2,C3,C4,A#4,C5
+C3,C4,A#4,C5
 B4
 G3,C4,E4,C5
-E2,E3,G4,E5,G5
+E5
+E3,G4,G5
 A#5
 G3,C4,E4,G5
 E4,E5
-G2,G3,C4,C5
+G3,C4,C5
 B4
 A#3,E4,C5
 E5
-C2,C4,E4,G5
+C4,E4,G5
 A#5
 A#3,C4,E4,G4,G5
 E5
-F2,F4,A#4
+F4,A#4
 A4
 A3,C4,F4,A4,A#4
-C2,C5,D5
+C5
+D5
 E5
 A3,C4,F5
 G5
-A1,A2,F4,A4,A5
+F4,A4,A5
 
 A3,C4,F4
 
-C2,C3
+
 
 A3,C4,F4
 
-C#2,C#3,C#4,G4,A4
+C#4,G4,A4
 G#4
 A3,E4,G4,A4
-A1,A2,G4,A#4,C#5,D5
+C#5
+G4,A#4,D5
 G5
 A3,C#4,E4,G4,E5
 G4,A4,C#5
-E2,E3,G4,A4
+G4,A4
 G#4
 A3,C#4,E4,G4,A4
 C#5
-C#2,C#3,A3,C#5,D5
+A3,C#5,D5
 G5
 A3,E4,G4,E5
 C#5
-D2,D3,F4,A4,E5
+F4,A4,E5
 G#4
 A3,D4,F4,A4,D5
-A2,A3,B4,C#5
+B4
+C#5
 D5
 A3,D4,F4,A4,E5
 D5
-D2,D3,F4,D5,F5
+F4,D5,F5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-G1,G2,E4,A#5
-A5
-A#3,D4,E4,G4,G5
-E2,E3,A5,A#5
+E4,A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G2,G3,A#5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G1,G2,A#5
+A#5
+A5
+A#3,D4,E4,G4,G5
+A5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A#5
-A1,A2,F4,A5
-G5
-A3,D4,F4,F5
-D2,D3,G5,A5
+F4,A5
 G5
 A3,D4,F4,F5
 G5
-F2,F3,A5
+A5
 G5
 A3,D4,F4,F5
 G5
-A1,A2,A5
+A5
+G5
+A3,D4,F4,F5
+G5
+A5
 G5
 A3,D4,F4,F5
 A5
-E2,E3,A3,C#4,A4
+A3,C#4,A4
 B4
-A3,C#4,E4,G4,C#5,G5
-A1,A2,D5,E5
+A3,C#4,E4,G4,C#5
+D5
+E5
 F5
-A3,C#4,E4,G4,C#5,G5
-A5
-C#2,C#3,E4,A4,A#5
-A5
 A3,C#4,E4,G4,G5
+A5
+E4,A#5
+A5
+A3,C#4,E4,G5
 F5
-G2,G3,E4,E5
+E5
 D5
 A3,C#4,E4,C#5
 E5
-F2,F3,F4,E5
+F4,E5
 
 A3,D4,F4,D5
-A2,A3
+
+
 
 A3,E4,G4,C#5
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 
 
 
@@ -1113,119 +1143,127 @@ D2,D3,A3,D4,F4,D5
 
 
 
-C2,C3,C4,A#4,C5
+C3,C4,A#4,C5
 B4
 G3,C4,E4,C5
-E2,E3,G4,E5,G5
+E5
+E3,G4,G5
 A#5
 G3,C4,E4,G5
 E4,E5
-G2,G3,C4,C5
+G3,C4,C5
 B4
 A#3,E4,C5
 E5
-C2,C4,E4,G5
+C4,E4,G5
 A#5
 A#3,C4,E4,G4,G5
 E5
-F2,F4,A#4
+F4,A#4
 A4
 A3,C4,F4,A4,A#4
-C2,C5,D5
+C5
+D5
 E5
 A3,C4,F5
 G5
-A1,A2,F4,A4,A5
+F4,A4,A5
 
 A3,C4,F4
 
-C2,C3
+
 
 A3,C4,F4
 
-C#2,C#3,C#4,G4,A4
+C#4,G4,A4
 G#4
 A3,E4,G4,A4
-A1,A2,G4,A#4,C#5,D5
+C#5
+G4,A#4,D5
 G5
 A3,C#4,E4,G4,E5
 G4,A4,C#5
-E2,E3,G4,A4
+G4,A4
 G#4
 A3,C#4,E4,G4,A4
 C#5
-C#2,C#3,A3,C#5,D5
+A3,C#5,D5
 G5
 A3,E4,G4,E5
 C#5
-D2,D3,F4,A4,E5
+F4,A4,E5
 G#4
 A3,D4,F4,A4,D5
-A2,A3,B4,C#5
+B4
+C#5
 D5
 A3,D4,F4,A4,E5
 D5
-D2,D3,F4,D5,F5
+F4,D5,F5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-G1,G2,E4,A#5
-A5
-A#3,D4,E4,G4,G5
-E2,E3,A5,A#5
+E4,A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G2,G3,A#5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G1,G2,A#5
+A#5
+A5
+A#3,D4,E4,G4,G5
+A5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A#5
-A1,A2,F4,A5
-G5
-A3,D4,F4,F5
-D2,D3,G5,A5
+F4,A5
 G5
 A3,D4,F4,F5
 G5
-F2,F3,A5
+A5
 G5
 A3,D4,F4,F5
 G5
-A1,A2,A5
+A5
+G5
+A3,D4,F4,F5
+G5
+A5
 G5
 A3,D4,F4,F5
 A5
-E2,E3,A3,C#4,A4
+A3,C#4,A4
 B4
-A3,C#4,E4,G4,C#5,G5
-A1,A2,D5,E5
+A3,C#4,E4,G4,C#5
+D5
+E5
 F5
-A3,C#4,E4,G4,C#5,G5
-A5
-C#2,C#3,E4,A4,A#5
-A5
 A3,C#4,E4,G4,G5
+A5
+E4,A#5
+A5
+A3,C#4,E4,G5
 F5
-G2,G3,E4,E5
+E5
 D5
 A3,C#4,E4,C#5
 E5
-F2,F3,F4,E5
+F4,E5
 
 A3,D4,F4,D5
-A2,A3
+
+
 
 A3,E4,G4,C#5
 
-D2,D3,A3,D4,F4,D5
+A3,D4,F4,D5
 
 
 
@@ -1233,7 +1271,7 @@ D2,D3,A3,D4,F4,D5
 
 
 
-D2,D3,F#3,A3,D4,F#4,A4,D5,F#5,D6
+D3,F#3,A3,D4,F#4,A4,D5,F#5,D6
 
 
 
@@ -1243,9 +1281,9 @@ A3,F#4,A4,F#5,A5
 
 
 
-F#4,A4,F#5,A5
 
-F#2,F#3,F#4,B4,D5,F#5,B5
+
+F#3,F#4,B4,D5,F#5,B5
 
 
 A4,A5
@@ -1257,19 +1295,19 @@ D3,A#3,D4,F#4,G4,A#4,G5
 F#4,F#5
 
 
-G2,G3,B3,D4,F#4,B4,F#5
+G3,B3,D4,F#4,B4,F#5
 
 
 E4,E5
 
 
-B3,D4,E4,F#4,B4,E5,F#5
-D#4,D#5
+B3,D4,E4,B4,E5
+
 
 E4,E5
-G4,G5
 
-E2,E3,G3,B3,E4,G4,B4,E5,G5,B5
+
+E3,G3,B3,E4,G4,B4,E5,G5,B5
 
 
 
@@ -1281,55 +1319,55 @@ B3,D4,E4,B4
 
 
 
-C#2,C#3,B4,G5,B5
+B4,G5,B5
 
 
 
-E2,E3,A4,C#5
 
-A2,A3,E4,G4,A4,C#5
+
+A3,E4,G4,A4,C#5
 
 
 G5,E6
 
 
-A1,A2,G5,E6
+G5,E6
 
 
 
-E2,E3,C#5,G5
 
-A2,A3,C#4,E4,G4,C#5,G5
+
+A3,C#4,E4,G4,C#5,G5
 
 
 C#5,G5
 
 
-A1,D3,D4,A4,D5,G5
+D4,A4,D5,G5
 
 
 F#5
-F#3
 
-A2,A3,D4,F#4,F#5
-E5
+
+A3,D4,F#4,F#5
+
 
 A3,D5
-E5
-
-A1,D3,D5,F#5
 
 
+D3,D5,F#5
 
 
 
-A2,A3,D4,F#4
+
+
+A3,D4,F#4
 
 
 A3,A4,A5
 
 
-D2,D3,F#3,A3,D4,F#4,A4,D5,F#5,D6
+D3,F#3,A3,D4,F#4,A4,D5,F#5,D6
 
 
 
@@ -1339,9 +1377,9 @@ A3,F#4,A4,F#5,A5
 
 
 
-F#4,A4,F#5,A5
 
-F#2,F#3,F#4,B4,D5,F#5,B5
+
+F#3,F#4,B4,D5,F#5,B5
 
 
 A4,A5
@@ -1353,19 +1391,19 @@ D3,A#3,D4,F#4,G4,A#4,G5
 F#4,F#5
 
 
-G2,G3,B3,D4,F#4,B4,F#5
+G3,B3,D4,F#4,B4,F#5
 
 
 E4,E5
 
 
-B3,D4,E4,F#4,B4,E5,F#5
-D#4,D#5
+B3,D4,E4,B4,E5
+
 
 E4,E5
-G4,G5
 
-E2,G2,E3,G3,B3,E4,G4,B4,E5,G5,B5
+
+G2,E3,G3,B3,E4,G4,B4,E5,G5,B5
 
 
 
@@ -1377,31 +1415,31 @@ B3,D4,E4,B4
 
 
 
-A1,A2,F#3,A3,D4,F#4,A4,D5,F#5,D6
+A2,F#3,A3,D4,F#4,A4,D5,F#5,D6
 
+
+
+
+
+A3,D4,F#4,A4,F#5,A5
 
 
 F#5,A5
 
-A2,A3,D4,F#4,A4,F#5,A5
 
-
-F#5,A5
-
-
-A1,A2,A3,C#4,E4,G4,G5,B5
+A3,C#4,E4,G4,G5,B5
 
 
 C#5,A5
 
 
-A2,A3,E4,G4,C#5,A5
+A3,E4,G4,C#5,A5
 
 
 A3,G4,C#5
 
 
-D2,D3,A3,D4,F#4,E5
+A3,D4,F#4,E5
 
 
 D5
@@ -1426,28 +1464,30 @@ D2,D3,F#3,A3,D4,F#4,A4,D5
 
 
 D2,D3,D4,F#4,A4,D5,D7
-A4
-D5
+
+
+
 
 
 
 
 D3,F#3,A3,D4,F#4,A4,A6
-F#4
-A4
+
+
 
 
 
 A6
 
-F#2,F#3,G3,B3,D4,F#4,B4,B6
+F#3,G3,B3,D4,F#4,B4,B6
+
 
 
 F#3,A3,A4,A6
 
 
 
-D2,D3,A#3,D4,G4,G6
+D3,A#3,D4,G4,G6
 
 
 
@@ -1455,7 +1495,8 @@ F#4,F#6
 
 
 
-G2,G3,B3,F#4,F#6
+G3,B3,F#4,F#6
+
 
 
 E4,E6
@@ -1470,44 +1511,47 @@ E3,G4,G6
 
 
 
-G1,G2,B3,D4,E4,B4,B6
-E4
-B4
-
-
-
-
-G3,B3,D4,E4
-D4
-E4,B4
+G2,B3,D4,E4,B4,B6
 
 
 
 
 
-A1,A3,C#4,E4,G4,B4,B6
-B4
+
+
+G3,B3,D4,E4,B4
+
+
+
+
+
+
+
+A3,C#4,G4,B4,B6
+
+
 
 
 
 A6
 
 A3,C#4,E4,G4,A4,A6
-G4
-A4
+
+
 
 A6
 
 
 
-A1,A2,C#4,G4,C#5,C#7
+A2,C#4,G4,C#5,C#7
+
 
 
 B4,B6
 
 
 
-A1,A2,A3,C#4,E4,A4,A6
+A2,A3,C#4,E4,A4,A6
 
 
 
@@ -1515,14 +1559,15 @@ G4,G6
 
 
 
-D2,D3,A3,D4,G4,G6
+D3,A3,D4,G4,G6
+
 
 
 F#4,F#6
 
 
 
-A1,A2,A3,D4,F#4,F#6
+A2,A3,D4,F#4,F#6
 
 
 
@@ -1530,7 +1575,8 @@ F4,F6
 
 
 
-D2,D3,A3,D4,F#4,G4,F#6
+D3,A3,D4,F#4,F#6
+
 
 
 
@@ -1538,36 +1584,38 @@ D2,D3,A3,D4,F#4,G4,F#6
 
 
 A2,A3,C#4,G4,A4,A6
-G4
-A4
+
+
 
 
 
 
 
 D2,D3,D4,F#4,A4,D5,D7
-A4
-D5
+
+
+
 
 
 
 
 D3,F#3,A3,D4,F#4,A4,A6
-F#4
-A4
+
+
 
 
 
 A6
 
-F#2,F#3,G3,B3,D4,F#4,B4,B6
+F#3,G3,B3,D4,F#4,B4,B6
+
 
 
 F#3,A3,A4,A6
 
 
 
-D2,D3,A#3,D4,G4,G6
+D3,A#3,D4,G4,G6
 
 
 
@@ -1575,7 +1623,8 @@ F#4,F#6
 
 
 
-G2,G3,B3,F#4,F#6
+G3,B3,F#4,F#6
+
 
 
 E4,E6
@@ -1590,29 +1639,31 @@ E3,G4,G6
 
 
 
-G1,G2,B3,D4,E4,B4,B6
-E4
-B4
-
-
-
-
-G2,G3,B3,D4,E4
-D4
-E4,B4
+G2,B3,D4,E4,B4,B6
 
 
 
 
 
-F#2,F#3,A3,D4,F#4,D5,D7
-A4
-D5
+
+
+G3,B3,D4,E4,B4
 
 
 
 
-A2,A3,D4,F#4,A4,A6
+
+
+
+F#3,D4,F#4,A4,D5,D7
+
+
+
+
+
+
+
+A3,D4,F#4,A4,A6
 
 
 
@@ -1620,22 +1671,24 @@ A2,A3,D4,F#4,A4,A6
 
 A6
 
-A1,A2,C#4,E4,G4,B4,B6
+A2,C#4,E4,G4,B4,B6
+
 
 
 A4,A6
 
 
 
-A1,A2,A3,B3,C#4,G4,A6
-G4
-A4
+A3,B3,C#4,G4,A4,A6
+
+
 
 A2,G3,A3,C#4,C#6
 
 
 
 D2,A2,F#3,A3,E4,E6
+
 
 
 D4,D6
@@ -1651,7 +1704,6 @@ A2,G3,A3,C#4,C#6
 
 
 D2,A2,D3,F#3,A3,D4,D6
-D4
 
 
 
@@ -1685,304 +1737,325 @@ D4
 
 
 
-C2,E3,C4,A#4,C5,D5
+
+
+E3,C4,A#4,C5
 B4
 G3,C4,E4,C5
 E5
-E2,G4,G5
+G4,G5
 A#5
 G3,C4,E4,G5
 E4,E5
-G2,G3,C4,C5
+G3,C4,C5
 B4
 A#3,E4,C5
 E5
-C2,C4,E4,G5
+C4,E4,G5
 A#5
 A#3,C4,E4,G4,G5
 E5
-F2,F4,A#4
+F4,A#4
 A4
 A3,C4,F4,A4,A#4
 C5
-C2,D5
+D5
 E5
 A3,C4,F5
 G5
-A1,A3,F4,A4,A5
+A3,F4,A4,A5
 
 A3,C4,F4
 
-C2,C3
+C3
 
 A3,C4,F4
 
-C#2,C#3,C#4,G4,A4
+C#4,G4,A4
 G#4
 A3,E4,G4,A4
 C#5
-A1,A2,G4,A#4,D5
+G4,A#4,D5
 G5
 A3,C#4,E4,G4,E5
 G4,A4,C#5
-E2,E3,G4,A4
+G4,A4
 G#4
 A3,C#4,E4,G4,A4
 C#5
-C#2,C#3,A3,C#5,D5
+A3,C#5,D5
 G5
 A3,E4,G4,E5
 C#5
-D2,D3,F4,A4,E5
+F4,A4,E5
 G#4
 A3,D4,F4,A4,D5
 B4
-A2,A3,C#5
+C#5
 D5
 A3,D4,F4,A4,E5
 D5
-D2,D3,F4,D5,F5
+F4,D5,F5
 
 A3,D4,F4
 
-A1,A2
+
 
 A3,D4,F4
 
-G1,G2,D4,E4,A#5
+D4,E4,A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-E2,E3,A#5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G2,G3,A#5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A5
-G1,G2,A#5
+A#5
 A5
 A#3,D4,E4,G4,G5
 A#5
-A1,A2,D4,F4,A5
+D4,F4,A5
 G5
 A3,D4,F4,F5
 G5
-D2,D3,A5
+A5
 G5
 A3,D4,F4,F5
 G5
-F2,F3,A5
+A5
 G5
 A3,D4,F4,F5
 G5
-A1,A2,A5
+A5
 G5
 A3,D4,F4,F5
 A5
-A2,A3,C#4,G4,A4
+C#4,G4,A4
 B4
-A3,C#4,E4,G4,C#5,G5
+A3,C#4,E4,G4,C#5
 D5
-E2,E3,E5
+E5
 F5
-A3,C#4,E4,G4,C#5,G5
+A3,C#4,E4,G4,G5
 A5
-C#2,C#3,E4,G4,A#5
+E4,G4,A#5
 A5
-A3,C#4,E4,G4,E5,G#5
+A3,C#4,E4,G4,G#5
 A5
-A2,A3,C#5,G#5
+G#5
 A5
-A3,C#4,E4,G4,E5,A#5
+A3,C#4,E4,G4,A#5
 C#6
-D2,D3,D4,F#4,D5,D6
-
-A3,D4,F#4
-
-
-A1,A2
+D4,F#4,D5,D6
 
 
 A3,D4,F#4
 
 
-D2,D3
 
-A3,D4,F#4
-
-
-A1,A2
 
 
 A3,D4,F#4
 
 
-D2,D3,D4,D5
+
+
+
+A3,D4,F#4
+
+
+
+
+
+A3,D4,F#4
+
+
+D4,D5
+
 
 A3,D4,F#4,D6
 
 
-A1,A2
+
 
 
 A3,D4,F#4,B5
 
-D2,D3
+
+
 
 
 A3,D4,F#4,A4,A5
 
 
-A1,A2
+
 
 
 A3,D4,F#4,F#5
 
-D2,D3,A4,E5
+
+A4,E5
 
 
 A3,D4,F#4,A4,D5
 
 
-A1,A2
+
 
 
 A3,D4,F#4,A4,C#5
 
-D2,D3,F#4,D5
+
+F#4,D5
 
 
 A3,D4,F#4
 
 
-A1,A2
+
+
 
 A3,D4,F#4
 
 
-D2,D3,D4,D5
+D4,D5
 
-E5
-A3,D4,F#4,F#5
-E5
 
-A1,A2,D5
-E5
 A3,D4,F#4,F#5
 
-E5
-D2,D3,D5
-E5
-
-A3,D4,F#4,A4,F#5
-E5
-
-A1,A2,D5
-E5
-A3,D4,F#4,F#5
 
 D5
-G1,G3,G4,F#5
+
+
+A3,D4,F#4,F#5
+
+
+D5
+
+
+A3,D4,F#4,A4,F#5
+
+
+D5
+
+
+A3,D4,F#4,F#5
+
+
+G4,F#5
 
 
 B3,E4,G4,E5
 
-B1,E4
+
+
 
 
 B3,E4,G4,D#5
 
 
-G1,G3,G4,E5
+G4,E5
 
 
-E3,B3,D4,E4,G4
-
-G2,B3
+B3,D4,E4,G4
 
 
-G3,B3,D4,E4,G4
 
 
-E2,E3,B3,D4,E4,G4,G5
-A5
+
+B3,D4,E4,G4
+
+
+B3,D4,E4,G4,G5
+
 
 B3,D4,E4,G4,B5
-A5
-B2,B3,G5
 
-A5
-B3,D4,E4,G4,B5
-A5
 
-E2,E3,G5
-A5
+G5
+
+
 B3,D4,E4,G4,B5
 
-A5
-G2,G3,G5
 
-B5
+G5
+
+
+B3,D4,E4,G4,B5
+
+
+G5
+
+
 B3,D4,E4,G4,A5
-G5
 
-A2,A3,F#4,F#5
-G5
-A3,D4,F#4,A5
 
-G5
-D2,D3,F#5
-G5
+A3,F#4,F#5
+
 
 A3,D4,F#4,A5
-G5
 
-A2,A3,F#5
-G5
+
+F#5
+
+
 A3,D4,F#4,A5
 
-G5
-A1,A2,F#5
-A5
+
+F#5
+
+
+A3,D4,F#4,A5
+
+
+F#5
+
 
 A3,D4,F#4,G5
-F#5
-G#2,G#3,B3,D4,E4,G#4,E5
 
-F#5
-B3,D4,E4,G#4,G#5
 
-F#5
-E2,E3,E5
-F#5
+B3,D4,E4,G#4,E5
+
 
 B3,D4,E4,G#4,G#5
-F#5
-B1,B2,E5
 
-F#5
-B3,D4,E4,G#4,G#5
-F#5
 
-E2,E3,E5
-F#5
-
-B3,D4,E4,G#4,G#5
 E5
-A1,A2,A3,C#4,E4,A4,A5
+
+
+B3,D4,E4,G#4,G#5
+
+
+E5
+
+
+B3,D4,E4,G#4,G#5
+
+
+E5
+
+
+B3,D4,E4,G#4,G#5
 
 
 A3,C#4,E4,A4,A5
 
 
-G2,G3
+A3,C#4,E4,A4,A5
+
+
+G3
+
 
 A3,C#4,E4,A4,C#5,E5,G5,A5
 
 
-E2,E3
+E3
 
 
 A3,E4,G4,A4,C#5,E5,A5
@@ -1990,112 +2063,124 @@ A3,E4,G4,A4,C#5,E5,A5
 
 A2,A3
 
-A2,A3,E4,G4,A4
-C#5
-A5
-D2,D3,A3,D4,F#4,A4,D5
-F#5,A5,D6
+
+A2,A3,E4,G4,A4,C#5,A5
+
+
+D2,D3,A3,D4,F#4,A4,D5,F#5,A5,D6
+
 A3,D4,F#4,D5,D6
 
-A1,A2
+
 
 A3,D4,F#4,F#5,B5
 
-D2,D3
+
+
 A3,D4,F#4,A4,A5
 
-A1,A2
+
 
 A3,D4,F#4,F#5,F#6
 
-D2,D3,A4,E5
+A4,E5
 
 A3,D4,F#4,A4,D5
 
-A1,A2
+
 
 A3,D4,F#4,A4,C#5
 
-D2,D3,F#4,D5
-A3,D4,F#4
-
-A1,A2
+F#4,D5
 
 A3,D4,F#4
 
-D2,D3,D4,D5
+
+
+A3,D4,F#4
+
+D4,D5
 E5
 A3,D4,F#4,D5,F#5
 E5
-A1,A2,D5
+D5
 E5
 A3,D4,F#4,F#5
 E5
-D2,D3,D5
-A3,D4,F#4,A4,E5,F#5,A5
+D5
 E5
-A1,A2,D5
+A3,D4,F#4,A4,F#5,A5
+E5
+D5
 E5
 A3,D4,F#4,F#5,F#6
 D5
-G1,G3,G4,F#5,G5,G6
+G4,F#5,G5,G6
 
 B3,E4,G4,E5
 
-B1,E4
+
 
 B3,E4,G4,D#5
 
-G1,G3,G4,E5
-E3,B3,D4,E4,G4
+G4,E5
 
-G2,B3
+B3,D4,E4,G4
 
-G3,B3,D4,E4,G4
 
-E2,E3,B3,D4,E4,G4,G5
-B3,D4,E4,G4,A5,B5
-A5
-B2,B3,G5
+
+B3,D4,E4,G4
+
+B3,D4,E4,G4,G5
 A5
 B3,D4,E4,G4,B5
 A5
-E2,E3,G5
-B3,D4,E4,G4,A5,B5
+G5
 A5
-E2,E3,G5
+B3,D4,E4,G4,B5
+A5
+G5
+A5
+B3,D4,E4,G4,B5
+A5
+G5
 B5
 B3,D4,E4,G4,A5
 G5
-A2,A3,D4,F#4,F#5
-G5
-A3,D4,F#4,G5,A5
-D2,D3,F#5
+A3,D4,F#4,F#5
 G5
 A3,D4,F#4,A5
 G5
-A2,A3,F#5
+F#5
 G5
-A3,D4,F#4,G5,A5
-A1,A2,F#5
+A3,D4,F#4,A5
+G5
+F#5
+G5
+A3,D4,F#4,A5
+G5
+F#5
 A5
 A3,D4,F#4,G5
 F#5
-G2,G3,B3,D4,E4,G4,E5
+B3,D4,E4,G4,E5
 D#5
 D4,E4,F#4,E5
-E2,E3,F#5,G5
+F#5
+G5
 F#5
 D4,E4,F#4,G4,G5
 A5
-C#2,C#3,A3,C#4,B5
+A3,C#4,B5
 A5
 A3,C#4,E4,G4,G#5
-A2,A3,G#5,A5
+A5
+G#5
 A5
 A3,E4,G4,A4,B5
 C#6
-D2,D3,A3,D4,F#4,A4,D5,D6
+A3,D4,F#4,A4,D5,D6
+
 
 
 
@@ -2111,7 +2196,21 @@ A1,A2,E3,G3,A3,C#4,E4,A4,C#5,E5,A5,A6
 
 
 
+
 D2,D3,F#3,A3,D4,F#4,A4,D5,D6
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

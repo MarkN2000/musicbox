@@ -1,20 +1,20 @@
 format=stepscore,version=1,step_ms=99,arranged_for=piano88,title=Государственный гимн СССР,title_ja=ソビエト国歌,title_en=State Anthem of the Soviet Union,composer=アレクサンドロフ,composer_ja=アレクサンドロフ,composer_en=Alexander Alexandrov,reading_ja=そびえとこっか,steps_per_quarter=8,time_signature=4/4
 C3,C5,E5,G5,C6
+
+
+
+
+
+
+
 C4
-C3
-C4
-C3
-C4
-C3
-C4
-C3
-C4
-C3
-C4
-C3
-C4
-C3
-C4
+
+
+
+
+
+
+
 C2,C3
 
 

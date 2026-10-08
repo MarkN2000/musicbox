@@ -77,8 +77,9 @@ for(const entry of catalog.samples.filter(s=>s.metadata.arranged_for==='musicbox
  for(const [beat,name]of [[12,'E6'],[244,'C#5']])assert(piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'強奏の抜けと後半の臨時記号');
  for(const [beat,name]of [[124,'E1'],[124,'E2'],[128,'F4'],[244,'B4']])assert(!piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'伴奏のタイと後半の読み違いを修正');
  for(const [beat,name]of [[18,'A4'],[24,'C5'],[56,'C6'],[62,'A6'],[252,'E5']])assert(!piano.notes.some(n=>n.step===beat*8&&n.midi===noteNumber(name)),'88鍵版のタイを再発音しない：'+beat+' '+name);
- // 五連符は8分割へ近似。主題の通常音符を五連符格子へ丸めない。
- for(const [offset,name]of [[2,'G3'],[3,'B3'],[5,'E4'],[6,'G3']])assert(piano.notes.some(n=>n.step===75*8+offset&&n.midi===noteNumber(name)));
+ // 五連符は休符と上行3音へ整理し、16分音符の間隔を揃える。
+ for(const [offset,name]of [[2,'G3'],[4,'B3'],[6,'E4']])assert(piano.notes.some(n=>n.step===75*8+offset&&n.midi===noteNumber(name)));
+ for(const [offset,name]of [[3,'B3'],[5,'E4'],[6,'G3']])assert(!piano.notes.some(n=>n.step===75*8+offset&&n.midi===noteNumber(name)));
  assert(piano.notes.every(n=>n.step<=2112&&definitions.instruments.find(i=>i.arrangedFor==='piano88').allowed.has(n.midi)),'88鍵の音域と最後の和音後の余韻');
 }
 // ユーザー提示の配置：A・A・B♭・Aを八分音符で並べ、同型の反復も揃える。
@@ -145,10 +146,11 @@ const danube88=parseText(await readFile('dist/samples/blue-danube-piano-88.txt',
 for(const [step,name]of [[20,'F#5'],[116,'G5'],[128,'C#5'],[128,'G5'],[164,'D5'],[212,'D6'],[1212,'C6'],[1228,'G5']])assert(danube88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'青きドナウ：前打音後の和音の拍位置');
 for(const [step,name]of [[20,'A4'],[116,'C#5'],[129,'C#5'],[129,'G5'],[212,'D5'],[1212,'F5'],[1228,'A5']])assert(!danube88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'青きドナウ：独立した前打音・遅れた重複を除く');
 const doll88=parseText(await readFile('dist/samples/dolls-dream-piano-88.txt','utf8'));
-assert.equal(doll88.length,1677);assert.equal(doll88.stepMs,100);
-for(const [step,name]of [[0,'E4'],[0,'G4'],[0,'C3'],[982,'E6'],[1089,'F#5'],[1552,'E7'],[1657,'C4']])assert(doll88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'人形の夢と目覚め：旧譜の開始・踊り・8va・終止');
-assert(!doll88.notes.some(n=>n.step===982&&n.midi===noteNumber('G6')),'踊りの最初の加線を読み違えない');
-assert(!doll88.notes.some(n=>n.step>1657),'最後の和音に2秒の余韻');
+assert.equal(doll88.length,1324);assert.equal(doll88.stepMs,127);
+for(const [step,name]of [[0,'E4'],[0,'G4'],[0,'C3'],[804,'E6'],[884,'F#5'],[1230,'E7'],[1308,'C4']])assert(doll88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'人形の夢と目覚め：旧譜の開始・踊り・8va・終止');
+for(const [step,name]of [[804,'E6'],[805,'C6'],[806,'G5'],[808,'E6'],[809,'C6'],[810,'G5']])assert(doll88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'踊り：16分音符の間隔を一定にする');
+assert(!doll88.notes.some(n=>n.step===804&&n.midi===noteNumber('G6')),'踊りの最初の加線を読み違えない');
+assert(!doll88.notes.some(n=>n.step>1308),'最後の和音に2秒の余韻');
 const hero88=parseText(await readFile('dist/samples/handel-see-conquering-hero-piano-88.txt','utf8'));
 assert.equal(hero88.length,1232);assert.equal(hero88.stepMs,134);
 for(const [step,name]of [[0,'A#5'],[0,'G5'],[8,'G5'],[14,'G#5']])assert(hero88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'見よ、勇者は帰る：底本の主題・付点の配置');
@@ -161,9 +163,9 @@ assert(!spring88.notes.some(n=>n.step===1376&&n.midi===noteNumber('A4')),'春の
 assert(!spring88.notes.some(n=>n.step===153),'春の歌：20拍目の2ステップ目は休符');
 assert(!spring88.notes.some(n=>n.step>1424),'春の歌の最後に余韻を置く');
 const cancan88=parseText(await readFile('dist/samples/offenbach-can-can-piano-88.txt','utf8'));
-assert.equal(cancan88.length,1418);assert.equal(cancan88.stepMs,94);
-for(const [step,name]of [[8,'F#6'],[9,'F6'],[152,'A4'],[154,'E5'],[156,'E5'],[158,'F#5'],[1389,'D5']])assert(cancan88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ガロップ：導入の半音・器楽主題・終止');
-assert(!cancan88.notes.some(n=>n.step>1389),'ガロップの終止後に余韻を残す');
+assert.equal(cancan88.length,1421);assert.equal(cancan88.stepMs,94);
+for(const [step,name]of [[8,'F#6'],[9,'F6'],[151,'A4'],[153,'E5'],[155,'E5'],[157,'F#5'],[1391,'D5']])assert(cancan88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ガロップ：導入の半音・器楽主題・終止');
+assert(!cancan88.notes.some(n=>n.step>1391),'ガロップの終止後に余韻を残す');
 const bogey88=parseText(await readFile('dist/samples/colonel-bogey-piano-88.txt','utf8'));
 assert.equal(bogey88.length,2685);assert.equal(bogey88.stepMs,69);
 for(const [step,name]of [[0,'D5'],[64,'A5'],[68,'F#5'],[96,'F#6'],[104,'F#6'],[112,'D6'],[2656,'G2'],[2656,'G3']])assert(bogey88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ボギー大佐：原譜の導入・主題・独自終止');
@@ -193,6 +195,8 @@ const csikos88=parseText(await readFile('dist/samples/csikos-post-piano-88.txt',
 assert.equal(csikos88.length,896);assert.equal(csikos88.stepMs,125);
 for(const [step,name]of [[0,'A#6'],[48,'G6'],[54,'D#6'],[56,'A#5'],[70,'B5'],[864,'G#5'],[872,'D#6']])assert(csikos88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'クシコス・ポスト：旧譜の導入・主題・臨時記号・終止');
 assert(!csikos88.notes.some(n=>n.step>872),'クシコス・ポストの終止後の余韻');
+assert(csikos88.notes.some(n=>n.step===658&&n.midi===noteNumber('A#5')),'クシコス・ポストの三連符の開始音を保持');
+for(const [step,name]of [[659,'D#6'],[659,'F6'],[667,'C6'],[667,'D#6'],[675,'A#5'],[675,'C6']])assert(!csikos88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'三連符の内音を同じマスへ丸めない');
 const farandole88=parseText(await readFile('dist/samples/bizet-farandole-piano-88.txt','utf8'));
 assert.equal(farandole88.length,944);assert.equal(farandole88.stepMs,125);
 for(const [step,name]of [[8,'D5'],[144,'D5'],[152,'F5'],[704,'B5'],[706,'C#6'],[708,'D6'],[798,'D7'],[800,'C#7'],[924,'D2']])assert(farandole88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'ファランドール：導入・移行・舞曲・8va・終止');
@@ -220,12 +224,15 @@ for(const [id,on,off]of [
  ['radetzky-march',[[60,'F#5']],[[60,'G5'],[61,'F#5']]],
  ['mendelssohn-wedding-march',[[162,'F4'],[162,'G4'],[162,'D5']],[[162,'B4'],[163,'C5'],[164,'D5']]],
  ['wagner-bridal-chorus',[[756,'D#5']],[[756,'F5']]],
- ['new-world-fourth',[[448,'B5'],[608,'E3'],[609,'E3']],[[448,'G4'],[449,'B5']]],
+ ['new-world-fourth',[[448,'B5'],[608,'E3']],[[448,'G4'],[449,'B5'],[609,'E3']]],
  ['salut-damour',[[240,'C#5']],[[240,'E5'],[241,'C#5']]],
  ['mozart-figaro-overture',[[216,'C#6']],[[216,'D6'],[217,'B5'],[218,'C#6']]],
  ['nutcracker-march',[[284,'E5'],[284,'B5']],[[284,'A#5'],[285,'B5']]],
  ['chopin-nocturne-2',[[304,'G5']],[[304,'E5'],[305,'F5'],[305,'G5']]],
  ['air-on-g',[[80,'E5']],[[80,'F#5'],[81,'E5']]],
+ ['eine-kleine',[[80,'G5']],[[80,'A5'],[81,'G5']]],
+ ['toryanse',[[136,'C5'],[192,'G4']],[[140,'C5'],[204,'G4']]],
+ ['mendelssohn-spring-song',[[152,'A4'],[184,'F#4'],[196,'D5'],[504,'F#4']],[[185,'F#4'],[197,'D5'],[185,'E4'],[505,'D#4']]],
 ]){
  const score=parseText(await readFile(`dist/samples/${id}-piano-88.txt`,'utf8'));
  const ratio=1;
@@ -235,8 +242,8 @@ for(const [id,on,off]of [
 const march88=parseText(await readFile('dist/samples/nutcracker-march-piano-88.txt','utf8'));
 for(const beat of [1,9,33,41,97,105,129,137,193,201,225,233,289,297,321,329]){
  for(const name of ['G4','B4','D5']){
-  for(const offset of [0,3])assert(march88.notes.some(n=>n.step===beat*4+offset&&n.midi===noteNumber(name)),'行進曲：反復三連符を拍頭と末尾の2音に整理');
-  assert(!march88.notes.some(n=>n.step===beat*4+1&&n.midi===noteNumber(name)),'行進曲：詰まった中央の打ち直しを省く');
+  assert(march88.notes.some(n=>n.step===beat*4&&n.midi===noteNumber(name)),'行進曲：反復三連符の拍頭を保つ');
+  for(const offset of [1,3])assert(!march88.notes.some(n=>n.step===beat*4+offset&&n.midi===noteNumber(name)),'行進曲：三連符を不均等な間隔で打ち直さない');
  }
 }
 const ode88=parseText(await readFile('dist/samples/ode-to-joy-piano-88.txt','utf8'));
@@ -246,10 +253,10 @@ for(const [id,length,ms,expected]of [
  ['us-field-artillery',528,69,[[0,'A#4'],[4,'G4'],[8,'A#4'],[232,'D#4'],[256,'A#4'],[260,'A#4'],[264,'D#5'],[488,'D#4'],[492,'D#6'],[504,'D#6']]],
  ['shojoji',912,94,[[4,'C5'],[66,'E5'],[68,'D5'],[70,'C5'],[72,'A4'],[76,'G4'],[128,'C4'],[448,'C4'],[576,'C4'],[888,'C4']]],
  ['ravel-bolero',2772,69,[[0,'C2'],[0,'G3'],[144,'C5'],[792,'C5'],[1440,'A#4'],[2088,'A#5'],[2736,'C4']]],
- ['brahms-hungarian-dance-5',1335,100,[[0,'C#4'],[0,'F#2'],[7,'F#4'],[9,'A4'],[73,'C#5'],[1318,'F#2'],[1318,'F#5']]],
+ ['brahms-hungarian-dance-5',1186,114,[[0,'C#4'],[0,'F#2'],[6,'F#4'],[8,'A4'],[64,'C#5'],[1160,'F#2'],[1160,'F#5']]],
  ['grieg-morning',2104,83,[[0,'B4'],[0,'E3'],[4,'G#4'],[8,'F#4'],[12,'E4'],[2064,'E1']]],
- ['czardas',2131,100,[[0,'D6'],[79,'A3'],[754,'D5'],[1426,'D7'],[2112,'D4']]],
- ['maidens-prayer',1936,94,[[0,'D#3'],[0,'D#6'],[131,'A#4'],[131,'A#5'],[133,'D#6'],[136,'G6'],[1892,'D#6']]],
+ ['czardas',2230,100,[[0,'D6'],[80,'A3'],[760,'D5'],[1464,'D7'],[2198,'D4']]],
+ ['maidens-prayer',1452,125,[[0,'D#3'],[0,'D#6'],[24,'G#4'],[24,'G#2'],[98,'A#4'],[98,'A#5'],[100,'D#6'],[102,'G6'],[1416,'D#6']]],
  ['soviet-anthem',1988,99,[[0,'C3'],[0,'C6'],[28,'G5'],[1952,'C3'],[1952,'C6']]],
  ['grandfathers-clock',784,69,[[0,'F4'],[8,'A#4'],[512,'F4'],[520,'A#4'],[744,'A#4']]],
  ['funiculi-funicula',2752,71,[[0,'A#3'],[0,'D6'],[226,'A#5'],[228,'D#6'],[2742,'D#2'],[2742,'D#6']]],
@@ -292,8 +299,9 @@ for(const [id,length,ms,expected]of [
  for(const [step,name]of expected)assert(score.notes.some(n=>n.step===step*ratio&&n.midi===noteNumber(name)),id+' 原譜の節全体：'+step+' '+name);
 }
 assert.equal(twinkle88.length,3072);assert.equal(twinkle88.stepMs,75);
-for(const [step,name]of [[0,'C5'],[768,'D5'],[1536,'C3'],[1632,'F2'],[2304,'C4'],[2405,'A5'],[3056,'C5'],[3064,'C3']])assert(twinkle88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'きらきら星の主題と第1〜3変奏：'+step+' '+name);
+for(const [step,name]of [[0,'C5'],[768,'D5'],[1536,'C3'],[1632,'F2'],[2304,'C4'],[2408,'A5'],[3056,'C5'],[3064,'C3']])assert(twinkle88.notes.some(n=>n.step===step&&n.midi===noteNumber(name)),'きらきら星の主題と第1〜3変奏：'+step+' '+name);
 assert(!twinkle88.notes.some(n=>n.step===768+4*16&&n.midi===noteNumber('G5')),'第1変奏の小節をまたぐタイを打ち直さない');
+assert.deepEqual(twinkle88.notes.filter(n=>n.step>=2304&&n.step<2320&&n.midi>=60).map(n=>[n.step,n.midi]),[[2304,60],[2312,72]],'第3変奏の三連符は拍上の音を残し、不均等な丸めを避ける');
 assert.deepEqual(twinkle88.notes.filter(n=>n.step<128),twinkle88.notes.filter(n=>n.step>=128&&n.step<256).map(n=>({...n,step:n.step-128})),'主題前半8小節の反復');
 const jingle88=parseText(await readFile('dist/samples/jingle-bells-piano-88.txt','utf8'));
 assert.equal(jingle88.length,1024);assert.equal(jingle88.stepMs,64);
