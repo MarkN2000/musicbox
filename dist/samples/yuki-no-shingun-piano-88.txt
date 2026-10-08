@@ -1,381 +1,381 @@
 format=stepscore,version=1,step_ms=125,arranged_for=piano88,title=雪の進軍,title_en=Yuki no Shingun,composer=永井建子,composer_ja=永井建子,composer_en=Kenshi Nagai,reading_ja=ゆきのしんぐん,steps_per_quarter=4,time_signature=4/4
-D#2,A#2,G3,D#5
+D#3,A#3,G4,D#6
 
 
 
-A#2,G3,D#5
+A#3,G4,D#6
 
 
 
-D#2
+D#3
 
 
 
-A#2,G3,C5
+A#3,G4,C6
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,A#4
+D#3,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,A#2,G3,D#4
+D#3,A#3,G4,D#5
 
 
 
-A#2,G3
+A#3,G4
 
-F4
+F5
 
-D#2,G4
+D#3,G5
 
 
 
-A#2,G3,G4
+A#3,G4,G5
 
 
 
-C2,G2,D#3,F4
+C3,G3,D#4,F5
 
 
 
-G2,D#3,D#4
+G3,D#4,D#5
 
 
 
-C2,C4
+C3,C5
 
 
 
-G2,D#3
+G3,D#4
 
 
 
-D#2,A#2,G3,D#4
+D#3,A#3,G4,D#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,F4
+D#3,F5
 
 
 
-A#2,G3,G4
+A#3,G4,G5
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,C5
+D#3,C6
 
 
 
-A#2,G3,A#4
+A#3,G4,A#5
 
 
 
-G#2,D#3,C4,G4
+G#3,D#4,C5,G5
 
 
 
-D#3,C4,G#4
+D#4,C5,G#5
 
-G4
+G5
 
-G#2,F4
+G#3,F5
 
 
 
-D#3,C4,D#4
+D#4,C5,D#5
 
 
 
-A#1,F2,D3,F4
+A#2,F3,D4,F5
 
 
 
-F2,D3
+F3,D4
 
 
 
-A#1,A#4
+A#2,A#5
 
 
 
-F2,D3
+F3,D4
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2
+D#3
 
 
 
-A#2,G3,G#4
+A#3,G4,G#5
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3,C5
+A#3,G4,C6
 
-A#4
+A#5
 
-D#2,G4
+D#3,G5
 
 
 
-A#2,G3,D#4
+A#3,G4,D#5
 
 
 
-G#2,D#3,C4,D#5
+G#3,D#4,C5,D#6
 
 
 
-D#3,C4,D#5
+D#4,C5,D#6
 
 
 
-G#2,F5
+G#3,F6
 
 
 
-D#3,C4,D#5
+D#4,C5,D#6
 
 
 
-D#2,A#2,G3,C5
+D#3,A#3,G4,C6
 
 
 
-A#2,G3,C5
+A#3,G4,C6
 
 
 
-D#2,A#4
+D#3,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,G4
+D#3,G5
 
 
 
-A#2,G3,D#4
+A#3,G4,D#5
 
 
 
-A#1,F2,D3,F4
+A#2,F3,D4,F5
 
 
 
-F2,D3
+F3,D4
 
-F4
+F5
 
-A#1,F4
+A#2,F5
 
 
 
-F2,D3,A#4
+F3,D4,A#5
 
 
 
-A#1,F2,D3,F4
+A#2,F3,D4,F5
 
 
 
-F2,D3
+F3,D4
 
 
 
-A#1,G4
+A#2,G5
 
 
 
-F2,D3,A#4
+F3,D4,A#5
 
 
 
-D#2,A#2,G3,G4
+D#3,A#3,G4,G5
 
 
 
-A#2,G3,F4
+A#3,G4,F5
 
 
 
-D#2,D#4
+D#3,D#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2
+D#3
 
 
 
-A#2,G3,G#4
+A#3,G4,G#5
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3,C5
+A#3,G4,C6
 
-A#4
+A#5
 
-D#2,G4
+D#3,G5
 
 
 
-A#2,G3,D#4
+A#3,G4,D#5
 
 
 
-G#2,D#3,C4,D#5
+G#3,D#4,C5,D#6
 
 
 
-D#3,C4,D#5
+D#4,C5,D#6
 
 
 
-G#2,F5
+G#3,F6
 
 
 
-D#3,C4,D#5
+D#4,C5,D#6
 
 
 
-D#2,A#2,G3,C5
+D#3,A#3,G4,C6
 
 
 
-A#2,G3,C5
+A#3,G4,C6
 
 
 
-D#2,A#4
+D#3,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,A#2,G3,A#4
+D#3,A#3,G4,A#5
 
 
 
-A#2,G3
+A#3,G4
 
 
 
-D#2,G4
+D#3,G5
 
 
 
-A#2,G3,D#4
+A#3,G4,D#5
 
 
 
-A#1,F2,D3,F4
+A#2,F3,D4,F5
 
 
 
-F2,D3
+F3,D4
 
-F4
+F5
 
-A#1,F4
+A#2,F5
 
 
 
-F2,D3,A#4
+F3,D4,A#5
 
 
 
-A#1,F2,D3,F4
+A#2,F3,D4,F5
 
 
 
-F2,D3
+F3,D4
 
 
 
-A#1,G4
+A#2,G5
 
 
 
-F2,D3,A#4
+F3,D4,A#5
 
 
 
-D#2,A#2,G3,G4
+D#3,A#3,G4,G5
 
 
 
-F4
+F5
 
 
 
-D#4
+D#5
 
 
 
