@@ -18,7 +18,7 @@
 
 サンプルの正本は **`dist/samples/*.txt`**。手で編集後、`npm run build` で一覧を更新できます。`npm start` でも一覧を更新します。楽器定義は `dist/instruments.json`、音源は `dist/audio/`、翻訳は `dist/locales/` にあります。
 
-Resoniteテンプレートは `dist/resonite/`。更新は `node prepare-resonite.mjs "2in1.resonitepackage" "SheetMusic.resonitepackage"` で行います。同梱素材とライセンス表記は元パッケージのものを保持します。
+Resoniteテンプレートは `dist/packages/`。更新は `node prepare-resonite.mjs "2in1.resonitepackage" "SheetMusic.resonitepackage"` で行います。同梱素材とライセンス表記は元パッケージのものを保持します。
 
 MIDIはWorkerで取り込み、TXTは直接解析します。取り込み中も操作でき、中止・失敗時は編集中の楽譜を保持します。マス目は表示範囲だけを描画し、MIDIライブラリ・サンプル本文・音源は必要時に読み込みます。
 

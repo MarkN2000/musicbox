@@ -64,10 +64,10 @@ if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
     for(const [name,data]of files){
       if(name===main||name==='R-Main.record')continue;
       assert(/^(Assets|Metadata)\/[a-z0-9.]+$/.test(name),'想定外の素材パス');
-      const target=resolve('dist/resonite',name);await mkdir(dirname(target),{recursive:true});await writeFile(target,data);resources.push(name);
+      const target=resolve('dist/packages',name);await mkdir(dirname(target),{recursive:true});await writeFile(target,data);resources.push(name);
     }
     const template={record,bson:bson.toString('base64'),patch,resources};
-    await writeFile('dist/resonite/'+id+'.json',JSON.stringify(template)+'\n');
+    await writeFile('dist/packages/'+id+'.json',JSON.stringify(template)+'\n');
     console.log(id,matches[0],patch,resources.length+'素材');
   }
 }

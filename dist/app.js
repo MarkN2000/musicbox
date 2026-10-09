@@ -344,7 +344,7 @@ $('exportResonite').onclick=async()=>{
   const button=$('exportResonite');button.disabled=true;button.setAttribute('aria-busy','true');
   try{
     const text=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,stepInterval(),outputMetadata()),musicbox=instrument.id==='musicbox-30',name=downloadName('resonitepackage');
-    const {resonitePackage}=await import('./resonite.js?v=8a7bf2a8ddb36d4e');download(await resonitePackage(text,musicbox),'resonitepackage',name);showError();
+    const {resonitePackage}=await import('./resonite.js?v=9dd3671d9d373aaf');download(await resonitePackage(text,musicbox),'resonitepackage',name);showError();
   }catch(error){showError(error.message);}finally{button.disabled=false;button.removeAttribute('aria-busy');}
 };
 let midiLibrary;

@@ -44,7 +44,7 @@ function packageZip(files){
 }
 
 export async function resonitePackage(text,musicbox){
-  const root=new URL('./resonite/',import.meta.url),response=await fetch(new URL(musicbox?'musicbox.json':'sheetmusic.json',root),{cache:'no-cache'});
+  const root=new URL('./packages/',import.meta.url),response=await fetch(new URL(musicbox?'musicbox.json':'sheetmusic.json',root),{cache:'no-cache'});
   if(!response.ok)throw Error('Resoniteテンプレートを読み込めませんでした。');
   const template=await response.json(),object=scoreObject(template,text),hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',object)),byte=>byte.toString(16).padStart(2,'0')).join('');
   const record=structuredClone(template.record),oldHash=record.assetUri.split('/').at(-1);record.assetUri='packdb:///'+hash;
