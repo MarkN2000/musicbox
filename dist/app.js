@@ -340,6 +340,13 @@ function downloadName(extension){return ($('scoreTitle').value.trim().replace(/[
 function downloadText(){try{const text=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,stepInterval(),outputMetadata());const blob=new Blob([text],{type:'text/plain;charset=utf-8'});download(blob,'txt');showError();}catch(error){showError(error.message);}}
 function download(blob,extension,name=downloadName(extension)){const url=URL.createObjectURL(blob),anchor=document.createElement('a');anchor.href=url;anchor.download=name;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('export').onclick=downloadText;
+$('exportResonite').onclick=async()=>{
+  const button=$('exportResonite');button.disabled=true;button.setAttribute('aria-busy','true');
+  try{
+    const text=serialize(notes.filter(note=>ALLOWED.has(note.midi)),length,stepInterval(),outputMetadata()),musicbox=instrument.id==='musicbox-30',name=downloadName('resonitepackage');
+    const {resonitePackage}=await import('./resonite.js?v=8a7bf2a8ddb36d4e');download(await resonitePackage(text,musicbox),'resonitepackage',name);showError();
+  }catch(error){showError(error.message);}finally{button.disabled=false;button.removeAttribute('aria-busy');}
+};
 let midiLibrary;
 function getMidiLibrary(){return midiLibrary??=import('./vendor/midi.js').then(()=>window.Midi).catch(error=>{midiLibrary=null;throw error;});}
 $('exportMidi').onclick=async()=>{

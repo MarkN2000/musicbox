@@ -6,6 +6,7 @@ import {Worker} from 'node:worker_threads';
 import {createContext,runInContext} from 'node:vm';
 import {noteName,noteNumber,serialize,parseText,convertMidi,convertScore,suggestTranspositions,validateMidiHeader,rhythmMetadata,validateDefinitions,MAX_STEPS} from './dist/core.js';
 import {catalogData} from './build-catalog.mjs';
+import './check-resonite.mjs';
 const json=async file=>JSON.parse(await readFile(file,'utf8'));
 const profiles=await json('dist/instruments.json'),sounds=await json('dist/audio/soundsets.json'),definitions=validateDefinitions(profiles,sounds);
 const allowed=definitions.instruments.find(item=>item.id==='musicbox-30').allowed;

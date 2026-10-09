@@ -151,5 +151,9 @@
   "このステップ単位は五線譜画像に対応していません。": "This step subdivision is not supported for sheet music images.",
   "小節境界がステップの途中に来るため、五線譜画像にできません。": "A bar boundary falls within a step; this score cannot be rendered as sheet music.",
   "音が密集しているため、五線譜画像の幅に収まりません。": "The notes are too dense to fit the sheet music page.",
-  "このブラウザではWebP画像を保存できません。": "This browser cannot save WebP images."
+  "このブラウザではWebP画像を保存できません。": "This browser cannot save WebP images.",
+  "Resoniteパッケージを保存": "Save Resonite package",
+  "Resoniteテンプレートが不正です。": "Invalid Resonite template.",
+  "Resoniteテンプレートを読み込めませんでした。": "Could not load the Resonite template.",
+  "Resoniteの素材を読み込めませんでした。": "Could not load the Resonite assets."
 }
