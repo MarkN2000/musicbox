@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {resolve,sep,extname} from 'node:path';
 const root=fileURLToPath(new URL('./dist/',import.meta.url));
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.ogg':'audio/ogg','.json':'application/json; charset=utf-8','.txt':'text/plain; charset=utf-8'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.ogg':'audio/ogg','.json':'application/json; charset=utf-8','.txt':'text/plain; charset=utf-8'};
 createServer(async(req,res)=>{try{
   const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname),path=resolve(root,'.'+(name==='/'?'/index.html':name));
   if(!path.startsWith(root.endsWith(sep)?root:root+sep))throw new Error('範囲外');
