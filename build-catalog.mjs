@@ -4,18 +4,27 @@ import {fileURLToPath} from 'node:url';
 import {resolve} from 'node:path';
 import {parseText,validateDefinitions} from './dist/core.js';
 const root=fileURLToPath(new URL('./dist/',import.meta.url));
-export async function catalogData(){
+const defaultLabels={musicbox30:{ja:'オルゴール30',en:'Music box 30'},piano88:{ja:'ピアノ88',en:'Piano 88'},piano61:{ja:'ピアノ61',en:'Piano 61'},xylophone32:{ja:'木琴32',en:'Xylophone 32'}};
+export async function catalogData(samplesRoot=resolve(root,'samples')){
   const instruments=JSON.parse(await readFile(resolve(root,'instruments.json'),'utf8')),sounds=JSON.parse(await readFile(resolve(root,'audio/soundsets.json'),'utf8'));
-  const definitions=validateDefinitions(instruments,sounds),samples=[],hash=createHash('sha256');
-  for(const file of (await readdir(resolve(root,'samples'))).filter(file=>file.endsWith('.txt')).sort()){
+  const definitions=validateDefinitions(instruments,sounds),songs=new Map(),hash=createHash('sha256');
+  for(const file of (await readdir(samplesRoot)).filter(file=>file.endsWith('.txt')).sort()){
     const id=file.slice(0,-4);if(!/^[a-z0-9][a-z0-9-]*$/.test(id))throw new Error('サンプルのファイル名が不正です：'+file);
-    const text=await readFile(resolve(root,'samples',file),'utf8'),score=parseText(text),usedNotes=[...new Set(score.notes.map(note=>note.midi))].sort((a,b)=>a-b);
+    const text=await readFile(resolve(samplesRoot,file),'utf8'),score=parseText(text),usedNotes=[...new Set(score.notes.map(note=>note.midi))].sort((a,b)=>a-b);
     const {metadata}=score,profile=definitions.instruments.find(item=>item.arrangedFor===metadata.arranged_for);
     if(!['title','composer','composer_ja','composer_en','reading_ja'].every(key=>metadata[key])||!profile||!usedNotes.every(note=>profile.allowed.has(note)))throw new Error('サンプルの設定・対応音が不正です：'+file);
-    const keys=['arranged_for','title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja'];
-    samples.push({id,file,metadata:Object.fromEntries(keys.filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]])),usedNotes,length:score.length,stepMs:score.stepMs});hash.update(file).update(text);
+    const songId=metadata.song_id??id.replace(/-(musicbox-30|piano-88|piano-61|xylophone-32)$/,'');
+    if(!/^[a-z0-9][a-z0-9-]*$/.test(songId)||(!metadata.song_id&&songId===id))throw new Error('曲IDをsong_idで指定してください：'+file);
+    const keys=['title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja'],common=Object.fromEntries(keys.filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]]));
+    if(!songs.has(songId))songs.set(songId,{id:songId,...common,versions:[]});
+    const song=songs.get(songId);
+    for(const [key,value] of Object.entries(common)){if(song[key]!==undefined&&song[key]!==value)throw new Error('同じ曲IDの情報が一致しません：'+songId+' '+key);song[key]=value;}
+    const labels=Object.fromEntries(['label','label_ja','label_en'].filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]]));
+    if(Object.values(labels).some(value=>!value.trim()))throw new Error('版名を空にしないでください：'+file);
+    const defaults=defaultLabels[metadata.arranged_for]??profile.name;
+    song.versions.push({id,arranged_for:metadata.arranged_for,file,...labels,label_ja:labels.label_ja??labels.label??labels.label_en??defaults.ja,label_en:labels.label_en??labels.label??labels.label_ja??defaults.en,usedNotes,length:score.length,stepMs:score.stepMs});hash.update(file).update(text);
   }
-  return JSON.stringify({revision:hash.digest('hex').slice(0,16),samples})+'\n';
+  return JSON.stringify({revision:hash.update(JSON.stringify([...songs.values()])).digest('hex').slice(0,16),songs:[...songs.values()]})+'\n';
 }
 export async function build(){
   await writeFile(resolve(root,'samples/index.json'),await catalogData());
