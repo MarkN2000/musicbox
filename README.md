@@ -46,7 +46,7 @@ npm start
 
 サンプルは `dist/samples/` のTXTを直接編集します。1行目に題名・作曲者・編曲対象・拍子など、2行目以降に音符を記録します。編曲はファイル名で区別します。編集後は `npm run build`、続いて `npm test` を実行します。曲目一覧の `index.json` は手で編集しません。作曲者・編曲対象・拍子などのサンプル用項目は、サイトのTXT書き出しには含めません。
 
-曲目一覧は [samples/index.json](https://musicbox.markn2000.com/samples/index.json) の `songs` に曲名・作曲者を、各曲の `versions` に楽器・ファイル名・使用音をまとめています。StepScoreのURLは `https://musicbox.markn2000.com/samples/` に各版の `file` をつなげたものです。
+曲目一覧は [samples/index.json](https://musicbox.markn2000.com/samples/index.json) の `songs` に曲ID（`song_id`）・曲名・作曲者を、各曲の `versions` に版ID（`id`）・楽器・ファイル名・使用音をまとめています。StepScoreのURLは `https://musicbox.markn2000.com/samples/` に各版の `file` をつなげたものです。
 
 同じ曲の各版は曲ID・曲名・作曲者をそろえ、`arranged_for` で音域を指定します。既存の曲IDはファイル名から楽器の末尾を除いた値です。同じ楽器向けに追加する版は別ファイルにし、例えば `air-on-g-musicbox-30-easy.txt` のヘッダーに `song_id=air-on-g,label_ja=オルゴール30(易),label_en=Music box 30 (Easy)` を追加します。ラベルはそのまま表示する短い名前で、難易度以外の違いにも使えます。省略時は一覧生成で対象楽器の短いラベルを補うため、表示側は `label_ja` または `label_en` を使うだけです。同じ楽器では一覧の配列順（生成時はファイル名順）の先頭を優先します。ピアノ61鍵とマリンバ61音は `piano61` を共有します。曲ID・ラベルはサイトのTXT書き出しには含めません。
 

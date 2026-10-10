@@ -38,7 +38,7 @@ for(const bad of [[{...profiles[0],id:undefined}], [{...profiles[0],range:[21,10
 assert.throws(()=>validateDefinitions(profiles,[{...sounds[0],base:'../private/'},sounds[1]]));
 const expectedCatalog=await catalogData();assert.equal(await readFile('dist/samples/index.json','utf8'),expectedCatalog,'サンプルを編集したらnpm run buildで一覧を更新してください');
 const catalog=JSON.parse(expectedCatalog),samples=catalog.songs.flatMap(song=>song.versions);
-assert(!('samples' in catalog));assert.equal(new Set(catalog.songs.map(song=>song.id)).size,catalog.songs.length);assert.equal(new Set(samples.map(version=>version.id)).size,samples.length);
+assert(!('samples' in catalog));assert(catalog.songs.every(song=>typeof song.song_id==='string'&&!('id' in song)));assert.equal(new Set(catalog.songs.map(song=>song.song_id)).size,catalog.songs.length);assert.equal(new Set(samples.map(version=>version.id)).size,samples.length);
 // 実際の一覧生成で同一楽器の複数版・固定曲ID・ラベル補完と情報の衝突を確認する。
 {
   await mkdir('.sites-runtime',{recursive:true});const directory=await mkdtemp('.sites-runtime/catalog-'),files=['a-easy.txt','demo-piano-88.txt','z-standard.txt','other-piano-88.txt'];
@@ -46,11 +46,11 @@ assert(!('samples' in catalog));assert.equal(new Set(catalog.songs.map(song=>son
   const save=(file,metadata,midi=72)=>writeFile(directory+'/'+file,serialize([{step:0,midi}],2,200,Object.fromEntries(Object.entries(metadata).filter(([,value])=>value!==undefined))));
   try{
     await save(files[0],{...easy,title_ja:undefined});await save(files[1],{...common,arranged_for:'piano88'},36);await save(files[2],standard);await save(files[3],{...common,arranged_for:'piano88'},21);
-    const result=JSON.parse(await catalogData(directory)),song=result.songs.find(song=>song.id==='demo');
+    const result=JSON.parse(await catalogData(directory)),song=result.songs.find(song=>song.song_id==='demo');
     assert.equal(result.songs.length,2,'同名・同じ作曲者でも曲IDが異なれば分ける');assert.equal(song.title_ja,'例の曲','省略された訳名を他の版から補う');assert.deepEqual(song.versions.map(version=>version.id),['a-easy','demo-piano-88','z-standard']);
     assert.equal(song.versions.filter(version=>version.arranged_for==='musicbox30').length,2);assert.equal(song.versions[0].label_ja,'オルゴール30(易)');assert.equal(song.versions[0].label_en,'Music box 30 (Easy)');assert.equal(song.versions[1].label_ja,'ピアノ88');assert.equal(song.versions[1].label_en,'Piano 88');assert.equal(song.versions[2].label_en,standard.label);
     assert.deepEqual(song.versions[0].usedNotes,[72]);assert.equal(song.versions[0].length,2);assert.equal(song.versions[0].stepMs,200);assert(!('title' in song.versions[0]));assert(!('arranged_for' in song));
-    await save(files[0],{...easy,label_ja:'オルゴール30(入門)',label_en:undefined});const changed=JSON.parse(await catalogData(directory));assert.notEqual(changed.revision,result.revision);assert.equal(changed.songs.find(song=>song.id==='demo').versions[0].label_en,'オルゴール30(入門)','他言語でも版の違いを残す');
+    await save(files[0],{...easy,label_ja:'オルゴール30(入門)',label_en:undefined});const changed=JSON.parse(await catalogData(directory));assert.notEqual(changed.revision,result.revision);assert.equal(changed.songs.find(song=>song.song_id==='demo').versions[0].label_en,'オルゴール30(入門)','他言語でも版の違いを残す');
     await save(files[0],{...easy,composer:'別の作者'});await assert.rejects(catalogData(directory),/情報が一致しません/);
     await save(files[0],{...easy,song_id:undefined});await assert.rejects(catalogData(directory),/曲ID/);
     await save(files[0],{...easy,song_id:'../demo'});await assert.rejects(catalogData(directory),/曲ID/);
@@ -74,7 +74,7 @@ assert(!('samples' in catalog));assert.equal(new Set(catalog.songs.map(song=>son
 }
 for(const entry of samples){const score=parseText(await readFile('dist/samples/'+entry.file,'utf8'));assert(entry.label_ja&&entry.label_en,'日英の表示ラベルを生成する');for(const key of ['source','listen','detail','work_id','pickup_steps'])assert(!(key in score.metadata),'削除した項目をサンプルTXTに残さない：'+key);for(const [key,value] of Object.entries(score.metadata).filter(([key])=>key.startsWith('title_')))assert(value&&value!==score.metadata.title,'基本名と同じ表示名は省略する：'+entry.file+' '+key);assert.deepEqual(parseText(serialize(score.notes,score.length,score.stepMs,score.metadata)),score);}
 // 既存の対を検査し、追加のオルゴール版には木琴版を要求しない。
-for(const entry of catalog.songs.flatMap(song=>song.versions.filter(version=>version.id===song.id+'-musicbox-30'))){
+for(const entry of catalog.songs.flatMap(song=>song.versions.filter(version=>version.id===song.song_id+'-musicbox-30'))){
   const wood=samples.find(s=>s.id===entry.id.replace(/-musicbox-30$/,'-xylophone-32'));assert(wood,'木琴版がない：'+entry.id);
   const original=parseText(await readFile('dist/samples/'+entry.file,'utf8')),score=parseText(await readFile('dist/samples/'+wood.file,'utf8'));
   assert.equal(score.length,entry.id==='bach-toccata-fugue-musicbox-30'?100:original.length,'木琴版の末尾休符も含む長さ：'+wood.id);assert.equal(score.stepMs,original.stepMs,'木琴版の速度：'+wood.id);

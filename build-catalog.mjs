@@ -16,7 +16,7 @@ export async function catalogData(samplesRoot=resolve(root,'samples')){
     const songId=metadata.song_id??id.replace(/-(musicbox-30|piano-88|piano-61|xylophone-32)$/,'');
     if(!/^[a-z0-9][a-z0-9-]*$/.test(songId)||(!metadata.song_id&&songId===id))throw new Error('曲IDをsong_idで指定してください：'+file);
     const keys=['title','title_ja','title_en','composer','composer_ja','composer_en','reading_ja'],common=Object.fromEntries(keys.filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]]));
-    if(!songs.has(songId))songs.set(songId,{id:songId,...common,versions:[]});
+    if(!songs.has(songId))songs.set(songId,{song_id:songId,...common,versions:[]});
     const song=songs.get(songId);
     for(const [key,value] of Object.entries(common)){if(song[key]!==undefined&&song[key]!==value)throw new Error('同じ曲IDの情報が一致しません：'+songId+' '+key);song[key]=value;}
     const labels=Object.fromEntries(['label','label_ja','label_en'].filter(key=>metadata[key]!==undefined).map(key=>[key,metadata[key]]));

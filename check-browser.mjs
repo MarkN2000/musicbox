@@ -14,14 +14,14 @@ try{
   // 曲の各版をまとめ、表示言語や音色が変わっても音域で選べることを確認する。
   const versionsPage=await browser.newPage({viewport:{width:1280,height:900}}),versionErrors=[];
   versionsPage.on('pageerror',error=>versionErrors.push(error.message));
-  const {versions:originalVersions,id:originalId,...base}=catalog.songs.find(song=>song.id==='pachelbel-canon'),bodies=new Map();
+  const {versions:originalVersions,song_id:originalId,...base}=catalog.songs.find(song=>song.song_id==='pachelbel-canon'),bodies=new Map();
   const labels={musicbox30:['オルゴール30','Music box 30'],piano88:['ピアノ88','Piano 88'],piano61:['ピアノ61','Piano 61'],xylophone32:['木琴32','Xylophone 32']};
   const sample=(profile,midi,changes={})=>{
     const id='check-'+profile+Object.keys(changes).join('-'),metadata={...base,song_id:originalId,arranged_for:profile,...changes};
     bodies.set(id+'.txt',serialize([{step:0,midi}],2,200,metadata));return {id,arranged_for:profile,file:id+'.txt',label_ja:changes.label_ja??labels[profile][0],label_en:changes.label_en??labels[profile][1],usedNotes:[midi],length:2,stepMs:200};
   };
   const otherTitle={title:'Other',title_ja:'別の曲',title_en:'Other',reading_ja:'べつのきょく'},otherComposer={composer:'Other composer',composer_ja:'別の作曲者',composer_en:'Other composer'};
-  const versions=[sample('musicbox30',72),sample('musicbox30',74,{label_ja:'オルゴール30(易)',label_en:'Music box 30 (Easy)'}),sample('piano88',21),sample('piano61',36),sample('xylophone32',77)],songs=[{id:originalId,...base,versions},{id:'check-other',...base,...otherTitle,versions:[sample('piano88',72,otherTitle)]},{id:'check-other-composer',...base,...otherComposer,versions:[sample('musicbox30',72,otherComposer)]}];
+  const versions=[sample('musicbox30',72),sample('musicbox30',74,{label_ja:'オルゴール30(易)',label_en:'Music box 30 (Easy)'}),sample('piano88',21),sample('piano61',36),sample('xylophone32',77)],songs=[{song_id:originalId,...base,versions},{song_id:'check-other',...base,...otherTitle,versions:[sample('piano88',72,otherTitle)]},{song_id:'check-other-composer',...base,...otherComposer,versions:[sample('musicbox30',72,otherComposer)]}];
   await versionsPage.route('**/samples/index.json',route=>route.fulfill({json:{revision:'check',songs}}));
   await versionsPage.route('**/samples/*.txt*',route=>route.fulfill({contentType:'text/plain;charset=utf-8',body:bodies.get(decodeURIComponent(new URL(route.request().url()).pathname.split('/').at(-1)))}));
   await versionsPage.goto(process.argv[2]??'http://127.0.0.1:4173');await versionsPage.waitForSelector('#instrument option',{state:'attached'});
