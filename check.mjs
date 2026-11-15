@@ -35,7 +35,7 @@ for(const [id,gm,low,high] of [['stamperadam-celesta',8,60,104],['vsco-vibraphon
  assert.equal(profile.gmProgram,gm);assert.deepEqual([...definitions.soundsets.find(s=>s.id===id).allowed],Array.from({length:high-low+1},(_,i)=>low+i),'従来のCC0録音は元の範囲で保持する');assert.ok([...profile.allowed].every(n=>sound.allowed.has(n)));assert.ok(sound.release>0,'離鍵・サステインペダルを反映できる音源にする');
 }
 assert.equal(new Set(definitions.instruments.filter(p=>!p.percussion).map(p=>p.gmProgram)).size,128,'GMの旋律128音色を揃える');
-for(const [gm,low,high] of [[44,21,108],[45,21,108],[48,21,108],[57,21,96],[70,21,84],[72,21,108]])assert.deepEqual([...definitions.instruments.find(p=>p.gmProgram===gm&&!p.percussion).allowed],Array.from({length:high-low+1},(_,i)=>low+i),'88鍵内で元SoundFontの対応音域を使う：'+gm);
+for(const [gm,low,high] of [[19,21,108],[44,21,108],[45,21,108],[48,21,108],[57,21,96],[70,21,84],[72,21,108]])assert.deepEqual([...definitions.instruments.find(p=>p.gmProgram===gm&&!p.percussion).allowed],Array.from({length:high-low+1},(_,i)=>low+i),'88鍵内で音源の対応音域を使う：'+gm);
 for(const id of ['vsco-cello','vsco-contrabass','vsco-trumpet'])assert.ok(Object.keys(definitions.soundsets.find(s=>s.id===id).loops).length,'既存の持続音もループする：'+id);
 const mitLicense=await readFile('dist/vendor/LICENSE-musescore-general.md','utf8');for(const name of ['Frank Wen','Michael Cowgill','S. Christian Collins','Ethan Winer','Michael Schorsch','Permission is hereby granted'])assert.ok(mitLicense.includes(name),'追加音源の著作権表示・ライセンスを配布する：'+name);
 for(const file of ['dist/index.html','dist/mml.html'])assert.ok((await readFile(file,'utf8')).includes('vendor/LICENSE-musescore-general.md'),'サイトから追加音源のライセンスへ到達できる');

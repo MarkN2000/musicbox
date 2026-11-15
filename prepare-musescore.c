@@ -8,6 +8,9 @@ static void word(FILE* out,unsigned value,int bytes){for(int i=0;i<bytes;i++)fpu
 int main(void){
   tsf* font=tsf_load_filename("MuseScore_General.sf2");if(!font)return 1;
   tsf_set_output(font,TSF_STEREO_INTERLEAVED,44100,-6);
+  int organ=tsf_get_presetindex(font,0,19);
+  /* ponytail: extend the church organ's highest sample by at most one octave; use higher native recordings if available. */
+  if(organ>=0)for(int i=0;i<font->presets[organ].regionNum;i++)if(font->presets[organ].regions[i].hikey==96)font->presets[organ].regions[i].hikey=108;
   int program,key,wantedLoop;
   while(scanf("%d %d %d",&program,&key,&wantedLoop)==3){
     int preset=tsf_get_presetindex(font,0,program),count=0,hasLoop=0;
