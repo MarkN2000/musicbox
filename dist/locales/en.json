@@ -266,5 +266,13 @@
   "「編集」にはこのパートの全選択と、表示倍率、選択音の位置・長さ・強さがあります。パート全体の移調は、このパートを全選択して上下に移動します。": "Edit contains selection, zoom, and note position, length, and velocity controls. To transpose a part, select all its notes and move them up or down.",
   "スマホでは空白をタップして配置、なぞってスクロールできます。「編集」から全選択できます。": "On a phone, tap empty space to add a note and swipe to scroll. Select all notes from Edit.",
   "時間軸を押すと再生開始位置を選べます。▶は再生中に一時停止ボタンになり、隣の■で停止して先頭へ戻ります。ループは曲全体を繰り返します。拍子・テンポの行は、マスを1回押すとその場で編集できます。値を変えると反映し、×で途中の変更を削除します。♩とBPMの基準は四分音符です。拍子を変えても音符は動きません。": "Click the ruler to choose a playback position. ▶ becomes Pause during playback; ■ stops and returns to the start. Loop repeats the whole song. Click a meter/tempo cell to edit it in place. Changes apply immediately; × removes a change. BPM uses quarter notes. Changing meter does not move notes.",
-  "キー操作：Deleteで削除、Ctrl / ⌘ + A・C・Vで全選択・コピー・貼り付け、Zで取り消し、Shift + Zでやり直し。上下キーで半音、Shift＋上下で1オクターブ移動。Shift＋ドラッグで複数選択、Alt / Optionで縦線への吸着を一時解除、Spaceで再生・一時停止します。": "Keys: Delete removes notes. Ctrl / ⌘ + A, C, V select all, copy, and paste. Z undoes; Shift + Z redoes. Up/Down moves a semitone; Shift + Up/Down moves an octave. Shift-drag adds to the selection; Alt / Option temporarily disables snapping. Space plays or pauses."
+  "キー操作：Deleteで削除、Ctrl / ⌘ + A・C・Vで全選択・コピー・貼り付け、Zで取り消し、Shift + Zでやり直し。上下キーで半音、Shift＋上下で1オクターブ移動。Shift＋ドラッグで複数選択、Alt / Optionで縦線への吸着を一時解除、Spaceで再生・一時停止します。": "Keys: Delete removes notes. Ctrl / ⌘ + A, C, V select all, copy, and paste. Z undoes; Shift + Z redoes. Up/Down moves a semitone; Shift + Up/Down moves an octave. Shift-drag adds to the selection; Alt / Option temporarily disables snapping. Space plays or pauses.",
+  "mmlDeletePartLabel": "Delete {part}",
+  "mmlDeletePartConfirm": "Delete “{part}”?",
+  "mmlLoadingSounds": "Sounds {loaded} / {total}",
+  "mmlSavingAudio": "Processing audio {percent}%",
+  "mmlFinishingAudio": "Finishing…",
+  "mmlSavingMidi": "Converting MIDI…",
+  "保存の進捗": "Save progress",
+  "mmlPreparingAudio": "Preparing {done} / {total}"
 }
