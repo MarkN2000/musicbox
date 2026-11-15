@@ -8,7 +8,8 @@ Time(0) Tempo={54}
 Time(35520) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+CH=1 @14
+TrackName={Musicbox:1:instrument=xylophone-32:%E6%97%8B%E5%BE%8B}
 q100
 Time(960) n103,%1920,100,90
 Time(2880) n100,%1920,100,90
@@ -51,7 +52,8 @@ Time(34560) n84,%960,100,90
 Time(35520) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+CH=2 @14
+TrackName={Musicbox:2:instrument=xylophone-32:%E4%BC%B4%E5%A5%8F}
 q100
 Time(1920) n84,%960,100,60
 Time(3840) n84,%960,100,60

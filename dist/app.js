@@ -1,5 +1,5 @@
-import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions} from './core.js?v=45fa6b2982902f00';
-import {t,currentLanguage,preferredLanguage,loadLanguage,localized,translatePage} from './i18n.js?v=2f127a12b3570584';
+import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions} from './core.js?v=bf323b7c64d8f988';
+import {t,currentLanguage,preferredLanguage,loadLanguage,localized,translatePage} from './i18n.js?v=5a3b759997b8e210';
 const $=id=>document.getElementById(id);
 const json=async path=>{const response=await fetch(path,{cache:'no-cache'});if(!response.ok)throw new Error('設定を読み込めませんでした。');return response.json();};
 let definitions,catalog;
@@ -349,7 +349,7 @@ $('exportMidi').onclick=async()=>{
   try{const interval=stepInterval(),subdivision=Number($('subdivision').value),score=notes.map(note=>({...note})),size=length,profile=instrument,allowed=ALLOWED,name=downloadName('mid'),signature=rhythmMetadata(metadata).signature;
     const ppq=480%subdivision===0?480:subdivision,tempo=interval*subdivision*1000;if(ppq>32767||!Number.isSafeInteger(tempo)||tempo>0xffffff||signature?.[0]>255)throw new Error('この間隔・単位・拍子はMIDIで表現できません。TXTで保存してください。');
     const Midi=await getMidiLibrary(),midi=new Midi();midi.header.fromJSON({...midi.header.toJSON(),ppq});const ticksPerStep=ppq/subdivision;
-    midi.header.setTempo(60000/(interval*subdivision));if(signature)midi.header.timeSignatures=[{ticks:0,timeSignature:signature}];const track=midi.addTrack(),unique=new Map();track.name=profile.name[currentLanguage()];track.instrument.number=profile.id.startsWith('piano-')?0:profile.id.startsWith('marimba-')?12:profile.id.startsWith('xylophone-')?13:10;
+    midi.header.setTempo(60000/(interval*subdivision));if(signature)midi.header.timeSignatures=[{ticks:0,timeSignature:signature}];const track=midi.addTrack(),unique=new Map();track.name=profile.name[currentLanguage()];track.instrument.number=profile.gmProgram??10;track.channel=profile.percussion?9:0;
     for(const note of score){validateNote(note,size);if(allowed.has(note.midi))unique.set(keyOf(note),note);}
     for(const note of [...unique.values()].sort((a,b)=>a.step-b.step||a.midi-b.midi))track.addNote({midi:note.midi,ticks:note.step*ticksPerStep,durationTicks:ticksPerStep,velocity:.8});
     track.addCC({number:123,ticks:size*ticksPerStep,value:0});download(new Blob([midi.toArray()],{type:'audio/midi'}),'mid',name);showError();
@@ -365,7 +365,7 @@ $('exportSheet').onclick=async()=>{
   const button=$('exportSheet');button.disabled=true;button.setAttribute('aria-busy','true');
   try{
     const name=downloadName('webp').replace(/\.webp$/,''),input={notes:notes.filter(note=>ALLOWED.has(note.midi)).map(note=>({...note})),length,subdivision:Number($('subdivision').value),signature:rhythmMetadata(metadata).signature,stepMs:stepInterval(),title:$('scoreTitle').value.trim()||t('新しい楽譜'),footer:t('自動生成の簡易譜面')};
-    sheetModule??=await import('./sheet.js?v=49e29bb96426da46');const sheet=await sheetModule.createSheet(input);sheet.name=name;
+    sheetModule??=await import('./sheet.js?v=a0a76c84bd330f61');const sheet=await sheetModule.createSheet(input);sheet.name=name;
     sheetPreview=sheet;sheetPage=0;showSheetPage();$('sheetDialog').showModal();showError();
   }catch(error){showError(error.message);}finally{button.disabled=false;button.setAttribute('aria-busy','false');}
 };
@@ -449,7 +449,7 @@ function cancelImport(){
 $('cancelImport').onclick=()=>cancelImport();
 function workerRequest(source,settings){
   if(!importWorker){
-    importWorker=new Worker(new URL('./import-worker.js?v=40d46b720d32f182',import.meta.url),{type:'module'});
+    importWorker=new Worker(new URL('./import-worker.js?v=b805033478951739',import.meta.url),{type:'module'});
     importWorker.onmessage=({data})=>{const request=workerRequests.get(data.id);if(!request)return;workerRequests.delete(data.id);if(data.error)request.reject(new Error(data.error));else{workerSourceId=request.sourceId;request.resolve(data);}};
     importWorker.onerror=importWorker.onmessageerror=()=>{for(const request of workerRequests.values())request.reject(new Error('取り込み処理を読み込めませんでした。'));workerRequests.clear();importWorker?.terminate();importWorker=null;workerSourceId=null;};
   }

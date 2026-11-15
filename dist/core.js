@@ -37,11 +37,15 @@ export function validateDefinitions(instruments,soundsets) {
   const sounds=prepare(soundsets),profiles=prepare(instruments);
   for(const sound of sounds){
     if(sound.kind!=='samples'||sound.range||sound.notes)throw new Error('楽器・音源の設定が不正です。');
+    if(sound.release!==undefined&&(!Number.isFinite(sound.release)||sound.release<0))throw new Error('音源の余韻設定が不正です。');
     const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
     if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
+    if(sound.loops!==undefined&&(sound.release===undefined||!sound.loops||Array.isArray(sound.loops)||!Object.entries(sound.loops).every(([note,loop])=>Object.hasOwn(sound.files,note)&&Array.isArray(loop)&&loop.length===2&&loop.every(Number.isFinite)&&loop[0]>=0&&loop[1]>loop[0])))throw new Error('音源のループ設定が不正です。');
   }
   const arrangements=new Map();
   for(const profile of profiles){
+    if(profile.percussion!==undefined&&typeof profile.percussion!=='boolean')throw new Error('打楽器の設定が不正です。');
+    if(profile.gmProgram!==undefined&&(!Number.isInteger(profile.gmProgram)||profile.gmProgram<0||profile.gmProgram>127))throw new Error('GM音色番号が不正です。');
     const sound=sounds.find(item=>item.id===profile.defaultSoundset),shared=arrangements.get(profile.arrangedFor);
     if(typeof profile.arrangedFor!=='string'||!/^[a-z][a-z0-9]*$/.test(profile.arrangedFor)||!!profile.range===!!profile.notes||!sound||![...profile.allowed].every(n=>n>=21&&n<=108&&sound.allowed.has(n))||shared&&(shared.size!==profile.allowed.size||![...shared].every(n=>profile.allowed.has(n))))throw new Error('楽器・音源の設定が不正です。');
     arrangements.set(profile.arrangedFor,profile.allowed);

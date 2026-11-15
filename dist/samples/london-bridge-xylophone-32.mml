@@ -6,7 +6,8 @@ Time(0) Tempo={132.000132000132}
 Time(30720) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:Melody}
+CH=1 @14
+TrackName={Musicbox:1:instrument=xylophone-32:Melody}
 q100
 Time(0) n91,%1440,100,90
 Time(1440) n93,%480,100,90

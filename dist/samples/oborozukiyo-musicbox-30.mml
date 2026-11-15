@@ -8,7 +8,8 @@ Time(0) Tempo={72}
 Time(23040) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+CH=1 @11
+TrackName={Musicbox:1:instrument=musicbox-30:%E6%97%8B%E5%BE%8B}
 q100
 Time(0) n76,%480,100,90
 Time(480) n76,%480,100,90
@@ -43,7 +44,8 @@ Time(21120) n72,%1920,100,90
 Time(23040) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+CH=2 @11
+TrackName={Musicbox:2:instrument=musicbox-30:%E4%BC%B4%E5%A5%8F}
 q100
 Time(960) n60,%960,100,60
 Time(960) n64,%960,100,60

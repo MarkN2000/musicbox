@@ -14,7 +14,8 @@ Time(32256) Tempo={108}
 Time(42240) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E9%8D%B5%E7%9B%A4}
+CH=1 @1
+TrackName={Musicbox:1:instrument=piano-88:%E9%8D%B5%E7%9B%A4}
 q100
 Time(0) n57,%192,100,73
 Time(0) n60,%192,100,73

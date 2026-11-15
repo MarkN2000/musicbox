@@ -8,7 +8,8 @@ Time(0) Tempo={144}
 Time(38400) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E4%B8%BB%E9%A1%8C}
+CH=1 @11
+TrackName={Musicbox:1:instrument=musicbox-30:%E4%B8%BB%E9%A1%8C}
 q100
 Time(0) n79,%320,100,90
 Time(320) n79,%320,100,90
@@ -33,7 +34,8 @@ Time(33600) n87,%4800,100,90
 Time(38400) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:2:%E5%86%85%E5%A3%B0}
+CH=2 @11
+TrackName={Musicbox:2:instrument=musicbox-30:%E5%86%85%E5%A3%B0}
 q100
 Time(14400) n70,%2880,100,65
 Time(17280) n73,%1920,100,65
@@ -47,7 +49,8 @@ Time(33600) n70,%4800,100,65
 Time(38400) MetaText={Musicbox end}
 
 TR=4
-TrackName={Musicbox:3:%E5%88%BB%E3%81%BF}
+CH=3 @11
+TrackName={Musicbox:3:instrument=musicbox-30:%E5%88%BB%E3%81%BF}
 q100
 Time(0) n55,%320,100,60
 Time(0) n62,%320,100,60
@@ -202,7 +205,8 @@ Time(37440) n62,%960,100,60
 Time(38400) MetaText={Musicbox end}
 
 TR=5
-TrackName={Musicbox:3:%E5%88%BB%E3%81%BF}
+CH=4 @11
+TrackName={Musicbox:3:instrument=musicbox-30:%E5%88%BB%E3%81%BF}
 q100
 Time(37920) n62,%480,100,60
 Time(38400) MetaText={Musicbox end}

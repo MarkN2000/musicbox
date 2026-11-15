@@ -9,7 +9,8 @@ Time(0) Tempo={180}
 Time(104448) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E9%8D%B5%E7%9B%A4}
+CH=1 @1
+TrackName={Musicbox:1:instrument=piano-88:%E9%8D%B5%E7%9B%A4}
 q100
 Time(0) n50,%192,100,95
 Time(0) n57,%96,100,69
@@ -1578,7 +1579,8 @@ Time(103296) n62,%384,100,101
 Time(104448) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:1:%E9%8D%B5%E7%9B%A4}
+CH=2 @1
+TrackName={Musicbox:1:instrument=piano-88:%E9%8D%B5%E7%9B%A4}
 q100
 Time(96) n62,%96,100,69
 Time(96) n69,%96,100,101
@@ -2055,7 +2057,8 @@ Time(98112) n57,%192,100,69
 Time(104448) MetaText={Musicbox end}
 
 TR=4
-TrackName={Musicbox:1:%E9%8D%B5%E7%9B%A4}
+CH=3 @1
+TrackName={Musicbox:1:instrument=piano-88:%E9%8D%B5%E7%9B%A4}
 q100
 Time(576) n62,%192,100,95
 Time(1344) n62,%192,100,95

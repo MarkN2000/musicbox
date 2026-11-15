@@ -8,7 +8,8 @@ Time(960) TimeSignature(3,4)
 Time(46080) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:Melody}
+CH=1 @11
+TrackName={Musicbox:1:instrument=musicbox-30:Melody}
 q100 v90
 o6 g4
 o7 c8 r8 c8 d8 c8 o6 b8
@@ -30,7 +31,8 @@ o7 c2
 Time(46080) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:2:Accompaniment}
+CH=2 @11
+TrackName={Musicbox:2:instrument=musicbox-30:Accompaniment}
 q100
 Time(960) n60,%480,100,60
 Time(1920) n64,%480,100,60

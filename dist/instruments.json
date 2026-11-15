@@ -38,7 +38,8 @@
       "A6"
     ],
     "defaultSoundset": "musicbox-30",
-    "arrangedFor": "musicbox30"
+    "arrangedFor": "musicbox30",
+    "gmProgram": 10
   },
   {
     "id": "piano-88",
@@ -51,7 +52,8 @@
       108
     ],
     "defaultSoundset": "vsco-piano",
-    "arrangedFor": "piano88"
+    "arrangedFor": "piano88",
+    "gmProgram": 0
   },
   {
     "id": "piano-61",
@@ -64,7 +66,8 @@
       96
     ],
     "defaultSoundset": "vsco-piano",
-    "arrangedFor": "piano61"
+    "arrangedFor": "piano61",
+    "gmProgram": 0
   },
   {
     "id": "marimba-61",
@@ -77,7 +80,22 @@
       96
     ],
     "defaultSoundset": "vsco-marimba",
-    "arrangedFor": "piano61"
+    "arrangedFor": "piano61",
+    "gmProgram": 12
+  },
+  {
+    "id": "vsco-xylophone-concert",
+    "name": {
+      "ja": "44音木琴",
+      "en": "44-note xylophone"
+    },
+    "range": [
+      65,
+      108
+    ],
+    "defaultSoundset": "vsco-xylophone-concert",
+    "arrangedFor": "vscoxylophoneconcert",
+    "gmProgram": 13
   },
   {
     "id": "xylophone-32",
@@ -90,6 +108,1803 @@
       108
     ],
     "defaultSoundset": "vsco-xylophone",
-    "arrangedFor": "xylophone32"
+    "arrangedFor": "xylophone32",
+    "gmProgram": 13
+  },
+  {
+    "id": "musescore-gm052",
+    "name": {
+      "ja": "合唱（アー）",
+      "en": "choir aahs"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm052",
+    "arrangedFor": "musescoregm52",
+    "gmProgram": 52
+  },
+  {
+    "id": "musescore-gm069",
+    "name": {
+      "ja": "イングリッシュホルン",
+      "en": "english horn"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm069",
+    "arrangedFor": "musescoregm69",
+    "gmProgram": 69
+  },
+  {
+    "id": "musescore-gm001",
+    "name": {
+      "ja": "ブライトピアノ",
+      "en": "bright acoustic piano"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm001",
+    "arrangedFor": "musescoregm1",
+    "gmProgram": 1
+  },
+  {
+    "id": "musescore-gm002",
+    "name": {
+      "ja": "エレクトリックグランド",
+      "en": "electric grand piano"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm002",
+    "arrangedFor": "musescoregm2",
+    "gmProgram": 2
+  },
+  {
+    "id": "musescore-gm003",
+    "name": {
+      "ja": "ホンキートンク",
+      "en": "honky-tonk piano"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm003",
+    "arrangedFor": "musescoregm3",
+    "gmProgram": 3
+  },
+  {
+    "id": "musescore-gm004",
+    "name": {
+      "ja": "エレピ1",
+      "en": "electric piano 1"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm004",
+    "arrangedFor": "musescoregm4",
+    "gmProgram": 4
+  },
+  {
+    "id": "musescore-gm005",
+    "name": {
+      "ja": "エレピ2",
+      "en": "electric piano 2"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm005",
+    "arrangedFor": "musescoregm5",
+    "gmProgram": 5
+  },
+  {
+    "id": "musescore-gm006",
+    "name": {
+      "ja": "ハープシコード",
+      "en": "harpsichord"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm006",
+    "arrangedFor": "musescoregm6",
+    "gmProgram": 6
+  },
+  {
+    "id": "musescore-gm007",
+    "name": {
+      "ja": "クラビネット",
+      "en": "clavi"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm007",
+    "arrangedFor": "musescoregm7",
+    "gmProgram": 7
+  },
+  {
+    "id": "musescore-gm015",
+    "name": {
+      "ja": "ダルシマー",
+      "en": "dulcimer"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm015",
+    "arrangedFor": "musescoregm15",
+    "gmProgram": 15
+  },
+  {
+    "id": "musescore-gm016",
+    "name": {
+      "ja": "ドローバーオルガン",
+      "en": "drawbar organ"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm016",
+    "arrangedFor": "musescoregm16",
+    "gmProgram": 16
+  },
+  {
+    "id": "musescore-gm017",
+    "name": {
+      "ja": "パーカッシブオルガン",
+      "en": "percussive organ"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm017",
+    "arrangedFor": "musescoregm17",
+    "gmProgram": 17
+  },
+  {
+    "id": "musescore-gm018",
+    "name": {
+      "ja": "ロックオルガン",
+      "en": "rock organ"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm018",
+    "arrangedFor": "musescoregm18",
+    "gmProgram": 18
+  },
+  {
+    "id": "musescore-gm020",
+    "name": {
+      "ja": "リードオルガン",
+      "en": "reed organ"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm020",
+    "arrangedFor": "musescoregm20",
+    "gmProgram": 20
+  },
+  {
+    "id": "musescore-gm021",
+    "name": {
+      "ja": "アコーディオン",
+      "en": "accordion"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm021",
+    "arrangedFor": "musescoregm21",
+    "gmProgram": 21
+  },
+  {
+    "id": "musescore-gm022",
+    "name": {
+      "ja": "ハーモニカ",
+      "en": "harmonica"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm022",
+    "arrangedFor": "musescoregm22",
+    "gmProgram": 22
+  },
+  {
+    "id": "musescore-gm023",
+    "name": {
+      "ja": "バンドネオン",
+      "en": "tango accordion"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm023",
+    "arrangedFor": "musescoregm23",
+    "gmProgram": 23
+  },
+  {
+    "id": "musescore-gm025",
+    "name": {
+      "ja": "スチール弦ギター",
+      "en": "acoustic guitar (steel)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm025",
+    "arrangedFor": "musescoregm25",
+    "gmProgram": 25
+  },
+  {
+    "id": "musescore-gm026",
+    "name": {
+      "ja": "ジャズギター",
+      "en": "electric guitar (jazz)"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm026",
+    "arrangedFor": "musescoregm26",
+    "gmProgram": 26
+  },
+  {
+    "id": "musescore-gm028",
+    "name": {
+      "ja": "ミュートギター",
+      "en": "electric guitar (muted)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm028",
+    "arrangedFor": "musescoregm28",
+    "gmProgram": 28
+  },
+  {
+    "id": "musescore-gm029",
+    "name": {
+      "ja": "オーバードライブギター",
+      "en": "overdriven guitar"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm029",
+    "arrangedFor": "musescoregm29",
+    "gmProgram": 29
+  },
+  {
+    "id": "musescore-gm030",
+    "name": {
+      "ja": "ディストーションギター",
+      "en": "distortion guitar"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm030",
+    "arrangedFor": "musescoregm30",
+    "gmProgram": 30
+  },
+  {
+    "id": "musescore-gm031",
+    "name": {
+      "ja": "ギターハーモニクス",
+      "en": "guitar harmonics"
+    },
+    "range": [
+      21,
+      85
+    ],
+    "defaultSoundset": "musescore-gm031",
+    "arrangedFor": "musescoregm31",
+    "gmProgram": 31
+  },
+  {
+    "id": "musescore-gm032",
+    "name": {
+      "ja": "アコースティックベース",
+      "en": "acoustic bass"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm032",
+    "arrangedFor": "musescoregm32",
+    "gmProgram": 32
+  },
+  {
+    "id": "musescore-gm035",
+    "name": {
+      "ja": "フレットレスベース",
+      "en": "fretless bass"
+    },
+    "range": [
+      21,
+      84
+    ],
+    "defaultSoundset": "musescore-gm035",
+    "arrangedFor": "musescoregm35",
+    "gmProgram": 35
+  },
+  {
+    "id": "musescore-gm036",
+    "name": {
+      "ja": "スラップベース1",
+      "en": "slap bass 1"
+    },
+    "range": [
+      21,
+      84
+    ],
+    "defaultSoundset": "musescore-gm036",
+    "arrangedFor": "musescoregm36",
+    "gmProgram": 36
+  },
+  {
+    "id": "musescore-gm037",
+    "name": {
+      "ja": "スラップベース2",
+      "en": "slap bass 2"
+    },
+    "range": [
+      21,
+      84
+    ],
+    "defaultSoundset": "musescore-gm037",
+    "arrangedFor": "musescoregm37",
+    "gmProgram": 37
+  },
+  {
+    "id": "musescore-gm038",
+    "name": {
+      "ja": "シンセベース1",
+      "en": "synth bass 1"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm038",
+    "arrangedFor": "musescoregm38",
+    "gmProgram": 38
+  },
+  {
+    "id": "musescore-gm039",
+    "name": {
+      "ja": "シンセベース2",
+      "en": "synth bass 2"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm039",
+    "arrangedFor": "musescoregm39",
+    "gmProgram": 39
+  },
+  {
+    "id": "musescore-gm049",
+    "name": {
+      "ja": "スローストリングス",
+      "en": "string ensemble 2"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm049",
+    "arrangedFor": "musescoregm49",
+    "gmProgram": 49
+  },
+  {
+    "id": "musescore-gm050",
+    "name": {
+      "ja": "シンセストリングス1",
+      "en": "synthstrings 1"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm050",
+    "arrangedFor": "musescoregm50",
+    "gmProgram": 50
+  },
+  {
+    "id": "musescore-gm051",
+    "name": {
+      "ja": "シンセストリングス2",
+      "en": "synthstrings 2"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm051",
+    "arrangedFor": "musescoregm51",
+    "gmProgram": 51
+  },
+  {
+    "id": "musescore-gm053",
+    "name": {
+      "ja": "合唱（ウー）",
+      "en": "voice oohs"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm053",
+    "arrangedFor": "musescoregm53",
+    "gmProgram": 53
+  },
+  {
+    "id": "musescore-gm054",
+    "name": {
+      "ja": "シンセボイス",
+      "en": "synth voice"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm054",
+    "arrangedFor": "musescoregm54",
+    "gmProgram": 54
+  },
+  {
+    "id": "musescore-gm055",
+    "name": {
+      "ja": "オーケストラヒット",
+      "en": "orchestra hit"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm055",
+    "arrangedFor": "musescoregm55",
+    "gmProgram": 55
+  },
+  {
+    "id": "musescore-gm061",
+    "name": {
+      "ja": "ブラスセクション",
+      "en": "brass section"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm061",
+    "arrangedFor": "musescoregm61",
+    "gmProgram": 61
+  },
+  {
+    "id": "musescore-gm062",
+    "name": {
+      "ja": "シンセブラス1",
+      "en": "synthbrass 1"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm062",
+    "arrangedFor": "musescoregm62",
+    "gmProgram": 62
+  },
+  {
+    "id": "musescore-gm063",
+    "name": {
+      "ja": "シンセブラス2",
+      "en": "synthbrass 2"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm063",
+    "arrangedFor": "musescoregm63",
+    "gmProgram": 63
+  },
+  {
+    "id": "musescore-gm064",
+    "name": {
+      "ja": "ソプラノサックス",
+      "en": "soprano sax"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm064",
+    "arrangedFor": "musescoregm64",
+    "gmProgram": 64
+  },
+  {
+    "id": "musescore-gm065",
+    "name": {
+      "ja": "アルトサックス",
+      "en": "alto sax"
+    },
+    "range": [
+      21,
+      87
+    ],
+    "defaultSoundset": "musescore-gm065",
+    "arrangedFor": "musescoregm65",
+    "gmProgram": 65
+  },
+  {
+    "id": "musescore-gm066",
+    "name": {
+      "ja": "テナーサックス",
+      "en": "tenor sax"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm066",
+    "arrangedFor": "musescoregm66",
+    "gmProgram": 66
+  },
+  {
+    "id": "musescore-gm067",
+    "name": {
+      "ja": "バリトンサックス",
+      "en": "baritone sax"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm067",
+    "arrangedFor": "musescoregm67",
+    "gmProgram": 67
+  },
+  {
+    "id": "musescore-gm074",
+    "name": {
+      "ja": "リコーダー",
+      "en": "recorder"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm074",
+    "arrangedFor": "musescoregm74",
+    "gmProgram": 74
+  },
+  {
+    "id": "musescore-gm075",
+    "name": {
+      "ja": "パンフルート",
+      "en": "pan flute"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm075",
+    "arrangedFor": "musescoregm75",
+    "gmProgram": 75
+  },
+  {
+    "id": "musescore-gm076",
+    "name": {
+      "ja": "ボトルブロー",
+      "en": "blown bottle"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm076",
+    "arrangedFor": "musescoregm76",
+    "gmProgram": 76
+  },
+  {
+    "id": "musescore-gm077",
+    "name": {
+      "ja": "尺八",
+      "en": "shakuhachi"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm077",
+    "arrangedFor": "musescoregm77",
+    "gmProgram": 77
+  },
+  {
+    "id": "musescore-gm078",
+    "name": {
+      "ja": "ホイッスル",
+      "en": "whistle"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm078",
+    "arrangedFor": "musescoregm78",
+    "gmProgram": 78
+  },
+  {
+    "id": "musescore-gm079",
+    "name": {
+      "ja": "オカリナ",
+      "en": "ocarina"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm079",
+    "arrangedFor": "musescoregm79",
+    "gmProgram": 79
+  },
+  {
+    "id": "musescore-gm080",
+    "name": {
+      "ja": "スクエアリード",
+      "en": "lead 1 (square)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm080",
+    "arrangedFor": "musescoregm80",
+    "gmProgram": 80
+  },
+  {
+    "id": "musescore-gm081",
+    "name": {
+      "ja": "ソーリード",
+      "en": "lead 2 (sawtooth)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm081",
+    "arrangedFor": "musescoregm81",
+    "gmProgram": 81
+  },
+  {
+    "id": "musescore-gm082",
+    "name": {
+      "ja": "カリオペリード",
+      "en": "lead 3 (calliope)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm082",
+    "arrangedFor": "musescoregm82",
+    "gmProgram": 82
+  },
+  {
+    "id": "musescore-gm083",
+    "name": {
+      "ja": "チフリード",
+      "en": "lead 4 (chiff)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm083",
+    "arrangedFor": "musescoregm83",
+    "gmProgram": 83
+  },
+  {
+    "id": "musescore-gm084",
+    "name": {
+      "ja": "チャラング",
+      "en": "lead 5 (charang)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm084",
+    "arrangedFor": "musescoregm84",
+    "gmProgram": 84
+  },
+  {
+    "id": "musescore-gm085",
+    "name": {
+      "ja": "ボイスリード",
+      "en": "lead 6 (voice)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm085",
+    "arrangedFor": "musescoregm85",
+    "gmProgram": 85
+  },
+  {
+    "id": "musescore-gm086",
+    "name": {
+      "ja": "フィフスリード",
+      "en": "lead 7 (fifths)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm086",
+    "arrangedFor": "musescoregm86",
+    "gmProgram": 86
+  },
+  {
+    "id": "musescore-gm087",
+    "name": {
+      "ja": "ベース＆リード",
+      "en": "lead 8 (bass + lead)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm087",
+    "arrangedFor": "musescoregm87",
+    "gmProgram": 87
+  },
+  {
+    "id": "musescore-gm088",
+    "name": {
+      "ja": "ファンタジア",
+      "en": "pad 1 (new age)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm088",
+    "arrangedFor": "musescoregm88",
+    "gmProgram": 88
+  },
+  {
+    "id": "musescore-gm089",
+    "name": {
+      "ja": "ウォームパッド",
+      "en": "pad 2 (warm)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm089",
+    "arrangedFor": "musescoregm89",
+    "gmProgram": 89
+  },
+  {
+    "id": "musescore-gm090",
+    "name": {
+      "ja": "ポリシンセパッド",
+      "en": "pad 3 (polysynth)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm090",
+    "arrangedFor": "musescoregm90",
+    "gmProgram": 90
+  },
+  {
+    "id": "musescore-gm091",
+    "name": {
+      "ja": "スペースボイス",
+      "en": "pad 4 (choir)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm091",
+    "arrangedFor": "musescoregm91",
+    "gmProgram": 91
+  },
+  {
+    "id": "musescore-gm092",
+    "name": {
+      "ja": "ボウドパッド",
+      "en": "pad 5 (bowed)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm092",
+    "arrangedFor": "musescoregm92",
+    "gmProgram": 92
+  },
+  {
+    "id": "musescore-gm093",
+    "name": {
+      "ja": "メタリックパッド",
+      "en": "pad 6 (metallic)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm093",
+    "arrangedFor": "musescoregm93",
+    "gmProgram": 93
+  },
+  {
+    "id": "musescore-gm094",
+    "name": {
+      "ja": "ハローパッド",
+      "en": "pad 7 (halo)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm094",
+    "arrangedFor": "musescoregm94",
+    "gmProgram": 94
+  },
+  {
+    "id": "musescore-gm095",
+    "name": {
+      "ja": "スイープパッド",
+      "en": "pad 8 (sweep)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm095",
+    "arrangedFor": "musescoregm95",
+    "gmProgram": 95
+  },
+  {
+    "id": "musescore-gm096",
+    "name": {
+      "ja": "アイスレイン",
+      "en": "fx 1 (rain)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm096",
+    "arrangedFor": "musescoregm96",
+    "gmProgram": 96
+  },
+  {
+    "id": "musescore-gm097",
+    "name": {
+      "ja": "サウンドトラック",
+      "en": "fx 2 (soundtrack)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm097",
+    "arrangedFor": "musescoregm97",
+    "gmProgram": 97
+  },
+  {
+    "id": "musescore-gm098",
+    "name": {
+      "ja": "クリスタル",
+      "en": "fx 3 (crystal)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm098",
+    "arrangedFor": "musescoregm98",
+    "gmProgram": 98
+  },
+  {
+    "id": "musescore-gm099",
+    "name": {
+      "ja": "アトモスフィア",
+      "en": "fx 4 (atmosphere)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm099",
+    "arrangedFor": "musescoregm99",
+    "gmProgram": 99
+  },
+  {
+    "id": "musescore-gm100",
+    "name": {
+      "ja": "ブライトネス",
+      "en": "fx 5 (brightness)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm100",
+    "arrangedFor": "musescoregm100",
+    "gmProgram": 100
+  },
+  {
+    "id": "musescore-gm101",
+    "name": {
+      "ja": "ゴブリン",
+      "en": "fx 6 (goblins)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm101",
+    "arrangedFor": "musescoregm101",
+    "gmProgram": 101
+  },
+  {
+    "id": "musescore-gm102",
+    "name": {
+      "ja": "エコー",
+      "en": "fx 7 (echoes)"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm102",
+    "arrangedFor": "musescoregm102",
+    "gmProgram": 102
+  },
+  {
+    "id": "musescore-gm103",
+    "name": {
+      "ja": "スターテーマ",
+      "en": "fx 8 (sci-fi)"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm103",
+    "arrangedFor": "musescoregm103",
+    "gmProgram": 103
+  },
+  {
+    "id": "musescore-gm104",
+    "name": {
+      "ja": "シタール",
+      "en": "sitar"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm104",
+    "arrangedFor": "musescoregm104",
+    "gmProgram": 104
+  },
+  {
+    "id": "musescore-gm105",
+    "name": {
+      "ja": "バンジョー",
+      "en": "banjo"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm105",
+    "arrangedFor": "musescoregm105",
+    "gmProgram": 105
+  },
+  {
+    "id": "musescore-gm106",
+    "name": {
+      "ja": "三味線",
+      "en": "shamisen"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm106",
+    "arrangedFor": "musescoregm106",
+    "gmProgram": 106
+  },
+  {
+    "id": "musescore-gm107",
+    "name": {
+      "ja": "琴",
+      "en": "koto"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm107",
+    "arrangedFor": "musescoregm107",
+    "gmProgram": 107
+  },
+  {
+    "id": "musescore-gm108",
+    "name": {
+      "ja": "カリンバ",
+      "en": "kalimba"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm108",
+    "arrangedFor": "musescoregm108",
+    "gmProgram": 108
+  },
+  {
+    "id": "musescore-gm109",
+    "name": {
+      "ja": "バグパイプ",
+      "en": "bag pipe"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm109",
+    "arrangedFor": "musescoregm109",
+    "gmProgram": 109
+  },
+  {
+    "id": "musescore-gm110",
+    "name": {
+      "ja": "フィドル",
+      "en": "fiddle"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm110",
+    "arrangedFor": "musescoregm110",
+    "gmProgram": 110
+  },
+  {
+    "id": "musescore-gm111",
+    "name": {
+      "ja": "シャナイ",
+      "en": "shanai"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm111",
+    "arrangedFor": "musescoregm111",
+    "gmProgram": 111
+  },
+  {
+    "id": "musescore-gm112",
+    "name": {
+      "ja": "ティンカーベル",
+      "en": "tinkle bell"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm112",
+    "arrangedFor": "musescoregm112",
+    "gmProgram": 112
+  },
+  {
+    "id": "musescore-gm113",
+    "name": {
+      "ja": "アゴゴ",
+      "en": "agogo"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm113",
+    "arrangedFor": "musescoregm113",
+    "gmProgram": 113
+  },
+  {
+    "id": "musescore-gm114",
+    "name": {
+      "ja": "スチールドラム",
+      "en": "steel drums"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm114",
+    "arrangedFor": "musescoregm114",
+    "gmProgram": 114
+  },
+  {
+    "id": "musescore-gm115",
+    "name": {
+      "ja": "ウッドブロック",
+      "en": "woodblock"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm115",
+    "arrangedFor": "musescoregm115",
+    "gmProgram": 115
+  },
+  {
+    "id": "musescore-gm116",
+    "name": {
+      "ja": "太鼓",
+      "en": "taiko drum"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm116",
+    "arrangedFor": "musescoregm116",
+    "gmProgram": 116
+  },
+  {
+    "id": "musescore-gm117",
+    "name": {
+      "ja": "メロディックタム",
+      "en": "melodic tom"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm117",
+    "arrangedFor": "musescoregm117",
+    "gmProgram": 117
+  },
+  {
+    "id": "musescore-gm118",
+    "name": {
+      "ja": "シンセドラム",
+      "en": "synth drum"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm118",
+    "arrangedFor": "musescoregm118",
+    "gmProgram": 118
+  },
+  {
+    "id": "musescore-gm119",
+    "name": {
+      "ja": "リバースシンバル",
+      "en": "reverse cymbal"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm119",
+    "arrangedFor": "musescoregm119",
+    "gmProgram": 119
+  },
+  {
+    "id": "musescore-gm120",
+    "name": {
+      "ja": "フレットノイズ",
+      "en": "guitar fret noise"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm120",
+    "arrangedFor": "musescoregm120",
+    "gmProgram": 120
+  },
+  {
+    "id": "musescore-gm121",
+    "name": {
+      "ja": "ブレスノイズ",
+      "en": "breath noise"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm121",
+    "arrangedFor": "musescoregm121",
+    "gmProgram": 121
+  },
+  {
+    "id": "musescore-gm122",
+    "name": {
+      "ja": "波",
+      "en": "seashore"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm122",
+    "arrangedFor": "musescoregm122",
+    "gmProgram": 122
+  },
+  {
+    "id": "musescore-gm123",
+    "name": {
+      "ja": "鳥の声",
+      "en": "bird tweet"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm123",
+    "arrangedFor": "musescoregm123",
+    "gmProgram": 123
+  },
+  {
+    "id": "musescore-gm124",
+    "name": {
+      "ja": "電話",
+      "en": "telephone ring"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm124",
+    "arrangedFor": "musescoregm124",
+    "gmProgram": 124
+  },
+  {
+    "id": "musescore-gm125",
+    "name": {
+      "ja": "ヘリコプター",
+      "en": "helicopter"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm125",
+    "arrangedFor": "musescoregm125",
+    "gmProgram": 125
+  },
+  {
+    "id": "musescore-gm126",
+    "name": {
+      "ja": "拍手",
+      "en": "applause"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm126",
+    "arrangedFor": "musescoregm126",
+    "gmProgram": 126
+  },
+  {
+    "id": "musescore-gm127",
+    "name": {
+      "ja": "銃声",
+      "en": "gunshot"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm127",
+    "arrangedFor": "musescoregm127",
+    "gmProgram": 127
+  },
+  {
+    "id": "stamperadam-celesta",
+    "name": {
+      "ja": "チェレスタ",
+      "en": "Celesta"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm008",
+    "arrangedFor": "stamperadamcelesta",
+    "gmProgram": 8
+  },
+  {
+    "id": "vsco-glockenspiel",
+    "name": {
+      "ja": "グロッケン",
+      "en": "Glockenspiel"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm009",
+    "arrangedFor": "vscoglockenspiel",
+    "gmProgram": 9
+  },
+  {
+    "id": "vsco-tubular-bells",
+    "name": {
+      "ja": "チューブラーベル",
+      "en": "Tubular bells"
+    },
+    "range": [
+      60,
+      79
+    ],
+    "defaultSoundset": "vsco-tubular-bells",
+    "arrangedFor": "vscotubularbells",
+    "gmProgram": 14
+  },
+  {
+    "id": "vsco-vibraphone",
+    "name": {
+      "ja": "ヴィブラフォン",
+      "en": "Vibraphone"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm011",
+    "arrangedFor": "vscovibraphone",
+    "gmProgram": 11
+  },
+  {
+    "id": "vsco-church-organ",
+    "name": {
+      "ja": "パイプオルガン",
+      "en": "Church organ"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm019",
+    "arrangedFor": "vscochurchorgan",
+    "gmProgram": 19
+  },
+  {
+    "id": "vsco-violin",
+    "name": {
+      "ja": "ヴァイオリン",
+      "en": "Violin"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm040",
+    "arrangedFor": "vscoviolin",
+    "gmProgram": 40
+  },
+  {
+    "id": "vsco-viola",
+    "name": {
+      "ja": "ヴィオラ",
+      "en": "Viola"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm041",
+    "arrangedFor": "vscoviola",
+    "gmProgram": 41
+  },
+  {
+    "id": "vsco-cello",
+    "name": {
+      "ja": "チェロ",
+      "en": "Cello"
+    },
+    "range": [
+      36,
+      84
+    ],
+    "defaultSoundset": "vsco-cello",
+    "arrangedFor": "vscocello",
+    "gmProgram": 42
+  },
+  {
+    "id": "vsco-contrabass",
+    "name": {
+      "ja": "コントラバス",
+      "en": "Contrabass"
+    },
+    "range": [
+      24,
+      60
+    ],
+    "defaultSoundset": "vsco-contrabass",
+    "arrangedFor": "vscocontrabass",
+    "gmProgram": 43
+  },
+  {
+    "id": "vsco-tremolo-strings",
+    "name": {
+      "ja": "トレモロ・ストリングス",
+      "en": "Tremolo strings"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm044",
+    "arrangedFor": "vscotremolostrings",
+    "gmProgram": 44
+  },
+  {
+    "id": "vsco-pizzicato-strings",
+    "name": {
+      "ja": "ピチカート・ストリングス",
+      "en": "Pizzicato strings"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm045",
+    "arrangedFor": "vscopizzicatostrings",
+    "gmProgram": 45
+  },
+  {
+    "id": "vsco-harp",
+    "name": {
+      "ja": "ハープ",
+      "en": "Harp"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm046",
+    "arrangedFor": "vscoharp",
+    "gmProgram": 46
+  },
+  {
+    "id": "vsco-timpani",
+    "name": {
+      "ja": "ティンパニ",
+      "en": "Timpani"
+    },
+    "range": [
+      36,
+      60
+    ],
+    "defaultSoundset": "vsco-timpani",
+    "arrangedFor": "vscotimpani",
+    "gmProgram": 47
+  },
+  {
+    "id": "vsco-strings",
+    "name": {
+      "ja": "ストリングス",
+      "en": "Strings"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm048",
+    "arrangedFor": "vscostrings",
+    "gmProgram": 48
+  },
+  {
+    "id": "vsco-trumpet",
+    "name": {
+      "ja": "トランペット",
+      "en": "Trumpet"
+    },
+    "range": [
+      52,
+      84
+    ],
+    "defaultSoundset": "vsco-trumpet",
+    "arrangedFor": "vscotrumpet",
+    "gmProgram": 56
+  },
+  {
+    "id": "vsco-trombone",
+    "name": {
+      "ja": "トロンボーン",
+      "en": "Trombone"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm057",
+    "arrangedFor": "vscotrombone",
+    "gmProgram": 57
+  },
+  {
+    "id": "vsco-tuba",
+    "name": {
+      "ja": "チューバ",
+      "en": "Tuba"
+    },
+    "range": [
+      21,
+      72
+    ],
+    "defaultSoundset": "musescore-gm058",
+    "arrangedFor": "vscotuba",
+    "gmProgram": 58
+  },
+  {
+    "id": "vsco-muted-trumpet",
+    "name": {
+      "ja": "弱音トランペット",
+      "en": "Muted trumpet"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm059",
+    "arrangedFor": "vscomutedtrumpet",
+    "gmProgram": 59
+  },
+  {
+    "id": "vsco-french-horn",
+    "name": {
+      "ja": "ホルン",
+      "en": "French horn"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm060",
+    "arrangedFor": "vscofrenchhorn",
+    "gmProgram": 60
+  },
+  {
+    "id": "vsco-oboe",
+    "name": {
+      "ja": "オーボエ",
+      "en": "Oboe"
+    },
+    "range": [
+      21,
+      96
+    ],
+    "defaultSoundset": "musescore-gm068",
+    "arrangedFor": "vscooboe",
+    "gmProgram": 68
+  },
+  {
+    "id": "vsco-bassoon",
+    "name": {
+      "ja": "ファゴット",
+      "en": "Bassoon"
+    },
+    "range": [
+      21,
+      84
+    ],
+    "defaultSoundset": "musescore-gm070",
+    "arrangedFor": "vscobassoon",
+    "gmProgram": 70
+  },
+  {
+    "id": "vsco-clarinet",
+    "name": {
+      "ja": "クラリネット",
+      "en": "Clarinet"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm071",
+    "arrangedFor": "vscoclarinet",
+    "gmProgram": 71
+  },
+  {
+    "id": "vsco-piccolo",
+    "name": {
+      "ja": "ピッコロ",
+      "en": "Piccolo"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm072",
+    "arrangedFor": "vscopiccolo",
+    "gmProgram": 72
+  },
+  {
+    "id": "vsco-flute",
+    "name": {
+      "ja": "フルート",
+      "en": "Flute"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm073",
+    "arrangedFor": "vscoflute",
+    "gmProgram": 73
+  },
+  {
+    "id": "vsco-percussion",
+    "name": {
+      "ja": "打楽器",
+      "en": "Percussion"
+    },
+    "notes": [
+      "B1",
+      "C2",
+      "C#2",
+      "D2",
+      "D#2",
+      "E2",
+      "F2",
+      "F#2",
+      "G2",
+      "G#2",
+      "A2",
+      "A#2",
+      "B2",
+      "C3",
+      "C#3",
+      "D3",
+      "D#3",
+      "E3",
+      "F3",
+      "F#3",
+      "G3",
+      "G#3",
+      "A3",
+      "A#3",
+      "B3",
+      "C4",
+      "C#4",
+      "D4",
+      "D#4",
+      "E4",
+      "F4",
+      "F#4",
+      "G4",
+      "G#4",
+      "A4",
+      "A#4",
+      "B4",
+      "C5",
+      "C#5",
+      "D5",
+      "D#5",
+      "E5",
+      "F5",
+      "F#5",
+      "G5",
+      "G#5",
+      "A5"
+    ],
+    "defaultSoundset": "vsco-percussion",
+    "arrangedFor": "vscopercussion",
+    "gmProgram": 0,
+    "percussion": true
+  },
+  {
+    "id": "freepats-nylon-guitar",
+    "name": {
+      "ja": "ナイロン弦ギター",
+      "en": "Nylon-string guitar"
+    },
+    "range": [
+      29,
+      88
+    ],
+    "defaultSoundset": "freepats-nylon-guitar",
+    "arrangedFor": "freepatsnylonguitar",
+    "gmProgram": 24
+  },
+  {
+    "id": "freepats-clean-guitar",
+    "name": {
+      "ja": "クリーン・エレキギター",
+      "en": "Clean electric guitar"
+    },
+    "range": [
+      21,
+      108
+    ],
+    "defaultSoundset": "musescore-gm027",
+    "arrangedFor": "freepatscleanguitar",
+    "gmProgram": 27
+  },
+  {
+    "id": "freepats-finger-bass",
+    "name": {
+      "ja": "指弾きベース",
+      "en": "Fingered bass"
+    },
+    "range": [
+      23,
+      67
+    ],
+    "defaultSoundset": "freepats-finger-bass",
+    "arrangedFor": "freepatsfingerbass",
+    "gmProgram": 33
+  },
+  {
+    "id": "freepats-picked-bass",
+    "name": {
+      "ja": "ピック弾きベース",
+      "en": "Picked bass"
+    },
+    "range": [
+      23,
+      67
+    ],
+    "defaultSoundset": "freepats-picked-bass",
+    "arrangedFor": "freepatspickedbass",
+    "gmProgram": 34
   }
 ]

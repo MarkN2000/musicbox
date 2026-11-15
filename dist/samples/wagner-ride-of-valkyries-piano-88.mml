@@ -10,7 +10,8 @@ Time(0) Tempo={138}
 Time(2580480) MetaText={Musicbox end}
 
 TR=2
-TrackName={Musicbox:1:%E3%83%94%E3%82%A2%E3%83%8E}
+CH=1 @1
+TrackName={Musicbox:1:instrument=piano-88:%E3%83%94%E3%82%A2%E3%83%8E}
 q100 v80
 Time(0) n35,%420
 Time(420) n37,%420
@@ -6360,7 +6361,8 @@ Time(2572080) n95,%1680
 Time(2580480) MetaText={Musicbox end}
 
 TR=3
-TrackName={Musicbox:1:%E3%83%94%E3%82%A2%E3%83%8E}
+CH=2 @1
+TrackName={Musicbox:1:instrument=piano-88:%E3%83%94%E3%82%A2%E3%83%8E}
 q100 v80
 Time(344960) n58,%560
 Time(431760) n48,%840
