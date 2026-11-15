@@ -22,7 +22,7 @@ function translateEditor(){
   translatePage();document.title=t('MML編集 — オルゴール譜');$('language').value=currentLanguage();
   Object.assign(gmNames,{0:t('ピアノ'),10:t('オルゴール'),12:t('マリンバ'),13:t('木琴')});
   for(const profile of defs.instruments){const key=profile.percussion?'drums':profile.gmProgram;if(key!==undefined&&![0,10,12,13].includes(key))gmNames[key]=profile.name[currentLanguage()];}
-  $('instrument').replaceChildren(...Object.entries(gmNames).map(([program,name])=>new Option(name,program)));
+  $('instrument').replaceChildren(...Object.entries(gmNames).map(([program,name])=>{const option=new Option(name,program);option.style.setProperty('--part-hue',partHue({program:Number(program),percussion:program==='drums'}));return option;}));
   $('play').title=t(playing?'一時停止':'再生');$('play').setAttribute('aria-label',$('play').title);$('save').textContent=t(audioExporting?'保存中…':'保存 ▾');
   if(saveState)saveProgress(saveState.key,saveState.value,saveState.values);
 }
@@ -62,7 +62,7 @@ function exportSource(){
   if(textEditing)throw Error('編集中のMMLを適用してから書き出してください。');
   return score.warnings?.length?serializeMml(score):source();
 }
-function partHue(part){return (210+(part.percussion?128:part.program??0)*137.508)%360;}
+function partHue(part){return (210+(part.percussion?128:part.program??0)*360/129)%360;}
 function renderNotes(){
   const viewport=$('viewport'),from=Math.max(0,(viewport.scrollLeft-KEY-200)/px*score.ppq),to=(viewport.scrollLeft+viewport.clientWidth+200)/px*score.ppq;
   const fragment=document.createDocumentFragment(),parts=new Map(score.parts.map(p=>[p.id,p]));
@@ -149,7 +149,7 @@ function render(){
   else if(activeTab.offsetLeft+activeTab.offsetWidth>$('partTabs').scrollLeft+$('partTabs').clientWidth)$('partTabs').scrollLeft=activeTab.offsetLeft+activeTab.offsetWidth-$('partTabs').clientWidth;
   $('instrument').querySelector('option[data-unsupported]')?.remove();
   if(!Object.hasOwn(gmNames,part.percussion?'drums':part.program??0)){const option=new Option(t('mmlUnsupportedProgram',{program:(part.program??0)+1}),part.program);option.dataset.unsupported='';$('instrument').add(option);}
-  $('instrument').value=part.percussion?'drums':String(part.program??0);
+  $('instrument').value=part.percussion?'drums':String(part.program??0);$('instrument').style.setProperty('--part-hue',partHue(part));
   const ranges=defs.instruments.filter(i=>i.gmProgram===(part.program??0)&&!!i.percussion===!!part.percussion);$('partRange').replaceChildren(...ranges.map(i=>new Option(i.name[currentLanguage()],i.id)));
   if(!instrument)$('partRange').add(new Option(t('未対応の音域'),'unsupported'));
   $('partRange').value=instrument?.id??'unsupported';$('partRange').disabled=$('partRange').options.length<2||textEditing||sourceText!==null;
@@ -210,7 +210,7 @@ function endGesture(cancel=false){
       const note={id:nextId(),part:activePart,midi:g.point.midi,tick,duration:Math.max(1,Math.min(score.end-tick,stepTick(unit))),velocity:90};
       score.notes.push(note);selected=new Set([note.id]);
     }
-    if(g.kind==='move'&&!g.moved){score.notes=score.notes.filter(n=>n.id!==g.anchor.id);selected.delete(g.anchor.id);}
+    if(g.kind==='move'&&!g.moved&&g.last.pointerType==='touch'){score.notes=score.notes.filter(n=>n.id!==g.anchor.id);selected.delete(g.anchor.id);}
     try{validateScore(score);if(JSON.stringify(score)!==JSON.stringify(g.before.score))remember(g.before);}
     catch(e){score=g.before.score;error(e.message);}
   }
@@ -377,7 +377,7 @@ async function play(){
         if(at>=ctx.currentTime-.02)voice(buffers.get(e.sound.id+':'+e.note.midi),Math.max(ctx.currentTime,at),e.duration,e.note.velocity,e.sound,e.control);
         session.next++;
       }
-      if(ctx.currentTime>=session.start+(session.endCycle+1)*span+.1){stop(false);return;}
+      if(ctx.currentTime>=session.start+(session.endCycle+1)*span+.1){stop(false);cursor=0;renderCursor();return;}
       if(ctx.currentTime-session.start>(session.cycle+2)*span){session.cycle=Math.floor((ctx.currentTime-session.start)/span);session.next=0;}
     }
     function frame(){if(playing!==session)return;const elapsed=Math.max(begin,ctx.currentTime-session.start);cursor=tickAt(score,elapsed>=(session.endCycle+1)*span?span:elapsed%span);renderCursor();session.frame=requestAnimationFrame(frame);}
@@ -385,7 +385,7 @@ async function play(){
   }catch(e){if(epoch===playEpoch){stop();error(e.message);}}finally{if(epoch===playEpoch)playPending=false;}
 }
 $('play').onclick=()=>playing?pause():void play();
-$('stop').onclick=()=>{stop();cursor=0;renderCursor();};
+$('stop').onclick=()=>{stop();cursor=0;$('viewport').scrollLeft=0;renderCursor();};
 $('loop').onclick=()=>{
   const on=$('loop').getAttribute('aria-pressed')!=='true';$('loop').setAttribute('aria-pressed',String(on));if(!playing)return;
   const session=playing,now=getAudio().currentTime,cycle=Math.max(0,Math.floor((now-session.start)/session.span));

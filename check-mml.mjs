@@ -345,10 +345,15 @@ pointerControls.set('grid',{value:'.25'});
 const touchNote=original.notes.find(n=>n.part===2),touch={button:0,isPrimary:true,pointerType:'touch',pointerId:1,clientX:4,clientY:(108-touchNote.midi)*20+10,preventDefault(){},target:{closest:selector=>selector==='.midi-note'?{dataset:{id:String(touchNote.id)}}:null}};
 const pointerHistory=[];pointerContext.remember=before=>pointerHistory.push(before);
 for(const pointerType of ['mouse','touch']){
-  const event={...touch,pointerType};pointerContext.score=structuredClone(original);pointerContext.selected=new Set(original.notes.map(n=>n.id));
+  const event={...touch,pointerType};pointerContext.score=structuredClone(original);pointerContext.selected=new Set(original.notes.filter(n=>n.part===2).map(n=>n.id));
   pointerContext.beginNote(event);pointerContext.updateGesture({...event,clientX:6,clientY:touch.clientY+1});pointerContext.endGesture();
-  assert.deepEqual(musical(pointerContext.score),musical({...original,notes:original.notes.filter(n=>n.id!==touchNote.id)}),'本体クリック・タップは押した音だけを削除する');
-  assert.deepEqual(musical(pointerHistory.at(-1).score),musical(original),'削除前を取り消し履歴に残す');
+  if(pointerType==='touch'){
+    assert.deepEqual(musical(pointerContext.score),musical({...original,notes:original.notes.filter(n=>n.id!==touchNote.id)}),'タップは押した音だけを削除する');
+    assert.deepEqual(musical(pointerHistory.at(-1).score),musical(original),'削除前を取り消し履歴に残す');
+  }else{
+    assert.deepEqual(musical(pointerContext.score),musical(original),'マウスクリックは音符を削除しない');assert.ok(pointerContext.selected.has(touchNote.id));assert.equal(pointerHistory.length,0,'選択だけでは編集履歴を増やさない');
+    for(const key of ['Backspace','Delete']){keyContext.score=structuredClone(pointerContext.score);keyContext.activePart=2;keyContext.selected=new Set(pointerContext.selected);press(key);assert.deepEqual(musical(keyContext.score),musical({...original,notes:original.notes.filter(n=>!pointerContext.selected.has(n.id))}),key+'で選択音だけを削除する');}
+  }
   pointerContext.score=structuredClone(original);pointerContext.selected.clear();pointerContext.beginNote(event);pointerContext.endGesture(true);
   assert.deepEqual(musical(pointerContext.score),musical(original),'操作中断では本体の音を削除しない');
   const handle={...event,target:{closest:selector=>selector==='.midi-note'?{dataset:{id:String(touchNote.id)}}:selector==='.handle'?{}:null}};
@@ -462,8 +467,8 @@ for(const looping of [false,true]){
   const p=player(looping,0);await p.play();assert.equal(p.controls.get('play')['aria-label'],'一時停止');p.advance(10.83);
   const tick=tickAt(p.context.score,.75);p.controls.get('play').onclick();assert.equal(p.context.playing,null);assert.ok(Math.abs(p.context.cursor-tick)<1e-8);assert.ok(p.events.every(e=>e.stop===p.audio.currentTime));assert.equal(p.controls.get('play')['aria-label'],'再生');
   p.advance(11.5);assert.ok(Math.abs(p.context.cursor-tick)<1e-8,'一時停止中は位置を保つ');await p.play();assert.ok(Math.abs(p.context.playing.startTick-tick)<1e-8,'ループ中も一時停止した位置から再開する');
-  p.controls.get('stop').onclick();assert.equal(p.context.cursor,0);assert.equal(p.context.playing,null);assert.equal(p.context.paused,false);await p.play();assert.equal(p.context.playing.startTick,0);p.context.stop();
-  p.context.cursor=1920;p.controls.get('stop').onclick();assert.equal(p.context.cursor,0,'停止中も停止ボタンで曲頭に戻る');
+  p.controls.get('viewport').scrollLeft=150;p.controls.get('stop').onclick();assert.equal(p.controls.get('viewport').scrollLeft,0,'停止ボタンで表示もすぐ先頭へ戻る');assert.equal(p.controls.get('viewport').scrollTop,240,'縦の表示位置は保つ');assert.equal(p.context.cursor,0);assert.equal(p.context.playing,null);assert.equal(p.context.paused,false);await p.play();assert.equal(p.context.playing.startTick,0);p.context.stop();
+  p.context.cursor=1920;p.controls.get('viewport').scrollLeft=150;p.controls.get('stop').onclick();assert.equal(p.context.cursor,0,'停止中も停止ボタンで曲頭に戻る');assert.equal(p.controls.get('viewport').scrollLeft,0,'停止中も表示をすぐ先頭へ戻す');
 }
 const whole=player(true,1920);await whole.play();whole.advance(16);
 for(const [midi,times] of [[60,[10.08,13.08,16.08]],[62,[10.58,13.58]],[64,[12.08,15.08]]]){
@@ -476,6 +481,13 @@ toggled.controls.get('loop').onclick();toggled.advance(12.1);
 assert.equal(toggled.events.filter(e=>e.midi===60&&Math.abs(e.time-12.08)<1e-8&&e.stop>e.time).length,1,'再度ONにすると次周の先頭を一度だけ予約する');
 toggled.controls.get('loop').onclick();toggled.advance(15.3);assert.equal(toggled.context.playing,null,'OFFにした周の曲末で停止する');
 const once=player(false,1920);await once.play();once.advance(12.3);assert.equal(once.context.playing,null);assert.deepEqual(once.events.map(e=>e.midi),[60,64],'通常の途中再生では開始位置をまたぐ長音だけ復元する');
+for(const mode of ['start','middle','paused','loop']){
+  const p=player(mode==='loop',mode==='middle'?1920:0);await p.play();p.advance(10.83);
+  if(mode==='paused'){p.context.pause();await p.play();}
+  if(mode==='loop')p.controls.get('loop').onclick();
+  p.advance(20);assert.equal(p.context.playing,null);assert.equal(p.context.cursor,0,'曲末の自動停止では先頭へ戻る');assert.equal(p.context.paused,false);
+  p.controls.get('play').onclick();await new Promise(setImmediate);assert.equal(p.context.playing.startTick,0,mode+'でも再生ボタンは曲頭から始まる');p.context.stop();
+}
 const limited=player(false,0);limited.context.instrument.allowed=new Set([60,64]);await limited.play();limited.advance(13.3);assert.deepEqual(limited.events.map(e=>e.midi),[60,64],'楽譜に音域外の音が残っていても再生しない');
 const unsupportedPlayer=player(false,0);unsupportedPlayer.context.score.parts.find(p=>p.id===2).program=127;unsupportedPlayer.context.partProfiles.set(2,undefined);await unsupportedPlayer.play();unsupportedPlayer.advance(13.3);assert.deepEqual(unsupportedPlayer.events.map(e=>e.midi),[60,64],'未対応楽器の音符は保存に残しても別音色で発音しない');
 const mixedPlayer=player(false,0);mixedPlayer.context.partProfiles.set(2,instruments.find(i=>i.id==='marimba-61'));await mixedPlayer.play();mixedPlayer.advance(13.3);
