@@ -54,6 +54,7 @@ MarkNは、上記の録音・編曲・楽譜データについて保有する著
 | --- | --- |
 | VexFlow 4.2.5（簡易五線譜の描画） | MIT — [LICENSE-vexflow.txt](./dist/vendor/LICENSE-vexflow.txt)。公式npm配布物のBravura同梱版を使用し、出力時のみ読み込む。Bravura音楽フォントはSIL OFL 1.1 — [LICENSE-bravura.txt](./dist/vendor/LICENSE-bravura.txt)。 |
 | @tonejs/midi | MIT — [LICENSE-midi.md](./dist/vendor/LICENSE-midi.md) |
+| sakuramml 0.2.3（MML操作試作の変換器） | MIT — [LICENSE](./dist/vendor/sakura/LICENSE)。[公式ソースの固定版](https://github.com/kujirahand/sakuramml-rust/tree/bfefda9bca6b8ae6e9365be4525ce17e8f889a99)を `cargo build --release --target wasm32-unknown-unknown --lib`、wasm-bindgen 0.2.130の `--target web` でビルド。ソースは無改変。ソース内の実行時バージョン表記は0.2.2。 |
 | midi-file | MIT — [LICENSE-midi-file.md](./dist/vendor/LICENSE-midi-file.md) |
 | array-flatten | MIT — [LICENSE-array-flatten.txt](./dist/vendor/LICENSE-array-flatten.txt) |
 | lamejs 1.2.1（LAMEのJavaScript移植） | LGPL-3.0 — [ライセンス案内とソース配布物](./dist/vendor/LICENSE-lamejs.md)、[LGPL本文](./dist/vendor/LICENSE-LGPL-3.0.txt)、[GPL本文](./dist/vendor/LICENSE-GPL-3.0.txt) |

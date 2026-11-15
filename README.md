@@ -2,6 +2,8 @@
 
 公開サイト：**[musicbox.markn2000.com](https://musicbox.markn2000.com)**
 
+`dev` のMML操作試作は `/mml.html`。`npm start -- --lan` で起動し、表示されたLANアドレスの `/mml.html` を同じネットワークの別端末から開けます。ノート編集・途中テンポ・拍子変更・MML/MIDI保存を試せます。既存曲の再制作とResonite出力は未実装です。試作の検証は `node check-mml.mjs`。
+
 30音オルゴールや88鍵の楽器向けに、楽譜を編集・試聴してTXT・Resoniteパッケージ・MIDI・MP3・OGG（Vorbis）を書き出すWebアプリです。
 
 - マス目を押した瞬間に音を配置・削除できます。押したままなぞると連続入力でき、音のあるマスから始めると連続削除できます。ひと続きの操作はCtrl／Command＋Zでまとめて戻せます。

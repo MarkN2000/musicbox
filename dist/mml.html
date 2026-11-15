@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MML編集 — オルゴール譜</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="mml.css"></head>
+<body>
+<main><section class="editor">
+  <header class="editor-heading">
+    <h1><input id="scoreTitle" aria-label="曲名" maxlength="100"></h1>
+    <select id="instrument" aria-label="楽器"></select>
+    <div class="playback-actions"><button class="button primary" id="play" aria-label="再生" aria-pressed="false">▶</button><button class="button" id="loop" aria-pressed="false" title="曲全体をループ">ループ</button></div>
+    <div class="heading-actions"><button class="button" id="newScore">新規</button><button class="button" id="load">読み込む</button><button id="save" class="button" popovertarget="saveMenu">保存 ▾</button></div>
+  </header>
+  <div class="toolbar edit-tools">
+    <div class="tool-pair" role="group" aria-label="編集ツール"><button class="button" id="draw" aria-pressed="true">入力</button><button class="button" id="select" aria-pressed="false">選択</button></div>
+    <label title="縦線の間隔。配置済みの音は変わりません。">入力の細かさ <select id="grid"><option value="1">4分音符</option><option value=".5">8分音符</option><option value=".25" selected>16分音符</option><option value=".125">32分音符</option><option value="0.3333333333333333">8分三連符</option><option value="0.16666666666666666">16分三連符</option></select></label>
+    <button class="button" id="delete" disabled>削除</button>
+    <button class="button subtle" id="editMenuButton" popovertarget="editMenu">編集 ▾</button>
+    <div class="tool-pair"><button class="button" id="undo" aria-label="元に戻す" title="元に戻す（Ctrl / ⌘ + Z）">↶</button><button class="button" id="redo" aria-label="やり直す" title="やり直す（Ctrl / ⌘ + Shift + Z）">↷</button></div>
+    <div class="zoom"><button class="button" id="zoomOut" aria-label="縮小">−</button><output id="zoomLabel">100%</output><button class="button" id="zoomIn" aria-label="拡大">＋</button></div>
+  </div>
+  <input id="file" type="file" accept=".mml,.mid,.midi" hidden>
+  <div id="saveMenu" popover class="editor-menu"><button class="button" id="saveMml">MMLを保存</button><button class="button" id="saveMidi">MIDIを保存</button></div>
+  <div id="editMenu" popover class="editor-menu"><button class="button" id="selectAll" data-close-menu title="Ctrl / ⌘ + A">すべての音を選択</button><button class="button" id="copyNotes" data-close-menu title="Ctrl / ⌘ + C" disabled>選択音をコピー</button><button class="button" id="pasteNotes" data-close-menu title="Ctrl / ⌘ + V" disabled>カーソル位置に貼り付け</button>
+    <div id="noteProperties" hidden><hr><p id="selectionLabel"></p><label>開始位置（♩）<input id="noteStart" type="number" min="0" step="any" disabled></label><label>長さ（♩）<input id="noteDuration" type="number" min=".001" step="any" disabled></label><label>強さ<input id="noteVelocity" type="number" min="1" max="127" disabled></label></div>
+  </div>
+  <div id="markerMenu" popover class="editor-menu"><p id="markerPosition"></p><button class="button" id="addTempo" data-close-menu>テンポ変更</button><button class="button" id="addSignature" data-close-menu>拍子変更</button></div>
+  <div id="sourceNotice" class="notice" hidden>元のMMLを保持しています。ノート編集では展開したMMLへ書き直します。<button class="button" id="enableGui">ノート編集へ</button></div>
+  <p id="error" class="error-message" role="alert"></p>
+  <div id="viewport" tabindex="0" aria-label="ピアノロール。空白に配置、音符をドラッグで移動、右端で音長を変更。" role="region"><div id="canvas"><div id="keyboard"></div><div id="ruler"></div><div id="signatureLane" aria-label="拍子変更"></div><div id="tempoLane"></div><div id="noteArea"><div id="pitchRows"></div><svg id="gridLines" aria-hidden="true"></svg><div id="notes"></div><div id="selectionBox" hidden></div><div id="playhead"></div></div><div id="corner"><button class="button subtle" id="addMarker" popovertarget="markerMenu" title="カーソル位置にテンポ・拍子の変更点を追加">＋ 追加</button><span class="lane-label" id="signatureLabel">拍子</span><span class="lane-label" id="tempoLabel">テンポ</span></div></div></div>
+  <div class="editor-footer"><span id="stats"></span><output id="position">1:1</output><label title="四分音符を1とした曲の長さ。末尾の休符を含みます。">曲の長さ（♩）<input id="songEnd" type="number" min="1" step="1"></label><span class="prototype">dev・操作試作</span></div>
+  <details id="mmlPanel" class="preview-panel"><summary>MML <button class="button" id="copyMml">コピー</button></summary><div class="preview-content"><div class="mml-actions"><button class="button" id="editMml">MMLを編集</button><button class="button primary" id="applyMml" hidden>適用</button><button class="button" id="cancelMml" hidden>取消し</button><span id="mmlHint">ノート編集から生成したMMLです。</span></div><textarea id="mml" spellcheck="false" readonly aria-label="MML"></textarea></div></details>
+  <details class="preview-panel"><summary>操作のヒント・試作の範囲</summary><div class="preview-content help">
+    <p>空白を押すと1枠分の音を置きます。「入力の細かさ」は縦線の間隔です。変更しても既存の音は変わりません。音符は胴体で移動、右端で長さを調整できます。</p>
+    <p>音符を押して「削除」で消せます。「選択」では空白をドラッグして複数選択。「編集」には全選択・コピー・貼り付けと、選択音の位置・長さ・強さがあります。全体移調は全選択して上下に移動します。↶で元に戻せます。</p>
+    <p>スマホの「入力」では空白をなぞってスクロールできます。音を置いた後、右端を動かして長さを変えます。「選択」では空白を囲んで複数選択できます。</p>
+    <p>時間軸を押すと再生開始位置を選べます。▶は再生中に停止ボタンになり、ループは曲全体を繰り返します。テンポ・拍子はマーカーを押して変更し、「＋ 追加」で途中の変更点を置きます。♩とBPMの基準は四分音符です。拍子を変えても音符は動きません。</p>
+    <p>キー操作：Deleteで削除、Ctrl / ⌘ + A・C・Vで全選択・コピー・貼り付け、Zで取り消し、Shift + Zでやり直し。上下キーで半音、Shift＋上下で1オクターブ移動。Shift＋ドラッグで複数選択、Alt / Optionで縦線への吸着を一時解除、Spaceで再生・停止します。</p>
+    <p>試作はMML/MIDIの入出力、段階的なテンポ変更、途中の拍子変更に対応しています。徐々に変わるテンポ・マクロ・繰り返し・ペダル、Resoniteパッケージ・五線譜・音声出力、既存曲の再制作は未対応です。<a href="/">現在のサイト</a></p>
+  </div></details>
+</section></main>
+<dialog id="tempoDialog"><form method="dialog" id="tempoForm"><h2>テンポ変更</h2><label>位置（♩・0始まり）<input id="tempoTick" type="number" min="0" step=".25" required></label><label>BPM <input id="tempoBpm" type="number" min="20" max="400" step=".000001" required></label><div class="heading-actions"><button type="button" class="button danger" id="removeTempo">削除</button><button class="button" value="cancel" formnovalidate>取消し</button><button class="button primary" value="apply">適用</button></div></form></dialog>
+<dialog id="signatureDialog"><form method="dialog" id="signatureForm"><h2>拍子変更</h2><label>位置（♩・0始まり）<input id="signatureTick" type="number" min="0" step="any" required></label><label>分子<input id="signatureNumerator" type="number" min="1" max="32" step="1" required></label><label>分母<select id="signatureDenominator"><option>1</option><option>2</option><option>4</option><option>8</option><option>16</option><option>32</option></select></label><p class="signature-hint">この位置から新しい小節。音符とテンポは変更しません。</p><p id="signatureError" class="error-message" role="alert"></p><div class="heading-actions"><button type="button" class="button danger" id="removeSignature">削除</button><button class="button" value="cancel" formnovalidate>取消し</button><button class="button primary" value="apply">適用</button></div></form></dialog>
+<script type="module" src="mml-app.js"></script>
+</body></html>

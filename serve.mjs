@@ -2,11 +2,15 @@ import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {resolve,sep,extname} from 'node:path';
+import {networkInterfaces} from 'node:os';
 const root=fileURLToPath(new URL('./dist/',import.meta.url));
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.ogg':'audio/ogg','.json':'application/json; charset=utf-8','.txt':'text/plain; charset=utf-8'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.ogg':'audio/ogg','.json':'application/json; charset=utf-8','.txt':'text/plain; charset=utf-8','.mml':'text/plain; charset=utf-8','.wasm':'application/wasm'};
 createServer(async(req,res)=>{try{
   const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname),path=resolve(root,'.'+(name==='/'?'/index.html':name));
   if(!path.startsWith(root.endsWith(sep)?root:root+sep))throw new Error('範囲外');
   const body=await readFile(path);
   res.writeHead(200,{'Content-Type':types[extname(path)]||'application/octet-stream','Cache-Control':'no-store'});res.end(body);
-}catch{res.writeHead(404);res.end('Not found');}}).listen(4173,process.argv.includes('--lan')?'0.0.0.0':'127.0.0.1',()=>process.stdout.write('Local: http://127.0.0.1:4173\n'));
+}catch{res.writeHead(404);res.end('Not found');}}).listen(4173,process.argv.includes('--lan')?'0.0.0.0':'127.0.0.1',()=>{
+  process.stdout.write('Local: http://127.0.0.1:4173/mml.html\n');
+  if(process.argv.includes('--lan'))for(const item of Object.values(networkInterfaces()).flat())if(item.family==='IPv4'&&!item.internal)process.stdout.write(`LAN: http://${item.address}:4173/mml.html\n`);
+});
