@@ -13,23 +13,23 @@
         {
           "id": "air-on-g-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "air-on-g-musicbox-30.mml"
         },
         {
           "id": "air-on-g-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "air-on-g-piano-88.mml"
         },
         {
-          "id": "air-on-g-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "air-on-g-xylophone-32.mml"
+          "id": "air-on-g-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "air-on-g-orchestra.mml"
         }
       ]
     },
@@ -45,15 +45,15 @@
         {
           "id": "akatombo-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "akatombo-musicbox-30.mml"
         },
         {
           "id": "akatombo-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "akatombo-xylophone-32.mml"
         }
       ]
@@ -70,15 +70,15 @@
         {
           "id": "alps-ichimanjaku-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "alps-ichimanjaku-musicbox-30.mml"
         },
         {
           "id": "alps-ichimanjaku-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "alps-ichimanjaku-xylophone-32.mml"
         }
       ]
@@ -95,23 +95,16 @@
         {
           "id": "amaryllis-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "amaryllis-musicbox-30.mml"
         },
         {
           "id": "amaryllis-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "amaryllis-piano-88.mml"
-        },
-        {
-          "id": "amaryllis-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "amaryllis-xylophone-32.mml"
         }
       ]
     },
@@ -127,23 +120,16 @@
         {
           "id": "amazing-grace-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "amazing-grace-musicbox-30.mml"
         },
         {
           "id": "amazing-grace-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "amazing-grace-piano-88.mml"
-        },
-        {
-          "id": "amazing-grace-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "amazing-grace-xylophone-32.mml"
         }
       ]
     },
@@ -159,15 +145,15 @@
         {
           "id": "aogeba-totoshi-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "aogeba-totoshi-musicbox-30.mml"
         },
         {
           "id": "aogeba-totoshi-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "aogeba-totoshi-xylophone-32.mml"
         }
       ]
@@ -184,23 +170,16 @@
         {
           "id": "army-goes-rolling-along-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "army-goes-rolling-along-musicbox-30.mml"
         },
         {
           "id": "army-goes-rolling-along-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "army-goes-rolling-along-piano-88.mml"
-        },
-        {
-          "id": "army-goes-rolling-along-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "army-goes-rolling-along-xylophone-32.mml"
         }
       ]
     },
@@ -216,23 +195,16 @@
         {
           "id": "auld-lang-syne-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "auld-lang-syne-musicbox-30.mml"
         },
         {
           "id": "auld-lang-syne-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "auld-lang-syne-piano-88.mml"
-        },
-        {
-          "id": "auld-lang-syne-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "auld-lang-syne-xylophone-32.mml"
         }
       ]
     },
@@ -249,30 +221,16 @@
         {
           "id": "bach-toccata-fugue-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "bach-toccata-fugue-musicbox-30.mml"
-        },
-        {
-          "id": "bach-toccata-fugue-piano-61",
-          "arranged_for": "piano61",
-          "label_ja": "ピアノ61",
-          "label_en": "Piano 61",
-          "file": "bach-toccata-fugue-piano-61.mml"
         },
         {
           "id": "bach-toccata-fugue-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "bach-toccata-fugue-piano-88.mml"
-        },
-        {
-          "id": "bach-toccata-fugue-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "bach-toccata-fugue-xylophone-32.mml"
         }
       ]
     },
@@ -288,23 +246,16 @@
         {
           "id": "battle-hymn-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "battle-hymn-musicbox-30.mml"
         },
         {
           "id": "battle-hymn-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "battle-hymn-piano-88.mml"
-        },
-        {
-          "id": "battle-hymn-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "battle-hymn-xylophone-32.mml"
         }
       ]
     },
@@ -321,23 +272,23 @@
         {
           "id": "beethoven-fate-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "beethoven-fate-musicbox-30.mml"
         },
         {
           "id": "beethoven-fate-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "beethoven-fate-piano-88.mml"
         },
         {
-          "id": "beethoven-fate-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "beethoven-fate-xylophone-32.mml"
+          "id": "beethoven-fate-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "beethoven-fate-orchestra.mml"
         }
       ]
     },
@@ -354,23 +305,16 @@
         {
           "id": "bizet-farandole-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "bizet-farandole-musicbox-30.mml"
         },
         {
           "id": "bizet-farandole-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "bizet-farandole-piano-88.mml"
-        },
-        {
-          "id": "bizet-farandole-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "bizet-farandole-xylophone-32.mml"
         }
       ]
     },
@@ -387,23 +331,16 @@
         {
           "id": "blue-danube-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "blue-danube-musicbox-30.mml"
         },
         {
           "id": "blue-danube-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "blue-danube-piano-88.mml"
-        },
-        {
-          "id": "blue-danube-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "blue-danube-xylophone-32.mml"
         }
       ]
     },
@@ -420,23 +357,16 @@
         {
           "id": "brahms-hungarian-dance-5-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "brahms-hungarian-dance-5-musicbox-30.mml"
         },
         {
           "id": "brahms-hungarian-dance-5-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "brahms-hungarian-dance-5-piano-88.mml"
-        },
-        {
-          "id": "brahms-hungarian-dance-5-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "brahms-hungarian-dance-5-xylophone-32.mml"
         }
       ]
     },
@@ -453,23 +383,16 @@
         {
           "id": "brahms-lullaby-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "brahms-lullaby-musicbox-30.mml"
         },
         {
           "id": "brahms-lullaby-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "brahms-lullaby-piano-88.mml"
-        },
-        {
-          "id": "brahms-lullaby-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "brahms-lullaby-xylophone-32.mml"
         }
       ]
     },
@@ -485,15 +408,15 @@
         {
           "id": "british-grenadiers-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "british-grenadiers-musicbox-30.mml"
         },
         {
           "id": "british-grenadiers-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "british-grenadiers-xylophone-32.mml"
         }
       ]
@@ -510,15 +433,15 @@
         {
           "id": "bun-bun-bun-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "bun-bun-bun-musicbox-30.mml"
         },
         {
           "id": "bun-bun-bun-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "bun-bun-bun-xylophone-32.mml"
         }
       ]
@@ -535,23 +458,16 @@
         {
           "id": "burgmuller-arabesque-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "burgmuller-arabesque-musicbox-30.mml"
         },
         {
           "id": "burgmuller-arabesque-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "burgmuller-arabesque-piano-88.mml"
-        },
-        {
-          "id": "burgmuller-arabesque-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "burgmuller-arabesque-xylophone-32.mml"
         }
       ]
     },
@@ -568,23 +484,16 @@
         {
           "id": "carmen-prelude-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "carmen-prelude-musicbox-30.mml"
         },
         {
           "id": "carmen-prelude-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "carmen-prelude-piano-88.mml"
-        },
-        {
-          "id": "carmen-prelude-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "carmen-prelude-xylophone-32.mml"
         }
       ]
     },
@@ -601,23 +510,16 @@
         {
           "id": "chanson-oignon-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "chanson-oignon-musicbox-30.mml"
         },
         {
           "id": "chanson-oignon-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "chanson-oignon-piano-88.mml"
-        },
-        {
-          "id": "chanson-oignon-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "chanson-oignon-xylophone-32.mml"
         }
       ]
     },
@@ -634,15 +536,15 @@
         {
           "id": "chocho-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "chocho-musicbox-30.mml"
         },
         {
           "id": "chocho-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "chocho-xylophone-32.mml"
         }
       ]
@@ -659,23 +561,16 @@
         {
           "id": "chopin-nocturne-2-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "chopin-nocturne-2-musicbox-30.mml"
         },
         {
           "id": "chopin-nocturne-2-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "chopin-nocturne-2-piano-88.mml"
-        },
-        {
-          "id": "chopin-nocturne-2-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "chopin-nocturne-2-xylophone-32.mml"
         }
       ]
     },
@@ -691,23 +586,16 @@
         {
           "id": "chopin-prelude-7-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "chopin-prelude-7-musicbox-30.mml"
         },
         {
           "id": "chopin-prelude-7-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "chopin-prelude-7-piano-88.mml"
-        },
-        {
-          "id": "chopin-prelude-7-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "chopin-prelude-7-xylophone-32.mml"
         }
       ]
     },
@@ -723,23 +611,16 @@
         {
           "id": "clair-de-lune-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "clair-de-lune-musicbox-30.mml"
         },
         {
           "id": "clair-de-lune-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "clair-de-lune-piano-88.mml"
-        },
-        {
-          "id": "clair-de-lune-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "clair-de-lune-xylophone-32.mml"
         }
       ]
     },
@@ -755,23 +636,16 @@
         {
           "id": "colonel-bogey-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "colonel-bogey-musicbox-30.mml"
         },
         {
           "id": "colonel-bogey-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "colonel-bogey-piano-88.mml"
-        },
-        {
-          "id": "colonel-bogey-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "colonel-bogey-xylophone-32.mml"
         }
       ]
     },
@@ -787,23 +661,16 @@
         {
           "id": "csikos-post-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "csikos-post-musicbox-30.mml"
         },
         {
           "id": "csikos-post-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "csikos-post-piano-88.mml"
-        },
-        {
-          "id": "csikos-post-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "csikos-post-xylophone-32.mml"
         }
       ]
     },
@@ -819,23 +686,16 @@
         {
           "id": "czardas-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "czardas-musicbox-30.mml"
         },
         {
           "id": "czardas-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "czardas-piano-88.mml"
-        },
-        {
-          "id": "czardas-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "czardas-xylophone-32.mml"
         }
       ]
     },
@@ -852,23 +712,16 @@
         {
           "id": "dolls-dream-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "dolls-dream-musicbox-30.mml"
         },
         {
           "id": "dolls-dream-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "dolls-dream-piano-88.mml"
-        },
-        {
-          "id": "dolls-dream-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "dolls-dream-xylophone-32.mml"
         }
       ]
     },
@@ -884,23 +737,23 @@
         {
           "id": "eine-kleine-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "eine-kleine-musicbox-30.mml"
         },
         {
           "id": "eine-kleine-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "eine-kleine-piano-88.mml"
         },
         {
-          "id": "eine-kleine-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "eine-kleine-xylophone-32.mml"
+          "id": "eine-kleine-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "eine-kleine-orchestra.mml"
         }
       ]
     },
@@ -916,15 +769,15 @@
         {
           "id": "erika-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "erika-musicbox-30.mml"
         },
         {
           "id": "erika-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "erika-xylophone-32.mml"
         }
       ]
@@ -941,15 +794,15 @@
         {
           "id": "frog-chorus-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "frog-chorus-musicbox-30.mml"
         },
         {
           "id": "frog-chorus-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "frog-chorus-xylophone-32.mml"
         }
       ]
@@ -966,23 +819,16 @@
         {
           "id": "funiculi-funicula-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "funiculi-funicula-musicbox-30.mml"
         },
         {
           "id": "funiculi-funicula-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "funiculi-funicula-piano-88.mml"
-        },
-        {
-          "id": "funiculi-funicula-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "funiculi-funicula-xylophone-32.mml"
         }
       ]
     },
@@ -998,23 +844,16 @@
         {
           "id": "fur-elise-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "fur-elise-musicbox-30.mml"
         },
         {
           "id": "fur-elise-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "fur-elise-piano-88.mml"
-        },
-        {
-          "id": "fur-elise-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "fur-elise-xylophone-32.mml"
         }
       ]
     },
@@ -1030,15 +869,15 @@
         {
           "id": "furusato-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "furusato-musicbox-30.mml"
         },
         {
           "id": "furusato-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "furusato-xylophone-32.mml"
         }
       ]
@@ -1055,23 +894,16 @@
         {
           "id": "grandfathers-clock-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "grandfathers-clock-musicbox-30.mml"
         },
         {
           "id": "grandfathers-clock-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "grandfathers-clock-piano-88.mml"
-        },
-        {
-          "id": "grandfathers-clock-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "grandfathers-clock-xylophone-32.mml"
         }
       ]
     },
@@ -1087,23 +919,16 @@
         {
           "id": "greensleeves-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "greensleeves-musicbox-30.mml"
         },
         {
           "id": "greensleeves-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "greensleeves-piano-88.mml"
-        },
-        {
-          "id": "greensleeves-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "greensleeves-xylophone-32.mml"
         }
       ]
     },
@@ -1120,23 +945,16 @@
         {
           "id": "grieg-morning-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "grieg-morning-musicbox-30.mml"
         },
         {
           "id": "grieg-morning-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "grieg-morning-piano-88.mml"
-        },
-        {
-          "id": "grieg-morning-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "grieg-morning-xylophone-32.mml"
         }
       ]
     },
@@ -1152,23 +970,16 @@
         {
           "id": "gymnopedie-1-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "gymnopedie-1-musicbox-30.mml"
         },
         {
           "id": "gymnopedie-1-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "gymnopedie-1-piano-88.mml"
-        },
-        {
-          "id": "gymnopedie-1-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "gymnopedie-1-xylophone-32.mml"
         }
       ]
     },
@@ -1185,23 +996,16 @@
         {
           "id": "hall-of-mountain-king-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "hall-of-mountain-king-musicbox-30.mml"
         },
         {
           "id": "hall-of-mountain-king-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "hall-of-mountain-king-piano-88.mml"
-        },
-        {
-          "id": "hall-of-mountain-king-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "hall-of-mountain-king-xylophone-32.mml"
         }
       ]
     },
@@ -1217,23 +1021,16 @@
         {
           "id": "handel-hallelujah-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "handel-hallelujah-musicbox-30.mml"
         },
         {
           "id": "handel-hallelujah-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "handel-hallelujah-piano-88.mml"
-        },
-        {
-          "id": "handel-hallelujah-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "handel-hallelujah-xylophone-32.mml"
         }
       ]
     },
@@ -1249,23 +1046,16 @@
         {
           "id": "handel-see-conquering-hero-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "handel-see-conquering-hero-musicbox-30.mml"
         },
         {
           "id": "handel-see-conquering-hero-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "handel-see-conquering-hero-piano-88.mml"
-        },
-        {
-          "id": "handel-see-conquering-hero-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "handel-see-conquering-hero-xylophone-32.mml"
         }
       ]
     },
@@ -1281,15 +1071,15 @@
         {
           "id": "happy-birthday-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "happy-birthday-musicbox-30.mml"
         },
         {
           "id": "happy-birthday-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "happy-birthday-xylophone-32.mml"
         }
       ]
@@ -1306,23 +1096,16 @@
         {
           "id": "haru-no-ogawa-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "haru-no-ogawa-musicbox-30.mml"
         },
         {
           "id": "haru-no-ogawa-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "haru-no-ogawa-piano-88.mml"
-        },
-        {
-          "id": "haru-no-ogawa-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "haru-no-ogawa-xylophone-32.mml"
         }
       ]
     },
@@ -1338,23 +1121,16 @@
         {
           "id": "home-sweet-home-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "home-sweet-home-musicbox-30.mml"
         },
         {
           "id": "home-sweet-home-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "home-sweet-home-piano-88.mml"
-        },
-        {
-          "id": "home-sweet-home-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "home-sweet-home-xylophone-32.mml"
         }
       ]
     },
@@ -1371,15 +1147,15 @@
         {
           "id": "ievan-polkka-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "ievan-polkka-musicbox-30.mml"
         },
         {
           "id": "ievan-polkka-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "ievan-polkka-xylophone-32.mml"
         }
       ]
@@ -1397,23 +1173,16 @@
         {
           "id": "jesu-joy-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "jesu-joy-musicbox-30.mml"
         },
         {
           "id": "jesu-joy-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "jesu-joy-piano-88.mml"
-        },
-        {
-          "id": "jesu-joy-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "jesu-joy-xylophone-32.mml"
         }
       ]
     },
@@ -1429,23 +1198,16 @@
         {
           "id": "jingle-bells-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "jingle-bells-musicbox-30.mml"
         },
         {
           "id": "jingle-bells-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "jingle-bells-piano-88.mml"
-        },
-        {
-          "id": "jingle-bells-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "jingle-bells-xylophone-32.mml"
         }
       ]
     },
@@ -1461,23 +1223,16 @@
         {
           "id": "jupiter-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "jupiter-musicbox-30.mml"
         },
         {
           "id": "jupiter-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "jupiter-piano-88.mml"
-        },
-        {
-          "id": "jupiter-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "jupiter-xylophone-32.mml"
         }
       ]
     },
@@ -1493,15 +1248,15 @@
         {
           "id": "kagome-kagome-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "kagome-kagome-musicbox-30.mml"
         },
         {
           "id": "kagome-kagome-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "kagome-kagome-xylophone-32.mml"
         }
       ]
@@ -1518,15 +1273,15 @@
         {
           "id": "kimigayo-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "kimigayo-musicbox-30.mml"
         },
         {
           "id": "kimigayo-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "kimigayo-xylophone-32.mml"
         }
       ]
@@ -1543,15 +1298,15 @@
         {
           "id": "kojo-no-tsuki-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "kojo-no-tsuki-musicbox-30.mml"
         },
         {
           "id": "kojo-no-tsuki-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "kojo-no-tsuki-xylophone-32.mml"
         }
       ]
@@ -1568,15 +1323,15 @@
         {
           "id": "kokyo-no-sora-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "kokyo-no-sora-musicbox-30.mml"
         },
         {
           "id": "kokyo-no-sora-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "kokyo-no-sora-xylophone-32.mml"
         }
       ]
@@ -1594,15 +1349,15 @@
         {
           "id": "korobushka-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "korobushka-musicbox-30.mml"
         },
         {
           "id": "korobushka-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "korobushka-xylophone-32.mml"
         }
       ]
@@ -1620,23 +1375,16 @@
         {
           "id": "little-fugue-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "little-fugue-musicbox-30.mml"
         },
         {
           "id": "little-fugue-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "little-fugue-piano-88.mml"
-        },
-        {
-          "id": "little-fugue-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "little-fugue-xylophone-32.mml"
         }
       ]
     },
@@ -1652,15 +1400,15 @@
         {
           "id": "london-bridge-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "london-bridge-musicbox-30.mml"
         },
         {
           "id": "london-bridge-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "london-bridge-xylophone-32.mml"
         }
       ]
@@ -1678,23 +1426,16 @@
         {
           "id": "maidens-prayer-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "maidens-prayer-musicbox-30.mml"
         },
         {
           "id": "maidens-prayer-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "maidens-prayer-piano-88.mml"
-        },
-        {
-          "id": "maidens-prayer-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "maidens-prayer-xylophone-32.mml"
         }
       ]
     },
@@ -1710,23 +1451,16 @@
         {
           "id": "mars-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mars-musicbox-30.mml"
         },
         {
           "id": "mars-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mars-piano-88.mml"
-        },
-        {
-          "id": "mars-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mars-xylophone-32.mml"
         }
       ]
     },
@@ -1743,23 +1477,16 @@
         {
           "id": "mendelssohn-spring-song-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mendelssohn-spring-song-musicbox-30.mml"
         },
         {
           "id": "mendelssohn-spring-song-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mendelssohn-spring-song-piano-88.mml"
-        },
-        {
-          "id": "mendelssohn-spring-song-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mendelssohn-spring-song-xylophone-32.mml"
         }
       ]
     },
@@ -1776,23 +1503,16 @@
         {
           "id": "mendelssohn-wedding-march-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mendelssohn-wedding-march-musicbox-30.mml"
         },
         {
           "id": "mendelssohn-wedding-march-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mendelssohn-wedding-march-piano-88.mml"
-        },
-        {
-          "id": "mendelssohn-wedding-march-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mendelssohn-wedding-march-xylophone-32.mml"
         }
       ]
     },
@@ -1809,30 +1529,16 @@
         {
           "id": "military-march-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "military-march-musicbox-30.mml"
-        },
-        {
-          "id": "military-march-piano-61",
-          "arranged_for": "piano61",
-          "label_ja": "ピアノ61",
-          "label_en": "Piano 61",
-          "file": "military-march-piano-61.mml"
         },
         {
           "id": "military-march-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "military-march-piano-88.mml"
-        },
-        {
-          "id": "military-march-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "military-march-xylophone-32.mml"
         }
       ]
     },
@@ -1849,23 +1555,16 @@
         {
           "id": "minuet-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "minuet-musicbox-30.mml"
         },
         {
           "id": "minuet-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "minuet-piano-88.mml"
-        },
-        {
-          "id": "minuet-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "minuet-xylophone-32.mml"
         }
       ]
     },
@@ -1881,23 +1580,16 @@
         {
           "id": "minute-waltz-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "minute-waltz-musicbox-30.mml"
         },
         {
           "id": "minute-waltz-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "minute-waltz-piano-88.mml"
-        },
-        {
-          "id": "minute-waltz-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "minute-waltz-xylophone-32.mml"
         }
       ]
     },
@@ -1913,23 +1605,16 @@
         {
           "id": "momiji-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "momiji-musicbox-30.mml"
         },
         {
           "id": "momiji-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "momiji-piano-88.mml"
-        },
-        {
-          "id": "momiji-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "momiji-xylophone-32.mml"
         }
       ]
     },
@@ -1945,23 +1630,16 @@
         {
           "id": "mozart-dies-irae-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mozart-dies-irae-musicbox-30.mml"
         },
         {
           "id": "mozart-dies-irae-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mozart-dies-irae-piano-88.mml"
-        },
-        {
-          "id": "mozart-dies-irae-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mozart-dies-irae-xylophone-32.mml"
         }
       ]
     },
@@ -1978,23 +1656,16 @@
         {
           "id": "mozart-figaro-overture-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mozart-figaro-overture-musicbox-30.mml"
         },
         {
           "id": "mozart-figaro-overture-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mozart-figaro-overture-piano-88.mml"
-        },
-        {
-          "id": "mozart-figaro-overture-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mozart-figaro-overture-xylophone-32.mml"
         }
       ]
     },
@@ -2011,23 +1682,16 @@
         {
           "id": "mozart-turkish-march-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mozart-turkish-march-musicbox-30.mml"
         },
         {
           "id": "mozart-turkish-march-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mozart-turkish-march-piano-88.mml"
-        },
-        {
-          "id": "mozart-turkish-march-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mozart-turkish-march-xylophone-32.mml"
         }
       ]
     },
@@ -2043,15 +1707,15 @@
         {
           "id": "mushi-no-koe-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mushi-no-koe-musicbox-30.mml"
         },
         {
           "id": "mushi-no-koe-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "mushi-no-koe-xylophone-32.mml"
         }
       ]
@@ -2069,23 +1733,16 @@
         {
           "id": "mussorgsky-promenade-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "mussorgsky-promenade-musicbox-30.mml"
         },
         {
           "id": "mussorgsky-promenade-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "mussorgsky-promenade-piano-88.mml"
-        },
-        {
-          "id": "mussorgsky-promenade-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "mussorgsky-promenade-xylophone-32.mml"
         }
       ]
     },
@@ -2101,15 +1758,15 @@
         {
           "id": "nanatsu-no-ko-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "nanatsu-no-ko-musicbox-30.mml"
         },
         {
           "id": "nanatsu-no-ko-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "nanatsu-no-ko-xylophone-32.mml"
         }
       ]
@@ -2127,15 +1784,15 @@
         {
           "id": "nedelka-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "nedelka-musicbox-30.mml"
         },
         {
           "id": "nedelka-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "nedelka-xylophone-32.mml"
         }
       ]
@@ -2153,23 +1810,16 @@
         {
           "id": "neko-funjatta-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "neko-funjatta-musicbox-30.mml"
         },
         {
           "id": "neko-funjatta-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "neko-funjatta-piano-88.mml"
-        },
-        {
-          "id": "neko-funjatta-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "neko-funjatta-xylophone-32.mml"
         }
       ]
     },
@@ -2186,23 +1836,16 @@
         {
           "id": "new-world-fourth-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "new-world-fourth-musicbox-30.mml"
         },
         {
           "id": "new-world-fourth-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "new-world-fourth-piano-88.mml"
-        },
-        {
-          "id": "new-world-fourth-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "new-world-fourth-xylophone-32.mml"
         }
       ]
     },
@@ -2219,23 +1862,16 @@
         {
           "id": "new-world-largo-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "new-world-largo-musicbox-30.mml"
         },
         {
           "id": "new-world-largo-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "new-world-largo-piano-88.mml"
-        },
-        {
-          "id": "new-world-largo-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "new-world-largo-xylophone-32.mml"
         }
       ]
     },
@@ -2252,23 +1888,16 @@
         {
           "id": "nutcracker-march-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "nutcracker-march-musicbox-30.mml"
         },
         {
           "id": "nutcracker-march-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "nutcracker-march-piano-88.mml"
-        },
-        {
-          "id": "nutcracker-march-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "nutcracker-march-xylophone-32.mml"
         }
       ]
     },
@@ -2284,23 +1913,16 @@
         {
           "id": "oborozukiyo-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "oborozukiyo-musicbox-30.mml"
         },
         {
           "id": "oborozukiyo-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "oborozukiyo-piano-88.mml"
-        },
-        {
-          "id": "oborozukiyo-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "oborozukiyo-xylophone-32.mml"
         }
       ]
     },
@@ -2317,23 +1939,16 @@
         {
           "id": "ode-to-joy-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "ode-to-joy-musicbox-30.mml"
         },
         {
           "id": "ode-to-joy-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "ode-to-joy-piano-88.mml"
-        },
-        {
-          "id": "ode-to-joy-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "ode-to-joy-xylophone-32.mml"
         }
       ]
     },
@@ -2350,23 +1965,16 @@
         {
           "id": "offenbach-can-can-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "offenbach-can-can-musicbox-30.mml"
         },
         {
           "id": "offenbach-can-can-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "offenbach-can-can-piano-88.mml"
-        },
-        {
-          "id": "offenbach-can-can-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "offenbach-can-can-xylophone-32.mml"
         }
       ]
     },
@@ -2382,15 +1990,15 @@
         {
           "id": "oklahoma-mixer-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "oklahoma-mixer-musicbox-30.mml"
         },
         {
           "id": "oklahoma-mixer-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "oklahoma-mixer-xylophone-32.mml"
         }
       ]
@@ -2407,23 +2015,16 @@
         {
           "id": "old-macdonald-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "old-macdonald-musicbox-30.mml"
         },
         {
           "id": "old-macdonald-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "old-macdonald-piano-88.mml"
-        },
-        {
-          "id": "old-macdonald-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "old-macdonald-xylophone-32.mml"
         }
       ]
     },
@@ -2439,23 +2040,23 @@
         {
           "id": "pachelbel-canon-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "pachelbel-canon-musicbox-30.mml"
         },
         {
           "id": "pachelbel-canon-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "pachelbel-canon-piano-88.mml"
         },
         {
-          "id": "pachelbel-canon-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "pachelbel-canon-xylophone-32.mml"
+          "id": "pachelbel-canon-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "pachelbel-canon-orchestra.mml"
         }
       ]
     },
@@ -2471,15 +2072,15 @@
         {
           "id": "panzerlied-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "panzerlied-musicbox-30.mml"
         },
         {
           "id": "panzerlied-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "panzerlied-xylophone-32.mml"
         }
       ]
@@ -2496,23 +2097,16 @@
         {
           "id": "pomp-and-circumstance-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "pomp-and-circumstance-musicbox-30.mml"
         },
         {
           "id": "pomp-and-circumstance-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "pomp-and-circumstance-piano-88.mml"
-        },
-        {
-          "id": "pomp-and-circumstance-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "pomp-and-circumstance-xylophone-32.mml"
         }
       ]
     },
@@ -2529,23 +2123,16 @@
         {
           "id": "radetzky-march-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "radetzky-march-musicbox-30.mml"
         },
         {
           "id": "radetzky-march-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "radetzky-march-piano-88.mml"
-        },
-        {
-          "id": "radetzky-march-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "radetzky-march-xylophone-32.mml"
         }
       ]
     },
@@ -2561,23 +2148,23 @@
         {
           "id": "ravel-bolero-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "ravel-bolero-musicbox-30.mml"
         },
         {
           "id": "ravel-bolero-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "ravel-bolero-piano-88.mml"
         },
         {
-          "id": "ravel-bolero-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "ravel-bolero-xylophone-32.mml"
+          "id": "ravel-bolero-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "ravel-bolero-orchestra.mml"
         }
       ]
     },
@@ -2594,23 +2181,16 @@
         {
           "id": "sakkijarven-polkka-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "sakkijarven-polkka-musicbox-30.mml"
         },
         {
           "id": "sakkijarven-polkka-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "sakkijarven-polkka-piano-88.mml"
-        },
-        {
-          "id": "sakkijarven-polkka-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "sakkijarven-polkka-xylophone-32.mml"
         }
       ]
     },
@@ -2626,23 +2206,16 @@
         {
           "id": "sakura-sakura-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "sakura-sakura-musicbox-30.mml"
         },
         {
           "id": "sakura-sakura-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "sakura-sakura-piano-88.mml"
-        },
-        {
-          "id": "sakura-sakura-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "sakura-sakura-xylophone-32.mml"
         }
       ]
     },
@@ -2659,23 +2232,16 @@
         {
           "id": "salut-damour-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "salut-damour-musicbox-30.mml"
         },
         {
           "id": "salut-damour-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "salut-damour-piano-88.mml"
-        },
-        {
-          "id": "salut-damour-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "salut-damour-xylophone-32.mml"
         }
       ]
     },
@@ -2691,23 +2257,16 @@
         {
           "id": "schubert-ave-maria-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "schubert-ave-maria-musicbox-30.mml"
         },
         {
           "id": "schubert-ave-maria-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "schubert-ave-maria-piano-88.mml"
-        },
-        {
-          "id": "schubert-ave-maria-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "schubert-ave-maria-xylophone-32.mml"
         }
       ]
     },
@@ -2723,23 +2282,16 @@
         {
           "id": "schumann-piano-concerto-first-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "schumann-piano-concerto-first-musicbox-30.mml"
         },
         {
           "id": "schumann-piano-concerto-first-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "schumann-piano-concerto-first-piano-88.mml"
-        },
-        {
-          "id": "schumann-piano-concerto-first-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "schumann-piano-concerto-first-xylophone-32.mml"
         }
       ]
     },
@@ -2755,23 +2307,16 @@
         {
           "id": "scotland-the-brave-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "scotland-the-brave-musicbox-30.mml"
         },
         {
           "id": "scotland-the-brave-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "scotland-the-brave-piano-88.mml"
-        },
-        {
-          "id": "scotland-the-brave-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "scotland-the-brave-xylophone-32.mml"
         }
       ]
     },
@@ -2787,15 +2332,15 @@
         {
           "id": "shabondama-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "shabondama-musicbox-30.mml"
         },
         {
           "id": "shabondama-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "shabondama-xylophone-32.mml"
         }
       ]
@@ -2812,23 +2357,16 @@
         {
           "id": "shojoji-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "shojoji-musicbox-30.mml"
         },
         {
           "id": "shojoji-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "shojoji-piano-88.mml"
-        },
-        {
-          "id": "shojoji-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "shojoji-xylophone-32.mml"
         }
       ]
     },
@@ -2844,15 +2382,15 @@
         {
           "id": "shucho-no-musume-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "shucho-no-musume-musicbox-30.mml"
         },
         {
           "id": "shucho-no-musume-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "shucho-no-musume-xylophone-32.mml"
         }
       ]
@@ -2870,23 +2408,16 @@
         {
           "id": "silent-night-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "silent-night-musicbox-30.mml"
         },
         {
           "id": "silent-night-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "silent-night-piano-88.mml"
-        },
-        {
-          "id": "silent-night-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "silent-night-xylophone-32.mml"
         }
       ]
     },
@@ -2903,23 +2434,16 @@
         {
           "id": "smetana-moldau-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "smetana-moldau-musicbox-30.mml"
         },
         {
           "id": "smetana-moldau-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "smetana-moldau-piano-88.mml"
-        },
-        {
-          "id": "smetana-moldau-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "smetana-moldau-xylophone-32.mml"
         }
       ]
     },
@@ -2935,23 +2459,16 @@
         {
           "id": "sousa-washington-post-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "sousa-washington-post-musicbox-30.mml"
         },
         {
           "id": "sousa-washington-post-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "sousa-washington-post-piano-88.mml"
-        },
-        {
-          "id": "sousa-washington-post-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "sousa-washington-post-xylophone-32.mml"
         }
       ]
     },
@@ -2968,23 +2485,16 @@
         {
           "id": "soviet-anthem-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "soviet-anthem-musicbox-30.mml"
         },
         {
           "id": "soviet-anthem-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "soviet-anthem-piano-88.mml"
-        },
-        {
-          "id": "soviet-anthem-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "soviet-anthem-xylophone-32.mml"
         }
       ]
     },
@@ -3000,23 +2510,16 @@
         {
           "id": "stars-and-stripes-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "stars-and-stripes-musicbox-30.mml"
         },
         {
           "id": "stars-and-stripes-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "stars-and-stripes-piano-88.mml"
-        },
-        {
-          "id": "stars-and-stripes-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "stars-and-stripes-xylophone-32.mml"
         }
       ]
     },
@@ -3033,30 +2536,16 @@
         {
           "id": "sugar-plum-fairy-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "sugar-plum-fairy-musicbox-30.mml"
-        },
-        {
-          "id": "sugar-plum-fairy-piano-61",
-          "arranged_for": "piano61",
-          "label_ja": "ピアノ61",
-          "label_en": "Piano 61",
-          "file": "sugar-plum-fairy-piano-61.mml"
         },
         {
           "id": "sugar-plum-fairy-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "sugar-plum-fairy-piano-88.mml"
-        },
-        {
-          "id": "sugar-plum-fairy-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "sugar-plum-fairy-xylophone-32.mml"
         }
       ]
     },
@@ -3073,23 +2562,16 @@
         {
           "id": "swan-lake-scene-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "swan-lake-scene-musicbox-30.mml"
         },
         {
           "id": "swan-lake-scene-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "swan-lake-scene-piano-88.mml"
-        },
-        {
-          "id": "swan-lake-scene-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "swan-lake-scene-xylophone-32.mml"
         }
       ]
     },
@@ -3105,15 +2587,15 @@
         {
           "id": "taki-hana-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "taki-hana-musicbox-30.mml"
         },
         {
           "id": "taki-hana-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "taki-hana-xylophone-32.mml"
         }
       ]
@@ -3130,15 +2612,15 @@
         {
           "id": "tetsudo-shoka-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "tetsudo-shoka-musicbox-30.mml"
         },
         {
           "id": "tetsudo-shoka-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "tetsudo-shoka-xylophone-32.mml"
         }
       ]
@@ -3155,23 +2637,16 @@
         {
           "id": "the-entertainer-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "the-entertainer-musicbox-30.mml"
         },
         {
           "id": "the-entertainer-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "the-entertainer-piano-88.mml"
-        },
-        {
-          "id": "the-entertainer-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "the-entertainer-xylophone-32.mml"
         }
       ]
     },
@@ -3187,23 +2662,16 @@
         {
           "id": "toryanse-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "toryanse-musicbox-30.mml"
         },
         {
           "id": "toryanse-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "toryanse-piano-88.mml"
-        },
-        {
-          "id": "toryanse-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "toryanse-xylophone-32.mml"
         }
       ]
     },
@@ -3220,23 +2688,16 @@
         {
           "id": "toy-soldiers-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "toy-soldiers-musicbox-30.mml"
         },
         {
           "id": "toy-soldiers-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "toy-soldiers-piano-88.mml"
-        },
-        {
-          "id": "toy-soldiers-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "toy-soldiers-xylophone-32.mml"
         }
       ]
     },
@@ -3253,23 +2714,16 @@
         {
           "id": "twinkle-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "twinkle-musicbox-30.mml"
         },
         {
           "id": "twinkle-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "twinkle-piano-88.mml"
-        },
-        {
-          "id": "twinkle-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "twinkle-xylophone-32.mml"
         }
       ]
     },
@@ -3285,23 +2739,16 @@
         {
           "id": "us-field-artillery-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "us-field-artillery-musicbox-30.mml"
         },
         {
           "id": "us-field-artillery-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "us-field-artillery-piano-88.mml"
-        },
-        {
-          "id": "us-field-artillery-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "us-field-artillery-xylophone-32.mml"
         }
       ]
     },
@@ -3318,23 +2765,16 @@
         {
           "id": "vivaldi-spring-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "vivaldi-spring-musicbox-30.mml"
         },
         {
           "id": "vivaldi-spring-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "vivaldi-spring-piano-88.mml"
-        },
-        {
-          "id": "vivaldi-spring-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "vivaldi-spring-xylophone-32.mml"
         }
       ]
     },
@@ -3351,23 +2791,16 @@
         {
           "id": "vivaldi-winter-first-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "vivaldi-winter-first-musicbox-30.mml"
         },
         {
           "id": "vivaldi-winter-first-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "vivaldi-winter-first-piano-88.mml"
-        },
-        {
-          "id": "vivaldi-winter-first-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "vivaldi-winter-first-xylophone-32.mml"
         }
       ]
     },
@@ -3384,23 +2817,16 @@
         {
           "id": "wagner-bridal-chorus-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "wagner-bridal-chorus-musicbox-30.mml"
         },
         {
           "id": "wagner-bridal-chorus-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "wagner-bridal-chorus-piano-88.mml"
-        },
-        {
-          "id": "wagner-bridal-chorus-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "wagner-bridal-chorus-xylophone-32.mml"
         }
       ]
     },
@@ -3417,23 +2843,16 @@
         {
           "id": "wagner-ride-of-valkyries-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "wagner-ride-of-valkyries-musicbox-30.mml"
         },
         {
           "id": "wagner-ride-of-valkyries-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "wagner-ride-of-valkyries-piano-88.mml"
-        },
-        {
-          "id": "wagner-ride-of-valkyries-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "wagner-ride-of-valkyries-xylophone-32.mml"
         }
       ]
     },
@@ -3450,23 +2869,16 @@
         {
           "id": "waltz-of-flowers-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "waltz-of-flowers-musicbox-30.mml"
         },
         {
           "id": "waltz-of-flowers-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "waltz-of-flowers-piano-88.mml"
-        },
-        {
-          "id": "waltz-of-flowers-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "waltz-of-flowers-xylophone-32.mml"
         }
       ]
     },
@@ -3482,15 +2894,15 @@
         {
           "id": "we-wish-you-a-merry-christmas-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "we-wish-you-a-merry-christmas-musicbox-30.mml"
         },
         {
           "id": "we-wish-you-a-merry-christmas-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "we-wish-you-a-merry-christmas-xylophone-32.mml"
         }
       ]
@@ -3507,15 +2919,15 @@
         {
           "id": "westminster-chimes-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "westminster-chimes-musicbox-30.mml"
         },
         {
           "id": "westminster-chimes-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "westminster-chimes-xylophone-32.mml"
         }
       ]
@@ -3532,23 +2944,16 @@
         {
           "id": "when-johnny-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "when-johnny-musicbox-30.mml"
         },
         {
           "id": "when-johnny-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "when-johnny-piano-88.mml"
-        },
-        {
-          "id": "when-johnny-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "when-johnny-xylophone-32.mml"
         }
       ]
     },
@@ -3565,23 +2970,16 @@
         {
           "id": "william-tell-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "william-tell-musicbox-30.mml"
         },
         {
           "id": "william-tell-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "william-tell-piano-88.mml"
-        },
-        {
-          "id": "william-tell-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "william-tell-xylophone-32.mml"
         }
       ]
     },
@@ -3597,15 +2995,15 @@
         {
           "id": "working-on-the-railroad-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "working-on-the-railroad-musicbox-30.mml"
         },
         {
           "id": "working-on-the-railroad-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "working-on-the-railroad-xylophone-32.mml"
         }
       ]
@@ -3622,23 +3020,16 @@
         {
           "id": "yokohama-shika-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "yokohama-shika-musicbox-30.mml"
         },
         {
           "id": "yokohama-shika-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "yokohama-shika-piano-88.mml"
-        },
-        {
-          "id": "yokohama-shika-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "yokohama-shika-xylophone-32.mml"
         }
       ]
     },
@@ -3654,15 +3045,15 @@
         {
           "id": "yuki-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "yuki-musicbox-30.mml"
         },
         {
           "id": "yuki-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "yuki-xylophone-32.mml"
         }
       ]
@@ -3679,23 +3070,16 @@
         {
           "id": "yuki-no-shingun-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "yuki-no-shingun-musicbox-30.mml"
         },
         {
           "id": "yuki-no-shingun-piano-88",
           "arranged_for": "piano88",
-          "label_ja": "ピアノ88",
-          "label_en": "Piano 88",
+          "label_ja": "ピアノ",
+          "label_en": "Piano",
           "file": "yuki-no-shingun-piano-88.mml"
-        },
-        {
-          "id": "yuki-no-shingun-xylophone-32",
-          "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
-          "file": "yuki-no-shingun-xylophone-32.mml"
         }
       ]
     },
@@ -3711,15 +3095,15 @@
         {
           "id": "yuyake-koyake-musicbox-30",
           "arranged_for": "musicbox30",
-          "label_ja": "オルゴール30",
-          "label_en": "Music box 30",
+          "label_ja": "オルゴール",
+          "label_en": "Music box",
           "file": "yuyake-koyake-musicbox-30.mml"
         },
         {
           "id": "yuyake-koyake-xylophone-32",
           "arranged_for": "xylophone32",
-          "label_ja": "木琴32",
-          "label_en": "Xylophone 32",
+          "label_ja": "木琴",
+          "label_en": "Xylophone",
           "file": "yuyake-koyake-xylophone-32.mml"
         }
       ]

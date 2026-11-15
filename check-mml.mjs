@@ -24,11 +24,13 @@ const furusatoBack=compile(serializeMml(furusato));assert.deepEqual(musical(furu
 const catalog=JSON.parse(await readFile(new URL('./dist/samples/mml-index.json',import.meta.url),'utf8')),instruments=validateDefinitions(JSON.parse(await readFile(new URL('./dist/instruments.json',import.meta.url),'utf8')),JSON.parse(await readFile(new URL('./dist/audio/soundsets.json',import.meta.url),'utf8'))).instruments;
 const versions=catalog.songs.flatMap(s=>{assert.ok(s.song_id&&s.title&&s.composer&&s.versions.length);return s.versions;});
 assert.equal(new Set(catalog.songs.map(s=>s.song_id)).size,catalog.songs.length);assert.equal(new Set(versions.map(v=>v.id)).size,versions.length);
+for(const song of catalog.songs){assert.ok(!song.versions.some(v=>v.arranged_for.startsWith('piano'))||!song.versions.some(v=>v.arranged_for==='xylophone32'),song.song_id+'はピアノ版があれば木琴版を重複掲載しない');for(const version of song.versions)assert.ok(!/(オルゴール|ピアノ|木琴)\d|(?:Music box|Piano|Xylophone) \d/.test(version.label_ja+version.label_en),'楽器の表示名に鍵数を付けない');}
 assert.deepEqual(versions.map(v=>v.file).sort(),(await readdir(new URL('./dist/samples/',import.meta.url))).filter(f=>f.endsWith('.mml')).sort(),'MML曲を曲選択の一覧から漏らさない');
 for(const version of versions){
- const profile=instruments.find(i=>i.arrangedFor===version.arranged_for);assert.ok(profile&&version.label_ja&&version.label_en);
- const score=compile(await readFile(new URL('./dist/samples/'+version.file,import.meta.url),'utf8')),allowed=profile.allowed;assert.ok(score.notes.every(n=>allowed.has(n.midi)),version.id+'の対象楽器の音域');
- assert.ok(score.parts.every(p=>p.program===profile.gmProgram&&p.instrumentId===profile.id),version.id+'のGM音色と実機音域');
+ const profile=instruments.find(i=>i.arrangedFor===version.arranged_for);assert.ok((profile||version.arranged_for==='gm')&&version.label_ja&&version.label_en);
+ const score=compile(await readFile(new URL('./dist/samples/'+version.file,import.meta.url),'utf8'));
+ for(const part of score.parts){const target=profile??instruments.find(i=>i.id===part.instrumentId);assert.ok(target&&part.program===target.gmProgram&&!!part.percussion===!!target.percussion&&part.instrumentId===target.id,version.id+'のGM音色と実機音域');assert.ok(score.notes.filter(n=>n.part===part.id).every(n=>target.allowed.has(n.midi)),version.id+'の対象楽器の音域');}
+ if(version.arranged_for==='gm')assert.ok(new Set(score.parts.map(p=>`${p.program}:${!!p.percussion}`)).size>1,version.id+'は複数のGM楽器で演奏する');
  if(['musicbox30','xylophone32'].includes(version.arranged_for))for(const n of score.notes.filter(n=>n.part!==1))assert.ok(!score.notes.some(m=>m.part===1&&m.midi===n.midi&&m.tick<n.tick&&n.tick<m.tick+m.duration),version.id+'で伴奏が旋律の長音を打ち直さない');
  const restored=compile(serializeMml(score));assert.deepEqual(musical(restored),musical(score),version.id+'の全音長・拍位置の往復');assert.deepEqual(restored.parts,score.parts,version.id+'のパート・GM音色・音域の往復');assert.equal(restored.end,score.end);assert.deepEqual(restored.tempos.map(t=>t.tick),score.tempos.map(t=>t.tick));for(const [i,t]of score.tempos.entries())assert.ok(Math.abs(60000000/t.bpm-60000000/restored.tempos[i].bpm)<=1.000001,version.id+'のテンポをMIDIの1マイクロ秒精度で保持');assert.deepEqual(restored.signatures,score.signatures);
 }
@@ -189,13 +191,14 @@ runInContext(app.slice(app.indexOf("$('templateMenu').onclick="),app.indexOf('co
 for(const version of versions){
   await sampleControls.get('templateMenu').onclick({target:{closest:()=>({dataset:{sample:version.id}})}});
   assert.deepEqual(sampleErrors,[],version.id);const score=sampleContext.score;
-  assert.equal(score.parts.length,1,version.id+'は同じ楽器の旋律・伴奏を1タブへまとめる');
-  assert.deepEqual(JSON.parse(JSON.stringify(score.notes)),sampleBefore.notes.map(n=>({...n,part:score.parts[0].id})),version.id+'の全音・同音の重なり・発音位置・音長・強さを保持する');
+  assert.equal(score.parts.length,new Set(sampleBefore.parts.map(p=>`${p.program}:${p.instrumentId}:${!!p.percussion}`)).size,version.id+'は同じ楽器の声部をまとめ、異なる楽器を別タブに保つ');
+  const partIds=new Map(sampleBefore.parts.map(p=>[p.id,score.parts.find(s=>s.program===p.program&&s.instrumentId===p.instrumentId&&!!s.percussion===!!p.percussion).id]));
+  assert.deepEqual(JSON.parse(JSON.stringify(score.notes)),sampleBefore.notes.map(n=>({...n,part:partIds.get(n.part)})),version.id+'の全音・同音の重なり・発音位置・音長・強さを保持する');
   for(const key of ['ppq','end','tempos','signatures'])assert.deepEqual(JSON.parse(JSON.stringify(score[key])),sampleBefore[key],version.id+'の'+key);
   const restored=compile(serializeMml(score));assert.deepEqual(musical(restored),musical(score),version.id+'は1パートにまとめた後のMML/MIDI往復でも全音を保持する');assert.deepEqual(restored.parts,JSON.parse(JSON.stringify(score.parts)));
 }
 assert.equal(sampleMain.inert,false);assert.equal(sampleContext.sourceText,null);
-console.log('MML曲選択：全335版の同じ楽器の声部を1パートへ統合し、全音と曲末とテンポ・拍子を保持する');
+console.log(`MML曲選択：全${versions.length}版の楽器別タブ・全音・曲末・テンポ・拍子を保持する`);
 const exportOriginal=structuredClone(original),exportProfile=instruments.find(i=>i.id==='musicbox-30');exportOriginal.parts=exportOriginal.parts.map((p,i)=>i?{...p,program:127}:{...p,program:10,instrumentId:'musicbox-30'});const exportMml=serializeMml(exportOriginal);
 const exportControls=new Map(['saveMml','saveMidi','saveMenu','copyMml','mmlPanel','mml'].map(id=>[id,{value:exportMml,hidePopover(){},select(){}}])),downloads=[],copied=[],exportErrors=[];
 const exportContext=createContext({t,currentLanguage,localized,saveProgress(){},score:structuredClone(exportOriginal),sourceText:exportMml+'// original text\n',textEditing:false,instrument:instruments.find(i=>i.id==='musicbox-30'),partProfiles:new Map(exportOriginal.parts.map(p=>[p.id,exportProfile])),serializeMml,$:id=>exportControls.get(id),error:message=>exportErrors.push(message),render(){},download:(body,name)=>downloads.push({body,name}),navigator:{clipboard:{writeText:async text=>copied.push(text)}},window:{isSecureContext:true},document:{execCommand:()=>{copied.push(exportControls.get('mml').value);return true;}},compile:async input=>{const compiler=SakuraCompiler.new();try{return compiler.compile(prepareMml(input.midiOnly?serializeMml(compile(input.text),{singlePort:true}):input.text));}finally{compiler.free();}}});
