@@ -1,0 +1,96 @@
+// Source: Chopin, Prelude Op.28 No.7, later eight-bar theme, Mutopia 470 PD transcription.
+// Accepted +8-semitone melody and original reduced harmony retained; final half note restored instead of legacy truncation after one quarter.
+// Musicbox title: Prelude%20No.%207%2C%20Op.%2028%20No.%207
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(960) TimeSignature(3,4)
+Time(0) Tempo={65}
+Time(23040) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n72,%1920,100,90
+Time(960) n81,%720,100,90
+Time(1680) n82,%240,100,90
+Time(1920) n79,%960,100,90
+Time(2880) n79,%960,100,90
+Time(3840) n79,%1920,100,90
+Time(5760) n86,%960,100,90
+Time(6720) n83,%720,100,90
+Time(7440) n84,%2160,100,90
+Time(7680) n93,%960,100,90
+Time(8640) n93,%960,100,90
+Time(9600) n93,%1920,100,90
+Time(11520) n81,%960,100,90
+Time(12480) n81,%720,100,90
+Time(13200) n82,%240,100,90
+Time(13440) n86,%960,100,90
+Time(14400) n86,%960,100,90
+Time(15360) n86,%1920,100,90
+Time(17280) n76,%960,100,90
+Time(18240) n79,%720,100,90
+Time(18960) n77,%240,100,90
+Time(19200) n89,%960,100,90
+Time(20160) n89,%960,100,90
+Time(21120) n89,%1920,100,90
+Time(23040) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(960) n60,%480,100,60
+Time(960) n64,%480,100,60
+Time(1920) n60,%480,100,60
+Time(1920) n64,%480,100,60
+Time(1920) n70,%480,100,60
+Time(2880) n60,%480,100,60
+Time(2880) n64,%480,100,60
+Time(2880) n70,%480,100,60
+Time(3840) n60,%480,100,60
+Time(3840) n64,%480,100,60
+Time(3840) n70,%480,100,60
+Time(5760) n70,%480,100,60
+Time(6720) n53,%480,100,60
+Time(6720) n80,%480,100,60
+Time(7440) n69,%480,100,60
+Time(7680) n53,%480,100,60
+Time(7680) n60,%480,100,60
+Time(8640) n53,%480,100,60
+Time(8640) n60,%480,100,60
+Time(9600) n62,%480,100,60
+Time(9600) n72,%480,100,60
+Time(9600) n78,%480,100,60
+Time(11520) n78,%480,100,60
+Time(12480) n55,%480,100,60
+Time(12480) n78,%480,100,60
+Time(13200) n67,%480,100,60
+Time(13440) n62,%480,100,60
+Time(13440) n70,%480,100,60
+Time(14400) n55,%480,100,60
+Time(14400) n65,%480,100,60
+Time(14400) n70,%480,100,60
+Time(15360) n60,%480,100,60
+Time(15360) n64,%480,100,60
+Time(15360) n70,%480,100,60
+Time(17280) n70,%480,100,60
+Time(18240) n53,%480,100,60
+Time(18240) n70,%480,100,60
+Time(18960) n69,%480,100,60
+Time(19200) n53,%480,100,60
+Time(19200) n60,%480,100,60
+Time(20160) n53,%480,100,60
+Time(20160) n60,%480,100,60
+Time(20160) n69,%480,100,60
+Time(21120) n53,%480,100,60
+Time(21120) n60,%480,100,60
+Time(21120) n69,%480,100,60
+Time(23040) MetaText={Musicbox end}
+
+TR=4
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(13440) n67,%480,100,60
+Time(19200) n69,%480,100,60
+Time(23040) MetaText={Musicbox end}

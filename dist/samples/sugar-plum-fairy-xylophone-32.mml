@@ -1,0 +1,54 @@
+// Source: Tchaikovsky, The Nutcracker, composers piano arrangement, Jurgenson 1892/Rahter ca.1898, p.13, bars 5-12. https://imslp.org/wiki/Special:ReverseLookup/57454
+// Printed register changes, eighth rests and chromatic notes retained. Musicbox keeps the accepted whole -2-semitone transposition; xylophone keeps the original +12. Independent single-quarter closing retained.
+// Musicbox title: %E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A0%E6%A5%BD%E8%AD%9C
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={80}
+Time(16320) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100
+Time(480) n103,%240,100,90
+Time(720) n100,%240,100,90
+Time(960) n103,%480,100,90
+Time(1440) n102,%480,100,90
+Time(1920) n99,%480,100,90
+Time(2400) n100,%480,100,90
+Time(2880) n98,%240,100,90
+Time(3120) n98,%240,100,90
+Time(3360) n98,%480,100,90
+Time(3840) n97,%240,100,90
+Time(4080) n97,%240,100,90
+Time(4320) n97,%480,100,90
+Time(4800) n96,%240,100,90
+Time(5040) n96,%240,100,90
+Time(5280) n96,%480,100,90
+Time(5760) n95,%240,100,90
+Time(6000) n100,%240,100,90
+Time(6240) n96,%240,100,90
+Time(6480) n100,%240,100,90
+Time(6720) n95,%480,100,90
+Time(8160) n91,%240,100,90
+Time(8400) n88,%240,100,90
+Time(8640) n91,%480,100,90
+Time(9120) n90,%480,100,90
+Time(9600) n96,%480,100,90
+Time(10080) n95,%480,100,90
+Time(10560) n103,%240,100,90
+Time(10800) n103,%240,100,90
+Time(11040) n103,%480,100,90
+Time(11520) n101,%240,100,90
+Time(11760) n101,%240,100,90
+Time(12000) n101,%480,100,90
+Time(12480) n100,%240,100,90
+Time(12720) n100,%240,100,90
+Time(12960) n100,%480,100,90
+Time(13440) n99,%240,100,90
+Time(13680) n102,%240,100,90
+Time(13920) n100,%240,100,90
+Time(14160) n102,%240,100,90
+Time(14400) n99,%480,100,90
+Time(15360) n100,%960,100,90
+Time(16320) MetaText={Musicbox end}

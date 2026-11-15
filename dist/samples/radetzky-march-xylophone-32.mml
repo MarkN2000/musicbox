@@ -1,0 +1,78 @@
+// Source: Strauss Sr Radetzky March, old Tonger Marsch Album piano edition, introduction4 bars and main theme8 bars plus existing original cadence; nine source pitch errors and two note lengths corrected. https://imslp.org/wiki/Special:ReverseLookup/78169
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E3%83%A9%E3%83%87%E3%83%84%E3%82%AD%E3%83%BC%E8%A1%8C%E9%80%B2%E6%9B%B2
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,2)
+Time(0) Tempo={216}
+Time(49920) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n89,%480,100,90
+Time(480) n89,%480,100,90
+Time(960) n89,%480,100,90
+Time(1920) n89,%480,100,90
+Time(2400) n89,%480,100,90
+Time(2880) n89,%480,100,90
+Time(3840) n93,%960,100,90
+Time(4800) n91,%960,100,90
+Time(5760) n89,%1440,100,90
+Time(7200) n88,%480,100,90
+Time(7680) n86,%480,100,90
+Time(8160) n85,%480,100,90
+Time(8640) n86,%480,100,90
+Time(9120) n88,%480,100,90
+Time(9600) n89,%960,100,90
+Time(10560) n91,%960,100,90
+Time(11520) n84,%960,100,90
+Time(14400) n93,%480,100,90
+Time(14880) n92,%480,100,90
+Time(15360) n93,%480,100,90
+Time(16320) n93,%480,100,90
+Time(16800) n92,%480,100,90
+Time(17280) n93,%480,100,90
+Time(18240) n93,%480,100,90
+Time(18720) n92,%480,100,90
+Time(19200) n93,%480,100,90
+Time(20160) n91,%480,100,90
+Time(21120) n89,%480,100,90
+Time(22080) n93,%480,100,90
+Time(22560) n92,%480,100,90
+Time(23040) n93,%480,100,90
+Time(24000) n93,%480,100,90
+Time(24480) n92,%480,100,90
+Time(24960) n93,%480,100,90
+Time(25920) n93,%480,100,90
+Time(26400) n92,%480,100,90
+Time(26880) n93,%480,100,90
+Time(27840) n98,%480,100,90
+Time(28800) n96,%480,100,90
+Time(29760) n96,%480,100,90
+Time(30240) n93,%480,100,90
+Time(30720) n94,%480,100,90
+Time(31680) n98,%480,100,90
+Time(32640) n96,%480,100,90
+Time(33600) n96,%480,100,90
+Time(34080) n91,%480,100,90
+Time(34560) n93,%480,100,90
+Time(35520) n98,%480,100,90
+Time(36480) n96,%480,100,90
+Time(37440) n96,%480,100,90
+Time(37920) n91,%480,100,90
+Time(38400) n91,%480,100,90
+Time(39360) n100,%960,100,90
+Time(40320) n89,%480,100,90
+Time(41280) n98,%960,100,90
+Time(42240) n96,%480,100,90
+Time(43200) n96,%480,100,90
+Time(43680) n95,%480,100,90
+Time(44160) n96,%480,100,90
+Time(44640) n98,%480,100,90
+Time(45120) n96,%480,100,90
+Time(45600) n94,%480,100,90
+Time(46080) n93,%960,100,90
+Time(47040) n91,%960,100,90
+Time(48000) n89,%1920,100,90
+Time(49920) MetaText={Musicbox end}

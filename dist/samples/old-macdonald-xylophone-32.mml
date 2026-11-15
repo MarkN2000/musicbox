@@ -1,0 +1,55 @@
+// Source: Tunvox CC0 MusicXML-derived edition, first 48 quarter beats; note-on and note-off durations independently retained. Engraved score not available for comparison. https://tunvox.com/music-sheet/old-macdonald-had-a-farm
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E6%84%89%E5%BF%AB%E3%81%AA%E7%89%A7%E5%A0%B4
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={132}
+Time(46080) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n96,%960,100,90
+Time(960) n96,%960,100,90
+Time(1920) n96,%960,100,90
+Time(2880) n91,%960,100,90
+Time(3840) n93,%960,100,90
+Time(4800) n93,%960,100,90
+Time(5760) n91,%1920,100,90
+Time(7680) n100,%960,100,90
+Time(8640) n100,%960,100,90
+Time(9600) n98,%960,100,90
+Time(10560) n98,%960,100,90
+Time(11520) n96,%2880,100,90
+Time(15360) n96,%960,100,90
+Time(16320) n96,%960,100,90
+Time(17280) n96,%960,100,90
+Time(18240) n91,%960,100,90
+Time(19200) n93,%960,100,90
+Time(20160) n93,%960,100,90
+Time(21120) n91,%1920,100,90
+Time(23040) n100,%960,100,90
+Time(24000) n100,%960,100,90
+Time(24960) n98,%960,100,90
+Time(25920) n98,%960,100,90
+Time(26880) n96,%2880,100,90
+Time(30720) n96,%960,100,90
+Time(31680) n96,%960,100,90
+Time(32640) n96,%960,100,90
+Time(34560) n96,%960,100,90
+Time(35520) n96,%960,100,90
+Time(36480) n96,%960,100,90
+Time(38400) n96,%480,100,90
+Time(38880) n96,%480,100,90
+Time(39360) n96,%960,100,90
+Time(40320) n96,%480,100,90
+Time(40800) n96,%480,100,90
+Time(41280) n96,%960,100,90
+Time(42240) n96,%480,100,90
+Time(42720) n96,%480,100,90
+Time(43200) n96,%480,100,90
+Time(43680) n96,%480,100,90
+Time(44160) n96,%960,100,90
+Time(45120) n96,%960,100,90
+Time(46080) MetaText={Musicbox end}

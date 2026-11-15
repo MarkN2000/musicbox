@@ -1,0 +1,114 @@
+// Source: Brahms Wiegenlied Op49 No4, Mutopia1037 public-domain engraving by Shogo Mori, vocal pickup through first8 bars; printed quarter rests restored, requested ending cut retained. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1037
+// Existing excerpt, transposition and original accompaniment retained.
+// Accompaniment attacks under the same held melody pitch are omitted; melody timing and note lengths are unchanged.
+// Musicbox title: %E5%AD%90%E5%AE%88%E6%AD%8C%20Op.49-4
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(0) Tempo={66.000066000066}
+Time(23040) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n76,%480,100,90
+Time(480) n76,%480,100,90
+Time(960) n79,%1440,100,90
+Time(2400) n76,%480,100,90
+Time(2880) n76,%960,100,90
+Time(3840) n79,%960,100,90
+Time(5760) n76,%480,100,90
+Time(6240) n79,%480,100,90
+Time(6720) n84,%960,100,90
+Time(7680) n83,%1440,100,90
+Time(9120) n81,%480,100,90
+Time(9600) n81,%960,100,90
+Time(10560) n79,%960,100,90
+Time(11520) n74,%480,100,90
+Time(12000) n76,%480,100,90
+Time(12480) n77,%960,100,90
+Time(13440) n74,%960,100,90
+Time(14400) n74,%480,100,90
+Time(14880) n76,%480,100,90
+Time(15360) n77,%960,100,90
+Time(17280) n74,%480,100,90
+Time(17760) n77,%480,100,90
+Time(18240) n83,%480,100,90
+Time(18720) n81,%480,100,90
+Time(19200) n79,%960,100,90
+Time(20160) n83,%960,100,90
+Time(21120) n84,%960,100,90
+Time(23040) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(960) n60,%480,100,60
+Time(960) n64,%480,100,60
+Time(1440) n72,%480,100,60
+Time(1920) n64,%480,100,60
+Time(1920) n67,%480,100,60
+Time(2400) n72,%480,100,60
+Time(2880) n64,%480,100,60
+Time(2880) n67,%480,100,60
+Time(3360) n72,%480,100,60
+Time(3840) n60,%480,100,60
+Time(3840) n64,%480,100,60
+Time(4320) n72,%480,100,60
+Time(4800) n64,%480,100,60
+Time(4800) n67,%480,100,60
+Time(5280) n72,%480,100,60
+Time(5760) n64,%480,100,60
+Time(5760) n67,%480,100,60
+Time(6240) n72,%480,100,60
+Time(6720) n60,%480,100,60
+Time(6720) n64,%480,100,60
+Time(7200) n72,%480,100,60
+Time(7680) n64,%480,100,60
+Time(7680) n67,%480,100,60
+Time(8160) n72,%480,100,60
+Time(8640) n64,%480,100,60
+Time(8640) n67,%480,100,60
+Time(9120) n72,%480,100,60
+Time(9600) n55,%480,100,60
+Time(9600) n71,%480,100,60
+Time(10080) n74,%480,100,60
+Time(10560) n71,%480,100,60
+Time(10560) n77,%480,100,60
+Time(11040) n74,%480,100,60
+Time(11520) n71,%480,100,60
+Time(11520) n77,%480,100,60
+Time(12000) n74,%480,100,60
+Time(12480) n55,%480,100,60
+Time(12480) n71,%480,100,60
+Time(12960) n74,%480,100,60
+Time(13440) n71,%480,100,60
+Time(13440) n77,%480,100,60
+Time(14400) n71,%480,100,60
+Time(14400) n77,%480,100,60
+Time(14880) n74,%480,100,60
+Time(15360) n55,%480,100,60
+Time(15360) n71,%480,100,60
+Time(15840) n74,%480,100,60
+Time(16320) n71,%480,100,60
+Time(16320) n77,%480,100,60
+Time(16800) n74,%480,100,60
+Time(17280) n71,%480,100,60
+Time(17280) n77,%480,100,60
+Time(17760) n74,%480,100,60
+Time(18240) n55,%480,100,60
+Time(18240) n71,%480,100,60
+Time(18720) n74,%480,100,60
+Time(19200) n71,%480,100,60
+Time(19200) n77,%480,100,60
+Time(19680) n74,%480,100,60
+Time(20160) n71,%480,100,60
+Time(20160) n77,%480,100,60
+Time(20640) n74,%480,100,60
+Time(21120) n60,%480,100,60
+Time(21120) n64,%480,100,60
+Time(21600) n72,%480,100,60
+Time(22080) n64,%480,100,60
+Time(22080) n67,%480,100,60
+Time(22560) n72,%480,100,60
+Time(23040) MetaText={Musicbox end}

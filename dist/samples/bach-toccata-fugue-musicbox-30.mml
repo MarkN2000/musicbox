@@ -1,0 +1,39 @@
+// Source: Bach, BWV565, Bach-Gesellschaft 1867, Wilhelm Rust, printed p.267; lower-neighbour mordent checked against Busoni 1900. https://imslp.org/wiki/Special:ReverseLookup/1335
+// User-requested first gesture only. Whole +12, low octave support and independent E/A/D harmony retained. Accepted three-quarter fermata phrase retained; printed 64th descent restored instead of evenly widened 32nds.
+// Musicbox title: %E3%83%88%E3%83%83%E3%82%AB%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%95%E3%83%BC%E3%82%AC%20BWV.565
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={60}
+Time(2880) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E4%B8%BB%E9%A1%8C}
+q100
+Time(0) n81,%120,100,90
+Time(0) n93,%120,100,90
+Time(120) n79,%120,100,90
+Time(120) n91,%120,100,90
+Time(240) n81,%960,100,90
+Time(240) n93,%960,100,90
+Time(1320) n79,%60,100,90
+Time(1320) n91,%60,100,90
+Time(1380) n77,%60,100,90
+Time(1380) n89,%60,100,90
+Time(1440) n76,%60,100,90
+Time(1440) n88,%60,100,90
+Time(1500) n74,%60,100,90
+Time(1500) n86,%60,100,90
+Time(1560) n73,%120,100,90
+Time(1560) n85,%120,100,90
+Time(1680) n74,%240,100,90
+Time(1680) n86,%240,100,90
+Time(2880) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(240) n76,%960,100,65
+Time(1680) n62,%240,100,65
+Time(1680) n69,%240,100,65
+Time(2880) MetaText={Musicbox end}

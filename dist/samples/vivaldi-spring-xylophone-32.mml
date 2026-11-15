@@ -1,0 +1,62 @@
+// Source: Vivaldi Spring RV269 first movement, Le Cene1725 plate520 principal violin first6 bars and pickup, existing final C5 tonic and simplified accompaniment retained. https://imslp.org/wiki/Violin_Concerto_in_E_major,_RV_269_(Vivaldi,_Antonio)
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E5%9B%9B%E5%AD%A3%E3%82%88%E3%82%8A%E3%80%8C%E6%98%A5%E3%80%8D%E7%AC%AC1%E6%A5%BD%E7%AB%A0
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={112}
+Time(24000) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n84,%480,100,90
+Time(480) n88,%480,100,90
+Time(960) n88,%480,100,90
+Time(1440) n88,%480,100,90
+Time(1920) n86,%240,100,90
+Time(2160) n84,%240,100,90
+Time(2400) n91,%1440,100,90
+Time(3840) n91,%240,100,90
+Time(4080) n89,%240,100,90
+Time(4320) n88,%480,100,90
+Time(4800) n88,%480,100,90
+Time(5280) n88,%480,100,90
+Time(5760) n86,%240,100,90
+Time(6000) n84,%240,100,90
+Time(6240) n91,%1440,100,90
+Time(7680) n91,%240,100,90
+Time(7920) n89,%240,100,90
+Time(8160) n88,%480,100,90
+Time(8640) n89,%240,100,90
+Time(8880) n91,%240,100,90
+Time(9120) n89,%480,100,90
+Time(9600) n88,%480,100,90
+Time(10080) n86,%480,100,90
+Time(10560) n83,%480,100,90
+Time(11040) n79,%480,100,90
+Time(11520) n84,%480,100,90
+Time(12000) n88,%480,100,90
+Time(12480) n88,%480,100,90
+Time(12960) n88,%480,100,90
+Time(13440) n86,%240,100,90
+Time(13680) n84,%240,100,90
+Time(13920) n91,%1440,100,90
+Time(15360) n91,%240,100,90
+Time(15600) n89,%240,100,90
+Time(15840) n88,%480,100,90
+Time(16320) n88,%480,100,90
+Time(16800) n88,%480,100,90
+Time(17280) n86,%240,100,90
+Time(17520) n84,%240,100,90
+Time(17760) n91,%1440,100,90
+Time(19200) n91,%240,100,90
+Time(19440) n89,%240,100,90
+Time(19680) n88,%480,100,90
+Time(20160) n89,%240,100,90
+Time(20400) n91,%240,100,90
+Time(20640) n89,%480,100,90
+Time(21120) n88,%480,100,90
+Time(21600) n86,%1440,100,90
+Time(23040) n84,%960,100,90
+Time(24000) MetaText={Musicbox end}

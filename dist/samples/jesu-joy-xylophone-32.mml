@@ -1,0 +1,86 @@
+// Source: Bach-Gesellschaft (1884), BWV147 No.10, printed p.229, Violin I opening eight bars and next downbeat.
+// The accepted triplet-pulse adaptation maps source 9/8 to three quarters. Initial source eighth rest is outside the excerpt; last G is a quarter followed by the retained one-third-quarter margin.
+// Musicbox title: %E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A0%E6%A5%BD%E8%AD%9C
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(2560) TimeSignature(3,4)
+Time(0) Tempo={78.000078000078}
+Time(24000) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100
+Time(0) n84,%320,100,90
+Time(320) n86,%320,100,90
+Time(640) n88,%320,100,90
+Time(960) n91,%320,100,90
+Time(1280) n89,%320,100,90
+Time(1600) n89,%320,100,90
+Time(1920) n93,%320,100,90
+Time(2240) n91,%320,100,90
+Time(2560) n91,%320,100,90
+Time(2880) n96,%320,100,90
+Time(3200) n95,%320,100,90
+Time(3520) n96,%320,100,90
+Time(3840) n91,%320,100,90
+Time(4160) n88,%320,100,90
+Time(4480) n84,%320,100,90
+Time(4800) n86,%320,100,90
+Time(5120) n88,%320,100,90
+Time(5440) n89,%320,100,90
+Time(5760) n91,%320,100,90
+Time(6080) n93,%320,100,90
+Time(6400) n91,%320,100,90
+Time(6720) n89,%320,100,90
+Time(7040) n88,%320,100,90
+Time(7360) n86,%320,100,90
+Time(7680) n88,%320,100,90
+Time(8000) n84,%320,100,90
+Time(8320) n83,%320,100,90
+Time(8640) n84,%320,100,90
+Time(8960) n86,%320,100,90
+Time(9280) n79,%320,100,90
+Time(9600) n83,%320,100,90
+Time(9920) n86,%320,100,90
+Time(10240) n89,%320,100,90
+Time(10560) n88,%320,100,90
+Time(10880) n86,%320,100,90
+Time(11200) n88,%320,100,90
+Time(11520) n84,%320,100,90
+Time(11840) n86,%320,100,90
+Time(12160) n88,%320,100,90
+Time(12480) n91,%320,100,90
+Time(12800) n89,%320,100,90
+Time(13120) n89,%320,100,90
+Time(13440) n93,%320,100,90
+Time(13760) n91,%320,100,90
+Time(14080) n91,%320,100,90
+Time(14400) n96,%320,100,90
+Time(14720) n95,%320,100,90
+Time(15040) n96,%320,100,90
+Time(15360) n91,%320,100,90
+Time(15680) n88,%320,100,90
+Time(16000) n84,%320,100,90
+Time(16320) n86,%320,100,90
+Time(16640) n88,%320,100,90
+Time(16960) n81,%320,100,90
+Time(17280) n91,%320,100,90
+Time(17600) n89,%320,100,90
+Time(17920) n88,%320,100,90
+Time(18240) n86,%320,100,90
+Time(18560) n84,%320,100,90
+Time(18880) n79,%320,100,90
+Time(19200) n84,%320,100,90
+Time(19520) n83,%320,100,90
+Time(19840) n84,%320,100,90
+Time(20160) n86,%320,100,90
+Time(20480) n88,%320,100,90
+Time(20800) n93,%320,100,90
+Time(21120) n88,%320,100,90
+Time(21440) n84,%320,100,90
+Time(21760) n83,%320,100,90
+Time(22080) n84,%320,100,90
+Time(22400) n91,%320,100,90
+Time(22720) n96,%960,100,90
+Time(24000) MetaText={Musicbox end}

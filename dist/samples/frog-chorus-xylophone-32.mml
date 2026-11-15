@@ -1,0 +1,40 @@
+// Source: Der Kreis (1951), p.136, Froschkonzert, folk melody, one voice. https://bilingualinjapan.home.blog/wp-content/uploads/2019/08/ganze-sommernc3a4chte-lang-a306.pdf
+// Melody re-read from printed source; accepted transposition and original accompaniment retained.
+// Musicbox title: Froschgesang
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={88}
+Time(15360) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n84,%480,100,90
+Time(480) n86,%480,100,90
+Time(960) n88,%480,100,90
+Time(1440) n89,%480,100,90
+Time(1920) n88,%480,100,90
+Time(2400) n86,%480,100,90
+Time(2880) n84,%960,100,90
+Time(3840) n88,%480,100,90
+Time(4320) n89,%480,100,90
+Time(4800) n91,%480,100,90
+Time(5280) n93,%480,100,90
+Time(5760) n91,%480,100,90
+Time(6240) n89,%480,100,90
+Time(6720) n88,%960,100,90
+Time(7680) n84,%960,100,90
+Time(8640) n84,%960,100,90
+Time(9600) n84,%960,100,90
+Time(10560) n84,%960,100,90
+Time(11520) n84,%240,100,90
+Time(11760) n84,%240,100,90
+Time(12000) n86,%240,100,90
+Time(12240) n86,%240,100,90
+Time(12480) n88,%480,100,90
+Time(12960) n89,%480,100,90
+Time(13440) n88,%480,100,90
+Time(13920) n86,%480,100,90
+Time(14400) n84,%960,100,90
+Time(15360) MetaText={Musicbox end}

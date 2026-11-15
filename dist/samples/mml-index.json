@@ -1,0 +1,3728 @@
+{
+  "songs": [
+    {
+      "song_id": "air-on-g",
+      "title": "Air",
+      "title_ja": "G線上のアリア",
+      "title_en": "Air on the G String",
+      "composer": "バッハ",
+      "composer_ja": "バッハ",
+      "composer_en": "Johann Sebastian Bach",
+      "reading_ja": "じーせんじょうのありあ",
+      "versions": [
+        {
+          "id": "air-on-g-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "air-on-g-musicbox-30.mml"
+        },
+        {
+          "id": "air-on-g-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "air-on-g-piano-88.mml"
+        },
+        {
+          "id": "air-on-g-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "air-on-g-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "akatombo",
+      "title": "赤とんぼ",
+      "title_en": "Akatombo",
+      "composer": "山田耕筰",
+      "composer_ja": "山田耕筰",
+      "composer_en": "Kosaku Yamada",
+      "reading_ja": "あかとんぼ",
+      "versions": [
+        {
+          "id": "akatombo-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "akatombo-musicbox-30.mml"
+        },
+        {
+          "id": "akatombo-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "akatombo-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "alps-ichimanjaku",
+      "title": "Yankee Doodle",
+      "title_ja": "アルプス一万尺",
+      "composer": "アメリカ伝承曲",
+      "composer_ja": "アメリカ伝承曲",
+      "composer_en": "Traditional American melody",
+      "reading_ja": "あるぷすいちまんじゃく",
+      "versions": [
+        {
+          "id": "alps-ichimanjaku-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "alps-ichimanjaku-musicbox-30.mml"
+        },
+        {
+          "id": "alps-ichimanjaku-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "alps-ichimanjaku-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "amaryllis",
+      "title": "Amaryllis",
+      "title_ja": "アマリリス",
+      "composer": "フランス伝承曲（19世紀版）",
+      "composer_ja": "フランス伝承曲（19世紀版）",
+      "composer_en": "Traditional French melody (19th-century edition)",
+      "reading_ja": "あまりりす",
+      "versions": [
+        {
+          "id": "amaryllis-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "amaryllis-musicbox-30.mml"
+        },
+        {
+          "id": "amaryllis-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "amaryllis-piano-88.mml"
+        },
+        {
+          "id": "amaryllis-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "amaryllis-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "amazing-grace",
+      "title": "Amazing Grace",
+      "title_ja": "アメイジング・グレイス",
+      "composer": "伝承曲",
+      "composer_ja": "伝承曲",
+      "composer_en": "Traditional",
+      "reading_ja": "あめいじんぐぐれいす",
+      "versions": [
+        {
+          "id": "amazing-grace-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "amazing-grace-musicbox-30.mml"
+        },
+        {
+          "id": "amazing-grace-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "amazing-grace-piano-88.mml"
+        },
+        {
+          "id": "amazing-grace-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "amazing-grace-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "aogeba-totoshi",
+      "title": "仰げば尊し",
+      "title_en": "Aogeba Tōtoshi",
+      "composer": "伝承曲",
+      "composer_ja": "伝承曲",
+      "composer_en": "Traditional",
+      "reading_ja": "あおげばとうとし",
+      "versions": [
+        {
+          "id": "aogeba-totoshi-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "aogeba-totoshi-musicbox-30.mml"
+        },
+        {
+          "id": "aogeba-totoshi-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "aogeba-totoshi-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "army-goes-rolling-along",
+      "title": "The Army Goes Rolling Along",
+      "title_ja": "陸軍は進んで行く",
+      "composer": "グルーバー（スーザの1918年版による）",
+      "composer_ja": "グルーバー（スーザの1918年版による）",
+      "composer_en": "Edmund L. Gruber (Sousa's 1918 edition)",
+      "reading_ja": "りくぐんはすすんでいく",
+      "versions": [
+        {
+          "id": "army-goes-rolling-along-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "army-goes-rolling-along-musicbox-30.mml"
+        },
+        {
+          "id": "army-goes-rolling-along-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "army-goes-rolling-along-piano-88.mml"
+        },
+        {
+          "id": "army-goes-rolling-along-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "army-goes-rolling-along-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "auld-lang-syne",
+      "title": "Auld Lang Syne",
+      "title_ja": "蛍の光",
+      "composer": "スコットランド伝承曲",
+      "composer_ja": "スコットランド伝承曲",
+      "composer_en": "Traditional Scottish melody",
+      "reading_ja": "ほたるのひかり",
+      "versions": [
+        {
+          "id": "auld-lang-syne-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "auld-lang-syne-musicbox-30.mml"
+        },
+        {
+          "id": "auld-lang-syne-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "auld-lang-syne-piano-88.mml"
+        },
+        {
+          "id": "auld-lang-syne-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "auld-lang-syne-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "bach-toccata-fugue",
+      "title": "Toccata und Fuge, BWV 565",
+      "title_ja": "トッカータとフーガ BWV.565",
+      "title_en": "Toccata and Fugue, BWV 565",
+      "composer": "バッハ",
+      "composer_ja": "バッハ",
+      "composer_en": "Johann Sebastian Bach",
+      "reading_ja": "とっかーたとふーが",
+      "versions": [
+        {
+          "id": "bach-toccata-fugue-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "bach-toccata-fugue-musicbox-30.mml"
+        },
+        {
+          "id": "bach-toccata-fugue-piano-61",
+          "arranged_for": "piano61",
+          "label_ja": "ピアノ61",
+          "label_en": "Piano 61",
+          "file": "bach-toccata-fugue-piano-61.mml"
+        },
+        {
+          "id": "bach-toccata-fugue-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "bach-toccata-fugue-piano-88.mml"
+        },
+        {
+          "id": "bach-toccata-fugue-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "bach-toccata-fugue-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "battle-hymn",
+      "title": "Battle Hymn of the Republic",
+      "title_ja": "リパブリック讃歌",
+      "composer": "19世紀アメリカの旋律",
+      "composer_ja": "19世紀アメリカの旋律",
+      "composer_en": "19th-century American melody",
+      "reading_ja": "りぱぶりっくさんか",
+      "versions": [
+        {
+          "id": "battle-hymn-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "battle-hymn-musicbox-30.mml"
+        },
+        {
+          "id": "battle-hymn-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "battle-hymn-piano-88.mml"
+        },
+        {
+          "id": "battle-hymn-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "battle-hymn-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "beethoven-fate",
+      "title": "Symphonie Nr. 5: I. Allegro con brio",
+      "title_ja": "運命",
+      "title_en": "Symphony No. 5: I. Allegro con brio",
+      "composer": "ベートーヴェン",
+      "composer_ja": "ベートーヴェン",
+      "composer_en": "Ludwig van Beethoven",
+      "reading_ja": "うんめい",
+      "versions": [
+        {
+          "id": "beethoven-fate-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "beethoven-fate-musicbox-30.mml"
+        },
+        {
+          "id": "beethoven-fate-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "beethoven-fate-piano-88.mml"
+        },
+        {
+          "id": "beethoven-fate-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "beethoven-fate-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "bizet-farandole",
+      "title": "L’Arlésienne: Farandole",
+      "title_ja": "ファランドール",
+      "title_en": "L'Arlésienne: Farandole",
+      "composer": "ビゼー",
+      "composer_ja": "ビゼー",
+      "composer_en": "Georges Bizet",
+      "reading_ja": "ふぁらんどーる",
+      "versions": [
+        {
+          "id": "bizet-farandole-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "bizet-farandole-musicbox-30.mml"
+        },
+        {
+          "id": "bizet-farandole-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "bizet-farandole-piano-88.mml"
+        },
+        {
+          "id": "bizet-farandole-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "bizet-farandole-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "blue-danube",
+      "title": "An der schönen blauen Donau",
+      "title_ja": "美しく青きドナウ",
+      "title_en": "The Blue Danube",
+      "composer": "ヨハン・シュトラウス2世",
+      "composer_ja": "ヨハン・シュトラウス2世",
+      "composer_en": "Johann Strauss II",
+      "reading_ja": "うつくしくあおきどなう",
+      "versions": [
+        {
+          "id": "blue-danube-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "blue-danube-musicbox-30.mml"
+        },
+        {
+          "id": "blue-danube-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "blue-danube-piano-88.mml"
+        },
+        {
+          "id": "blue-danube-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "blue-danube-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "brahms-hungarian-dance-5",
+      "title": "Ungarischer Tanz Nr. 5",
+      "title_ja": "ハンガリー舞曲第5番",
+      "title_en": "Hungarian Dance No. 5",
+      "composer": "ブラームス",
+      "composer_ja": "ブラームス",
+      "composer_en": "Johannes Brahms",
+      "reading_ja": "はんがりーぶきょくだいごばん",
+      "versions": [
+        {
+          "id": "brahms-hungarian-dance-5-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "brahms-hungarian-dance-5-musicbox-30.mml"
+        },
+        {
+          "id": "brahms-hungarian-dance-5-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "brahms-hungarian-dance-5-piano-88.mml"
+        },
+        {
+          "id": "brahms-hungarian-dance-5-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "brahms-hungarian-dance-5-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "brahms-lullaby",
+      "title": "Wiegenlied, Op. 49 Nr. 4",
+      "title_ja": "子守歌 Op.49-4",
+      "title_en": "Lullaby, Op. 49 No. 4",
+      "composer": "ブラームス",
+      "composer_ja": "ブラームス",
+      "composer_en": "Johannes Brahms",
+      "reading_ja": "こもりうた",
+      "versions": [
+        {
+          "id": "brahms-lullaby-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "brahms-lullaby-musicbox-30.mml"
+        },
+        {
+          "id": "brahms-lullaby-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "brahms-lullaby-piano-88.mml"
+        },
+        {
+          "id": "brahms-lullaby-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "brahms-lullaby-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "british-grenadiers",
+      "title": "The British Grenadiers",
+      "title_ja": "ブリティッシュ・グレナディアーズ",
+      "composer": "イギリス伝承曲",
+      "composer_ja": "イギリス伝承曲",
+      "composer_en": "Traditional British melody",
+      "reading_ja": "ぶりてぃっしゅぐれなでぃあーず",
+      "versions": [
+        {
+          "id": "british-grenadiers-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "british-grenadiers-musicbox-30.mml"
+        },
+        {
+          "id": "british-grenadiers-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "british-grenadiers-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "bun-bun-bun",
+      "title": "Summ, summ, summ",
+      "title_ja": "ぶんぶんぶん",
+      "composer": "ボヘミア伝承曲",
+      "composer_ja": "ボヘミア伝承曲",
+      "composer_en": "Traditional Bohemian melody",
+      "reading_ja": "ぶんぶんぶん",
+      "versions": [
+        {
+          "id": "bun-bun-bun-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "bun-bun-bun-musicbox-30.mml"
+        },
+        {
+          "id": "bun-bun-bun-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "bun-bun-bun-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "burgmuller-arabesque",
+      "title": "Arabesque, Op. 100 No. 2",
+      "title_ja": "アラベスク Op.100-2",
+      "composer": "ブルグミュラー",
+      "composer_ja": "ブルグミュラー",
+      "composer_en": "Friedrich Burgmüller",
+      "reading_ja": "あらべすく",
+      "versions": [
+        {
+          "id": "burgmuller-arabesque-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "burgmuller-arabesque-musicbox-30.mml"
+        },
+        {
+          "id": "burgmuller-arabesque-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "burgmuller-arabesque-piano-88.mml"
+        },
+        {
+          "id": "burgmuller-arabesque-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "burgmuller-arabesque-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "carmen-prelude",
+      "title": "Carmen: Prélude",
+      "title_ja": "カルメンより「第1幕への前奏曲」",
+      "title_en": "Carmen: Prelude to Act I",
+      "composer": "ビゼー",
+      "composer_ja": "ビゼー",
+      "composer_en": "Georges Bizet",
+      "reading_ja": "かるめんよりだいいちまくへのぜんそうきょく",
+      "versions": [
+        {
+          "id": "carmen-prelude-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "carmen-prelude-musicbox-30.mml"
+        },
+        {
+          "id": "carmen-prelude-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "carmen-prelude-piano-88.mml"
+        },
+        {
+          "id": "carmen-prelude-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "carmen-prelude-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "chanson-oignon",
+      "title": "Chanson de l’Oignon",
+      "title_ja": "玉葱の歌",
+      "title_en": "Chanson de l'Oignon",
+      "composer": "フランス伝承曲",
+      "composer_ja": "フランス伝承曲",
+      "composer_en": "Traditional French melody",
+      "reading_ja": "たまねぎのうた",
+      "versions": [
+        {
+          "id": "chanson-oignon-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "chanson-oignon-musicbox-30.mml"
+        },
+        {
+          "id": "chanson-oignon-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "chanson-oignon-piano-88.mml"
+        },
+        {
+          "id": "chanson-oignon-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "chanson-oignon-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "chocho",
+      "title": "Hänschen klein",
+      "title_ja": "ちょうちょう",
+      "title_en": "Lightly Row",
+      "composer": "ドイツ伝承曲",
+      "composer_ja": "ドイツ伝承曲",
+      "composer_en": "Traditional German melody",
+      "reading_ja": "ちょうちょう",
+      "versions": [
+        {
+          "id": "chocho-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "chocho-musicbox-30.mml"
+        },
+        {
+          "id": "chocho-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "chocho-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "chopin-nocturne-2",
+      "title": "Nocturne No. 2, Op. 9 No. 2",
+      "title_ja": "ノクターン第2番 Op.9-2",
+      "composer": "ショパン",
+      "composer_ja": "ショパン",
+      "composer_en": "Frédéric Chopin",
+      "reading_ja": "のくたーんだいにばん",
+      "versions": [
+        {
+          "id": "chopin-nocturne-2-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "chopin-nocturne-2-musicbox-30.mml"
+        },
+        {
+          "id": "chopin-nocturne-2-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "chopin-nocturne-2-piano-88.mml"
+        },
+        {
+          "id": "chopin-nocturne-2-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "chopin-nocturne-2-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "chopin-prelude-7",
+      "title": "Prelude No. 7, Op. 28 No. 7",
+      "title_ja": "プレリュード第7番 Op.28-7",
+      "composer": "ショパン",
+      "composer_ja": "ショパン",
+      "composer_en": "Frédéric Chopin",
+      "reading_ja": "ぷれりゅーどだいななばん",
+      "versions": [
+        {
+          "id": "chopin-prelude-7-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "chopin-prelude-7-musicbox-30.mml"
+        },
+        {
+          "id": "chopin-prelude-7-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "chopin-prelude-7-piano-88.mml"
+        },
+        {
+          "id": "chopin-prelude-7-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "chopin-prelude-7-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "clair-de-lune",
+      "title": "Clair de lune",
+      "title_ja": "月の光",
+      "composer": "ドビュッシー",
+      "composer_ja": "ドビュッシー",
+      "composer_en": "Claude Debussy",
+      "reading_ja": "つきのひかり",
+      "versions": [
+        {
+          "id": "clair-de-lune-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "clair-de-lune-musicbox-30.mml"
+        },
+        {
+          "id": "clair-de-lune-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "clair-de-lune-piano-88.mml"
+        },
+        {
+          "id": "clair-de-lune-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "clair-de-lune-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "colonel-bogey",
+      "title": "Colonel Bogey March",
+      "title_ja": "ボギー大佐",
+      "composer": "アルフォード",
+      "composer_ja": "アルフォード",
+      "composer_en": "Kenneth J. Alford",
+      "reading_ja": "ぼぎーたいさ",
+      "versions": [
+        {
+          "id": "colonel-bogey-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "colonel-bogey-musicbox-30.mml"
+        },
+        {
+          "id": "colonel-bogey-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "colonel-bogey-piano-88.mml"
+        },
+        {
+          "id": "colonel-bogey-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "colonel-bogey-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "csikos-post",
+      "title": "Csikós Post",
+      "title_ja": "クシコス・ポスト",
+      "composer": "ネッケ",
+      "composer_ja": "ネッケ",
+      "composer_en": "Hermann Necke",
+      "reading_ja": "くしこすぽすと",
+      "versions": [
+        {
+          "id": "csikos-post-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "csikos-post-musicbox-30.mml"
+        },
+        {
+          "id": "csikos-post-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "csikos-post-piano-88.mml"
+        },
+        {
+          "id": "csikos-post-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "csikos-post-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "czardas",
+      "title": "Csárdás",
+      "title_ja": "チャルダッシュ",
+      "composer": "モンティ",
+      "composer_ja": "モンティ",
+      "composer_en": "Vittorio Monti",
+      "reading_ja": "ちゃるだっしゅ",
+      "versions": [
+        {
+          "id": "czardas-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "czardas-musicbox-30.mml"
+        },
+        {
+          "id": "czardas-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "czardas-piano-88.mml"
+        },
+        {
+          "id": "czardas-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "czardas-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "dolls-dream",
+      "title": "Püppchens Träumen und Erwachen",
+      "title_ja": "人形の夢と目覚め",
+      "title_en": "Doll's Dream and Awakening",
+      "composer": "オースティン",
+      "composer_ja": "オースティン",
+      "composer_en": "Theodor Oesten",
+      "reading_ja": "にんぎょうのゆめとめざめ",
+      "versions": [
+        {
+          "id": "dolls-dream-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "dolls-dream-musicbox-30.mml"
+        },
+        {
+          "id": "dolls-dream-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "dolls-dream-piano-88.mml"
+        },
+        {
+          "id": "dolls-dream-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "dolls-dream-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "eine-kleine",
+      "title": "Eine kleine Nachtmusik: I. Allegro",
+      "title_ja": "アイネ・クライネ・ナハトムジークより「第1楽章」",
+      "composer": "モーツァルト",
+      "composer_ja": "モーツァルト",
+      "composer_en": "Wolfgang Amadeus Mozart",
+      "reading_ja": "あいねくらいねなはとむじーくよりだいいちがくしょう",
+      "versions": [
+        {
+          "id": "eine-kleine-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "eine-kleine-musicbox-30.mml"
+        },
+        {
+          "id": "eine-kleine-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "eine-kleine-piano-88.mml"
+        },
+        {
+          "id": "eine-kleine-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "eine-kleine-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "erika",
+      "title": "Erika",
+      "title_ja": "エーリカ行進曲",
+      "composer": "ヘルムス・ニール",
+      "composer_ja": "ヘルムス・ニール",
+      "composer_en": "Herms Niel",
+      "reading_ja": "えーりかこうしんきょく",
+      "versions": [
+        {
+          "id": "erika-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "erika-musicbox-30.mml"
+        },
+        {
+          "id": "erika-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "erika-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "frog-chorus",
+      "title": "Froschgesang",
+      "title_ja": "かえるの合唱",
+      "composer": "ドイツ伝承曲",
+      "composer_ja": "ドイツ伝承曲",
+      "composer_en": "Traditional German melody",
+      "reading_ja": "かえるのがっしょう",
+      "versions": [
+        {
+          "id": "frog-chorus-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "frog-chorus-musicbox-30.mml"
+        },
+        {
+          "id": "frog-chorus-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "frog-chorus-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "funiculi-funicula",
+      "title": "Funiculì, Funiculà",
+      "title_ja": "フニクリ・フニクラ",
+      "composer": "デンツァ",
+      "composer_ja": "デンツァ",
+      "composer_en": "Luigi Denza",
+      "reading_ja": "ふにくりふにくら",
+      "versions": [
+        {
+          "id": "funiculi-funicula-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "funiculi-funicula-musicbox-30.mml"
+        },
+        {
+          "id": "funiculi-funicula-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "funiculi-funicula-piano-88.mml"
+        },
+        {
+          "id": "funiculi-funicula-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "funiculi-funicula-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "fur-elise",
+      "title": "Für Elise",
+      "title_ja": "エリーゼのために",
+      "composer": "ベートーヴェン",
+      "composer_ja": "ベートーヴェン",
+      "composer_en": "Ludwig van Beethoven",
+      "reading_ja": "えりーぜのために",
+      "versions": [
+        {
+          "id": "fur-elise-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "fur-elise-musicbox-30.mml"
+        },
+        {
+          "id": "fur-elise-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "fur-elise-piano-88.mml"
+        },
+        {
+          "id": "fur-elise-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "fur-elise-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "furusato",
+      "title": "故郷",
+      "title_en": "Furusato",
+      "composer": "岡野貞一",
+      "composer_ja": "岡野貞一",
+      "composer_en": "Teiichi Okano",
+      "reading_ja": "ふるさと",
+      "versions": [
+        {
+          "id": "furusato-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "furusato-musicbox-30.mml"
+        },
+        {
+          "id": "furusato-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "furusato-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "grandfathers-clock",
+      "title": "My Grandfather's Clock",
+      "title_ja": "大きな古時計",
+      "composer": "ワーク",
+      "composer_ja": "ワーク",
+      "composer_en": "Henry Clay Work",
+      "reading_ja": "おおきなふるどけい",
+      "versions": [
+        {
+          "id": "grandfathers-clock-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "grandfathers-clock-musicbox-30.mml"
+        },
+        {
+          "id": "grandfathers-clock-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "grandfathers-clock-piano-88.mml"
+        },
+        {
+          "id": "grandfathers-clock-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "grandfathers-clock-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "greensleeves",
+      "title": "Greensleeves",
+      "title_ja": "グリーンスリーブス",
+      "composer": "イギリス伝承曲",
+      "composer_ja": "イギリス伝承曲",
+      "composer_en": "Traditional British melody",
+      "reading_ja": "ぐりーんすりーぶす",
+      "versions": [
+        {
+          "id": "greensleeves-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "greensleeves-musicbox-30.mml"
+        },
+        {
+          "id": "greensleeves-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "greensleeves-piano-88.mml"
+        },
+        {
+          "id": "greensleeves-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "greensleeves-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "grieg-morning",
+      "title": "Peer Gynt: Morgenstemning",
+      "title_ja": "朝",
+      "title_en": "Peer Gynt: Morning Mood",
+      "composer": "グリーグ",
+      "composer_ja": "グリーグ",
+      "composer_en": "Edvard Grieg",
+      "reading_ja": "あさ",
+      "versions": [
+        {
+          "id": "grieg-morning-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "grieg-morning-musicbox-30.mml"
+        },
+        {
+          "id": "grieg-morning-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "grieg-morning-piano-88.mml"
+        },
+        {
+          "id": "grieg-morning-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "grieg-morning-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "gymnopedie-1",
+      "title": "Gymnopédie No. 1",
+      "title_ja": "ジムノペディ第1番",
+      "composer": "サティ",
+      "composer_ja": "サティ",
+      "composer_en": "Erik Satie",
+      "reading_ja": "じむのぺでぃだいいちばん",
+      "versions": [
+        {
+          "id": "gymnopedie-1-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "gymnopedie-1-musicbox-30.mml"
+        },
+        {
+          "id": "gymnopedie-1-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "gymnopedie-1-piano-88.mml"
+        },
+        {
+          "id": "gymnopedie-1-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "gymnopedie-1-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "hall-of-mountain-king",
+      "title": "Peer Gynt: I Dovregubbens hall",
+      "title_ja": "山の魔王の宮殿にて",
+      "title_en": "In the Hall of the Mountain King",
+      "composer": "グリーグ",
+      "composer_ja": "グリーグ",
+      "composer_en": "Edvard Grieg",
+      "reading_ja": "やまのまおうのきゅうでんにて",
+      "versions": [
+        {
+          "id": "hall-of-mountain-king-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "hall-of-mountain-king-musicbox-30.mml"
+        },
+        {
+          "id": "hall-of-mountain-king-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "hall-of-mountain-king-piano-88.mml"
+        },
+        {
+          "id": "hall-of-mountain-king-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "hall-of-mountain-king-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "handel-hallelujah",
+      "title": "Messiah: Hallelujah",
+      "title_ja": "ハレルヤ",
+      "composer": "ヘンデル",
+      "composer_ja": "ヘンデル",
+      "composer_en": "George Frideric Handel",
+      "reading_ja": "はれるや",
+      "versions": [
+        {
+          "id": "handel-hallelujah-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "handel-hallelujah-musicbox-30.mml"
+        },
+        {
+          "id": "handel-hallelujah-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "handel-hallelujah-piano-88.mml"
+        },
+        {
+          "id": "handel-hallelujah-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "handel-hallelujah-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "handel-see-conquering-hero",
+      "title": "See, the Conqu'ring Hero Comes",
+      "title_ja": "見よ、勇者は帰る",
+      "composer": "ヘンデル",
+      "composer_ja": "ヘンデル",
+      "composer_en": "George Frideric Handel",
+      "reading_ja": "みよゆうしゃはかえる",
+      "versions": [
+        {
+          "id": "handel-see-conquering-hero-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "handel-see-conquering-hero-musicbox-30.mml"
+        },
+        {
+          "id": "handel-see-conquering-hero-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "handel-see-conquering-hero-piano-88.mml"
+        },
+        {
+          "id": "handel-see-conquering-hero-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "handel-see-conquering-hero-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "happy-birthday",
+      "title": "Happy Birthday to You",
+      "title_ja": "ハッピーバースデー",
+      "composer": "ミルドレッド・ヒル",
+      "composer_ja": "ミルドレッド・ヒル",
+      "composer_en": "Mildred J. Hill",
+      "reading_ja": "はっぴーばーすでーとぅーゆー",
+      "versions": [
+        {
+          "id": "happy-birthday-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "happy-birthday-musicbox-30.mml"
+        },
+        {
+          "id": "happy-birthday-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "happy-birthday-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "haru-no-ogawa",
+      "title": "春の小川",
+      "title_en": "Haru no Ogawa",
+      "composer": "岡野貞一",
+      "composer_ja": "岡野貞一",
+      "composer_en": "Teiichi Okano",
+      "reading_ja": "はるのおがわ",
+      "versions": [
+        {
+          "id": "haru-no-ogawa-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "haru-no-ogawa-musicbox-30.mml"
+        },
+        {
+          "id": "haru-no-ogawa-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "haru-no-ogawa-piano-88.mml"
+        },
+        {
+          "id": "haru-no-ogawa-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "haru-no-ogawa-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "home-sweet-home",
+      "title": "Home, Sweet Home",
+      "title_ja": "埴生の宿",
+      "composer": "ビショップ",
+      "composer_ja": "ビショップ",
+      "composer_en": "Henry Bishop",
+      "reading_ja": "はにゅうのやど",
+      "versions": [
+        {
+          "id": "home-sweet-home-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "home-sweet-home-musicbox-30.mml"
+        },
+        {
+          "id": "home-sweet-home-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "home-sweet-home-piano-88.mml"
+        },
+        {
+          "id": "home-sweet-home-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "home-sweet-home-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "ievan-polkka",
+      "title": "Ievan polkka",
+      "title_ja": "イエヴァン・ポルカ",
+      "title_en": "Ievan Polkka",
+      "composer": "フィンランド伝承曲（旋律のみ）",
+      "composer_ja": "フィンランド伝承曲（旋律のみ）",
+      "composer_en": "Traditional Finnish melody",
+      "reading_ja": "いえゔぁんぽるか",
+      "versions": [
+        {
+          "id": "ievan-polkka-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "ievan-polkka-musicbox-30.mml"
+        },
+        {
+          "id": "ievan-polkka-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "ievan-polkka-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "jesu-joy",
+      "title": "Jesus bleibet meine Freude",
+      "title_ja": "主よ、人の望みの喜びよ",
+      "title_en": "Jesu, Joy of Man's Desiring",
+      "composer": "バッハ",
+      "composer_ja": "バッハ",
+      "composer_en": "Johann Sebastian Bach",
+      "reading_ja": "しゅよひとののぞみのよろこびよ",
+      "versions": [
+        {
+          "id": "jesu-joy-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "jesu-joy-musicbox-30.mml"
+        },
+        {
+          "id": "jesu-joy-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "jesu-joy-piano-88.mml"
+        },
+        {
+          "id": "jesu-joy-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "jesu-joy-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "jingle-bells",
+      "title": "Jingle Bells",
+      "title_ja": "ジングルベル",
+      "composer": "ピアポント",
+      "composer_ja": "ピアポント",
+      "composer_en": "James Lord Pierpont",
+      "reading_ja": "じんぐるべる",
+      "versions": [
+        {
+          "id": "jingle-bells-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "jingle-bells-musicbox-30.mml"
+        },
+        {
+          "id": "jingle-bells-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "jingle-bells-piano-88.mml"
+        },
+        {
+          "id": "jingle-bells-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "jingle-bells-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "jupiter",
+      "title": "The Planets: Jupiter",
+      "title_ja": "惑星より「木星」",
+      "composer": "ホルスト",
+      "composer_ja": "ホルスト",
+      "composer_en": "Gustav Holst",
+      "reading_ja": "わくせいよりもくせい",
+      "versions": [
+        {
+          "id": "jupiter-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "jupiter-musicbox-30.mml"
+        },
+        {
+          "id": "jupiter-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "jupiter-piano-88.mml"
+        },
+        {
+          "id": "jupiter-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "jupiter-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "kagome-kagome",
+      "title": "かごめかごめ",
+      "title_en": "Kagome Kagome",
+      "composer": "日本伝承曲",
+      "composer_ja": "日本伝承曲",
+      "composer_en": "Traditional Japanese melody",
+      "reading_ja": "かごめかごめ",
+      "versions": [
+        {
+          "id": "kagome-kagome-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "kagome-kagome-musicbox-30.mml"
+        },
+        {
+          "id": "kagome-kagome-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "kagome-kagome-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "kimigayo",
+      "title": "君が代",
+      "title_en": "Kimigayo",
+      "composer": "林廣守・林広季・奥好義",
+      "composer_ja": "林廣守・林広季・奥好義",
+      "composer_en": "Hiromori Hayashi, Akimori Hayashi and Yoshiisa Oku",
+      "reading_ja": "きみがよ",
+      "versions": [
+        {
+          "id": "kimigayo-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "kimigayo-musicbox-30.mml"
+        },
+        {
+          "id": "kimigayo-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "kimigayo-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "kojo-no-tsuki",
+      "title": "荒城の月",
+      "title_en": "Kōjō no Tsuki",
+      "composer": "滝廉太郎",
+      "composer_ja": "滝廉太郎",
+      "composer_en": "Rentaro Taki",
+      "reading_ja": "こうじょうのつき",
+      "versions": [
+        {
+          "id": "kojo-no-tsuki-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "kojo-no-tsuki-musicbox-30.mml"
+        },
+        {
+          "id": "kojo-no-tsuki-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "kojo-no-tsuki-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "kokyo-no-sora",
+      "title": "Comin' Through the Rye",
+      "title_ja": "故郷の空",
+      "composer": "スコットランド伝承曲",
+      "composer_ja": "スコットランド伝承曲",
+      "composer_en": "Traditional Scottish melody",
+      "reading_ja": "こきょうのそら",
+      "versions": [
+        {
+          "id": "kokyo-no-sora-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "kokyo-no-sora-musicbox-30.mml"
+        },
+        {
+          "id": "kokyo-no-sora-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "kokyo-no-sora-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "korobushka",
+      "title": "Коробушка",
+      "title_ja": "コロブチカ",
+      "title_en": "Korobushka",
+      "composer": "ロシア伝承曲",
+      "composer_ja": "ロシア伝承曲",
+      "composer_en": "Traditional Russian melody",
+      "reading_ja": "ころぶちか",
+      "versions": [
+        {
+          "id": "korobushka-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "korobushka-musicbox-30.mml"
+        },
+        {
+          "id": "korobushka-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "korobushka-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "little-fugue",
+      "title": "Fuge, BWV 578",
+      "title_ja": "小フーガ",
+      "title_en": "Little Fugue, BWV 578",
+      "composer": "バッハ",
+      "composer_ja": "バッハ",
+      "composer_en": "Johann Sebastian Bach",
+      "reading_ja": "しょうふーが",
+      "versions": [
+        {
+          "id": "little-fugue-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "little-fugue-musicbox-30.mml"
+        },
+        {
+          "id": "little-fugue-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "little-fugue-piano-88.mml"
+        },
+        {
+          "id": "little-fugue-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "little-fugue-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "london-bridge",
+      "title": "London Bridge Is Falling Down",
+      "title_ja": "ロンドン橋落ちた",
+      "composer": "イギリス伝承曲",
+      "composer_ja": "イギリス伝承曲",
+      "composer_en": "Traditional British melody",
+      "reading_ja": "ろんどんばしおちた",
+      "versions": [
+        {
+          "id": "london-bridge-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "london-bridge-musicbox-30.mml"
+        },
+        {
+          "id": "london-bridge-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "london-bridge-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "maidens-prayer",
+      "title": "La prière d’une vierge",
+      "title_ja": "乙女の祈り",
+      "title_en": "A Maiden's Prayer",
+      "composer": "バダジェフスカ",
+      "composer_ja": "バダジェフスカ",
+      "composer_en": "Tekla Bądarzewska",
+      "reading_ja": "おとめのいのり",
+      "versions": [
+        {
+          "id": "maidens-prayer-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "maidens-prayer-musicbox-30.mml"
+        },
+        {
+          "id": "maidens-prayer-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "maidens-prayer-piano-88.mml"
+        },
+        {
+          "id": "maidens-prayer-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "maidens-prayer-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mars",
+      "title": "The Planets: Mars",
+      "title_ja": "惑星より「火星」",
+      "composer": "ホルスト",
+      "composer_ja": "ホルスト",
+      "composer_en": "Gustav Holst",
+      "reading_ja": "わくせいよりかせい",
+      "versions": [
+        {
+          "id": "mars-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mars-musicbox-30.mml"
+        },
+        {
+          "id": "mars-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mars-piano-88.mml"
+        },
+        {
+          "id": "mars-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mars-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mendelssohn-spring-song",
+      "title": "Frühlingslied",
+      "title_ja": "春の歌",
+      "title_en": "Spring Song",
+      "composer": "メンデルスゾーン",
+      "composer_ja": "メンデルスゾーン",
+      "composer_en": "Felix Mendelssohn",
+      "reading_ja": "はるのうた",
+      "versions": [
+        {
+          "id": "mendelssohn-spring-song-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mendelssohn-spring-song-musicbox-30.mml"
+        },
+        {
+          "id": "mendelssohn-spring-song-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mendelssohn-spring-song-piano-88.mml"
+        },
+        {
+          "id": "mendelssohn-spring-song-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mendelssohn-spring-song-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mendelssohn-wedding-march",
+      "title": "Hochzeitsmarsch",
+      "title_ja": "結婚行進曲",
+      "title_en": "Wedding March",
+      "composer": "メンデルスゾーン",
+      "composer_ja": "メンデルスゾーン",
+      "composer_en": "Felix Mendelssohn",
+      "reading_ja": "けっこんこうしんきょく",
+      "versions": [
+        {
+          "id": "mendelssohn-wedding-march-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mendelssohn-wedding-march-musicbox-30.mml"
+        },
+        {
+          "id": "mendelssohn-wedding-march-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mendelssohn-wedding-march-piano-88.mml"
+        },
+        {
+          "id": "mendelssohn-wedding-march-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mendelssohn-wedding-march-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "military-march",
+      "title": "Marche militaire No. 1",
+      "title_ja": "軍隊行進曲 第1番",
+      "title_en": "Military March No. 1",
+      "composer": "シューベルト",
+      "composer_ja": "シューベルト",
+      "composer_en": "Franz Schubert",
+      "reading_ja": "ぐんたいこうしんきょくだいいちばん",
+      "versions": [
+        {
+          "id": "military-march-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "military-march-musicbox-30.mml"
+        },
+        {
+          "id": "military-march-piano-61",
+          "arranged_for": "piano61",
+          "label_ja": "ピアノ61",
+          "label_en": "Piano 61",
+          "file": "military-march-piano-61.mml"
+        },
+        {
+          "id": "military-march-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "military-march-piano-88.mml"
+        },
+        {
+          "id": "military-march-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "military-march-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "minuet",
+      "title": "Menuet",
+      "title_ja": "メヌエット",
+      "title_en": "Minuet",
+      "composer": "ペツォールト",
+      "composer_ja": "ペツォールト",
+      "composer_en": "Christian Petzold",
+      "reading_ja": "めぬえっと",
+      "versions": [
+        {
+          "id": "minuet-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "minuet-musicbox-30.mml"
+        },
+        {
+          "id": "minuet-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "minuet-piano-88.mml"
+        },
+        {
+          "id": "minuet-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "minuet-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "minute-waltz",
+      "title": "Minute Waltz",
+      "title_ja": "小犬のワルツ",
+      "composer": "ショパン",
+      "composer_ja": "ショパン",
+      "composer_en": "Frédéric Chopin",
+      "reading_ja": "こいぬのわるつ",
+      "versions": [
+        {
+          "id": "minute-waltz-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "minute-waltz-musicbox-30.mml"
+        },
+        {
+          "id": "minute-waltz-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "minute-waltz-piano-88.mml"
+        },
+        {
+          "id": "minute-waltz-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "minute-waltz-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "momiji",
+      "title": "紅葉",
+      "title_en": "Momiji",
+      "composer": "岡野貞一",
+      "composer_ja": "岡野貞一",
+      "composer_en": "Teiichi Okano",
+      "reading_ja": "もみじ",
+      "versions": [
+        {
+          "id": "momiji-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "momiji-musicbox-30.mml"
+        },
+        {
+          "id": "momiji-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "momiji-piano-88.mml"
+        },
+        {
+          "id": "momiji-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "momiji-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mozart-dies-irae",
+      "title": "Requiem: Dies irae",
+      "title_ja": "怒りの日",
+      "composer": "モーツァルト",
+      "composer_ja": "モーツァルト",
+      "composer_en": "Wolfgang Amadeus Mozart",
+      "reading_ja": "いかりのひ",
+      "versions": [
+        {
+          "id": "mozart-dies-irae-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mozart-dies-irae-musicbox-30.mml"
+        },
+        {
+          "id": "mozart-dies-irae-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mozart-dies-irae-piano-88.mml"
+        },
+        {
+          "id": "mozart-dies-irae-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mozart-dies-irae-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mozart-figaro-overture",
+      "title": "Le nozze di Figaro: Sinfonia",
+      "title_ja": "フィガロの結婚より「序曲」",
+      "title_en": "The Marriage of Figaro: Overture",
+      "composer": "モーツァルト",
+      "composer_ja": "モーツァルト",
+      "composer_en": "Wolfgang Amadeus Mozart",
+      "reading_ja": "ふぃがろのけっこんよりじょきょく",
+      "versions": [
+        {
+          "id": "mozart-figaro-overture-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mozart-figaro-overture-musicbox-30.mml"
+        },
+        {
+          "id": "mozart-figaro-overture-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mozart-figaro-overture-piano-88.mml"
+        },
+        {
+          "id": "mozart-figaro-overture-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mozart-figaro-overture-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mozart-turkish-march",
+      "title": "Rondo alla turca",
+      "title_ja": "トルコ行進曲",
+      "title_en": "Turkish March",
+      "composer": "モーツァルト",
+      "composer_ja": "モーツァルト",
+      "composer_en": "Wolfgang Amadeus Mozart",
+      "reading_ja": "とるここうしんきょく",
+      "versions": [
+        {
+          "id": "mozart-turkish-march-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mozart-turkish-march-musicbox-30.mml"
+        },
+        {
+          "id": "mozart-turkish-march-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mozart-turkish-march-piano-88.mml"
+        },
+        {
+          "id": "mozart-turkish-march-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mozart-turkish-march-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mushi-no-koe",
+      "title": "虫のこえ",
+      "title_en": "Mushi no Koe",
+      "composer": "文部省唱歌（作者不詳）",
+      "composer_ja": "文部省唱歌（作者不詳）",
+      "composer_en": "Japanese school song (composer unknown)",
+      "reading_ja": "むしのこえ",
+      "versions": [
+        {
+          "id": "mushi-no-koe-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mushi-no-koe-musicbox-30.mml"
+        },
+        {
+          "id": "mushi-no-koe-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mushi-no-koe-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "mussorgsky-promenade",
+      "title": "Картинки с выставки: Прогулка",
+      "title_ja": "プロムナード",
+      "title_en": "Pictures at an Exhibition: Promenade",
+      "composer": "ムソルグスキー",
+      "composer_ja": "ムソルグスキー",
+      "composer_en": "Modest Mussorgsky",
+      "reading_ja": "ぷろむなーど",
+      "versions": [
+        {
+          "id": "mussorgsky-promenade-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "mussorgsky-promenade-musicbox-30.mml"
+        },
+        {
+          "id": "mussorgsky-promenade-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "mussorgsky-promenade-piano-88.mml"
+        },
+        {
+          "id": "mussorgsky-promenade-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "mussorgsky-promenade-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "nanatsu-no-ko",
+      "title": "七つの子",
+      "title_en": "Nanatsu no Ko",
+      "composer": "本居長世",
+      "composer_ja": "本居長世",
+      "composer_en": "Nagayo Motoori",
+      "reading_ja": "ななつのこ",
+      "versions": [
+        {
+          "id": "nanatsu-no-ko-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "nanatsu-no-ko-musicbox-30.mml"
+        },
+        {
+          "id": "nanatsu-no-ko-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "nanatsu-no-ko-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "nedelka",
+      "title": "Неделька",
+      "title_ja": "一週間",
+      "title_en": "Nedelka",
+      "composer": "ロシア伝承曲",
+      "composer_ja": "ロシア伝承曲",
+      "composer_en": "Traditional Russian melody",
+      "reading_ja": "いっしゅうかん",
+      "versions": [
+        {
+          "id": "nedelka-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "nedelka-musicbox-30.mml"
+        },
+        {
+          "id": "nedelka-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "nedelka-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "neko-funjatta",
+      "title": "Flohwalzer",
+      "title_ja": "猫踏んじゃった",
+      "title_en": "Flea Waltz",
+      "composer": "作者不詳",
+      "composer_ja": "作者不詳",
+      "composer_en": "Anonymous",
+      "reading_ja": "ねこふんじゃった",
+      "versions": [
+        {
+          "id": "neko-funjatta-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "neko-funjatta-musicbox-30.mml"
+        },
+        {
+          "id": "neko-funjatta-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "neko-funjatta-piano-88.mml"
+        },
+        {
+          "id": "neko-funjatta-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "neko-funjatta-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "new-world-fourth",
+      "title": "Z nového světa: IV. Allegro con fuoco",
+      "title_ja": "新世界より「第4楽章」",
+      "title_en": "New World Symphony: IV. Allegro con fuoco",
+      "composer": "ドヴォルザーク",
+      "composer_ja": "ドヴォルザーク",
+      "composer_en": "Antonín Dvořák",
+      "reading_ja": "しんせかいよりだいよんがくしょう",
+      "versions": [
+        {
+          "id": "new-world-fourth-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "new-world-fourth-musicbox-30.mml"
+        },
+        {
+          "id": "new-world-fourth-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "new-world-fourth-piano-88.mml"
+        },
+        {
+          "id": "new-world-fourth-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "new-world-fourth-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "new-world-largo",
+      "title": "Z nového světa: II. Largo",
+      "title_ja": "新世界より「第2楽章」",
+      "title_en": "New World Symphony: II. Largo",
+      "composer": "ドヴォルザーク",
+      "composer_ja": "ドヴォルザーク",
+      "composer_en": "Antonín Dvořák",
+      "reading_ja": "しんせかいよりだいにがくしょう",
+      "versions": [
+        {
+          "id": "new-world-largo-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "new-world-largo-musicbox-30.mml"
+        },
+        {
+          "id": "new-world-largo-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "new-world-largo-piano-88.mml"
+        },
+        {
+          "id": "new-world-largo-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "new-world-largo-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "nutcracker-march",
+      "title": "Щелкунчик: Марш",
+      "title_ja": "くるみ割り人形より「行進曲」",
+      "title_en": "The Nutcracker: March",
+      "composer": "チャイコフスキー",
+      "composer_ja": "チャイコフスキー",
+      "composer_en": "Pyotr Ilyich Tchaikovsky",
+      "reading_ja": "くるみわりにんぎょうよりこうしんきょく",
+      "versions": [
+        {
+          "id": "nutcracker-march-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "nutcracker-march-musicbox-30.mml"
+        },
+        {
+          "id": "nutcracker-march-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "nutcracker-march-piano-88.mml"
+        },
+        {
+          "id": "nutcracker-march-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "nutcracker-march-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "oborozukiyo",
+      "title": "朧月夜",
+      "title_en": "Oborozukiyo",
+      "composer": "岡野貞一",
+      "composer_ja": "岡野貞一",
+      "composer_en": "Teiichi Okano",
+      "reading_ja": "おぼろづきよ",
+      "versions": [
+        {
+          "id": "oborozukiyo-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "oborozukiyo-musicbox-30.mml"
+        },
+        {
+          "id": "oborozukiyo-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "oborozukiyo-piano-88.mml"
+        },
+        {
+          "id": "oborozukiyo-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "oborozukiyo-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "ode-to-joy",
+      "title": "An die Freude",
+      "title_ja": "歓喜の歌",
+      "title_en": "Ode to Joy",
+      "composer": "ベートーヴェン",
+      "composer_ja": "ベートーヴェン",
+      "composer_en": "Ludwig van Beethoven",
+      "reading_ja": "かんきのうた",
+      "versions": [
+        {
+          "id": "ode-to-joy-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "ode-to-joy-musicbox-30.mml"
+        },
+        {
+          "id": "ode-to-joy-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "ode-to-joy-piano-88.mml"
+        },
+        {
+          "id": "ode-to-joy-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "ode-to-joy-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "offenbach-can-can",
+      "title": "Orphée aux enfers: Ouverture",
+      "title_ja": "天国と地獄より「序曲」",
+      "title_en": "Orpheus in the Underworld: Overture",
+      "composer": "オッフェンバック",
+      "composer_ja": "オッフェンバック",
+      "composer_en": "Jacques Offenbach",
+      "reading_ja": "てんごくとじごくよりじょきょく",
+      "versions": [
+        {
+          "id": "offenbach-can-can-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "offenbach-can-can-musicbox-30.mml"
+        },
+        {
+          "id": "offenbach-can-can-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "offenbach-can-can-piano-88.mml"
+        },
+        {
+          "id": "offenbach-can-can-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "offenbach-can-can-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "oklahoma-mixer",
+      "title": "Turkey in the Straw",
+      "title_ja": "オクラホマミキサー",
+      "composer": "アメリカ伝承曲",
+      "composer_ja": "アメリカ伝承曲",
+      "composer_en": "Traditional American melody",
+      "reading_ja": "おくらほまみきさー",
+      "versions": [
+        {
+          "id": "oklahoma-mixer-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "oklahoma-mixer-musicbox-30.mml"
+        },
+        {
+          "id": "oklahoma-mixer-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "oklahoma-mixer-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "old-macdonald",
+      "title": "Old MacDonald Had a Farm",
+      "title_ja": "愉快な牧場",
+      "composer": "アメリカ伝承曲",
+      "composer_ja": "アメリカ伝承曲",
+      "composer_en": "Traditional American melody",
+      "reading_ja": "ゆかいなまきば",
+      "versions": [
+        {
+          "id": "old-macdonald-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "old-macdonald-musicbox-30.mml"
+        },
+        {
+          "id": "old-macdonald-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "old-macdonald-piano-88.mml"
+        },
+        {
+          "id": "old-macdonald-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "old-macdonald-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "pachelbel-canon",
+      "title": "Canon",
+      "title_ja": "カノン",
+      "composer": "パッヘルベル",
+      "composer_ja": "パッヘルベル",
+      "composer_en": "Johann Pachelbel",
+      "reading_ja": "かのん",
+      "versions": [
+        {
+          "id": "pachelbel-canon-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "pachelbel-canon-musicbox-30.mml"
+        },
+        {
+          "id": "pachelbel-canon-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "pachelbel-canon-piano-88.mml"
+        },
+        {
+          "id": "pachelbel-canon-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "pachelbel-canon-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "panzerlied",
+      "title": "Panzerlied",
+      "title_ja": "パンツァー・リート",
+      "composer": "伝承曲",
+      "composer_ja": "伝承曲",
+      "composer_en": "Traditional",
+      "reading_ja": "ぱんつぁーりーと",
+      "versions": [
+        {
+          "id": "panzerlied-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "panzerlied-musicbox-30.mml"
+        },
+        {
+          "id": "panzerlied-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "panzerlied-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "pomp-and-circumstance",
+      "title": "Pomp and Circumstance March No. 1",
+      "title_ja": "威風堂々 第1番",
+      "composer": "エルガー",
+      "composer_ja": "エルガー",
+      "composer_en": "Edward Elgar",
+      "reading_ja": "いふうどうどうだいいちばん",
+      "versions": [
+        {
+          "id": "pomp-and-circumstance-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "pomp-and-circumstance-musicbox-30.mml"
+        },
+        {
+          "id": "pomp-and-circumstance-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "pomp-and-circumstance-piano-88.mml"
+        },
+        {
+          "id": "pomp-and-circumstance-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "pomp-and-circumstance-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "radetzky-march",
+      "title": "Radetzky-Marsch",
+      "title_ja": "ラデツキー行進曲",
+      "title_en": "Radetzky March",
+      "composer": "ヨハン・シュトラウス1世",
+      "composer_ja": "ヨハン・シュトラウス1世",
+      "composer_en": "Johann Strauss I",
+      "reading_ja": "らでつきーこうしんきょく",
+      "versions": [
+        {
+          "id": "radetzky-march-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "radetzky-march-musicbox-30.mml"
+        },
+        {
+          "id": "radetzky-march-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "radetzky-march-piano-88.mml"
+        },
+        {
+          "id": "radetzky-march-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "radetzky-march-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "ravel-bolero",
+      "title": "Boléro",
+      "title_ja": "ボレロ",
+      "composer": "ラヴェル",
+      "composer_ja": "ラヴェル",
+      "composer_en": "Maurice Ravel",
+      "reading_ja": "ぼれろ",
+      "versions": [
+        {
+          "id": "ravel-bolero-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "ravel-bolero-musicbox-30.mml"
+        },
+        {
+          "id": "ravel-bolero-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "ravel-bolero-piano-88.mml"
+        },
+        {
+          "id": "ravel-bolero-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "ravel-bolero-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "sakkijarven-polkka",
+      "title": "Säkkijärven polkka",
+      "title_ja": "サッキヤルヴェン・ポルカ",
+      "title_en": "Säkkijärven Polkka",
+      "composer": "フィンランド民謡",
+      "composer_ja": "フィンランド民謡",
+      "composer_en": "Traditional Finnish melody",
+      "reading_ja": "さっきやるゔぇんぽるか",
+      "versions": [
+        {
+          "id": "sakkijarven-polkka-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "sakkijarven-polkka-musicbox-30.mml"
+        },
+        {
+          "id": "sakkijarven-polkka-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "sakkijarven-polkka-piano-88.mml"
+        },
+        {
+          "id": "sakkijarven-polkka-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "sakkijarven-polkka-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "sakura-sakura",
+      "title": "さくらさくら",
+      "title_en": "Sakura Sakura",
+      "composer": "日本伝承曲",
+      "composer_ja": "日本伝承曲",
+      "composer_en": "Traditional Japanese melody",
+      "reading_ja": "さくらさくら",
+      "versions": [
+        {
+          "id": "sakura-sakura-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "sakura-sakura-musicbox-30.mml"
+        },
+        {
+          "id": "sakura-sakura-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "sakura-sakura-piano-88.mml"
+        },
+        {
+          "id": "sakura-sakura-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "sakura-sakura-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "salut-damour",
+      "title": "Salut d’Amour",
+      "title_ja": "愛の挨拶",
+      "title_en": "Salut d'Amour",
+      "composer": "エルガー",
+      "composer_ja": "エルガー",
+      "composer_en": "Edward Elgar",
+      "reading_ja": "あいのあいさつ",
+      "versions": [
+        {
+          "id": "salut-damour-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "salut-damour-musicbox-30.mml"
+        },
+        {
+          "id": "salut-damour-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "salut-damour-piano-88.mml"
+        },
+        {
+          "id": "salut-damour-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "salut-damour-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "schubert-ave-maria",
+      "title": "Ave Maria, D. 839",
+      "title_ja": "アヴェ・マリア D.839",
+      "composer": "シューベルト",
+      "composer_ja": "シューベルト",
+      "composer_en": "Franz Schubert",
+      "reading_ja": "あゔぇまりあ",
+      "versions": [
+        {
+          "id": "schubert-ave-maria-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "schubert-ave-maria-musicbox-30.mml"
+        },
+        {
+          "id": "schubert-ave-maria-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "schubert-ave-maria-piano-88.mml"
+        },
+        {
+          "id": "schubert-ave-maria-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "schubert-ave-maria-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "schumann-piano-concerto-first",
+      "title": "Piano Concerto in A minor, Op.54: I. Allegro affettuoso",
+      "title_ja": "ピアノ協奏曲イ短調 Op.54 第1楽章",
+      "composer": "シューマン",
+      "composer_ja": "シューマン",
+      "composer_en": "Robert Schumann",
+      "reading_ja": "ぴあのきょうそうきょくいたんちょうおーぱすごじゅうよんだいいちがくしょう",
+      "versions": [
+        {
+          "id": "schumann-piano-concerto-first-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "schumann-piano-concerto-first-musicbox-30.mml"
+        },
+        {
+          "id": "schumann-piano-concerto-first-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "schumann-piano-concerto-first-piano-88.mml"
+        },
+        {
+          "id": "schumann-piano-concerto-first-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "schumann-piano-concerto-first-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "scotland-the-brave",
+      "title": "Scotland the Brave",
+      "title_ja": "勇敢なるスコットランド",
+      "composer": "スコットランド伝承曲",
+      "composer_ja": "スコットランド伝承曲",
+      "composer_en": "Traditional Scottish melody",
+      "reading_ja": "ゆうかんなるすこっとらんど",
+      "versions": [
+        {
+          "id": "scotland-the-brave-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "scotland-the-brave-musicbox-30.mml"
+        },
+        {
+          "id": "scotland-the-brave-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "scotland-the-brave-piano-88.mml"
+        },
+        {
+          "id": "scotland-the-brave-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "scotland-the-brave-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "shabondama",
+      "title": "シャボン玉",
+      "title_en": "Shabondama",
+      "composer": "中山晋平",
+      "composer_ja": "中山晋平",
+      "composer_en": "Shinpei Nakayama",
+      "reading_ja": "しゃぼんだま",
+      "versions": [
+        {
+          "id": "shabondama-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "shabondama-musicbox-30.mml"
+        },
+        {
+          "id": "shabondama-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "shabondama-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "shojoji",
+      "title": "證城寺の狸囃子",
+      "title_en": "Shōjōji no Tanuki Bayashi",
+      "composer": "中山晋平",
+      "composer_ja": "中山晋平",
+      "composer_en": "Shinpei Nakayama",
+      "reading_ja": "しょうじょうじのたぬきばやし",
+      "versions": [
+        {
+          "id": "shojoji-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "shojoji-musicbox-30.mml"
+        },
+        {
+          "id": "shojoji-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "shojoji-piano-88.mml"
+        },
+        {
+          "id": "shojoji-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "shojoji-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "shucho-no-musume",
+      "title": "酋長の娘",
+      "title_en": "Shūchō no Musume",
+      "composer": "石田一松",
+      "composer_ja": "石田一松",
+      "composer_en": "Ichimatsu Ishida",
+      "reading_ja": "しゅうちょうのむすめ",
+      "versions": [
+        {
+          "id": "shucho-no-musume-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "shucho-no-musume-musicbox-30.mml"
+        },
+        {
+          "id": "shucho-no-musume-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "shucho-no-musume-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "silent-night",
+      "title": "Stille Nacht",
+      "title_ja": "きよしこの夜",
+      "title_en": "Silent Night",
+      "composer": "グルーバー",
+      "composer_ja": "グルーバー",
+      "composer_en": "Franz Xaver Gruber",
+      "reading_ja": "きよしこのよる",
+      "versions": [
+        {
+          "id": "silent-night-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "silent-night-musicbox-30.mml"
+        },
+        {
+          "id": "silent-night-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "silent-night-piano-88.mml"
+        },
+        {
+          "id": "silent-night-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "silent-night-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "smetana-moldau",
+      "title": "Vltava",
+      "title_ja": "モルダウ",
+      "title_en": "The Moldau",
+      "composer": "スメタナ",
+      "composer_ja": "スメタナ",
+      "composer_en": "Bedřich Smetana",
+      "reading_ja": "もるだう",
+      "versions": [
+        {
+          "id": "smetana-moldau-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "smetana-moldau-musicbox-30.mml"
+        },
+        {
+          "id": "smetana-moldau-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "smetana-moldau-piano-88.mml"
+        },
+        {
+          "id": "smetana-moldau-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "smetana-moldau-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "sousa-washington-post",
+      "title": "The Washington Post March",
+      "title_ja": "ワシントン・ポスト",
+      "composer": "スーザ",
+      "composer_ja": "スーザ",
+      "composer_en": "John Philip Sousa",
+      "reading_ja": "わしんとんぽすと",
+      "versions": [
+        {
+          "id": "sousa-washington-post-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "sousa-washington-post-musicbox-30.mml"
+        },
+        {
+          "id": "sousa-washington-post-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "sousa-washington-post-piano-88.mml"
+        },
+        {
+          "id": "sousa-washington-post-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "sousa-washington-post-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "soviet-anthem",
+      "title": "Государственный гимн СССР",
+      "title_ja": "ソビエト国歌",
+      "title_en": "State Anthem of the Soviet Union",
+      "composer": "アレクサンドロフ",
+      "composer_ja": "アレクサンドロフ",
+      "composer_en": "Alexander Alexandrov",
+      "reading_ja": "そびえとこっか",
+      "versions": [
+        {
+          "id": "soviet-anthem-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "soviet-anthem-musicbox-30.mml"
+        },
+        {
+          "id": "soviet-anthem-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "soviet-anthem-piano-88.mml"
+        },
+        {
+          "id": "soviet-anthem-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "soviet-anthem-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "stars-and-stripes",
+      "title": "The Stars and Stripes Forever",
+      "title_ja": "星条旗よ永遠なれ",
+      "composer": "スーザ",
+      "composer_ja": "スーザ",
+      "composer_en": "John Philip Sousa",
+      "reading_ja": "せいじょうきよえいえんなれ",
+      "versions": [
+        {
+          "id": "stars-and-stripes-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "stars-and-stripes-musicbox-30.mml"
+        },
+        {
+          "id": "stars-and-stripes-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "stars-and-stripes-piano-88.mml"
+        },
+        {
+          "id": "stars-and-stripes-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "stars-and-stripes-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "sugar-plum-fairy",
+      "title": "Щелкунчик: Танец феи Драже",
+      "title_ja": "くるみ割り人形より「金平糖の精の踊り」",
+      "title_en": "The Nutcracker: Dance of the Sugar Plum Fairy",
+      "composer": "チャイコフスキー",
+      "composer_ja": "チャイコフスキー",
+      "composer_en": "Pyotr Ilyich Tchaikovsky",
+      "reading_ja": "くるみわりにんぎょうよりこんぺいとうのせいのおどり",
+      "versions": [
+        {
+          "id": "sugar-plum-fairy-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "sugar-plum-fairy-musicbox-30.mml"
+        },
+        {
+          "id": "sugar-plum-fairy-piano-61",
+          "arranged_for": "piano61",
+          "label_ja": "ピアノ61",
+          "label_en": "Piano 61",
+          "file": "sugar-plum-fairy-piano-61.mml"
+        },
+        {
+          "id": "sugar-plum-fairy-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "sugar-plum-fairy-piano-88.mml"
+        },
+        {
+          "id": "sugar-plum-fairy-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "sugar-plum-fairy-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "swan-lake-scene",
+      "title": "Лебединое озеро: Сцена",
+      "title_ja": "白鳥の湖より「情景」",
+      "title_en": "Swan Lake: Scene",
+      "composer": "チャイコフスキー",
+      "composer_ja": "チャイコフスキー",
+      "composer_en": "Pyotr Ilyich Tchaikovsky",
+      "reading_ja": "はくちょうのみずうみよりじょうけい",
+      "versions": [
+        {
+          "id": "swan-lake-scene-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "swan-lake-scene-musicbox-30.mml"
+        },
+        {
+          "id": "swan-lake-scene-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "swan-lake-scene-piano-88.mml"
+        },
+        {
+          "id": "swan-lake-scene-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "swan-lake-scene-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "taki-hana",
+      "title": "花",
+      "title_en": "Hana",
+      "composer": "滝廉太郎",
+      "composer_ja": "滝廉太郎",
+      "composer_en": "Rentaro Taki",
+      "reading_ja": "はな",
+      "versions": [
+        {
+          "id": "taki-hana-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "taki-hana-musicbox-30.mml"
+        },
+        {
+          "id": "taki-hana-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "taki-hana-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "tetsudo-shoka",
+      "title": "鉄道唱歌",
+      "title_en": "Tetsudō Shōka",
+      "composer": "多梅稚",
+      "composer_ja": "多梅稚",
+      "composer_en": "Umechika Ono",
+      "reading_ja": "てつどうしょうか",
+      "versions": [
+        {
+          "id": "tetsudo-shoka-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "tetsudo-shoka-musicbox-30.mml"
+        },
+        {
+          "id": "tetsudo-shoka-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "tetsudo-shoka-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "the-entertainer",
+      "title": "The Entertainer",
+      "title_ja": "ジ・エンターテイナー",
+      "composer": "スコット・ジョプリン",
+      "composer_ja": "スコット・ジョプリン",
+      "composer_en": "Scott Joplin",
+      "reading_ja": "じえんたーていなー",
+      "versions": [
+        {
+          "id": "the-entertainer-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "the-entertainer-musicbox-30.mml"
+        },
+        {
+          "id": "the-entertainer-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "the-entertainer-piano-88.mml"
+        },
+        {
+          "id": "the-entertainer-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "the-entertainer-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "toryanse",
+      "title": "通りゃんせ",
+      "title_en": "Tōryanse",
+      "composer": "日本古謡",
+      "composer_ja": "日本古謡",
+      "composer_en": "Traditional Japanese melody",
+      "reading_ja": "とおりゃんせ",
+      "versions": [
+        {
+          "id": "toryanse-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "toryanse-musicbox-30.mml"
+        },
+        {
+          "id": "toryanse-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "toryanse-piano-88.mml"
+        },
+        {
+          "id": "toryanse-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "toryanse-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "toy-soldiers",
+      "title": "Die Parade der Zinnsoldaten",
+      "title_ja": "おもちゃの兵隊のマーチ",
+      "title_en": "The Parade of the Tin Soldiers",
+      "composer": "イェッセル",
+      "composer_ja": "イェッセル",
+      "composer_en": "Leon Jessel",
+      "reading_ja": "おもちゃのへいたいのまーち",
+      "versions": [
+        {
+          "id": "toy-soldiers-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "toy-soldiers-musicbox-30.mml"
+        },
+        {
+          "id": "toy-soldiers-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "toy-soldiers-piano-88.mml"
+        },
+        {
+          "id": "toy-soldiers-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "toy-soldiers-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "twinkle",
+      "title": "12 Variationen über ‘Ah, vous dirai-je maman’, K. 265",
+      "title_ja": "きらきら星変奏曲",
+      "title_en": "Twinkle, Twinkle, Little Star Variations",
+      "composer": "モーツァルト",
+      "composer_ja": "モーツァルト",
+      "composer_en": "Wolfgang Amadeus Mozart",
+      "reading_ja": "きらきらぼしへんそうきょく",
+      "versions": [
+        {
+          "id": "twinkle-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "twinkle-musicbox-30.mml"
+        },
+        {
+          "id": "twinkle-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "twinkle-piano-88.mml"
+        },
+        {
+          "id": "twinkle-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "twinkle-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "us-field-artillery",
+      "title": "The U.S. Field Artillery March",
+      "title_ja": "アメリカ野砲隊",
+      "composer": "スーザ（1917年の原曲）",
+      "composer_ja": "スーザ（1917年の原曲）",
+      "composer_en": "John Philip Sousa (1917 original)",
+      "reading_ja": "あめりかやほうたい",
+      "versions": [
+        {
+          "id": "us-field-artillery-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "us-field-artillery-musicbox-30.mml"
+        },
+        {
+          "id": "us-field-artillery-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "us-field-artillery-piano-88.mml"
+        },
+        {
+          "id": "us-field-artillery-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "us-field-artillery-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "vivaldi-spring",
+      "title": "Le quattro stagioni: La primavera, I. Allegro",
+      "title_ja": "四季より「春」第1楽章",
+      "title_en": "The Four Seasons: Spring, I. Allegro",
+      "composer": "ヴィヴァルディ",
+      "composer_ja": "ヴィヴァルディ",
+      "composer_en": "Antonio Vivaldi",
+      "reading_ja": "しきよりはるだいいちがくしょう",
+      "versions": [
+        {
+          "id": "vivaldi-spring-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "vivaldi-spring-musicbox-30.mml"
+        },
+        {
+          "id": "vivaldi-spring-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "vivaldi-spring-piano-88.mml"
+        },
+        {
+          "id": "vivaldi-spring-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "vivaldi-spring-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "vivaldi-winter-first",
+      "title": "Le quattro stagioni: L’inverno, I. Allegro non molto",
+      "title_ja": "四季より「冬」第1楽章",
+      "title_en": "The Four Seasons: Winter, I. Allegro non molto",
+      "composer": "ヴィヴァルディ",
+      "composer_ja": "ヴィヴァルディ",
+      "composer_en": "Antonio Vivaldi",
+      "reading_ja": "しきよりふゆだいいちがくしょう",
+      "versions": [
+        {
+          "id": "vivaldi-winter-first-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "vivaldi-winter-first-musicbox-30.mml"
+        },
+        {
+          "id": "vivaldi-winter-first-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "vivaldi-winter-first-piano-88.mml"
+        },
+        {
+          "id": "vivaldi-winter-first-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "vivaldi-winter-first-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "wagner-bridal-chorus",
+      "title": "Treulich geführt",
+      "title_ja": "婚礼の合唱",
+      "title_en": "Bridal Chorus",
+      "composer": "ワーグナー",
+      "composer_ja": "ワーグナー",
+      "composer_en": "Richard Wagner",
+      "reading_ja": "こんれいのがっしょう",
+      "versions": [
+        {
+          "id": "wagner-bridal-chorus-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "wagner-bridal-chorus-musicbox-30.mml"
+        },
+        {
+          "id": "wagner-bridal-chorus-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "wagner-bridal-chorus-piano-88.mml"
+        },
+        {
+          "id": "wagner-bridal-chorus-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "wagner-bridal-chorus-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "wagner-ride-of-valkyries",
+      "title": "Walkürenritt",
+      "title_ja": "ワルキューレの騎行",
+      "title_en": "Ride of the Valkyries",
+      "composer": "ワーグナー",
+      "composer_ja": "ワーグナー",
+      "composer_en": "Richard Wagner",
+      "reading_ja": "わるきゅーれのきこう",
+      "versions": [
+        {
+          "id": "wagner-ride-of-valkyries-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "wagner-ride-of-valkyries-musicbox-30.mml"
+        },
+        {
+          "id": "wagner-ride-of-valkyries-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "wagner-ride-of-valkyries-piano-88.mml"
+        },
+        {
+          "id": "wagner-ride-of-valkyries-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "wagner-ride-of-valkyries-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "waltz-of-flowers",
+      "title": "Щелкунчик: Вальс цветов",
+      "title_ja": "くるみ割り人形より「花のワルツ」",
+      "title_en": "The Nutcracker: Waltz of the Flowers",
+      "composer": "チャイコフスキー",
+      "composer_ja": "チャイコフスキー",
+      "composer_en": "Pyotr Ilyich Tchaikovsky",
+      "reading_ja": "くるみわりにんぎょうよりはなのわるつ",
+      "versions": [
+        {
+          "id": "waltz-of-flowers-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "waltz-of-flowers-musicbox-30.mml"
+        },
+        {
+          "id": "waltz-of-flowers-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "waltz-of-flowers-piano-88.mml"
+        },
+        {
+          "id": "waltz-of-flowers-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "waltz-of-flowers-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "we-wish-you-a-merry-christmas",
+      "title": "We Wish You a Merry Christmas",
+      "title_ja": "おめでとうクリスマス",
+      "composer": "伝承曲",
+      "composer_ja": "伝承曲",
+      "composer_en": "Traditional",
+      "reading_ja": "おめでとうくりすます",
+      "versions": [
+        {
+          "id": "we-wish-you-a-merry-christmas-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "we-wish-you-a-merry-christmas-musicbox-30.mml"
+        },
+        {
+          "id": "we-wish-you-a-merry-christmas-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "we-wish-you-a-merry-christmas-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "westminster-chimes",
+      "title": "Westminster Chimes",
+      "title_ja": "ウェストミンスターの鐘",
+      "composer": "ジョウェット（帰属に諸説）",
+      "composer_ja": "ジョウェット（帰属に諸説）",
+      "composer_en": "William Jowett (attribution disputed)",
+      "reading_ja": "うぇすとみんすたーのかね",
+      "versions": [
+        {
+          "id": "westminster-chimes-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "westminster-chimes-musicbox-30.mml"
+        },
+        {
+          "id": "westminster-chimes-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "westminster-chimes-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "when-johnny",
+      "title": "When Johnny Comes Marching Home",
+      "title_ja": "ジョニーが凱旋するとき",
+      "composer": "パトリック・ギルモア",
+      "composer_ja": "パトリック・ギルモア",
+      "composer_en": "Patrick Gilmore",
+      "reading_ja": "じょにーががいせんするとき",
+      "versions": [
+        {
+          "id": "when-johnny-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "when-johnny-musicbox-30.mml"
+        },
+        {
+          "id": "when-johnny-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "when-johnny-piano-88.mml"
+        },
+        {
+          "id": "when-johnny-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "when-johnny-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "william-tell",
+      "title": "Guillaume Tell: Ouverture",
+      "title_ja": "ウィリアム・テル序曲",
+      "title_en": "William Tell: Overture",
+      "composer": "ロッシーニ",
+      "composer_ja": "ロッシーニ",
+      "composer_en": "Gioachino Rossini",
+      "reading_ja": "うぃりあむてるじょきょく",
+      "versions": [
+        {
+          "id": "william-tell-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "william-tell-musicbox-30.mml"
+        },
+        {
+          "id": "william-tell-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "william-tell-piano-88.mml"
+        },
+        {
+          "id": "william-tell-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "william-tell-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "working-on-the-railroad",
+      "title": "I've Been Working on the Railroad",
+      "title_ja": "線路は続くよどこまでも",
+      "composer": "アメリカ伝承曲",
+      "composer_ja": "アメリカ伝承曲",
+      "composer_en": "Traditional American melody",
+      "reading_ja": "せんろはつづくよどこまでも",
+      "versions": [
+        {
+          "id": "working-on-the-railroad-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "working-on-the-railroad-musicbox-30.mml"
+        },
+        {
+          "id": "working-on-the-railroad-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "working-on-the-railroad-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "yokohama-shika",
+      "title": "横浜市歌",
+      "title_en": "Yokohama City Song",
+      "composer": "南能衛",
+      "composer_ja": "南能衛",
+      "composer_en": "Yoshie Minami",
+      "reading_ja": "よこはましか",
+      "versions": [
+        {
+          "id": "yokohama-shika-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "yokohama-shika-musicbox-30.mml"
+        },
+        {
+          "id": "yokohama-shika-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "yokohama-shika-piano-88.mml"
+        },
+        {
+          "id": "yokohama-shika-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "yokohama-shika-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "yuki",
+      "title": "雪〈雪やこんこ〉",
+      "title_en": "Yuki",
+      "composer": "文部省唱歌（作者不詳）",
+      "composer_ja": "文部省唱歌（作者不詳）",
+      "composer_en": "Japanese school song (composer unknown)",
+      "reading_ja": "ゆき",
+      "versions": [
+        {
+          "id": "yuki-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "yuki-musicbox-30.mml"
+        },
+        {
+          "id": "yuki-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "yuki-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "yuki-no-shingun",
+      "title": "雪の進軍",
+      "title_en": "Yuki no Shingun",
+      "composer": "永井建子",
+      "composer_ja": "永井建子",
+      "composer_en": "Kenshi Nagai",
+      "reading_ja": "ゆきのしんぐん",
+      "versions": [
+        {
+          "id": "yuki-no-shingun-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "yuki-no-shingun-musicbox-30.mml"
+        },
+        {
+          "id": "yuki-no-shingun-piano-88",
+          "arranged_for": "piano88",
+          "label_ja": "ピアノ88",
+          "label_en": "Piano 88",
+          "file": "yuki-no-shingun-piano-88.mml"
+        },
+        {
+          "id": "yuki-no-shingun-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "yuki-no-shingun-xylophone-32.mml"
+        }
+      ]
+    },
+    {
+      "song_id": "yuyake-koyake",
+      "title": "夕焼け小焼け",
+      "title_en": "Yūyake Koyake",
+      "composer": "草川信",
+      "composer_ja": "草川信",
+      "composer_en": "Shin Kusakawa",
+      "reading_ja": "ゆうやけこやけ",
+      "versions": [
+        {
+          "id": "yuyake-koyake-musicbox-30",
+          "arranged_for": "musicbox30",
+          "label_ja": "オルゴール30",
+          "label_en": "Music box 30",
+          "file": "yuyake-koyake-musicbox-30.mml"
+        },
+        {
+          "id": "yuyake-koyake-xylophone-32",
+          "arranged_for": "xylophone32",
+          "label_ja": "木琴32",
+          "label_en": "Xylophone 32",
+          "file": "yuyake-koyake-xylophone-32.mml"
+        }
+      ]
+    }
+  ]
+}

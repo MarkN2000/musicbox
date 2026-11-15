@@ -1,0 +1,42 @@
+// Source: Bishop Home Sweet Home, Mutopia435 public-domain engraving by Stan Sanderson, vocal pickup and first8 bars, later phrase pickup omitted; original accompaniment retained. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=435
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E5%9F%B4%E7%94%9F%E3%81%AE%E5%AE%BF
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={104}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n84,%720,100,90
+Time(720) n86,%240,100,90
+Time(960) n88,%1440,100,90
+Time(2400) n89,%480,100,90
+Time(2880) n89,%1440,100,90
+Time(4320) n91,%480,100,90
+Time(4800) n91,%1440,100,90
+Time(6240) n88,%480,100,90
+Time(6720) n88,%960,100,90
+Time(7680) n91,%960,100,90
+Time(8640) n89,%1440,100,90
+Time(10080) n88,%480,100,90
+Time(10560) n89,%960,100,90
+Time(11520) n86,%960,100,90
+Time(12480) n88,%2880,100,90
+Time(15360) n84,%720,100,90
+Time(16080) n86,%240,100,90
+Time(16320) n88,%1440,100,90
+Time(17760) n89,%480,100,90
+Time(18240) n89,%1440,100,90
+Time(19680) n91,%480,100,90
+Time(20160) n91,%1920,100,90
+Time(22080) n88,%960,100,90
+Time(23040) n91,%960,100,90
+Time(24000) n89,%1440,100,90
+Time(25440) n88,%480,100,90
+Time(25920) n89,%960,100,90
+Time(26880) n86,%960,100,90
+Time(27840) n84,%1920,100,90
+Time(30720) MetaText={Musicbox end}

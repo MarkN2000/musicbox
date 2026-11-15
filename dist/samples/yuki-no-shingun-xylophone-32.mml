@@ -1,0 +1,66 @@
+// Source: Nagai Kenshi, Yuki no Shingun, Nitto Gunka Vol.2 (1900), p.14, all 16 bars; existing half-duration arrangement and dotted-pair simplification retained. https://commons.wikimedia.org/wiki/File:Yukino_singun_1900.jpg
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E9%9B%AA%E3%81%AE%E9%80%B2%E8%BB%8D
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={120}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n96,%480,100,90
+Time(480) n96,%960,100,90
+Time(1440) n93,%480,100,90
+Time(1920) n91,%960,100,90
+Time(2880) n91,%960,100,90
+Time(3840) n84,%720,100,90
+Time(4560) n86,%240,100,90
+Time(4800) n88,%480,100,90
+Time(5280) n88,%480,100,90
+Time(5760) n86,%480,100,90
+Time(6240) n84,%480,100,90
+Time(6720) n81,%960,100,90
+Time(7680) n84,%960,100,90
+Time(8640) n86,%480,100,90
+Time(9120) n88,%480,100,90
+Time(9600) n91,%960,100,90
+Time(10560) n93,%480,100,90
+Time(11040) n91,%480,100,90
+Time(11520) n88,%240,100,90
+Time(11760) n89,%240,100,90
+Time(12000) n88,%480,100,90
+Time(12480) n86,%480,100,90
+Time(12960) n84,%480,100,90
+Time(13440) n86,%960,100,90
+Time(14400) n91,%960,100,90
+Time(15360) n91,%480,100,90
+Time(15840) n91,%960,100,90
+Time(16800) n89,%480,100,90
+Time(17280) n91,%480,100,90
+Time(17760) n93,%240,100,90
+Time(18000) n91,%240,100,90
+Time(18240) n88,%480,100,90
+Time(18720) n84,%480,100,90
+Time(19200) n96,%480,100,90
+Time(19680) n96,%480,100,90
+Time(20160) n98,%480,100,90
+Time(20640) n96,%480,100,90
+Time(21120) n93,%480,100,90
+Time(21600) n93,%480,100,90
+Time(22080) n91,%960,100,90
+Time(23040) n91,%960,100,90
+Time(24000) n88,%480,100,90
+Time(24480) n84,%480,100,90
+Time(24960) n86,%720,100,90
+Time(25680) n86,%240,100,90
+Time(25920) n86,%480,100,90
+Time(26400) n91,%480,100,90
+Time(26880) n86,%960,100,90
+Time(27840) n88,%480,100,90
+Time(28320) n91,%480,100,90
+Time(28800) n88,%480,100,90
+Time(29280) n86,%480,100,90
+Time(29760) n84,%960,100,90
+Time(30720) MetaText={Musicbox end}

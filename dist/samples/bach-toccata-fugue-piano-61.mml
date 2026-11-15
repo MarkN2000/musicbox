@@ -1,0 +1,75 @@
+// Source: Bach, BWV565, Bach-Gesellschaft 1867, Wilhelm Rust, printed p.267; lower-neighbour mordent checked against Busoni 1900. https://imslp.org/wiki/Special:ReverseLookup/1335
+// Original first three bars through the D-major resolution, whole +12. Printed 64ths, rests, all octave voices and tied diminished chord restored; next-section C-sharp pickup excluded. Three A-G-A mordents and slight arpeggio spread retained. Printed note values replace the former 12.5-quarter fixed-step timing.
+// Musicbox title: %E3%83%88%E3%83%83%E3%82%AB%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%95%E3%83%BC%E3%82%AC%20BWV.565
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={60}
+Time(11520) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E4%B8%BB%E9%A1%8C}
+q100
+Time(0) n81,%120,100,90
+Time(0) n93,%120,100,90
+Time(120) n79,%120,100,90
+Time(120) n91,%120,100,90
+Time(240) n81,%240,100,90
+Time(240) n93,%240,100,90
+Time(600) n79,%60,100,90
+Time(600) n91,%60,100,90
+Time(660) n77,%60,100,90
+Time(660) n89,%60,100,90
+Time(720) n76,%60,100,90
+Time(720) n88,%60,100,90
+Time(780) n74,%60,100,90
+Time(780) n86,%60,100,90
+Time(840) n73,%120,100,90
+Time(840) n85,%120,100,90
+Time(960) n74,%240,100,90
+Time(960) n86,%240,100,90
+Time(1920) n69,%120,100,90
+Time(1920) n81,%120,100,90
+Time(2040) n67,%120,100,90
+Time(2040) n79,%120,100,90
+Time(2160) n69,%240,100,90
+Time(2160) n81,%240,100,90
+Time(2520) n64,%120,100,90
+Time(2520) n76,%120,100,90
+Time(2640) n65,%120,100,90
+Time(2640) n77,%120,100,90
+Time(2760) n61,%120,100,90
+Time(2760) n73,%120,100,90
+Time(2880) n62,%240,100,90
+Time(2880) n74,%240,100,90
+Time(3840) n57,%120,100,90
+Time(3840) n69,%120,100,90
+Time(3960) n55,%120,100,90
+Time(3960) n67,%120,100,90
+Time(4080) n57,%240,100,90
+Time(4080) n69,%240,100,90
+Time(4440) n55,%60,100,90
+Time(4440) n67,%60,100,90
+Time(4500) n53,%60,100,90
+Time(4500) n65,%60,100,90
+Time(4560) n52,%60,100,90
+Time(4560) n64,%60,100,90
+Time(4620) n50,%60,100,90
+Time(4620) n62,%60,100,90
+Time(4680) n49,%120,100,90
+Time(4680) n61,%120,100,90
+Time(4800) n50,%240,100,90
+Time(4800) n62,%240,100,90
+Time(5760) n50,%3840,100,90
+Time(6720) n61,%1920,100,90
+Time(6750) n64,%1890,100,90
+Time(6780) n67,%2100,100,90
+Time(6810) n70,%1830,100,90
+Time(6840) n73,%1800,100,90
+Time(6870) n76,%1770,100,90
+Time(8640) n62,%960,100,90
+Time(8640) n69,%960,100,90
+Time(8640) n74,%960,100,90
+Time(8880) n64,%240,100,90
+Time(9120) n66,%480,100,90
+Time(11520) MetaText={Musicbox end}

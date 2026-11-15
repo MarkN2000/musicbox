@@ -1,0 +1,117 @@
+// Source: Elgar, Pomp and Circumstance No.1, Edwin H. Lemare organ arrangement, Boosey 1902, plate H.3590, printed p.6, first sixteen Largamente bars. https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=16964
+// Whole +12-semitone melody, original 3.5-quarter ties and eighth rests retained. Existing independent low accompaniment, including eight sparse xylophone notes, retained.
+// Musicbox title: Pomp%20and%20Circumstance%20March%20No.%201
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={80}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n79,%1920,100,90
+Time(1920) n78,%480,100,90
+Time(2400) n79,%480,100,90
+Time(2880) n81,%960,100,90
+Time(3840) n76,%1920,100,90
+Time(5760) n74,%1920,100,90
+Time(7680) n72,%1920,100,90
+Time(9600) n71,%480,100,90
+Time(10080) n72,%480,100,90
+Time(10560) n74,%960,100,90
+Time(11520) n69,%3360,100,90
+Time(15360) n71,%1920,100,90
+Time(17280) n73,%480,100,90
+Time(17760) n74,%960,100,90
+Time(18720) n76,%480,100,90
+Time(19200) n81,%1920,100,90
+Time(21120) n74,%1920,100,90
+Time(23040) n79,%2400,100,90
+Time(25440) n78,%960,100,90
+Time(26400) n76,%480,100,90
+Time(26880) n74,%3360,100,90
+Time(30720) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(0) n55,%480,100,60
+Time(0) n62,%480,100,60
+Time(0) n71,%480,100,60
+Time(960) n62,%480,100,60
+Time(960) n67,%480,100,60
+Time(1920) n62,%480,100,60
+Time(1920) n69,%480,100,60
+Time(1920) n72,%480,100,60
+Time(2880) n62,%480,100,60
+Time(2880) n69,%480,100,60
+Time(3840) n64,%480,100,60
+Time(3840) n67,%480,100,60
+Time(3840) n71,%480,100,60
+Time(4800) n64,%480,100,60
+Time(4800) n67,%480,100,60
+Time(5760) n55,%480,100,60
+Time(5760) n62,%480,100,60
+Time(5760) n71,%480,100,60
+Time(6720) n62,%480,100,60
+Time(6720) n67,%480,100,60
+Time(7680) n60,%480,100,60
+Time(7680) n64,%480,100,60
+Time(7680) n67,%480,100,60
+Time(8640) n60,%480,100,60
+Time(8640) n64,%480,100,60
+Time(9600) n62,%480,100,60
+Time(9600) n69,%480,100,60
+Time(10560) n62,%480,100,60
+Time(10560) n69,%480,100,60
+Time(10560) n72,%480,100,60
+Time(11520) n64,%480,100,60
+Time(11520) n67,%480,100,60
+Time(12480) n64,%480,100,60
+Time(12480) n67,%480,100,60
+Time(13440) n62,%480,100,60
+Time(14400) n62,%480,100,60
+Time(15360) n55,%480,100,60
+Time(15360) n62,%480,100,60
+Time(15360) n67,%480,100,60
+Time(16320) n62,%480,100,60
+Time(16320) n67,%480,100,60
+Time(17280) n64,%480,100,60
+Time(17280) n67,%480,100,60
+Time(17280) n69,%480,100,60
+Time(18240) n64,%480,100,60
+Time(18240) n67,%480,100,60
+Time(18240) n69,%480,100,60
+Time(19200) n62,%480,100,60
+Time(19200) n69,%480,100,60
+Time(20160) n62,%480,100,60
+Time(20160) n69,%480,100,60
+Time(21120) n62,%480,100,60
+Time(21120) n69,%480,100,60
+Time(21120) n71,%480,100,60
+Time(22080) n62,%480,100,60
+Time(22080) n71,%480,100,60
+Time(23040) n64,%480,100,60
+Time(23040) n67,%480,100,60
+Time(23040) n71,%480,100,60
+Time(24000) n64,%480,100,60
+Time(24000) n67,%480,100,60
+Time(24960) n67,%480,100,60
+Time(24960) n69,%480,100,60
+Time(24960) n73,%480,100,60
+Time(25920) n64,%480,100,60
+Time(25920) n67,%480,100,60
+Time(25920) n73,%480,100,60
+Time(26880) n62,%480,100,60
+Time(26880) n69,%480,100,60
+Time(26880) n72,%480,100,60
+Time(27840) n62,%480,100,60
+Time(27840) n69,%480,100,60
+Time(27840) n72,%480,100,60
+Time(28800) n62,%480,100,60
+Time(28800) n69,%480,100,60
+Time(28800) n72,%480,100,60
+Time(29760) n62,%480,100,60
+Time(29760) n69,%480,100,60
+Time(30720) MetaText={Musicbox end}

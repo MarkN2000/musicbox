@@ -1,0 +1,57 @@
+// Source: Bach Orchestral Suite No3 Air BWV1068, Bach Gesellschaft Band31, Breitkopf1885, Alfred Dorffel editor, printed p54 Violin1 bars1-6 first ending plus existing half-beat tonic cadence; historical ties verified independently of CC0_XML. https://commons.wikimedia.org/wiki/File:Orchestral_Suite_No.3_in_D_major,_BWV_1068,_by_Johann_Sebastian_Bach.pdf
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: G%E7%B7%9A%E4%B8%8A%E3%81%AE%E3%82%A2%E3%83%AA%E3%82%A2
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={54}
+Time(23520) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n95,%4320,100,90
+Time(4320) n100,%240,100,90
+Time(4560) n96,%240,100,90
+Time(4800) n93,%240,100,90
+Time(5040) n91,%240,100,90
+Time(5280) n90,%240,100,90
+Time(5520) n91,%240,100,90
+Time(5760) n90,%960,100,90
+Time(6720) n86,%960,100,90
+Time(7680) n98,%2160,100,90
+Time(9840) n95,%240,100,90
+Time(10080) n89,%240,100,90
+Time(10320) n88,%240,100,90
+Time(10560) n93,%240,100,90
+Time(10800) n92,%240,100,90
+Time(11040) n98,%240,100,90
+Time(11280) n96,%240,100,90
+Time(11520) n96,%2160,100,90
+Time(13680) n93,%240,100,90
+Time(13920) n88,%240,100,90
+Time(14160) n86,%240,100,90
+Time(14400) n91,%240,100,90
+Time(14640) n90,%240,100,90
+Time(14880) n96,%240,100,90
+Time(15120) n95,%240,100,90
+Time(15360) n95,%1440,100,90
+Time(16800) n97,%240,100,90
+Time(17040) n98,%240,100,90
+Time(17280) n91,%480,100,90
+Time(17760) n91,%120,100,90
+Time(17880) n93,%120,100,90
+Time(18000) n95,%480,100,90
+Time(18480) n93,%240,100,90
+Time(18720) n93,%240,100,90
+Time(18960) n91,%240,100,90
+Time(19200) n90,%240,100,90
+Time(19440) n88,%240,100,90
+Time(19680) n88,%120,100,90
+Time(19800) n90,%120,100,90
+Time(19920) n91,%720,100,90
+Time(20640) n90,%240,100,90
+Time(20880) n88,%240,100,90
+Time(21120) n86,%1920,100,90
+Time(23040) n91,%480,100,90
+Time(23520) MetaText={Musicbox end}

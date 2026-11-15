@@ -1,0 +1,70 @@
+// Source: Mozart Eine kleine Nachtmusik K525, Mutopia900 public-domain quartet engraving, Violin1 bars1-10, trills/grace notes omitted; printed opening rests restored. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=900
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E3%82%A2%E3%82%A4%E3%83%8D%E3%83%BB%E3%82%AF%E3%83%A9%E3%82%A4%E3%83%8D%E3%83%BB%E3%83%8A%E3%83%8F%E3%83%88%E3%83%A0%E3%82%B8%E3%83%BC%E3%82%AF%E3%82%88%E3%82%8A%E3%80%8C%E7%AC%AC1%E6%A5%BD%E7%AB%A0%E3%80%8D
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={112}
+Time(38400) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n84,%960,100,90
+Time(1440) n79,%480,100,90
+Time(1920) n84,%960,100,90
+Time(3360) n79,%480,100,90
+Time(3840) n84,%480,100,90
+Time(4320) n79,%480,100,90
+Time(4800) n84,%480,100,90
+Time(5280) n88,%480,100,90
+Time(5760) n91,%960,100,90
+Time(7680) n89,%960,100,90
+Time(9120) n86,%480,100,90
+Time(9600) n89,%960,100,90
+Time(11040) n86,%480,100,90
+Time(11520) n89,%480,100,90
+Time(12000) n86,%480,100,90
+Time(12480) n83,%480,100,90
+Time(12960) n86,%480,100,90
+Time(13440) n79,%960,100,90
+Time(15360) n84,%480,100,90
+Time(16320) n84,%1440,100,90
+Time(17760) n88,%480,100,90
+Time(18240) n86,%480,100,90
+Time(18720) n84,%480,100,90
+Time(19200) n84,%480,100,90
+Time(19680) n83,%480,100,90
+Time(20160) n83,%1440,100,90
+Time(21600) n86,%480,100,90
+Time(22080) n89,%480,100,90
+Time(22560) n83,%480,100,90
+Time(23040) n86,%480,100,90
+Time(23520) n84,%480,100,90
+Time(24000) n84,%1440,100,90
+Time(25440) n88,%480,100,90
+Time(25920) n86,%480,100,90
+Time(26400) n84,%480,100,90
+Time(26880) n84,%480,100,90
+Time(27360) n83,%480,100,90
+Time(27840) n83,%1440,100,90
+Time(29280) n86,%480,100,90
+Time(29760) n89,%480,100,90
+Time(30240) n83,%480,100,90
+Time(30720) n84,%480,100,90
+Time(31200) n84,%480,100,90
+Time(31680) n83,%480,100,90
+Time(32160) n81,%240,100,90
+Time(32400) n83,%240,100,90
+Time(32640) n84,%480,100,90
+Time(33120) n84,%480,100,90
+Time(33600) n86,%480,100,90
+Time(34080) n84,%240,100,90
+Time(34320) n86,%240,100,90
+Time(34560) n88,%480,100,90
+Time(35040) n88,%480,100,90
+Time(35520) n89,%480,100,90
+Time(36000) n88,%240,100,90
+Time(36240) n89,%240,100,90
+Time(36480) n91,%960,100,90
+Time(38400) MetaText={Musicbox end}

@@ -1,0 +1,40 @@
+// Source: Bach, BWV565, Bach-Gesellschaft 1867, Wilhelm Rust, printed p.267; lower-neighbour mordent checked against Busoni 1900. https://imslp.org/wiki/Special:ReverseLookup/1335
+// Accepted three-gesture excerpt, whole +27, three-quarter editorial fermata phrases and reduced arpeggio/closing retained. Printed 64th runs restored. Third C-sharp below F5 remains omitted and neighbouring D joined, as in the accepted instrument reduction.
+// Musicbox title: %E3%83%88%E3%83%83%E3%82%AB%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%95%E3%83%BC%E3%82%AC%20BWV.565
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={60}
+Time(12000) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E4%B8%BB%E9%A1%8C}
+q100
+Time(0) n108,%120,100,90
+Time(120) n106,%120,100,90
+Time(240) n108,%960,100,90
+Time(1320) n106,%60,100,90
+Time(1380) n104,%60,100,90
+Time(1440) n103,%60,100,90
+Time(1500) n101,%60,100,90
+Time(1560) n100,%120,100,90
+Time(1680) n101,%240,100,90
+Time(2880) n96,%120,100,90
+Time(3000) n94,%120,100,90
+Time(3120) n96,%960,100,90
+Time(4200) n91,%120,100,90
+Time(4320) n92,%120,100,90
+Time(4440) n88,%120,100,90
+Time(4560) n89,%240,100,90
+Time(5760) n84,%120,100,90
+Time(5880) n82,%120,100,90
+Time(6000) n84,%960,100,90
+Time(7080) n82,%60,100,90
+Time(7140) n80,%60,100,90
+Time(7200) n79,%60,100,90
+Time(7260) n77,%420,100,90
+Time(9120) n85,%240,100,90
+Time(9360) n88,%240,100,90
+Time(9600) n91,%1440,100,90
+Time(11040) n89,%960,100,90
+Time(12000) MetaText={Musicbox end}

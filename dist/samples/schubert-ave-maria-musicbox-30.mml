@@ -1,0 +1,83 @@
+// Source: Schubert Ave Maria D839, Peters BandI / Ph Raynaud public-domain Mutopia1054 engraving, vocal bars3-4 and13-14, two grace notes omitted and original rests retained. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1054
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E3%82%A2%E3%83%B4%E3%82%A7%E3%83%BB%E3%83%9E%E3%83%AA%E3%82%A2%20D.839
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={54}
+Time(15360) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n79,%1440,100,90
+Time(1440) n78,%240,100,90
+Time(1680) n79,%240,100,90
+Time(1920) n83,%1680,100,90
+Time(3600) n81,%240,100,90
+Time(3840) n79,%960,100,90
+Time(5760) n81,%960,100,90
+Time(6720) n79,%240,100,90
+Time(6960) n78,%240,100,90
+Time(7200) n76,%240,100,90
+Time(7440) n78,%240,100,90
+Time(7680) n79,%1440,100,90
+Time(9120) n78,%240,100,90
+Time(9360) n79,%240,100,90
+Time(9600) n83,%1680,100,90
+Time(11280) n81,%240,100,90
+Time(11520) n79,%960,100,90
+Time(15360) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(0) n55,%480,100,60
+Time(0) n71,%480,100,60
+Time(480) n74,%480,100,60
+Time(960) n64,%480,100,60
+Time(960) n67,%480,100,60
+Time(1440) n71,%480,100,60
+Time(1920) n62,%480,100,60
+Time(1920) n67,%480,100,60
+Time(2400) n71,%480,100,60
+Time(2880) n62,%480,100,60
+Time(2880) n69,%480,100,60
+Time(3360) n72,%480,100,60
+Time(3840) n64,%480,100,60
+Time(3840) n67,%480,100,60
+Time(4320) n71,%480,100,60
+Time(4800) n64,%480,100,60
+Time(4800) n71,%480,100,60
+Time(5280) n67,%480,100,60
+Time(5760) n69,%480,100,60
+Time(5760) n72,%480,100,60
+Time(6240) n76,%480,100,60
+Time(6720) n62,%480,100,60
+Time(6720) n69,%480,100,60
+Time(7200) n72,%480,100,60
+Time(7680) n55,%480,100,60
+Time(7680) n71,%480,100,60
+Time(8160) n74,%480,100,60
+Time(8640) n64,%480,100,60
+Time(8640) n67,%480,100,60
+Time(9120) n71,%480,100,60
+Time(9600) n62,%480,100,60
+Time(9600) n67,%480,100,60
+Time(10080) n71,%480,100,60
+Time(10560) n62,%480,100,60
+Time(10560) n69,%480,100,60
+Time(11040) n72,%480,100,60
+Time(11520) n55,%480,100,60
+Time(11520) n71,%480,100,60
+Time(12000) n74,%480,100,60
+Time(12480) n67,%480,100,60
+Time(12480) n71,%480,100,60
+Time(12960) n74,%480,100,60
+Time(13440) n55,%480,100,60
+Time(13440) n62,%480,100,60
+Time(13920) n71,%480,100,60
+Time(14400) n55,%960,100,60
+Time(14400) n71,%960,100,60
+Time(14400) n74,%960,100,60
+Time(15360) MetaText={Musicbox end}

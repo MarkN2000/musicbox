@@ -1,0 +1,69 @@
+// Source: Carmina Princetonia (1898), pp.24-25, Chorus through Fine. https://archive.org/details/carminaprinceto00univgoog
+// Melody re-read from printed source; accepted transposition and original accompaniment retained.
+// Musicbox title: I've%20Been%20Working%20on%20the%20Railroad
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={116}
+Time(61440) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n91,%1440,100,90
+Time(1440) n86,%480,100,90
+Time(1920) n91,%720,100,90
+Time(2640) n86,%240,100,90
+Time(2880) n91,%720,100,90
+Time(3600) n93,%240,100,90
+Time(3840) n95,%1920,100,90
+Time(5760) n91,%1920,100,90
+Time(7680) n96,%1440,100,90
+Time(9120) n96,%480,100,90
+Time(9600) n91,%960,100,90
+Time(10560) n93,%960,100,90
+Time(11520) n95,%1920,100,90
+Time(15360) n91,%1440,100,90
+Time(16800) n86,%480,100,90
+Time(17280) n91,%720,100,90
+Time(18000) n86,%240,100,90
+Time(18240) n91,%720,100,90
+Time(18960) n93,%240,100,90
+Time(19200) n95,%1920,100,90
+Time(21120) n91,%1440,100,90
+Time(22560) n91,%480,100,90
+Time(23040) n93,%1440,100,90
+Time(24480) n93,%480,100,90
+Time(24960) n93,%960,100,90
+Time(25920) n95,%960,100,90
+Time(26880) n93,%1920,100,90
+Time(30720) n93,%1440,100,90
+Time(32160) n93,%480,100,90
+Time(32640) n92,%720,100,90
+Time(33360) n93,%240,100,90
+Time(33600) n95,%720,100,90
+Time(34320) n93,%240,100,90
+Time(34560) n91,%1920,100,90
+Time(36480) n86,%1920,100,90
+Time(38400) n96,%960,100,90
+Time(39360) n96,%720,100,90
+Time(40080) n96,%240,100,90
+Time(40320) n91,%720,100,90
+Time(41040) n91,%240,100,90
+Time(41280) n96,%720,100,90
+Time(42000) n96,%240,100,90
+Time(42240) n95,%1920,100,90
+Time(46080) n88,%1440,100,90
+Time(47520) n89,%480,100,90
+Time(48000) n91,%720,100,90
+Time(48720) n89,%240,100,90
+Time(48960) n91,%720,100,90
+Time(49680) n88,%240,100,90
+Time(49920) n86,%1920,100,90
+Time(51840) n91,%1920,100,90
+Time(53760) n95,%1440,100,90
+Time(55200) n96,%480,100,90
+Time(55680) n95,%960,100,90
+Time(56640) n93,%960,100,90
+Time(57600) n91,%1920,100,90
+Time(61440) MetaText={Musicbox end}

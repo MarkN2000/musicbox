@@ -1,0 +1,61 @@
+// Source: https://imslp.org/wiki/Vltava,_JB_1:112/2_(Smetana,_Bed%C5%99ich)
+// Existing excerpt, transposition, independent accompaniment and approved reductions retained.
+// Written melody durations, rests and ties; source-specific decisions are recorded in the audit notes.
+// Musicbox title: %E3%83%A2%E3%83%AB%E3%83%80%E3%82%A6
+TimeBase(10080)
+TR=1
+Time(0) TimeSignature(6,8)
+Time(5040) TimeSignature(6,8)
+Time(0) Tempo={108}
+Time(483840) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n83,%5040,100,90
+Time(5040) n88,%10080,100,90
+Time(15120) n90,%5040,100,90
+Time(20160) n91,%10080,100,90
+Time(30240) n93,%5040,100,90
+Time(35280) n95,%10080,100,90
+Time(45360) n95,%5040,100,90
+Time(50400) n95,%15120,100,90
+Time(65520) n96,%15120,100,90
+Time(80640) n96,%15120,100,90
+Time(95760) n95,%25200,100,90
+Time(120960) n95,%5040,100,90
+Time(126000) n93,%15120,100,90
+Time(141120) n93,%10080,100,90
+Time(151200) n93,%5040,100,90
+Time(156240) n91,%10080,100,90
+Time(166320) n93,%5040,100,90
+Time(171360) n91,%10080,100,90
+Time(181440) n91,%5040,100,90
+Time(186480) n90,%15120,100,90
+Time(201600) n90,%10080,100,90
+Time(211680) n90,%5040,100,90
+Time(216720) n88,%25200,100,90
+Time(241920) n83,%5040,100,90
+Time(246960) n88,%10080,100,90
+Time(257040) n90,%5040,100,90
+Time(262080) n91,%10080,100,90
+Time(272160) n93,%5040,100,90
+Time(277200) n95,%10080,100,90
+Time(287280) n95,%5040,100,90
+Time(292320) n95,%15120,100,90
+Time(307440) n96,%15120,100,90
+Time(322560) n96,%15120,100,90
+Time(337680) n95,%25200,100,90
+Time(362880) n95,%5040,100,90
+Time(367920) n93,%15120,100,90
+Time(383040) n93,%10080,100,90
+Time(393120) n93,%5040,100,90
+Time(398160) n91,%10080,100,90
+Time(408240) n93,%5040,100,90
+Time(413280) n91,%10080,100,90
+Time(423360) n91,%5040,100,90
+Time(428400) n90,%15120,100,90
+Time(443520) n90,%10080,100,90
+Time(453600) n90,%5040,100,90
+Time(458640) n88,%25200,100,90
+Time(483840) MetaText={Musicbox end}

@@ -1,0 +1,41 @@
+// Source: https://imslp.org/wiki/Special:ReverseLookup/363985
+// Existing excerpt, transposition, independent accompaniment and approved reductions retained.
+// Written melody durations, rests and ties; source-specific decisions are recorded in the audit notes.
+// Musicbox title: %E3%83%95%E3%82%A3%E3%82%AC%E3%83%AD%E3%81%AE%E7%B5%90%E5%A9%9A%E3%82%88%E3%82%8A%E3%80%8C%E5%BA%8F%E6%9B%B2%E3%80%8D
+TimeBase(10080)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={216}
+Time(282240) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n96,%40320,100,90
+Time(40320) n95,%30240,100,90
+Time(70560) n96,%5040,100,90
+Time(75600) n93,%5040,100,90
+Time(80640) n91,%10080,100,90
+Time(90720) n96,%10080,100,90
+Time(100800) n95,%10080,100,90
+Time(110880) n96,%5040,100,90
+Time(115920) n93,%5040,100,90
+Time(120960) n91,%10080,100,90
+Time(131040) n96,%10080,100,90
+Time(141120) n95,%10080,100,90
+Time(151200) n96,%5040,100,90
+Time(156240) n93,%5040,100,90
+Time(161280) n91,%10080,100,90
+Time(171360) n91,%5040,100,90
+Time(176400) n91,%5040,100,90
+Time(181440) n89,%10080,100,90
+Time(191520) n89,%5040,100,90
+Time(196560) n89,%5040,100,90
+Time(201600) n88,%10080,100,90
+Time(211680) n88,%5040,100,90
+Time(216720) n88,%5040,100,90
+Time(221760) n86,%10080,100,90
+Time(231840) n86,%5040,100,90
+Time(236880) n86,%5040,100,90
+Time(241920) n84,%40320,100,90
+Time(282240) MetaText={Musicbox end}

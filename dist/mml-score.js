@@ -94,7 +94,7 @@ export function serializeMml(score){
 
 // ponytail: 試作の入力は基本MMLに限定する。構造的なマクロ・任意プログラムは構文木を保持する版で扱う。
 export function prepareMml(source){
-  if(source.length>200000)throw Error('MMLは200,000文字以内にしてください。');
+  if(source.length>1000000)throw Error('MMLは1,000,000文字以内にしてください。');
   let clean='',i=0;
   while(i<source.length){
     if(source.startsWith('//',i)){const end=source.indexOf('\n',i);if(end<0)break;clean+='\n';i=end+1;}

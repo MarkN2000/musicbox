@@ -1,0 +1,84 @@
+// Source: Finnish folk song, Ievan Polkka, Wikifonia lead sheet, one page, explicitly released into the Public Domain.
+// https://pl-static.z-dn.net/files/d4c/c6245a5733ef3cd05b4f3fef432115e2.pdf
+// User-approved replacement of the unverifiable former melody (2026-11-15). All 16 bars: printed values halved consistently for 2/4 polka pulse, 116 BPM. Whole +24-semitone musicbox transposition, +36 for xylophone. Independent D-minor/C accompaniment; no modern lyrics or scat.
+// Musicbox title: Ievan%20polkka
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={116}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n93,%480,100,90
+Time(480) n98,%480,100,90
+Time(960) n98,%720,100,90
+Time(1680) n100,%240,100,90
+Time(1920) n101,%480,100,90
+Time(2400) n98,%480,100,90
+Time(2880) n98,%480,100,90
+Time(3360) n101,%240,100,90
+Time(3600) n103,%240,100,90
+Time(3840) n100,%480,100,90
+Time(4320) n96,%480,100,90
+Time(4800) n96,%480,100,90
+Time(5280) n100,%480,100,90
+Time(5760) n101,%480,100,90
+Time(6240) n98,%480,100,90
+Time(6720) n98,%960,100,90
+Time(7680) n93,%480,100,90
+Time(8160) n98,%480,100,90
+Time(8640) n98,%720,100,90
+Time(9360) n100,%240,100,90
+Time(9600) n101,%480,100,90
+Time(10080) n98,%480,100,90
+Time(10560) n98,%480,100,90
+Time(11040) n101,%480,100,90
+Time(11520) n105,%480,100,90
+Time(12000) n105,%240,100,90
+Time(12240) n103,%240,100,90
+Time(12480) n101,%480,100,90
+Time(12960) n100,%480,100,90
+Time(13440) n101,%480,100,90
+Time(13920) n98,%480,100,90
+Time(14400) n98,%480,100,90
+Time(14880) n101,%240,100,90
+Time(15120) n103,%240,100,90
+Time(15360) n105,%480,100,90
+Time(15840) n105,%480,100,90
+Time(16320) n103,%240,100,90
+Time(16560) n103,%240,100,90
+Time(16800) n101,%480,100,90
+Time(17280) n100,%480,100,90
+Time(17760) n96,%480,100,90
+Time(18240) n96,%480,100,90
+Time(18720) n100,%480,100,90
+Time(19200) n103,%480,100,90
+Time(19680) n103,%480,100,90
+Time(20160) n101,%240,100,90
+Time(20400) n101,%240,100,90
+Time(20640) n100,%480,100,90
+Time(21120) n101,%480,100,90
+Time(21600) n98,%480,100,90
+Time(22080) n98,%480,100,90
+Time(22560) n101,%240,100,90
+Time(22800) n103,%240,100,90
+Time(23040) n105,%480,100,90
+Time(23520) n105,%480,100,90
+Time(24000) n103,%240,100,90
+Time(24240) n103,%240,100,90
+Time(24480) n101,%480,100,90
+Time(24960) n100,%480,100,90
+Time(25440) n96,%480,100,90
+Time(25920) n96,%480,100,90
+Time(26400) n100,%480,100,90
+Time(26880) n103,%480,100,90
+Time(27360) n103,%480,100,90
+Time(27840) n101,%240,100,90
+Time(28080) n101,%240,100,90
+Time(28320) n100,%480,100,90
+Time(28800) n101,%480,100,90
+Time(29280) n98,%480,100,90
+Time(29760) n98,%960,100,90
+Time(30720) MetaText={Musicbox end}

@@ -1,0 +1,102 @@
+// Source: Burgmueller, Arabesque Op.100 No.2, Collection Litolff, bars 3-10, Mutopia 203 PD transcription.
+// Accepted opening eight-bar excerpt and independent accompaniment retained; printed rests and tie across bars 8-9 restored.
+// Accompaniment attacks under the same held melody pitch are omitted; melody timing and note lengths are unchanged.
+// Musicbox title: Arabesque%2C%20Op.%20100%20No.%202
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={108.000108000108}
+Time(15360) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n69,%240,100,90
+Time(240) n71,%240,100,90
+Time(480) n72,%240,100,90
+Time(720) n71,%240,100,90
+Time(960) n69,%240,100,90
+Time(1920) n69,%240,100,90
+Time(2160) n71,%240,100,90
+Time(2400) n72,%240,100,90
+Time(2640) n74,%240,100,90
+Time(2880) n76,%240,100,90
+Time(3840) n74,%240,100,90
+Time(4080) n76,%240,100,90
+Time(4320) n77,%240,100,90
+Time(4560) n79,%240,100,90
+Time(4800) n81,%240,100,90
+Time(5760) n81,%240,100,90
+Time(6000) n83,%240,100,90
+Time(6240) n84,%240,100,90
+Time(6480) n86,%240,100,90
+Time(6720) n88,%240,100,90
+Time(8160) n76,%240,100,90
+Time(8640) n76,%480,100,90
+Time(9120) n77,%480,100,90
+Time(9600) n74,%240,100,90
+Time(10560) n74,%1440,100,90
+Time(12000) n79,%480,100,90
+Time(12480) n74,%480,100,90
+Time(12960) n76,%480,100,90
+Time(13440) n72,%240,100,90
+Time(14400) n76,%960,100,90
+Time(15360) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(0) n64,%480,100,60
+Time(480) n76,%480,100,60
+Time(960) n64,%480,100,60
+Time(1440) n72,%480,100,60
+Time(1440) n76,%480,100,60
+Time(1920) n64,%480,100,60
+Time(2400) n76,%480,100,60
+Time(2880) n64,%480,100,60
+Time(2880) n69,%480,100,60
+Time(3360) n72,%480,100,60
+Time(3360) n76,%480,100,60
+Time(3840) n62,%480,100,60
+Time(4320) n65,%480,100,60
+Time(4320) n69,%480,100,60
+Time(4800) n62,%480,100,60
+Time(4800) n74,%480,100,60
+Time(5280) n65,%480,100,60
+Time(5280) n69,%480,100,60
+Time(5760) n64,%480,100,60
+Time(5760) n69,%480,100,60
+Time(6240) n72,%480,100,60
+Time(6240) n76,%480,100,60
+Time(6720) n64,%480,100,60
+Time(6720) n69,%480,100,60
+Time(7200) n72,%480,100,60
+Time(7200) n76,%480,100,60
+Time(7680) n60,%480,100,60
+Time(7680) n72,%480,100,60
+Time(8160) n64,%480,100,60
+Time(8160) n67,%480,100,60
+Time(8640) n60,%480,100,60
+Time(8640) n72,%480,100,60
+Time(9120) n64,%480,100,60
+Time(9120) n67,%480,100,60
+Time(9600) n55,%480,100,60
+Time(10080) n71,%480,100,60
+Time(10080) n77,%480,100,60
+Time(10560) n55,%480,100,60
+Time(11040) n71,%480,100,60
+Time(11040) n77,%480,100,60
+Time(11520) n55,%480,100,60
+Time(12000) n71,%480,100,60
+Time(12000) n77,%480,100,60
+Time(12480) n55,%480,100,60
+Time(12960) n71,%480,100,60
+Time(12960) n77,%480,100,60
+Time(13440) n60,%480,100,60
+Time(13920) n64,%480,100,60
+Time(13920) n67,%480,100,60
+Time(14400) n60,%480,100,60
+Time(14400) n72,%480,100,60
+Time(14880) n64,%480,100,60
+Time(14880) n67,%480,100,60
+Time(15360) MetaText={Musicbox end}

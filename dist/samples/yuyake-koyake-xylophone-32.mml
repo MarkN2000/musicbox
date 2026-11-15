@@ -1,0 +1,67 @@
+// Source: Kusakawa Shin, Kusakawa Shin Doyo Zenshu Vol.1 (1931), vocal bars 1-16. https://www.ne.jp/asahi/sayuri/home/doyokashi/yuyakekogakufu1.jpg
+// Existing excerpt, transposition and original accompaniment retained.
+// Tempo map and metrical beat interpretation are documented in source notes.
+// Musicbox title: %E5%A4%95%E7%84%BC%E3%81%91%E5%B0%8F%E7%84%BC%E3%81%91
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={84}
+Time(26880) Tempo={82}
+Time(28800) Tempo={78}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n91,%480,100,90
+Time(480) n91,%480,100,90
+Time(960) n91,%480,100,90
+Time(1440) n93,%480,100,90
+Time(1920) n91,%480,100,90
+Time(2400) n91,%480,100,90
+Time(2880) n91,%480,100,90
+Time(3360) n88,%480,100,90
+Time(3840) n84,%480,100,90
+Time(4320) n84,%480,100,90
+Time(4800) n86,%480,100,90
+Time(5280) n88,%480,100,90
+Time(5760) n86,%1440,100,90
+Time(7680) n88,%960,100,90
+Time(8640) n88,%480,100,90
+Time(9120) n91,%480,100,90
+Time(9600) n93,%480,100,90
+Time(10080) n96,%480,100,90
+Time(10560) n96,%480,100,90
+Time(11040) n93,%480,100,90
+Time(11520) n91,%480,100,90
+Time(12000) n91,%480,100,90
+Time(12480) n93,%480,100,90
+Time(12960) n91,%480,100,90
+Time(13440) n96,%1440,100,90
+Time(15360) n96,%720,100,90
+Time(16080) n98,%240,100,90
+Time(16320) n96,%480,100,90
+Time(16800) n93,%480,100,90
+Time(17280) n96,%480,100,90
+Time(17760) n96,%480,100,90
+Time(18240) n91,%480,100,90
+Time(18720) n91,%480,100,90
+Time(19200) n93,%480,100,90
+Time(19680) n91,%480,100,90
+Time(20160) n93,%480,100,90
+Time(20640) n91,%480,100,90
+Time(21120) n88,%1440,100,90
+Time(23040) n91,%480,100,90
+Time(23520) n88,%480,100,90
+Time(24000) n86,%480,100,90
+Time(24480) n84,%480,100,90
+Time(24960) n86,%480,100,90
+Time(25440) n86,%480,100,90
+Time(25920) n84,%480,100,90
+Time(26400) n86,%480,100,90
+Time(26880) n88,%480,100,90
+Time(27360) n91,%480,100,90
+Time(27840) n93,%480,100,90
+Time(28320) n91,%480,100,90
+Time(28800) n96,%1440,100,90
+Time(30720) MetaText={Musicbox end}

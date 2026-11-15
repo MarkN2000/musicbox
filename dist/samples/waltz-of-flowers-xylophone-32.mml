@@ -1,0 +1,54 @@
+// Source: https://imslp.org/wiki/The_Nutcracker_(suite),_Op.71a_(Tchaikovsky,_Pyotr)
+// Existing excerpt, transposition, independent accompaniment and approved reductions retained.
+// Written melody durations, rests and ties; source-specific decisions are recorded in the audit notes.
+// Musicbox title: %E3%81%8F%E3%82%8B%E3%81%BF%E5%89%B2%E3%82%8A%E4%BA%BA%E5%BD%A2%E3%82%88%E3%82%8A%E3%80%8C%E8%8A%B1%E3%81%AE%E3%83%AF%E3%83%AB%E3%83%84%E3%80%8D
+TimeBase(10080)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(0) Tempo={112}
+Time(332640) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n84,%10080,100,90
+Time(10080) n89,%10080,100,90
+Time(20160) n93,%10080,100,90
+Time(30240) n94,%27720,100,90
+Time(57960) n93,%2520,100,90
+Time(60480) n93,%60480,100,90
+Time(141120) n93,%10080,100,90
+Time(151200) n94,%10080,100,90
+Time(161280) n93,%17640,100,90
+Time(178920) n91,%2520,100,90
+Time(181440) n96,%20160,100,90
+Time(201600) n89,%10080,100,90
+Time(221760) n82,%5040,100,90
+Time(226800) n84,%5040,100,90
+Time(231840) n86,%5040,100,90
+Time(236880) n88,%5040,100,90
+Time(241920) n90,%5040,100,90
+Time(246960) n93,%5040,100,90
+Time(252000) n90,%5040,100,90
+Time(257040) n93,%5040,100,90
+Time(262080) n91,%5040,100,90
+Time(282240) n87,%5040,100,90
+Time(287280) n89,%5040,100,90
+Time(292320) n90,%5040,100,90
+Time(297360) n91,%5040,100,90
+Time(302400) n93,%5040,100,90
+Time(307440) n96,%5040,100,90
+Time(312480) n93,%5040,100,90
+Time(317520) n96,%5040,100,90
+Time(322560) n94,%5040,100,90
+Time(332640) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(40320) n86,%10080,100,60
+Time(70560) n81,%10080,100,60
+Time(191520) n81,%10080,100,60
+Time(211680) n77,%10080,100,60
+Time(272160) n84,%10080,100,60
+Time(332640) MetaText={Musicbox end}

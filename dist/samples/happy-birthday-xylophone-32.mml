@@ -1,0 +1,37 @@
+// Musicbox title: Happy%20Birthday%20to%20You
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(960) TimeSignature(3,4)
+Time(0) Tempo={108.000108000108}
+Time(23040) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100
+Time(0) n79,%480,100,90
+Time(480) n79,%480,100,90
+Time(960) n81,%960,100,90
+Time(1920) n79,%960,100,90
+Time(2880) n84,%960,100,90
+Time(3840) n83,%1920,100,90
+Time(5760) n79,%480,100,90
+Time(6240) n79,%480,100,90
+Time(6720) n81,%960,100,90
+Time(7680) n79,%960,100,90
+Time(8640) n86,%960,100,90
+Time(9600) n84,%1920,100,90
+Time(11520) n79,%480,100,90
+Time(12000) n79,%480,100,90
+Time(12480) n91,%960,100,90
+Time(13440) n88,%960,100,90
+Time(14400) n84,%960,100,90
+Time(15360) n83,%960,100,90
+Time(16320) n81,%960,100,90
+Time(17280) n89,%480,100,90
+Time(17760) n89,%480,100,90
+Time(18240) n88,%960,100,90
+Time(19200) n84,%960,100,90
+Time(20160) n86,%960,100,90
+Time(21120) n84,%1920,100,90
+Time(23040) MetaText={Musicbox end}

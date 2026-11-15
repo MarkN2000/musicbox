@@ -1,0 +1,68 @@
+// Musicbox title: Happy%20Birthday%20to%20You
+// Source: https://commons.wikimedia.org/wiki/File:GoodMorningToAll_1893_song.jpg
+// Melody re-read from score; accepted transposition and original accompaniment retained.
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4) Tempo={108}
+Time(960) TimeSignature(3,4)
+Time(23040) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100 v90
+o6 g8 g8
+o6 a4 g4 o7 c4
+o6 b2 g8 g8
+o6 a4 g4 o7 d4
+o7 c2 o6 g8 g8
+o7 g4 e4 c4
+o6 b4 a4 o7 f8 f8
+o7 e4 c4 d4
+o7 c2
+Time(23040) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:Accompaniment}
+q100
+Time(960) n60,%960,100,60
+Time(1920) n64,%960,100,60
+Time(1920) n67,%960,100,60
+Time(2880) n64,%960,100,60
+Time(2880) n67,%960,100,60
+Time(3840) n55,%960,100,60
+Time(4800) n62,%960,100,60
+Time(4800) n71,%960,100,60
+Time(5760) n62,%960,100,60
+Time(5760) n65,%960,100,60
+Time(6720) n55,%960,100,60
+Time(7680) n62,%960,100,60
+Time(7680) n71,%960,100,60
+Time(8640) n62,%960,100,60
+Time(8640) n71,%960,100,60
+Time(9600) n60,%960,100,60
+Time(10560) n64,%960,100,60
+Time(10560) n67,%960,100,60
+Time(11520) n64,%960,100,60
+Time(11520) n67,%960,100,60
+Time(12480) n60,%960,100,60
+Time(13440) n64,%960,100,60
+Time(13440) n67,%960,100,60
+Time(14400) n64,%960,100,60
+Time(14400) n67,%960,100,60
+Time(15360) n53,%960,100,60
+Time(16320) n60,%960,100,60
+Time(16320) n69,%960,100,60
+Time(17280) n60,%960,100,60
+Time(17280) n69,%960,100,60
+Time(18240) n60,%960,100,60
+Time(19200) n64,%960,100,60
+Time(19200) n67,%960,100,60
+Time(20160) n55,%960,100,60
+Time(20160) n62,%960,100,60
+Time(20160) n71,%960,100,60
+Time(21120) n60,%960,100,60
+Time(21120) n64,%960,100,60
+Time(21120) n67,%960,100,60
+Time(22080) n60,%960,100,60
+Time(22080) n67,%960,100,60
+Time(23040) MetaText={Musicbox end}

@@ -1,0 +1,85 @@
+// Musicbox title: %E4%BB%B0%E3%81%92%E3%81%B0%E5%B0%8A%E3%81%97
+// Source: https://dl.ndl.go.jp/pid/992053/1/10
+// Melody re-read from score; accepted transposition and original accompaniment retained.
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(6,8) Tempo={96}
+Time(480) TimeSignature(6,8)
+Time(46080) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100 v90
+o6 e8
+o6 e4 f8 g4 g8
+o6 a4 a8 g4 e8
+o6 d4 e8 f4 a8
+o6 g4.^4 e8
+o6 e4 f8 g4 g8
+o6 a4 a8 g4 e8
+o6 d4 a8 g4 o5 b8
+o6 c4.^4 c8
+o6 a4 a8 f4 a8
+o6 g4 e8 g4 g8
+o6 a4 o7 c8 o6 b4 a8
+o6 g4.^4 f8
+o6 e4 f8 g4 o7 c8
+o7 c4 o6 a8 a4 f8
+o6 d4 f8 e4 d8
+o6 c4.^4
+Time(46080) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:Accompaniment}
+q100
+Time(480) n60,%480,100,60
+Time(1920) n64,%480,100,60
+Time(1920) n67,%480,100,60
+Time(3360) n69,%480,100,60
+Time(4800) n60,%480,100,60
+Time(4800) n64,%480,100,60
+Time(6240) n62,%480,100,60
+Time(7680) n55,%480,100,60
+Time(7680) n62,%480,100,60
+Time(7680) n65,%480,100,60
+Time(9120) n55,%480,100,60
+Time(10560) n62,%480,100,60
+Time(10560) n65,%480,100,60
+Time(12000) n60,%480,100,60
+Time(13440) n64,%480,100,60
+Time(13440) n67,%480,100,60
+Time(14880) n69,%480,100,60
+Time(16320) n60,%480,100,60
+Time(16320) n64,%480,100,60
+Time(17760) n55,%480,100,60
+Time(19200) n62,%480,100,60
+Time(19200) n65,%480,100,60
+Time(20640) n60,%480,100,60
+Time(22080) n64,%480,100,60
+Time(22080) n67,%480,100,60
+Time(23520) n53,%480,100,60
+Time(24960) n60,%480,100,60
+Time(24960) n69,%480,100,60
+Time(26400) n60,%480,100,60
+Time(27840) n64,%480,100,60
+Time(27840) n67,%480,100,60
+Time(29280) n69,%480,100,60
+Time(30720) n60,%480,100,60
+Time(30720) n64,%480,100,60
+Time(32160) n55,%480,100,60
+Time(33600) n62,%480,100,60
+Time(33600) n65,%480,100,60
+Time(35040) n60,%480,100,60
+Time(36480) n64,%480,100,60
+Time(36480) n67,%480,100,60
+Time(37920) n53,%480,100,60
+Time(39360) n60,%480,100,60
+Time(39360) n69,%480,100,60
+Time(40800) n62,%480,100,60
+Time(42240) n55,%480,100,60
+Time(42240) n62,%480,100,60
+Time(42240) n65,%480,100,60
+Time(43680) n60,%480,100,60
+Time(45120) n64,%480,100,60
+Time(45120) n67,%480,100,60
+Time(46080) MetaText={Musicbox end}

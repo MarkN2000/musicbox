@@ -1,0 +1,49 @@
+// Source: Tchaikovsky, Swan Lake Suite, Jurgenson 1900, plate 25803, pp.3-4, oboe bars 2-9. https://imslp.org/wiki/Special:ReverseLookup/247444
+// All oboe notes +10 semitones, accepted 32-quarter excerpt and low accompaniment retained; tied B in source bar 5 joined, bar 9 repeated B retained.
+// Musicbox title: %E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A0%E6%A5%BD%E8%AD%9C
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={84.000084000084}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:Melody}
+q100
+Time(0) n100,%1920,100,90
+Time(1920) n93,%480,100,90
+Time(2400) n95,%480,100,90
+Time(2880) n96,%480,100,90
+Time(3360) n98,%480,100,90
+Time(3840) n100,%1440,100,90
+Time(5280) n96,%480,100,90
+Time(5760) n100,%1440,100,90
+Time(7200) n96,%480,100,90
+Time(7680) n100,%1440,100,90
+Time(9120) n93,%480,100,90
+Time(9600) n96,%480,100,90
+Time(10080) n93,%480,100,90
+Time(10560) n89,%480,100,90
+Time(11040) n96,%480,100,90
+Time(11520) n93,%2400,100,90
+Time(13920) n100,%480,100,90
+Time(14400) n98,%480,100,90
+Time(14880) n96,%480,100,90
+Time(15360) n100,%1920,100,90
+Time(17280) n93,%480,100,90
+Time(17760) n95,%480,100,90
+Time(18240) n96,%480,100,90
+Time(18720) n98,%480,100,90
+Time(19200) n100,%1440,100,90
+Time(20640) n96,%480,100,90
+Time(21120) n100,%1440,100,90
+Time(22560) n96,%480,100,90
+Time(23040) n100,%1440,100,90
+Time(24480) n93,%480,100,90
+Time(24960) n96,%480,100,90
+Time(25440) n93,%480,100,90
+Time(25920) n89,%480,100,90
+Time(26400) n96,%480,100,90
+Time(26880) n93,%2880,100,90
+Time(29760) n93,%960,100,90
+Time(30720) MetaText={Musicbox end}

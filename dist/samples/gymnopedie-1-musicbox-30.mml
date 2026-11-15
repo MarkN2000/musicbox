@@ -1,0 +1,67 @@
+// Source: Satie, Gymnopedie No.1, bars 5-8; Mutopia 37 public-domain score.
+// Accepted +10-semitone melody, 12-quarter main theme and one-quarter independent E closing note retained.
+// Musicbox title: %E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A0%E6%A5%BD%E8%AD%9C
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,4)
+Time(0) Tempo={64}
+Time(12480) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(960) n88,%960,100,90
+Time(1920) n91,%960,100,90
+Time(2880) n89,%960,100,90
+Time(3840) n88,%960,100,90
+Time(4800) n83,%960,100,90
+Time(5760) n81,%960,100,90
+Time(6720) n83,%960,100,90
+Time(7680) n84,%960,100,90
+Time(8640) n79,%2880,100,90
+Time(11520) n76,%960,100,90
+Time(12480) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(0) n53,%480,100,60
+Time(0) n69,%480,100,60
+Time(480) n72,%480,100,60
+Time(960) n69,%480,100,60
+Time(960) n76,%480,100,60
+Time(1440) n72,%480,100,60
+Time(1920) n69,%480,100,60
+Time(1920) n76,%480,100,60
+Time(2400) n72,%480,100,60
+Time(2880) n60,%480,100,60
+Time(2880) n64,%480,100,60
+Time(3360) n67,%480,100,60
+Time(3840) n64,%480,100,60
+Time(3840) n71,%480,100,60
+Time(4320) n67,%480,100,60
+Time(4800) n64,%480,100,60
+Time(4800) n71,%480,100,60
+Time(5280) n67,%480,100,60
+Time(5760) n53,%480,100,60
+Time(5760) n69,%480,100,60
+Time(6240) n72,%480,100,60
+Time(6720) n69,%480,100,60
+Time(6720) n76,%480,100,60
+Time(7200) n72,%480,100,60
+Time(7680) n69,%480,100,60
+Time(7680) n76,%480,100,60
+Time(8160) n72,%480,100,60
+Time(8640) n60,%480,100,60
+Time(8640) n64,%480,100,60
+Time(9120) n67,%480,100,60
+Time(9600) n64,%480,100,60
+Time(9600) n71,%480,100,60
+Time(10080) n67,%480,100,60
+Time(10560) n64,%480,100,60
+Time(10560) n71,%480,100,60
+Time(11040) n67,%480,100,60
+Time(11520) n60,%480,100,60
+Time(11520) n67,%480,100,60
+Time(11520) n71,%480,100,60
+Time(12480) MetaText={Musicbox end}

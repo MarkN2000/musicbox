@@ -1,0 +1,77 @@
+// Source: Beethoven, Fuer Elise, Breitkopf und Haertel 1888, first repeated section through first ending; Mutopia 931 PD transcription. Short edition also checked against Nohl 1867.
+// Accepted whole +12-semitone transposition, 12-quarter excerpt and ending quarter retained; sixteenth rests are explicit note gaps.
+// Musicbox title: F%C3%BCr%20Elise
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(3,8)
+Time(480) TimeSignature(3,8)
+Time(0) Tempo={60}
+Time(11520) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n88,%240,100,90
+Time(240) n87,%240,100,90
+Time(480) n88,%240,100,90
+Time(720) n87,%240,100,90
+Time(960) n88,%240,100,90
+Time(1200) n83,%240,100,90
+Time(1440) n86,%240,100,90
+Time(1680) n84,%240,100,90
+Time(1920) n81,%480,100,90
+Time(2640) n72,%240,100,90
+Time(2880) n76,%240,100,90
+Time(3120) n81,%240,100,90
+Time(3360) n83,%480,100,90
+Time(4080) n76,%240,100,90
+Time(4320) n80,%240,100,90
+Time(4560) n83,%240,100,90
+Time(4800) n84,%480,100,90
+Time(5520) n76,%240,100,90
+Time(5760) n88,%240,100,90
+Time(6000) n87,%240,100,90
+Time(6240) n88,%240,100,90
+Time(6480) n87,%240,100,90
+Time(6720) n88,%240,100,90
+Time(6960) n83,%240,100,90
+Time(7200) n86,%240,100,90
+Time(7440) n84,%240,100,90
+Time(7680) n81,%480,100,90
+Time(8400) n72,%240,100,90
+Time(8640) n76,%240,100,90
+Time(8880) n81,%240,100,90
+Time(9120) n83,%480,100,90
+Time(9840) n76,%240,100,90
+Time(10080) n84,%240,100,90
+Time(10320) n83,%240,100,90
+Time(10560) n81,%960,100,90
+Time(11520) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(1920) n69,%480,100,60
+Time(1920) n72,%480,100,60
+Time(2160) n64,%480,100,60
+Time(2400) n69,%480,100,60
+Time(3360) n64,%480,100,60
+Time(3360) n80,%480,100,60
+Time(3600) n71,%480,100,60
+Time(3840) n64,%480,100,60
+Time(4800) n69,%480,100,60
+Time(4800) n72,%480,100,60
+Time(5040) n64,%480,100,60
+Time(5280) n69,%480,100,60
+Time(7680) n69,%480,100,60
+Time(7680) n72,%480,100,60
+Time(7920) n64,%480,100,60
+Time(8160) n69,%480,100,60
+Time(9120) n64,%480,100,60
+Time(9120) n80,%480,100,60
+Time(9360) n71,%480,100,60
+Time(9600) n74,%480,100,60
+Time(10560) n69,%480,100,60
+Time(10560) n72,%480,100,60
+Time(10560) n76,%480,100,60
+Time(11520) MetaText={Musicbox end}

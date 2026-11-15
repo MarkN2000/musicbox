@@ -1,0 +1,69 @@
+// Source: Shogaku Shokashu first volume, 1889 reprint (first edition 1881), no.17 Chocho; existing original final-bar tonic adaptation retained. https://dc.lib.hiroshima-u.ac.jp/da/2956
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E3%81%A1%E3%82%87%E3%81%86%E3%81%A1%E3%82%87%E3%81%86
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={112}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n91,%480,100,90
+Time(480) n88,%480,100,90
+Time(960) n88,%960,100,90
+Time(1920) n89,%480,100,90
+Time(2400) n86,%480,100,90
+Time(2880) n86,%960,100,90
+Time(3840) n84,%480,100,90
+Time(4320) n86,%480,100,90
+Time(4800) n88,%480,100,90
+Time(5280) n89,%480,100,90
+Time(5760) n91,%480,100,90
+Time(6240) n91,%480,100,90
+Time(6720) n91,%960,100,90
+Time(7680) n91,%480,100,90
+Time(8160) n88,%480,100,90
+Time(8640) n88,%480,100,90
+Time(9120) n88,%480,100,90
+Time(9600) n89,%480,100,90
+Time(10080) n86,%480,100,90
+Time(10560) n86,%480,100,90
+Time(11040) n86,%480,100,90
+Time(11520) n84,%480,100,90
+Time(12000) n88,%480,100,90
+Time(12480) n91,%480,100,90
+Time(12960) n91,%480,100,90
+Time(13440) n88,%480,100,90
+Time(13920) n88,%480,100,90
+Time(14400) n88,%960,100,90
+Time(15360) n86,%480,100,90
+Time(15840) n86,%480,100,90
+Time(16320) n86,%480,100,90
+Time(16800) n86,%480,100,90
+Time(17280) n86,%480,100,90
+Time(17760) n88,%480,100,90
+Time(18240) n89,%960,100,90
+Time(19200) n86,%480,100,90
+Time(19680) n86,%480,100,90
+Time(20160) n86,%480,100,90
+Time(20640) n86,%480,100,90
+Time(21120) n86,%480,100,90
+Time(21600) n88,%480,100,90
+Time(22080) n89,%960,100,90
+Time(23040) n91,%480,100,90
+Time(23520) n88,%480,100,90
+Time(24000) n88,%480,100,90
+Time(24480) n88,%480,100,90
+Time(24960) n89,%480,100,90
+Time(25440) n86,%480,100,90
+Time(25920) n86,%960,100,90
+Time(26880) n84,%480,100,90
+Time(27360) n88,%480,100,90
+Time(27840) n91,%480,100,90
+Time(28320) n91,%480,100,90
+Time(28800) n84,%480,100,90
+Time(29280) n84,%480,100,90
+Time(29760) n84,%960,100,90
+Time(30720) MetaText={Musicbox end}

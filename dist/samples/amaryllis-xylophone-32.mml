@@ -1,0 +1,47 @@
+// Source: Brisson/Ghys, Schirmer 1899, p.2. https://imslp.org/wiki/Special:ReverseLookup/924623
+// Accepted user variation repeats the opening theme in the second half; two-beat closing C retained.
+// Musicbox title: Amaryllis
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(1920) TimeSignature(4,4)
+Time(0) Tempo={132}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n91,%480,100,90
+Time(960) n93,%480,100,90
+Time(1920) n91,%480,100,90
+Time(2880) n96,%480,100,90
+Time(3840) n91,%480,100,90
+Time(4800) n93,%480,100,90
+Time(5760) n91,%1920,100,90
+Time(7680) n93,%480,100,90
+Time(8640) n93,%480,100,90
+Time(9600) n91,%480,100,90
+Time(10560) n93,%480,100,90
+Time(11520) n91,%480,100,90
+Time(12000) n89,%480,100,90
+Time(12480) n88,%480,100,90
+Time(12960) n86,%480,100,90
+Time(13440) n88,%960,100,90
+Time(14400) n84,%480,100,90
+Time(15360) n91,%480,100,90
+Time(16320) n93,%480,100,90
+Time(17280) n91,%480,100,90
+Time(18240) n96,%480,100,90
+Time(19200) n91,%480,100,90
+Time(20160) n93,%480,100,90
+Time(21120) n91,%1920,100,90
+Time(23040) n93,%480,100,90
+Time(24000) n93,%480,100,90
+Time(24960) n91,%480,100,90
+Time(25920) n93,%480,100,90
+Time(26880) n91,%480,100,90
+Time(27360) n89,%480,100,90
+Time(27840) n88,%480,100,90
+Time(28320) n86,%480,100,90
+Time(28800) n84,%1920,100,90
+Time(30720) MetaText={Musicbox end}

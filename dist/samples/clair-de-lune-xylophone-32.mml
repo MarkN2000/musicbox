@@ -1,0 +1,61 @@
+// Source: Debussy Clair de lune, Fromont1905 plateE1404F / Keith OHara public-domain Mutopia1778 engraving, upper melody bars1-8, ties and two-in-three durations retained, existing original tonic cadence retained. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778
+// Existing excerpt, transposition and original accompaniment retained.
+// Musicbox title: %E6%9C%88%E3%81%AE%E5%85%89
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(9,8)
+Time(0) Tempo={54}
+Time(35520) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(960) n103,%1920,100,90
+Time(2880) n100,%1920,100,90
+Time(4800) n98,%480,100,90
+Time(5280) n100,%480,100,90
+Time(5760) n98,%3360,100,90
+Time(9120) n96,%480,100,90
+Time(9600) n98,%480,100,90
+Time(10080) n96,%720,100,90
+Time(10800) n100,%1440,100,90
+Time(12240) n96,%1200,100,90
+Time(13440) n95,%480,100,90
+Time(13920) n96,%480,100,90
+Time(14400) n95,%3360,100,90
+Time(17760) n93,%480,100,90
+Time(18240) n95,%480,100,90
+Time(18720) n93,%480,100,90
+Time(19200) n98,%480,100,90
+Time(19680) n93,%480,100,90
+Time(20160) n91,%480,100,90
+Time(20640) n93,%480,100,90
+Time(21120) n91,%960,100,90
+Time(22080) n89,%480,100,90
+Time(22560) n91,%480,100,90
+Time(23040) n89,%1440,100,90
+Time(24480) n88,%1920,100,90
+Time(26400) n88,%480,100,90
+Time(26880) n89,%480,100,90
+Time(27360) n88,%480,100,90
+Time(27840) n93,%480,100,90
+Time(28320) n88,%480,100,90
+Time(28800) n86,%480,100,90
+Time(29280) n88,%480,100,90
+Time(29760) n86,%960,100,90
+Time(30720) n84,%480,100,90
+Time(31200) n86,%480,100,90
+Time(31680) n84,%1440,100,90
+Time(33120) n83,%1440,100,90
+Time(34560) n84,%960,100,90
+Time(35520) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(1920) n84,%960,100,60
+Time(3840) n84,%960,100,60
+Time(6720) n84,%960,100,60
+Time(15360) n81,%960,100,60
+Time(24960) n77,%960,100,60
+Time(35520) MetaText={Musicbox end}

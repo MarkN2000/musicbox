@@ -1,0 +1,80 @@
+// Source: The Musical Times (1858), p.350, Westminster Chimes. https://commons.wikimedia.org/wiki/File:Westminster_Chimes_(IA_jstor-3369957).pdf
+// Accepted user-specified school-chime ordering, phrase rests and original low accompaniment retained.
+// Musicbox title: Westminster%20Chimes
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={144}
+Time(46080) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(0) n72,%1920,100,90
+Time(1920) n76,%1920,100,90
+Time(3840) n74,%1920,100,90
+Time(5760) n67,%1920,100,90
+Time(11520) n67,%1920,100,90
+Time(13440) n74,%1920,100,90
+Time(15360) n76,%1920,100,90
+Time(17280) n72,%1920,100,90
+Time(23040) n76,%1920,100,90
+Time(24960) n72,%1920,100,90
+Time(26880) n74,%1920,100,90
+Time(28800) n67,%1920,100,90
+Time(34560) n67,%1920,100,90
+Time(36480) n74,%1920,100,90
+Time(38400) n76,%1920,100,90
+Time(40320) n72,%1920,100,90
+Time(46080) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(0) n60,%480,100,60
+Time(0) n64,%480,100,60
+Time(1920) n60,%480,100,60
+Time(1920) n64,%480,100,60
+Time(3840) n55,%480,100,60
+Time(3840) n62,%480,100,60
+Time(3840) n71,%480,100,60
+Time(5760) n55,%480,100,60
+Time(5760) n62,%480,100,60
+Time(9600) n55,%480,100,60
+Time(9600) n62,%480,100,60
+Time(11520) n55,%480,100,60
+Time(11520) n62,%480,100,60
+Time(13440) n55,%480,100,60
+Time(13440) n62,%480,100,60
+Time(13440) n71,%480,100,60
+Time(15360) n60,%480,100,60
+Time(15360) n64,%480,100,60
+Time(17280) n60,%480,100,60
+Time(17280) n64,%480,100,60
+Time(17280) n67,%480,100,60
+Time(21120) n60,%480,100,60
+Time(21120) n64,%480,100,60
+Time(23040) n60,%480,100,60
+Time(23040) n64,%480,100,60
+Time(24960) n60,%480,100,60
+Time(24960) n64,%480,100,60
+Time(26880) n55,%480,100,60
+Time(26880) n62,%480,100,60
+Time(26880) n71,%480,100,60
+Time(28800) n55,%480,100,60
+Time(28800) n62,%480,100,60
+Time(32640) n55,%480,100,60
+Time(32640) n62,%480,100,60
+Time(34560) n55,%480,100,60
+Time(34560) n62,%480,100,60
+Time(36480) n55,%480,100,60
+Time(36480) n62,%480,100,60
+Time(36480) n71,%480,100,60
+Time(38400) n60,%480,100,60
+Time(38400) n64,%480,100,60
+Time(40320) n60,%480,100,60
+Time(40320) n64,%480,100,60
+Time(40320) n67,%480,100,60
+Time(44160) n60,%480,100,60
+Time(44160) n64,%480,100,60
+Time(46080) MetaText={Musicbox end}

@@ -1,0 +1,110 @@
+// Source: Tchaikovsky, The Nutcracker, composers piano arrangement, Jurgenson 1892/Rahter ca.1898, p.13, bars 5-12. https://imslp.org/wiki/Special:ReverseLookup/57454
+// Printed register changes, eighth rests and chromatic notes retained. Musicbox keeps the accepted whole -2-semitone transposition; xylophone keeps the original +12. Independent single-quarter closing retained.
+// Musicbox title: %E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A0%E6%A5%BD%E8%AD%9C
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={80}
+Time(16320) MetaText={Musicbox end}
+
+TR=2
+TrackName={Musicbox:1:%E6%97%8B%E5%BE%8B}
+q100
+Time(480) n89,%240,100,90
+Time(720) n86,%240,100,90
+Time(960) n89,%480,100,90
+Time(1440) n88,%480,100,90
+Time(1920) n85,%480,100,90
+Time(2400) n86,%480,100,90
+Time(2880) n84,%240,100,90
+Time(3120) n84,%240,100,90
+Time(3360) n84,%480,100,90
+Time(3840) n83,%240,100,90
+Time(4080) n83,%240,100,90
+Time(4320) n83,%480,100,90
+Time(4800) n82,%240,100,90
+Time(5040) n82,%240,100,90
+Time(5280) n82,%480,100,90
+Time(5760) n81,%240,100,90
+Time(6000) n86,%240,100,90
+Time(6240) n82,%240,100,90
+Time(6480) n86,%240,100,90
+Time(6720) n81,%480,100,90
+Time(8160) n77,%240,100,90
+Time(8400) n74,%240,100,90
+Time(8640) n77,%480,100,90
+Time(9120) n76,%480,100,90
+Time(9600) n82,%480,100,90
+Time(10080) n81,%480,100,90
+Time(10560) n89,%240,100,90
+Time(10800) n89,%240,100,90
+Time(11040) n89,%480,100,90
+Time(11520) n87,%240,100,90
+Time(11760) n87,%240,100,90
+Time(12000) n87,%480,100,90
+Time(12480) n86,%240,100,90
+Time(12720) n86,%240,100,90
+Time(12960) n86,%480,100,90
+Time(13440) n85,%240,100,90
+Time(13680) n88,%240,100,90
+Time(13920) n86,%240,100,90
+Time(14160) n88,%240,100,90
+Time(14400) n85,%480,100,90
+Time(15360) n86,%960,100,90
+Time(16320) MetaText={Musicbox end}
+
+TR=3
+TrackName={Musicbox:2:%E4%BC%B4%E5%A5%8F}
+q100
+Time(480) n69,%480,100,60
+Time(960) n65,%480,100,60
+Time(960) n74,%480,100,60
+Time(1440) n69,%480,100,60
+Time(1920) n69,%480,100,60
+Time(2400) n62,%480,100,60
+Time(2400) n65,%480,100,60
+Time(2880) n53,%480,100,60
+Time(2880) n69,%480,100,60
+Time(3360) n65,%480,100,60
+Time(3360) n69,%480,100,60
+Time(3840) n67,%480,100,60
+Time(4320) n62,%480,100,60
+Time(4800) n67,%480,100,60
+Time(4800) n75,%480,100,60
+Time(5760) n62,%480,100,60
+Time(5760) n65,%480,100,60
+Time(6240) n62,%480,100,60
+Time(6240) n67,%480,100,60
+Time(6720) n62,%480,100,60
+Time(6720) n65,%480,100,60
+Time(7680) n62,%480,100,60
+Time(7680) n65,%480,100,60
+Time(8160) n69,%480,100,60
+Time(8640) n65,%480,100,60
+Time(8640) n74,%480,100,60
+Time(9120) n69,%480,100,60
+Time(9600) n67,%480,100,60
+Time(9600) n70,%480,100,60
+Time(10080) n65,%480,100,60
+Time(10080) n72,%480,100,60
+Time(10560) n62,%480,100,60
+Time(10560) n69,%480,100,60
+Time(11040) n65,%480,100,60
+Time(11040) n69,%480,100,60
+Time(11520) n69,%480,100,60
+Time(11520) n72,%480,100,60
+Time(12000) n69,%480,100,60
+Time(12000) n72,%480,100,60
+Time(12480) n62,%480,100,60
+Time(12480) n65,%480,100,60
+Time(12960) n65,%480,100,60
+Time(12960) n69,%480,100,60
+Time(13440) n69,%480,100,60
+Time(13920) n67,%480,100,60
+Time(13920) n69,%480,100,60
+Time(14400) n69,%480,100,60
+Time(14880) n69,%480,100,60
+Time(15360) n62,%480,100,60
+Time(15360) n65,%480,100,60
+Time(15360) n69,%480,100,60
+Time(16320) MetaText={Musicbox end}
