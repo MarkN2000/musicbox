@@ -1,0 +1,226 @@
+// Source: Source: Motoori Nagayo, Nanatsu no Ko, Kin no Fune, July 1921, first two systems (bars 1-8). https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs/nanatu01.jpg
+// Expanded instrumental arrangement. The established melody keeps all pitches, onsets, written durations, rests, tempo and meter. Original plucked/keyboard accompaniment remains; independent low strings sustain its bass line and violin/viola voice its explicitly simultaneous harmonies. Common chord tones are tied, not reattacked. No choir is used. Standard GM/CC7=100; lead and accompaniment velocities balanced for the larger ensemble.
+// Musicbox title: %E4%B8%83%E3%81%A4%E3%81%AE%E5%AD%90
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={88.00002346667293}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+Port(0) CH=1 Time(0) @72
+TrackName={Musicbox:1:instrument=vsco-clarinet:%E3%82%AF%E3%83%A9%E3%83%AA%E3%83%8D%E3%83%83%E3%83%88}
+q100
+Time(0) n71,%960,100,92
+Time(960) n69,%480,100,92
+Time(1440) n67,%480,100,92
+Time(1920) n69,%960,100,92
+Time(3840) n71,%480,100,92
+Time(4320) n67,%480,100,92
+Time(4800) n64,%480,100,92
+Time(5280) n67,%480,100,92
+Time(5760) n62,%960,100,92
+Time(7680) n64,%480,100,92
+Time(8160) n62,%480,100,92
+Time(8640) n59,%480,100,92
+Time(9120) n62,%480,100,92
+Time(9600) n64,%960,100,92
+Time(10560) n67,%960,100,92
+Time(11520) n69,%2880,100,92
+Time(15360) n71,%1440,100,92
+Time(16800) n72,%480,100,92
+Time(17280) n74,%960,100,92
+Time(18240) n71,%960,100,92
+Time(19200) n74,%960,100,92
+Time(20160) n76,%480,100,92
+Time(20640) n74,%480,100,92
+Time(21120) n71,%960,100,92
+Time(22080) n67,%960,100,92
+Time(23040) n69,%480,100,92
+Time(23520) n69,%480,100,92
+Time(24000) n71,%480,100,92
+Time(24480) n67,%480,100,92
+Time(24960) n64,%960,100,92
+Time(25920) n62,%960,100,92
+Time(26880) n67,%2880,100,92
+Time(30720) MetaText={Musicbox end}
+
+TR=3
+Port(1) CH=1 Time(0) @1
+TrackName={Musicbox:2:instrument=piano-88:%E3%83%94%E3%82%A2%E3%83%8E}
+q100
+Time(0) n43,%480,100,72
+Time(0) n50,%480,100,72
+Time(480) n59,%480,100,72
+Time(960) n55,%480,100,72
+Time(1440) n50,%480,100,72
+Time(1920) n43,%480,100,72
+Time(1920) n59,%480,100,72
+Time(2400) n50,%480,100,72
+Time(2880) n55,%480,100,72
+Time(2880) n59,%480,100,72
+Time(3360) n50,%480,100,72
+Time(3840) n43,%480,100,72
+Time(3840) n50,%480,100,72
+Time(4320) n59,%480,100,72
+Time(4800) n55,%480,100,72
+Time(5280) n50,%480,100,72
+Time(5760) n50,%480,100,72
+Time(5760) n57,%480,100,72
+Time(6240) n55,%480,100,72
+Time(6720) n50,%480,100,72
+Time(6720) n57,%480,100,72
+Time(7200) n55,%480,100,72
+Time(7680) n52,%480,100,72
+Time(7680) n55,%480,100,72
+Time(8160) n59,%480,100,72
+Time(8640) n50,%480,100,72
+Time(8640) n55,%480,100,72
+Time(9120) n59,%480,100,72
+Time(9600) n52,%480,100,72
+Time(9600) n55,%480,100,72
+Time(10080) n59,%480,100,72
+Time(10560) n43,%480,100,72
+Time(10560) n50,%480,100,72
+Time(11040) n59,%480,100,72
+Time(11520) n50,%480,100,72
+Time(11520) n57,%480,100,72
+Time(12000) n60,%480,100,72
+Time(12480) n50,%480,100,72
+Time(12960) n57,%480,100,72
+Time(13440) n50,%480,100,72
+Time(13440) n60,%480,100,72
+Time(13920) n57,%480,100,72
+Time(14400) n50,%480,100,72
+Time(14880) n57,%480,100,72
+Time(15360) n43,%480,100,72
+Time(15360) n50,%480,100,72
+Time(15840) n59,%480,100,72
+Time(16320) n55,%480,100,72
+Time(16800) n50,%480,100,72
+Time(17280) n43,%480,100,72
+Time(17280) n59,%480,100,72
+Time(17760) n50,%480,100,72
+Time(18240) n55,%480,100,72
+Time(18240) n59,%480,100,72
+Time(18720) n50,%480,100,72
+Time(19200) n43,%480,100,72
+Time(19200) n50,%480,100,72
+Time(19680) n59,%480,100,72
+Time(20160) n55,%480,100,72
+Time(20640) n50,%480,100,72
+Time(21120) n52,%480,100,72
+Time(21120) n55,%480,100,72
+Time(21600) n59,%480,100,72
+Time(22080) n43,%480,100,72
+Time(22080) n50,%480,100,72
+Time(22560) n59,%480,100,72
+Time(23040) n50,%480,100,72
+Time(23040) n57,%480,100,72
+Time(23520) n60,%480,100,72
+Time(24000) n50,%480,100,72
+Time(24480) n57,%480,100,72
+Time(24960) n50,%480,100,72
+Time(24960) n60,%480,100,72
+Time(25440) n57,%480,100,72
+Time(25920) n50,%480,100,72
+Time(25920) n57,%480,100,72
+Time(26400) n60,%480,100,72
+Time(26880) n43,%960,100,72
+Time(26880) n50,%960,100,72
+Time(26880) n59,%960,100,72
+Time(27840) n55,%960,100,72
+Time(28800) n50,%960,100,72
+Time(28800) n59,%960,100,72
+Time(29760) n43,%960,100,72
+Time(29760) n50,%960,100,72
+Time(29760) n59,%960,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=4
+Port(2) CH=1 Time(0) @42
+TrackName={Musicbox:3:instrument=vsco-viola:%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%A9}
+q100
+Time(0) n62,%1920,100,72
+Time(1920) n67,%1920,100,72
+Time(3840) n62,%3840,100,72
+Time(7680) n64,%960,100,72
+Time(8640) n62,%960,100,72
+Time(9600) n64,%960,100,72
+Time(10560) n62,%2880,100,72
+Time(13440) n60,%1920,100,72
+Time(15360) n62,%1920,100,72
+Time(17280) n67,%1920,100,72
+Time(19200) n62,%1920,100,72
+Time(21120) n64,%960,100,72
+Time(22080) n62,%2880,100,72
+Time(24960) n60,%960,100,72
+Time(25920) n62,%4800,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=5
+Port(3) CH=1 Time(0) @41
+TrackName={Musicbox:4:instrument=vsco-violin:%E3%83%B4%E3%82%A1%E3%82%A4%E3%82%AA%E3%83%AA%E3%83%B3}
+q100
+Time(0) n67,%1920,100,72
+Time(1920) n71,%1920,100,72
+Time(3840) n67,%1920,100,72
+Time(5760) n69,%1920,100,72
+Time(7680) n67,%3840,100,72
+Time(11520) n69,%1920,100,72
+Time(13440) n62,%1920,100,72
+Time(15360) n67,%1920,100,72
+Time(17280) n71,%1920,100,72
+Time(19200) n67,%3840,100,72
+Time(23040) n69,%1920,100,72
+Time(24960) n62,%960,100,72
+Time(25920) n69,%960,100,72
+Time(26880) n71,%3840,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=6
+Port(4) CH=1 Time(0) @43
+TrackName={Musicbox:5:instrument=vsco-cello:%E3%83%81%E3%82%A7%E3%83%AD}
+q100
+Time(0) n43,%1440,100,78
+Time(1440) n50,%480,100,78
+Time(1920) n43,%480,100,78
+Time(2400) n50,%1440,100,78
+Time(3840) n43,%1440,100,78
+Time(5280) n50,%2400,100,78
+Time(7680) n52,%960,100,78
+Time(8640) n50,%1920,100,78
+Time(10560) n43,%960,100,78
+Time(11520) n50,%3840,100,78
+Time(15360) n43,%1440,100,78
+Time(16800) n50,%480,100,78
+Time(17280) n43,%480,100,78
+Time(17760) n50,%1440,100,78
+Time(19200) n43,%1440,100,78
+Time(20640) n50,%1440,100,78
+Time(22080) n43,%960,100,78
+Time(23040) n50,%3840,100,78
+Time(26880) n43,%1920,100,78
+Time(28800) n50,%960,100,78
+Time(29760) n43,%960,100,78
+Time(30720) MetaText={Musicbox end}
+
+TR=7
+Port(0) CH=1
+Time(0) CC(7,100)
+
+TR=8
+Port(1) CH=1
+Time(0) CC(7,100)
+
+TR=9
+Port(2) CH=1
+Time(0) CC(7,100)
+
+TR=10
+Port(3) CH=1
+Time(0) CC(7,100)
+
+TR=11
+Port(4) CH=1
+Time(0) CC(7,100)

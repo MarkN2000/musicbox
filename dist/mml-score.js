@@ -244,6 +244,28 @@ export function fromMidi(midi,source=''){
   return validateScore(score);
 }
 
+export function serializeResoniteTxt(score){
+  validateScore(score);
+  const ms=tick=>Math.round(secondsAt(score,tick)*1000),performance=midiPerformance(score),instruments=new Map(score.parts.map(p=>[p.id,p.percussion?'d':p.program??0])),events=[];
+  for(const [id,part] of performance)for(const s of part.states)events.push({time:ms(s.tick),tick:s.tick,type:0,instrument:instruments.get(id),values:[s.gain,s.pan,s.detune,s.modulation].map(v=>+v.toFixed(6))});
+  for(const n of score.notes){
+    const time=ms(n.tick),end=performance.get(n.part).ends.get(n.id)??n.tick+n.duration;
+    events.push({time,tick:n.tick,type:1,instrument:instruments.get(n.part),values:[n.midi,Math.max(0,ms(end)-time),n.velocity]});
+  }
+  events.sort((a,b)=>a.time-b.time||a.type-b.type||a.tick-b.tick);
+  const latest=new Map(),settings=new Map(),lines=[`v1,${ms(score.end)}`,score.title.replace(/[\r\n\u2028\u2029]+/g,' ')];
+  for(const e of events)if(!e.type)latest.set(`${e.time}:${e.instrument}`,e);
+  for(const e of events){
+    const values=e.values.join(',');
+    if(!e.type){
+      if(latest.get(`${e.time}:${e.instrument}`)!==e||(settings.get(e.instrument)??'1,0,0,0')===values)continue;
+      settings.set(e.instrument,values);
+    }
+    lines.push(`${e.type?'':'C,'}${e.time/1000},${e.instrument},${values}`);
+  }
+  return lines.join('\n')+'\n';
+}
+
 export function midiPerformance(score){
   const parts=new Map();
   const masterVolumes=(score.sysex??[]).filter(e=>e.data.length===7&&e.data[0]===127&&e.data[2]===4&&e.data[3]===1).map(e=>({tick:e.tick,type:'masterVolume',value:e.data[4]+e.data[5]*128}));

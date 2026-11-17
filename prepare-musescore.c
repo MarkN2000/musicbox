@@ -11,8 +11,10 @@ int main(void){
   int organ=tsf_get_presetindex(font,0,19);
   /* ponytail: extend the church organ's highest sample by at most one octave; use higher native recordings if available. */
   if(organ>=0)for(int i=0;i<font->presets[organ].regionNum;i++)if(font->presets[organ].regions[i].hikey==96)font->presets[organ].regions[i].hikey=108;
+  tsf* general=font;tsf* fluid=NULL;
   int program,key,wantedLoop;
   while(scanf("%d %d %d",&program,&key,&wantedLoop)==3){
+    if(program==69){if(!fluid){fluid=tsf_load_filename("fluid-soundfont-3.1/FluidR3_GM.sf2");if(!fluid)return 1;tsf_set_output(fluid,TSF_STEREO_INTERLEAVED,44100,-6);}font=fluid;}else font=general;
     int preset=tsf_get_presetindex(font,0,program),count=0,hasLoop=0;
     float head=.5f,settle=.5f,release=.15f;
     if(preset<0)return 2;
@@ -42,12 +44,13 @@ int main(void){
     if(peak<0.0000001f){free(samples);printf("{\"program\":%d,\"midi\":%d,\"silent\":true}\n",program,key);fflush(stdout);continue;}
     if(!loop){unsigned last=frames;for(;last>2205;last-=2205){double sum=0;for(unsigned i=(last-2205)*2;i<last*2;i++)sum+=samples[i]*samples[i];if(sqrt(sum/4410)>peak*.0031623)break;}if(last+11025<frames)frames=last+11025;}
     unsigned channels=difference>peak*.000001f?2:1;
-    for(unsigned i=0;i<frames*channels;i++)samples[i]=samples[channels==1?i*2:i]*.5f/peak;
+    float target=program==80?.5f*powf(10.0f,-3.0f/20.0f):.5f;
+    for(unsigned i=0;i<frames*channels;i++)samples[i]=samples[channels==1?i*2:i]*target/peak;
     FILE* out=fopen(name,"wb");if(!out)return 3;
     fwrite("RIFF",1,4,out);word(out,36+frames*channels*4,4);fwrite("WAVEfmt ",1,8,out);word(out,16,4);word(out,3,2);word(out,channels,2);word(out,44100,4);word(out,44100*channels*4,4);word(out,channels*4,2);word(out,32,2);fwrite("data",1,4,out);word(out,frames*channels*4,4);
     if(fwrite(samples,sizeof(float),frames*channels,out)!=frames*channels)return 4;
     free(samples);fclose(out);
     printf("{\"program\":%d,\"midi\":%d,\"loop\":%s,\"head\":%.6f,\"settle\":%.6f,\"release\":%.6f,\"duration\":%.6f}\n",program,key,loop?"true":"false",head,settle,release,frames/44100.0);fflush(stdout);
   }
-  tsf_close(font);return 0;
+  tsf_close(general);if(fluid)tsf_close(fluid);return 0;
 }

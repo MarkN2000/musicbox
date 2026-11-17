@@ -1,0 +1,207 @@
+// Source: Source: DURU, traditional Korobeiniki independent arrangement and recording, CC0 1.0. https://github.com/uncle-sheepsky/duru-ai-cc0-bgm
+// Accordion and fiddle trade complete thematic phrases; original guitar/bass rhythm remains. The Finnish polka also gives the separately notated upper accompaniment tone to clarinet; dance percussion follows the pickup and phrase lengths. Existing melody pitches/onsets, written ties/rests, tempo, meter and excerpt are retained. New percussion and selected support layers are this site's independent orchestration; GM1, CC7=100.
+// Musicbox title: %D0%9A%D0%BE%D1%80%D0%BE%D0%B1%D1%83%D1%88%D0%BA%D0%B0
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={112.00005973336519}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+Port(0) CH=1 Time(0) @22
+TrackName={Musicbox:1:instrument=musescore-gm021:%E3%82%A2%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%82%AA%E3%83%B3}
+q100
+Time(0) n69,%960,100,90
+Time(960) n64,%480,100,90
+Time(1440) n65,%480,100,90
+Time(1920) n67,%960,100,90
+Time(2880) n65,%480,100,90
+Time(3360) n64,%480,100,90
+Time(3840) n62,%960,100,90
+Time(4800) n62,%480,100,90
+Time(5280) n65,%480,100,90
+Time(5760) n69,%960,100,90
+Time(6720) n67,%480,100,90
+Time(7200) n65,%480,100,90
+Time(15840) n67,%960,100,90
+Time(16800) n70,%480,100,90
+Time(17280) n74,%960,100,90
+Time(18240) n72,%480,100,90
+Time(18720) n70,%480,100,90
+Time(19200) n69,%1440,100,90
+Time(20640) n65,%480,100,90
+Time(21120) n69,%960,100,90
+Time(22080) n67,%480,100,90
+Time(22560) n65,%480,100,90
+Time(30720) MetaText={Musicbox end}
+
+TR=3
+Port(1) CH=1 Time(0) @33
+TrackName={Musicbox:2:instrument=musescore-gm032:%E3%82%A2%E3%82%B3%E3%83%BC%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%83%99%E3%83%BC%E3%82%B9}
+q100
+Time(0) n50,%480,100,60
+Time(1920) n50,%480,100,60
+Time(3840) n50,%480,100,60
+Time(5760) n50,%480,100,60
+Time(8160) n52,%480,100,60
+Time(8640) n52,%480,100,60
+Time(10080) n52,%480,100,60
+Time(10560) n52,%480,100,60
+Time(11520) n50,%480,100,60
+Time(13440) n50,%480,100,60
+Time(15360) n43,%480,100,60
+Time(15840) n50,%480,100,60
+Time(16320) n50,%480,100,60
+Time(17280) n43,%480,100,60
+Time(17760) n50,%480,100,60
+Time(18240) n50,%480,100,60
+Time(19200) n50,%480,100,60
+Time(21120) n50,%480,100,60
+Time(23520) n52,%480,100,60
+Time(24000) n52,%480,100,60
+Time(25440) n52,%480,100,60
+Time(25920) n52,%480,100,60
+Time(26880) n50,%480,100,60
+Time(28800) n50,%480,100,60
+Time(30720) MetaText={Musicbox end}
+
+TR=4
+Port(2) CH=1 Time(480) @25
+TrackName={Musicbox:3:instrument=freepats-nylon-guitar:%E3%83%8A%E3%82%A4%E3%83%AD%E3%83%B3%E5%BC%A6%E3%82%AE%E3%82%BF%E3%83%BC}
+q100
+Time(480) n53,%480,100,60
+Time(480) n57,%480,100,60
+Time(960) n57,%480,100,60
+Time(1440) n53,%480,100,60
+Time(1440) n57,%480,100,60
+Time(2400) n53,%480,100,60
+Time(2400) n57,%480,100,60
+Time(2880) n57,%480,100,60
+Time(3360) n53,%480,100,60
+Time(3360) n57,%480,100,60
+Time(4320) n53,%480,100,60
+Time(4320) n57,%480,100,60
+Time(4800) n57,%480,100,60
+Time(5280) n53,%480,100,60
+Time(5280) n57,%480,100,60
+Time(6240) n53,%480,100,60
+Time(6240) n57,%480,100,60
+Time(6720) n57,%480,100,60
+Time(7200) n53,%480,100,60
+Time(7200) n57,%480,100,60
+Time(7680) n57,%480,100,60
+Time(8160) n61,%480,100,60
+Time(9120) n55,%480,100,60
+Time(9120) n61,%480,100,60
+Time(9600) n57,%480,100,60
+Time(10080) n61,%480,100,60
+Time(11040) n55,%480,100,60
+Time(11040) n61,%480,100,60
+Time(12000) n53,%480,100,60
+Time(12000) n57,%480,100,60
+Time(12480) n57,%480,100,60
+Time(12960) n53,%480,100,60
+Time(12960) n57,%480,100,60
+Time(13920) n53,%480,100,60
+Time(13920) n57,%480,100,60
+Time(14400) n57,%480,100,60
+Time(14880) n53,%480,100,60
+Time(14880) n57,%480,100,60
+Time(15840) n58,%480,100,60
+Time(16800) n55,%480,100,60
+Time(16800) n58,%480,100,60
+Time(17760) n58,%480,100,60
+Time(18720) n55,%480,100,60
+Time(18720) n58,%480,100,60
+Time(19680) n53,%480,100,60
+Time(19680) n57,%480,100,60
+Time(20160) n57,%480,100,60
+Time(20640) n53,%480,100,60
+Time(20640) n57,%480,100,60
+Time(21600) n53,%480,100,60
+Time(21600) n57,%480,100,60
+Time(22080) n57,%480,100,60
+Time(22560) n53,%480,100,60
+Time(22560) n57,%480,100,60
+Time(23040) n57,%480,100,60
+Time(23520) n61,%480,100,60
+Time(24480) n55,%480,100,60
+Time(24480) n61,%480,100,60
+Time(24960) n57,%480,100,60
+Time(25440) n61,%480,100,60
+Time(26400) n55,%480,100,60
+Time(26400) n61,%480,100,60
+Time(27360) n53,%480,100,60
+Time(27360) n57,%480,100,60
+Time(27840) n57,%480,100,60
+Time(28320) n53,%480,100,60
+Time(28320) n57,%480,100,60
+Time(29280) n53,%480,100,60
+Time(29280) n57,%480,100,60
+Time(29760) n57,%480,100,60
+Time(30240) n53,%480,100,60
+Time(30240) n57,%480,100,60
+Time(30720) MetaText={Musicbox end}
+
+TR=5
+Port(3) CH=1 Time(7680) @41
+TrackName={Musicbox:4:instrument=vsco-violin:%E3%83%B4%E3%82%A1%E3%82%A4%E3%82%AA%E3%83%AA%E3%83%B3}
+q100
+Time(7680) n64,%960,100,90
+Time(8640) n64,%480,100,90
+Time(9120) n65,%480,100,90
+Time(9600) n67,%960,100,90
+Time(10560) n69,%960,100,90
+Time(11520) n65,%960,100,90
+Time(12480) n62,%960,100,90
+Time(13440) n62,%960,100,90
+Time(23040) n64,%960,100,90
+Time(24000) n64,%480,100,90
+Time(24480) n65,%480,100,90
+Time(24960) n67,%960,100,90
+Time(25920) n69,%960,100,90
+Time(26880) n65,%960,100,90
+Time(27840) n62,%960,100,90
+Time(28800) n62,%960,100,90
+Time(30720) MetaText={Musicbox end}
+
+TR=6
+Port(4) CH=10 Time(0) @1
+TrackName={Musicbox:5:instrument=vsco-percussion:%E6%89%93%E6%A5%BD%E5%99%A8}
+q100
+Time(0) n36,%120,100,76
+Time(1920) n54,%120,100,77
+Time(3840) n36,%120,100,76
+Time(5760) n54,%120,100,77
+Time(7680) n36,%120,100,76
+Time(9600) n54,%120,100,77
+Time(11520) n36,%120,100,76
+Time(13440) n54,%120,100,77
+Time(15360) n36,%120,100,76
+Time(17280) n54,%120,100,77
+Time(19200) n36,%120,100,76
+Time(21120) n54,%120,100,77
+Time(23040) n36,%120,100,76
+Time(24960) n54,%120,100,77
+Time(26880) n36,%120,100,76
+Time(30720) MetaText={Musicbox end}
+
+TR=7
+Port(0) CH=1
+Time(0) CC(7,100)
+
+TR=8
+Port(1) CH=1
+Time(0) CC(7,100)
+
+TR=9
+Port(2) CH=1
+Time(0) CC(7,100)
+
+TR=10
+Port(3) CH=1
+Time(0) CC(7,100)
+
+TR=11
+Port(4) CH=10
+Time(0) CC(7,100)

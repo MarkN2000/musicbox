@@ -1,0 +1,227 @@
+// Source: Source: https://achesonpiano.com/wp-content/uploads/London-Bridge-easy-piano-1.pdf
+// Expanded instrumental arrangement. The established melody keeps all pitches, onsets, written durations, rests, tempo and meter. Original plucked/keyboard accompaniment remains; independent low strings sustain its bass line and violin/viola voice its explicitly simultaneous harmonies. Common chord tones are tied, not reattacked. Characteristic woodblock-phrase percussion marks phrase/rhythmic structure. No choir is used. Standard GM/CC7=100; lead and accompaniment velocities balanced for the larger ensemble.
+// Musicbox title: London%20Bridge%20Is%20Falling%20Down
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(0) Tempo={132.000132000132}
+Time(30720) MetaText={Musicbox end}
+
+TR=2
+Port(0) CH=1 Time(0) @75
+TrackName={Musicbox:1:instrument=musescore-gm074:%E3%83%AA%E3%82%B3%E3%83%BC%E3%83%80%E3%83%BC}
+q100
+Time(0) n67,%1440,100,92
+Time(1440) n69,%480,100,92
+Time(1920) n67,%960,100,92
+Time(2880) n65,%960,100,92
+Time(3840) n64,%960,100,92
+Time(4800) n65,%960,100,92
+Time(5760) n67,%1920,100,92
+Time(7680) n62,%960,100,92
+Time(8640) n64,%960,100,92
+Time(9600) n65,%1920,100,92
+Time(11520) n64,%960,100,92
+Time(12480) n65,%960,100,92
+Time(13440) n67,%1920,100,92
+Time(15360) n67,%1440,100,92
+Time(16800) n69,%480,100,92
+Time(17280) n67,%960,100,92
+Time(18240) n65,%960,100,92
+Time(19200) n64,%960,100,92
+Time(20160) n65,%960,100,92
+Time(21120) n67,%1920,100,92
+Time(23040) n62,%1920,100,92
+Time(24960) n67,%1920,100,92
+Time(26880) n64,%960,100,92
+Time(27840) n60,%2880,100,92
+Time(30720) MetaText={Musicbox end}
+
+TR=3
+Port(1) CH=1 Time(0) @1
+TrackName={Musicbox:2:instrument=piano-88:%E3%83%94%E3%82%A2%E3%83%8E}
+q100
+Time(0) n48,%480,100,72
+Time(480) n52,%480,100,72
+Time(480) n55,%480,100,72
+Time(960) n48,%480,100,72
+Time(1440) n52,%480,100,72
+Time(1440) n55,%480,100,72
+Time(1920) n48,%480,100,72
+Time(2400) n52,%480,100,72
+Time(2400) n55,%480,100,72
+Time(2880) n48,%480,100,72
+Time(3360) n52,%480,100,72
+Time(3360) n55,%480,100,72
+Time(3840) n48,%480,100,72
+Time(4320) n52,%480,100,72
+Time(4320) n55,%480,100,72
+Time(4800) n48,%480,100,72
+Time(5280) n52,%480,100,72
+Time(5280) n55,%480,100,72
+Time(5760) n48,%480,100,72
+Time(6240) n52,%480,100,72
+Time(6240) n55,%480,100,72
+Time(6720) n48,%480,100,72
+Time(7200) n52,%480,100,72
+Time(7200) n55,%480,100,72
+Time(7680) n43,%480,100,72
+Time(8160) n50,%480,100,72
+Time(8160) n55,%480,100,72
+Time(8640) n43,%480,100,72
+Time(9120) n50,%480,100,72
+Time(9120) n55,%480,100,72
+Time(9600) n43,%480,100,72
+Time(10080) n50,%480,100,72
+Time(10080) n55,%480,100,72
+Time(10560) n43,%480,100,72
+Time(11040) n50,%480,100,72
+Time(11040) n55,%480,100,72
+Time(11520) n48,%480,100,72
+Time(12000) n52,%480,100,72
+Time(12000) n55,%480,100,72
+Time(12480) n48,%480,100,72
+Time(12960) n52,%480,100,72
+Time(12960) n55,%480,100,72
+Time(13440) n48,%480,100,72
+Time(13920) n52,%480,100,72
+Time(13920) n55,%480,100,72
+Time(14400) n48,%480,100,72
+Time(14880) n52,%480,100,72
+Time(14880) n55,%480,100,72
+Time(15360) n48,%480,100,72
+Time(15840) n52,%480,100,72
+Time(15840) n55,%480,100,72
+Time(16320) n48,%480,100,72
+Time(16800) n52,%480,100,72
+Time(16800) n55,%480,100,72
+Time(17280) n48,%480,100,72
+Time(17760) n52,%480,100,72
+Time(17760) n55,%480,100,72
+Time(18240) n48,%480,100,72
+Time(18720) n52,%480,100,72
+Time(18720) n55,%480,100,72
+Time(19200) n48,%480,100,72
+Time(19680) n52,%480,100,72
+Time(19680) n55,%480,100,72
+Time(20160) n48,%480,100,72
+Time(20640) n52,%480,100,72
+Time(20640) n55,%480,100,72
+Time(21120) n48,%480,100,72
+Time(21600) n52,%480,100,72
+Time(21600) n55,%480,100,72
+Time(22080) n48,%480,100,72
+Time(22560) n52,%480,100,72
+Time(22560) n55,%480,100,72
+Time(23040) n43,%480,100,72
+Time(23520) n50,%480,100,72
+Time(23520) n55,%480,100,72
+Time(24000) n43,%480,100,72
+Time(24480) n50,%480,100,72
+Time(24480) n55,%480,100,72
+Time(24960) n43,%480,100,72
+Time(25440) n50,%480,100,72
+Time(25440) n55,%480,100,72
+Time(25920) n43,%480,100,72
+Time(26400) n50,%480,100,72
+Time(26400) n55,%480,100,72
+Time(26880) n48,%480,100,72
+Time(27360) n52,%480,100,72
+Time(27360) n55,%480,100,72
+Time(27840) n48,%480,100,72
+Time(28320) n52,%480,100,72
+Time(28320) n55,%480,100,72
+Time(28800) n48,%480,100,72
+Time(29280) n52,%480,100,72
+Time(29280) n55,%480,100,72
+Time(29760) n48,%480,100,72
+Time(30240) n52,%480,100,72
+Time(30240) n55,%480,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=4
+Port(2) CH=1 Time(480) @42
+TrackName={Musicbox:3:instrument=vsco-viola:%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%A9}
+q100
+Time(480) n64,%3360,100,72
+Time(4320) n64,%3360,100,72
+Time(8160) n62,%3360,100,72
+Time(12000) n64,%3360,100,72
+Time(15840) n64,%3360,100,72
+Time(19680) n64,%3360,100,72
+Time(23520) n62,%3360,100,72
+Time(27360) n64,%3360,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=5
+Port(3) CH=1 Time(480) @41
+TrackName={Musicbox:4:instrument=vsco-violin:%E3%83%B4%E3%82%A1%E3%82%A4%E3%82%AA%E3%83%AA%E3%83%B3}
+q100
+Time(480) n67,%3360,100,72
+Time(4320) n67,%3360,100,72
+Time(8160) n67,%3360,100,72
+Time(12000) n67,%3360,100,72
+Time(15840) n67,%3360,100,72
+Time(19680) n67,%3360,100,72
+Time(23520) n67,%3360,100,72
+Time(27360) n67,%3360,100,72
+Time(30720) MetaText={Musicbox end}
+
+TR=6
+Port(4) CH=1 Time(0) @43
+TrackName={Musicbox:5:instrument=vsco-cello:%E3%83%81%E3%82%A7%E3%83%AD}
+q100
+Time(0) n48,%7680,100,78
+Time(7680) n43,%480,100,78
+Time(8160) n50,%480,100,78
+Time(8640) n43,%480,100,78
+Time(9120) n50,%480,100,78
+Time(9600) n43,%480,100,78
+Time(10080) n50,%480,100,78
+Time(10560) n43,%480,100,78
+Time(11040) n50,%480,100,78
+Time(11520) n48,%11520,100,78
+Time(23040) n43,%480,100,78
+Time(23520) n50,%480,100,78
+Time(24000) n43,%480,100,78
+Time(24480) n50,%480,100,78
+Time(24960) n43,%480,100,78
+Time(25440) n50,%480,100,78
+Time(25920) n43,%480,100,78
+Time(26400) n50,%480,100,78
+Time(26880) n48,%3840,100,78
+Time(30720) MetaText={Musicbox end}
+
+TR=7
+Port(5) CH=10 Time(11520) @1
+TrackName={Musicbox:6:instrument=vsco-percussion:%E6%89%93%E6%A5%BD%E5%99%A8}
+q100
+Time(11520) n76,%120,100,58
+Time(12480) n77,%120,100,56
+Time(26880) n76,%120,100,58
+Time(27840) n77,%120,100,56
+Time(30720) MetaText={Musicbox end}
+
+TR=8
+Port(0) CH=1
+Time(0) CC(7,100)
+
+TR=9
+Port(1) CH=1
+Time(0) CC(7,100)
+
+TR=10
+Port(2) CH=1
+Time(0) CC(7,100)
+
+TR=11
+Port(3) CH=1
+Time(0) CC(7,100)
+
+TR=12
+Port(4) CH=1
+Time(0) CC(7,100)
+
+TR=13
+Port(5) CH=10
+Time(0) CC(7,100)

@@ -32,12 +32,17 @@ export function definitionNotes(definition) {
   if(!values.length||new Set(values).size!==values.length)throw new Error('楽器・音源の音域が不正です。');
   return new Set(values);
 }
+export function applySoundGain(buffer,sound) {
+  if(sound.gainDb){const gain=10**(sound.gainDb/20);for(let channel=0;channel<buffer.numberOfChannels;channel++){const pcm=buffer.getChannelData(channel);for(let i=0;i<pcm.length;i++)pcm[i]*=gain;}}
+  return buffer;
+}
 export function validateDefinitions(instruments,soundsets) {
   const prepare=list=>{if(!Array.isArray(list)||!list.length)throw new Error('楽器・音源の設定が不正です。');const ids=new Set();return list.map(item=>{if(typeof item?.id!=='string'||!/^[a-z0-9][a-z0-9-]*$/.test(item.id)||ids.has(item.id)||!['ja','en'].every(lang=>typeof item.name?.[lang]==='string'&&item.name[lang]))throw new Error('楽器・音源の設定が不正です。');ids.add(item.id);return {...item,allowed:definitionNotes(item)};});};
   const sounds=prepare(soundsets),profiles=prepare(instruments);
   for(const sound of sounds){
     if(sound.kind!=='samples'||sound.range||sound.notes)throw new Error('楽器・音源の設定が不正です。');
     if(sound.release!==undefined&&(!Number.isFinite(sound.release)||sound.release<0))throw new Error('音源の余韻設定が不正です。');
+    if(sound.gainDb!==undefined&&!Number.isFinite(sound.gainDb))throw new Error('音源の音量設定が不正です。');
     const safe=path=>typeof path==='string'&&path&&!/^[\/\\]|[:?\\\r\n]/.test(path)&&!path.split('/').some(part=>part==='..'||part==='.');
     if(!safe(sound.base)||!sound.base.endsWith('/')||!sound.files||!Object.values(sound.files).every(safe))throw new Error('音源ファイルのパスが不正です。');
     if(sound.loops!==undefined&&(sound.release===undefined||!sound.loops||Array.isArray(sound.loops)||!Object.entries(sound.loops).every(([note,loop])=>Object.hasOwn(sound.files,note)&&Array.isArray(loop)&&loop.length===2&&loop.every(Number.isFinite)&&loop[0]>=0&&loop[1]>loop[0])))throw new Error('音源のループ設定が不正です。');

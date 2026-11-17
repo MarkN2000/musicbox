@@ -3,10 +3,54 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createContext,runInContext} from 'node:vm';
 import tone from '@tonejs/midi';
 import midiFile from 'midi-file';
-import {validateDefinitions,noteName} from './dist/core.js';
+import {validateDefinitions,noteName,applySoundGain} from './dist/core.js';
 import {initSync,SakuraCompiler,get_version} from './dist/vendor/sakura/sakuramml.js';
 import {t,currentLanguage,localized} from './dist/i18n.js';
-import {demoScore,validateScore,serializeMml,prepareMml,fromMidi,secondsAt,tickAt,moveNotes,resizeNotes,scorePosition,midiPerformance} from './dist/mml-score.js';
+import {demoScore,validateScore,serializeMml,serializeResoniteTxt,prepareMml,fromMidi,secondsAt,tickAt,moveNotes,resizeNotes,scorePosition,midiPerformance} from './dist/mml-score.js';
+
+const txtScore={title:'曲,名\r\n副題',ppq:960,end:3840,signatures:[{tick:0,signature:[4,4]}],tempos:[{tick:0,bpm:120},{tick:960,bpm:60}],parts:[{id:7,program:0},{id:8,program:10},{id:9,program:0,percussion:true}],notes:[
+  {id:1,part:7,midi:67,tick:1440,duration:480,velocity:88},
+  {id:2,part:8,midi:72,tick:960,duration:480,velocity:85},
+  {id:3,part:7,midi:60,tick:0,duration:1920,velocity:100},
+  {id:4,part:7,midi:64,tick:0,duration:480,velocity:90},
+  {id:5,part:9,midi:38,tick:960,duration:120,velocity:95},
+  {id:6,part:8,midi:21,tick:480,duration:480,velocity:75}
+],controllers:[{part:7,tick:240,type:'cc',number:64,value:127},{part:7,tick:2880,type:'cc',number:64,value:0},...[7,10,1].map((number,i)=>({part:7,tick:960,type:'cc',number,value:i===1?0:64})),{part:7,tick:960,type:'pitchBend',value:4096},{part:7,tick:1920,type:'cc',number:7,value:64}]};
+const txtBefore=JSON.stringify(txtScore),txtLines=serializeResoniteTxt(txtScore).trimEnd().split('\n'),txtRows=txtLines.slice(2).map(line=>line.split(','));
+assert.deepEqual(txtLines.slice(0,2),['v1,3500','曲,名 副題'],'曲末休符を含む長さmsと、カンマを保持した1行の曲名');
+assert.deepEqual(txtRows.filter(row=>row[0]!=='C').map(row=>row.map(value=>value==='d'?value:Number(value))),[[0,0,60,2500,100],[0,0,64,2500,90],[.25,10,21,250,75],[.5,10,72,500,85],[.5,'d',38,125,95],[1,0,67,1500,88]],'GM番号・打楽器・全音符を保持し、秒の開始時刻とmsの音長にテンポとペダルを反映');
+assert.ok(txtRows.every((row,i)=>!i||Number(row[row[0]==='C'?1:0])>=Number(txtRows[i-1][txtRows[i-1][0]==='C'?1:0])),'設定変更も含め開始時刻は逆行しない');
+assert.equal(txtRows.find(row=>row[0]==='C'&&row[1]==='0.5').join(','),'C,0.5,0,0.253953,-1,100,25.19685','同時刻の制御を1行にまとめる');
+assert.ok(txtRows.findIndex(row=>row[0]==='C'&&row[1]==='0.5')<txtRows.findIndex(row=>row[0]==='0.5'),'同時刻は設定変更が発音より先');
+assert.equal(txtRows.filter(row=>row[0]==='C').length,4,'値が変わらない設定行を省く');
+assert.equal(JSON.stringify(txtScore),txtBefore,'書き出しで編集データを変更しない');
+const txtShared={...txtScore,parts:[{id:7,program:0},{id:8,program:0}],notes:txtScore.notes.filter(n=>n.part!==9),controllers:[{part:7,tick:960,type:'cc',number:7,value:64},{part:8,tick:960,type:'cc',number:7,value:32}]};
+assert.ok(serializeResoniteTxt(txtShared).includes('C,0.5,0,0.063488,0,0,0\n'),'同じGM音色の同時刻の設定は元のパート順で後の設定を使う');
+assert.equal(serializeResoniteTxt({...txtShared,title:'',notes:[],controllers:[]}).split('\n')[1],'','空の曲名でも2行目を保つ');
+const txtApp=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8'),txtSaved=[],txtErrors=[],txtControls=new Map([['saveTxt',{}],['saveMenu',{hidePopover(){this.closed=true;}}]]),txtContext=createContext({score:txtScore,textEditing:false,serializeResoniteTxt,$:id=>txtControls.get(id),attempt:fn=>{try{fn();}catch(e){txtErrors.push(e.message);}},download:(body,name,type)=>txtSaved.push({body,name,type})});
+runInContext(txtApp.slice(txtApp.indexOf("$('saveTxt').onclick="),txtApp.indexOf("$('saveMidi').onclick=")),txtContext);
+txtControls.get('saveTxt').onclick();assert.equal(txtSaved.length,1);assert.equal(txtSaved[0].body,serializeResoniteTxt(txtScore));assert.equal(txtSaved[0].name,txtScore.title+'.txt');assert.equal(txtSaved[0].type,'text/plain;charset=utf-8');assert.equal(txtControls.get('saveMenu').closed,true);
+txtContext.textEditing=true;txtControls.get('saveTxt').onclick();assert.equal(txtSaved.length,1);assert.deepEqual(txtErrors,['編集中のMMLを適用してから書き出してください。']);
+assert.match(await readFile(new URL('./dist/mml.html',import.meta.url),'utf8'),/id="saveTxt" data-i18n="Resonite用TXTを保存"/);
+for(const language of ['ja','en'])assert.ok(JSON.parse(await readFile(new URL('./dist/locales/'+language+'.json',import.meta.url),'utf8'))['Resonite用TXTを保存']);
+console.log('Resonite TXT：秒の時系列・GM音色・全音符・テンポ・ペダル・設定変更・保存ボタン OK');
+
+const loopLoaderApp=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8');
+for(const sampleRate of [44100,48000]){
+  const channels=[0,1].map(c=>Float32Array.from({length:Math.round(sampleRate*2.5)},(_,i)=>Math.sin(i*.07+c)*.3)),before=channels.map(pcm=>new Float32Array(pcm)),buffer={sampleRate,length:channels[0].length,numberOfChannels:2,getChannelData:c=>channels[c]},sound={id:'choir',base:'audio/choir/',files:{C4:'C4.ogg'},revision:'test',loops:{C4:[.600013,2.100013]}},context=createContext({noteName,applySoundGain,buffers:new Map(),getAudio:()=>({decodeAudioData:async()=>buffer}),fetch:async()=>({ok:true,arrayBuffer:async()=>new ArrayBuffer(0)})});
+  runInContext(loopLoaderApp.slice(loopLoaderApp.indexOf('async function loadBuffer('),loopLoaderApp.indexOf('function voice(')),context);
+  const first=Math.round(sound.loops.C4[0]*sampleRate),last=Math.round(sound.loops.C4[1]*sampleRate),fade=Math.round(sampleRate*.005);
+  assert.equal(await context.loadBuffer(60,sound),buffer);
+  for(const [c,pcm]of channels.entries()){
+    assert.deepEqual(pcm.slice(0,last-fade),before[c].slice(0,last-fade),'音の出だしとループの本体を変更しない');
+    assert.deepEqual(pcm.slice(last),before[c].slice(last),'ループ外の余韻を変更しない');
+    assert.equal(pcm[last-1],pcm[first-1],'各チャンネルのループ境界が元の隣接サンプルへつながる');
+    assert.ok(pcm.every(x=>Number.isFinite(x)&&Math.abs(x)<=.300001));
+  }
+  const corrected=channels.map(pcm=>new Float32Array(pcm));await context.loadBuffer(60,sound);assert.deepEqual(channels,corrected,'キャッシュした音源へ補正を重ねない');
+  const plain={...sound,id:'piano',loops:undefined};await context.loadBuffer(60,plain);assert.deepEqual(channels,corrected,'ループしない音源には補正しない');
+}
+console.log('ループ音源読み込み：44.1/48kHz・ステレオ境界・元のアタック・余韻・キャッシュ OK');
 
 initSync({module:await readFile(new URL('./dist/vendor/sakura/sakuramml_bg.wasm',import.meta.url))});
 assert.equal(get_version(),'0.2.2'); // 固定した0.2.3ソース内の実行時バージョン表記。
@@ -24,6 +68,7 @@ const furusatoBack=compile(serializeMml(furusato));assert.deepEqual(musical(furu
 const catalog=JSON.parse(await readFile(new URL('./dist/samples/mml-index.json',import.meta.url),'utf8')),instruments=validateDefinitions(JSON.parse(await readFile(new URL('./dist/instruments.json',import.meta.url),'utf8')),JSON.parse(await readFile(new URL('./dist/audio/soundsets.json',import.meta.url),'utf8'))).instruments;
 const versions=catalog.songs.flatMap(s=>{assert.ok(s.song_id&&s.title&&s.composer&&s.versions.length);return s.versions;});
 assert.equal(new Set(catalog.songs.map(s=>s.song_id)).size,catalog.songs.length);assert.equal(new Set(versions.map(v=>v.id)).size,versions.length);
+assert.ok(catalog.songs.every(s=>s.versions.filter(v=>v.arranged_for==='gm').length===1),'全曲にオーケストラ版を1件ずつ掲載する');
 for(const song of catalog.songs){assert.ok(!song.versions.some(v=>v.arranged_for.startsWith('piano'))||!song.versions.some(v=>v.arranged_for==='xylophone32'),song.song_id+'はピアノ版があれば木琴版を重複掲載しない');for(const version of song.versions)assert.ok(!/(オルゴール|ピアノ|木琴)\d|(?:Music box|Piano|Xylophone) \d/.test(version.label_ja+version.label_en),'楽器の表示名に鍵数を付けない');}
 assert.deepEqual(versions.map(v=>v.file).sort(),(await readdir(new URL('./dist/samples/',import.meta.url))).filter(f=>f.endsWith('.mml')).sort(),'MML曲を曲選択の一覧から漏らさない');
 for(const version of versions){
@@ -212,7 +257,7 @@ for(const version of versions){
 assert.equal(sampleMain.inert,false);assert.equal(sampleContext.sourceText,null);
 console.log(`MML曲選択：全${versions.length}版の楽器別タブ・全音・曲末・テンポ・拍子を保持する`);
 const exportOriginal=structuredClone(original),exportProfile=instruments.find(i=>i.id==='musicbox-30');exportOriginal.parts=exportOriginal.parts.map((p,i)=>i?{...p,program:127}:{...p,program:10,instrumentId:'musicbox-30'});const exportMml=serializeMml(exportOriginal);
-const exportControls=new Map(['saveMml','saveMidi','saveMenu','copyMml','mmlPanel','mml'].map(id=>[id,{value:exportMml,hidePopover(){},select(){}}])),downloads=[],copied=[],exportErrors=[];
+const exportControls=new Map(['saveMml','saveTxt','saveMidi','saveMenu','copyMml','mmlPanel','mml'].map(id=>[id,{value:exportMml,hidePopover(){},select(){}}])),downloads=[],copied=[],exportErrors=[];
 const exportContext=createContext({t,currentLanguage,localized,saveProgress(){},score:structuredClone(exportOriginal),sourceText:exportMml+'// original text\n',textEditing:false,instrument:instruments.find(i=>i.id==='musicbox-30'),partProfiles:new Map(exportOriginal.parts.map(p=>[p.id,exportProfile])),serializeMml,$:id=>exportControls.get(id),error:message=>exportErrors.push(message),render(){},download:(body,name)=>downloads.push({body,name}),navigator:{clipboard:{writeText:async text=>copied.push(text)}},window:{isSecureContext:true},document:{execCommand:()=>{copied.push(exportControls.get('mml').value);return true;}},compile:async input=>{const compiler=SakuraCompiler.new();try{return compiler.compile(prepareMml(input.midiOnly?serializeMml(compile(input.text),{singlePort:true}):input.text));}finally{compiler.free();}}});
 runInContext(app.slice(app.indexOf('function attempt('),app.indexOf('function snapshot('))+app.slice(app.indexOf('function source('),app.indexOf('function renderNotes('))+app.slice(app.indexOf("$('saveMml').onclick="),app.indexOf("$('editMml').onclick=")),exportContext);
 exportContext.defs={instruments};
@@ -419,7 +464,7 @@ function keyboardPreview(load=async midi=>({midi})){
   const key=midi=>({dataset:{midi:String(midi)},focus(){},closest(){return this;}});
   const context=createContext({t,currentLanguage,localized,$:()=>keyboard,keyGesture:null,playEpoch:0,instrument:{allowed:new Set([67,69,71,72]),defaultSoundset:'piano',arrangedFor:'piano88'},defs:{soundsets:[{id:'piano'}]},getAudio:()=>({currentTime:1,resume:async()=>{}}),loadBuffer:load,voice:buffer=>played.push(buffer.midi),error(message){throw Error(message);},document:{elementFromPoint:()=>hovered},window:{addEventListener(type,fn){handlers.set(type,fn);}}});
   runInContext(app.slice(app.indexOf('async function previewKey('),app.indexOf("document.addEventListener('visibilitychange'")),context);
-  const event=(midi,options={})=>({button:0,isPrimary:true,pointerId:1,pointerType:'mouse',target:key(midi),preventDefault(){},...options});
+  const event=(midi,options={})=>({button:0,isPrimary:true,pointerId:1,pointerType:'mouse',target:key(midi),preventDefault(){},stopPropagation(){},...options});
   return {context,keyboard,played,handlers,event,down(midi,options={}){keyboard.onpointerdown(event(midi,options));return context.keyGesture;},move(midi,options={}){hovered=midi===null?null:key(midi);keyboard.onpointermove(event(midi,options));}};
 }
 for(const pointerType of ['mouse','touch']){
@@ -455,7 +500,7 @@ function player(looping,cursor){
   const audio={currentTime:10,resume:async()=>{},destination:{},createGain(){const gain=param();return {envelope:gain.events,gain,connect(target){this.target=target;},disconnect(){}};},createStereoPanner(){return {pan:param(),connect(){},disconnect(){}};},createOscillator(){return {frequency:{},connect(){},start(){},stop(){},disconnect(){}};},createBufferSource(){return {detune:param(),connect(gain){this.gain=gain;},disconnect(){},start(time){this.event={midi:this.buffer.midi,soundId:this.buffer.soundId,time,stop:Infinity,loop:this.loop,loopStart:this.loopStart,loopEnd:this.loopEnd,envelope:this.gain.envelope,volume:this.gain.target?.gain?.events,volumeChannels:this.gain.target?.channelCount,pan:this.gain.target?.target?.pan?.events,detune:this.detune.events};events.push(this.event);},stop(time=audio.currentTime){this.event.stop=time;}};}};
   const score={...demoScore(),end:3840,tempos:[{tick:0,bpm:120},{tick:1920,bpm:60}],notes:[{id:1,midi:60,tick:0,duration:3840,velocity:90,part:1},{id:2,midi:62,tick:960,duration:960,velocity:90,part:2},{id:3,midi:64,tick:2880,duration:960,velocity:90,part:1}]};
   const profile={allowed:new Set([60,62,64]),defaultSoundset:'vsco-piano',arrangedFor:'piano88'};
-  const context=createContext({t,currentLanguage,localized,$:id=>controls.get(id),getAudio:()=>audio,score,cursor,playing:null,paused:false,playEpoch:0,keyGesture:null,textEditing:false,voices:new Map(),buffers,KEY:84,x:tick=>tick/score.ppq*96,labelPosition:tick=>String(tick),instrument:profile,partProfiles:new Map(score.parts.map(p=>[p.id,profile])),defs:{soundsets:[{id:'vsco-piano'},{id:'vsco-marimba'}]},loadBuffer:async(midi,sound)=>buffers.set(sound.id+':'+midi,{midi,soundId:sound.id,duration:4,numberOfChannels:2}),secondsAt,tickAt,midiPerformance,noteName,error(message){if(message)throw Error(message);},setInterval(fn){timer=fn;return 1;},clearInterval(){timer=null;},requestAnimationFrame(fn){frame=fn;return 1;},cancelAnimationFrame(){frame=null;}});
+  const context=createContext({t,currentLanguage,localized,$:id=>controls.get(id),getAudio:()=>audio,score,cursor,playing:null,paused:false,playEpoch:0,keyGesture:null,textEditing:false,voices:new Map(),buffers,KEY:84,x:tick=>tick/score.ppq*96,labelPosition:tick=>String(tick),instrument:profile,partProfiles:new Map(score.parts.map(p=>[p.id,profile])),defs:{soundsets:[{id:'vsco-piano'},{id:'vsco-marimba'}]},loadBuffer:async(midi,sound)=>buffers.set(sound.id+':'+midi,{midi,soundId:sound.id,duration:4,sampleRate:48000,numberOfChannels:2}),secondsAt,tickAt,midiPerformance,noteName,error(message){if(message)throw Error(message);},setInterval(fn){timer=fn;return 1;},clearInterval(){timer=null;},requestAnimationFrame(fn){frame=fn;return 1;},cancelAnimationFrame(){frame=null;}});
   runInContext(app.slice(app.indexOf('function renderCursor('),app.indexOf('function renderProperties('))+playback,context);
   return {context,controls,events,audio,play:()=>runInContext('play()',context),advance(to){while(audio.currentTime<to){audio.currentTime=Math.min(to,audio.currentTime+.025);timer?.();frame?.();}}};
 }
@@ -524,6 +569,21 @@ assert.ok(automated.volume.some(e=>e.value===0&&Math.abs(e.time-10.58)<1e-8),'�
 const sustainPlayer=player(false,0);sustainPlayer.context.score.end=20*960;sustainPlayer.context.score.tempos=[{tick:0,bpm:120}];sustainPlayer.context.score.notes=[{id:1,midi:60,tick:0,duration:20*960,velocity:90,part:1}];
 sustainPlayer.context.defs.soundsets[0]={id:'vsco-piano',release:.2,loops:{C4:[.5,1.5]}};
 await sustainPlayer.play();const sustained=sustainPlayer.events[0];assert.equal(sustained.loop,true,'持続音はAudioBufferSourceのループを有効にする');assert.equal(sustained.loopStart,.5);assert.equal(sustained.loopEnd,1.5);assert.ok(Math.abs(sustained.stop-20.29)<1e-8,'4秒の録音でも10秒の音価と余韻まで維持する');
+const roundedLoopPlayer=player(false,0);roundedLoopPlayer.context.defs.soundsets[0]={id:'vsco-piano',release:.2,loops:{C4:[.500013,1.500013]}};await roundedLoopPlayer.play();assert.equal(roundedLoopPlayer.events[0].loopStart,Math.round(.500013*48000)/48000);assert.equal(roundedLoopPlayer.events[0].loopEnd,Math.round(1.500013*48000)/48000,'継ぎ目補正と再生に同じサンプル境界を使う');
+function heldKeyboard(){
+  const p=player(false,0),k=keyboardPreview(async midi=>({midi,soundId:'piano',duration:4,sampleRate:48000,numberOfChannels:2}));
+  Object.assign(k.context,{getAudio:()=>p.audio,voices:new Map(),noteName});k.context.defs.soundsets=[{id:'piano',release:.2,loops:Object.fromEntries([67,69,71,72].map(midi=>[noteName(midi),[.5,1.5]]))}];
+  runInContext(app.slice(app.indexOf('function voice('),app.indexOf('function audioEvents(')),k.context);return {...k,audio:p.audio,events:p.events};
+}
+for(const pointerType of ['mouse','touch']){
+  const k=heldKeyboard(),g=k.down(72,{pointerType});await g.queue;k.audio.currentTime+=8;assert.equal(k.events[0].loop,true);assert.equal(k.events[0].stop,Infinity,'押しっぱなしでは0.4秒や録音の長さで止めない');
+  k.keyboard.onpointerup(k.event(72,{pointerType}));assert.ok(Math.abs(k.events[0].stop-(k.audio.currentTime+.21))<1e-8,'離した位置から余韻を付けて止める');assert.equal(k.context.keyGesture,null);
+}
+const heldSlide=heldKeyboard(),heldSlideGesture=heldSlide.down(72);await heldSlideGesture.queue;heldSlide.move(71);await heldSlideGesture.queue;assert.ok(Math.abs(heldSlide.events[0].stop-10.21)<1e-8);assert.equal(heldSlide.events[1].stop,Infinity);heldSlide.move(null);assert.ok(Math.abs(heldSlide.events[1].stop-10.21)<1e-8,'鍵盤の外へ移ったら持続音を離す');
+for(const type of ['pointercancel','lostpointercapture','blur']){const k=heldKeyboard(),g=k.down(72);await g.queue;k.handlers.get(type)(k.event(72));assert.ok(Math.abs(k.events[0].stop-10.21)<1e-8,type+'でも音を残さない');}
+for(const code of ['Enter','Space']){const k=heldKeyboard();k.keyboard.onkeydown(k.event(72,{code}));await k.context.keyGesture.queue;k.keyboard.onkeydown(k.event(72,{code,repeat:true}));assert.equal(k.events.length,1);assert.equal(k.events[0].stop,Infinity);k.keyboard.onkeyup(k.event(72,{code}));assert.ok(Math.abs(k.events[0].stop-10.21)<1e-8,'キー操作も押下中だけ持続する');}
+let heldTapReady,heldTapRelease;const heldTapStarted=new Promise(resolve=>heldTapReady=resolve),heldTap=heldKeyboard();heldTap.context.loadBuffer=midi=>new Promise(resolve=>{heldTapRelease=()=>resolve({midi,sampleRate:48000,duration:4,numberOfChannels:2});heldTapReady();});const heldTapGesture=heldTap.down(72);await heldTapStarted;heldTap.keyboard.onpointerup(heldTap.event(72));heldTapRelease();await heldTapGesture.queue;assert.ok(Number.isFinite(heldTap.events[0].stop),'読み込み前に離したタップを持続再生にしない');
+console.log('鍵盤の持続試聴：マウス・タッチ・移動・中断・Enter/Space・読み込み中の解放 OK');
 sustainPlayer.context.stop();assert.equal(sustained.stop,sustainPlayer.audio.currentTime,'停止はループ音も直ちに止める');
 const loopPedal=player(false,0);loopPedal.context.score.notes=[{id:1,midi:60,tick:0,duration:480,velocity:90,part:1}];loopPedal.context.score.controllers=[{part:1,tick:0,type:'cc',number:64,value:127},{part:1,tick:2880,type:'cc',number:64,value:0}];loopPedal.context.defs.soundsets[0]={id:'vsco-piano',release:.2,loops:{C4:[.5,1.5]}};await loopPedal.play();assert.equal(loopPedal.events[0].loop,true);assert.ok(Math.abs(loopPedal.events[0].stop-12.29)<1e-8,'ループ音もサステインペダルを離してから消音する');
 const hats=player(false,0);hats.context.score.parts=[{id:1,name:'Drums',program:0,percussion:true}];hats.context.score.notes=[{id:1,part:1,midi:46,tick:0,duration:120,velocity:90},{id:2,part:1,midi:42,tick:960,duration:120,velocity:90}];

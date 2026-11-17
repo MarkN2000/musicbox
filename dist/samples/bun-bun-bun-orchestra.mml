@@ -1,0 +1,209 @@
+// Source: Source: Fuenfzig Kinderlieder (1843), No.43 Biene, upper vocal staff. https://commons.wikimedia.org/wiki/File:Summ_summ_summ.jpg
+// Expanded instrumental arrangement. The established melody keeps all pitches, onsets, written durations, rests, tempo and meter. Original plucked/keyboard accompaniment remains; independent low strings sustain its bass line and violin/viola voice its explicitly simultaneous harmonies. Common chord tones are tied, not reattacked. Characteristic triangle percussion marks phrase/rhythmic structure. No choir is used. Standard GM/CC7=100; lead and accompaniment velocities balanced for the larger ensemble.
+// Musicbox title: Summ%2C%20summ%2C%20summ
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(2,4)
+Time(0) Tempo={112.00005973336519}
+Time(23040) MetaText={Musicbox end}
+
+TR=2
+Port(0) CH=1 Time(0) @74
+TrackName={Musicbox:1:instrument=vsco-flute:%E3%83%95%E3%83%AB%E3%83%BC%E3%83%88}
+q100
+Time(0) n67,%960,100,92
+Time(960) n65,%960,100,92
+Time(1920) n64,%960,100,92
+Time(3840) n62,%480,100,92
+Time(4320) n64,%480,100,92
+Time(4800) n65,%480,100,92
+Time(5280) n62,%480,100,92
+Time(5760) n60,%960,100,92
+Time(7680) n64,%480,100,92
+Time(8160) n65,%480,100,92
+Time(8640) n67,%480,100,92
+Time(9120) n64,%480,100,92
+Time(9600) n62,%480,100,92
+Time(10080) n64,%480,100,92
+Time(10560) n65,%480,100,92
+Time(11040) n62,%480,100,92
+Time(11520) n64,%480,100,92
+Time(12000) n65,%480,100,92
+Time(12480) n67,%480,100,92
+Time(12960) n64,%480,100,92
+Time(13440) n62,%480,100,92
+Time(13920) n64,%480,100,92
+Time(14400) n65,%480,100,92
+Time(14880) n62,%480,100,92
+Time(15360) n67,%960,100,92
+Time(16320) n65,%960,100,92
+Time(17280) n64,%960,100,92
+Time(19200) n62,%480,100,92
+Time(19680) n64,%480,100,92
+Time(20160) n65,%480,100,92
+Time(20640) n62,%480,100,92
+Time(21120) n60,%960,100,92
+Time(23040) MetaText={Musicbox end}
+
+TR=3
+Port(1) CH=1 Time(0) @1
+TrackName={Musicbox:2:instrument=piano-88:%E3%83%94%E3%82%A2%E3%83%8E}
+q100
+Time(0) n48,%480,100,72
+Time(0) n52,%480,100,72
+Time(480) n52,%480,100,72
+Time(960) n48,%480,100,72
+Time(960) n52,%480,100,72
+Time(1440) n48,%480,100,72
+Time(1920) n48,%480,100,72
+Time(1920) n55,%480,100,72
+Time(2400) n55,%480,100,72
+Time(2880) n48,%480,100,72
+Time(2880) n55,%480,100,72
+Time(3360) n52,%480,100,72
+Time(3840) n43,%480,100,72
+Time(3840) n59,%480,100,72
+Time(4320) n43,%480,100,72
+Time(4800) n43,%480,100,72
+Time(4800) n59,%480,100,72
+Time(5280) n50,%480,100,72
+Time(5760) n48,%480,100,72
+Time(5760) n55,%480,100,72
+Time(6240) n52,%480,100,72
+Time(6720) n48,%480,100,72
+Time(6720) n55,%480,100,72
+Time(7200) n48,%480,100,72
+Time(7680) n48,%480,100,72
+Time(7680) n52,%480,100,72
+Time(8160) n55,%480,100,72
+Time(8640) n48,%480,100,72
+Time(8640) n52,%480,100,72
+Time(9120) n52,%480,100,72
+Time(9600) n41,%480,100,72
+Time(9600) n48,%480,100,72
+Time(10080) n41,%480,100,72
+Time(10560) n41,%480,100,72
+Time(10560) n48,%480,100,72
+Time(11040) n48,%480,100,72
+Time(11520) n48,%480,100,72
+Time(11520) n52,%480,100,72
+Time(12000) n52,%480,100,72
+Time(12480) n48,%480,100,72
+Time(12480) n52,%480,100,72
+Time(12960) n48,%480,100,72
+Time(13440) n43,%480,100,72
+Time(13440) n50,%480,100,72
+Time(13920) n50,%480,100,72
+Time(14400) n43,%480,100,72
+Time(14400) n50,%480,100,72
+Time(14880) n59,%480,100,72
+Time(15360) n48,%480,100,72
+Time(15360) n52,%480,100,72
+Time(15840) n48,%480,100,72
+Time(16320) n48,%480,100,72
+Time(16320) n52,%480,100,72
+Time(16800) n55,%480,100,72
+Time(17280) n48,%480,100,72
+Time(17280) n55,%480,100,72
+Time(17760) n52,%480,100,72
+Time(18240) n48,%480,100,72
+Time(18240) n55,%480,100,72
+Time(18720) n48,%480,100,72
+Time(19200) n43,%480,100,72
+Time(19200) n59,%480,100,72
+Time(19680) n50,%480,100,72
+Time(20160) n43,%480,100,72
+Time(20160) n59,%480,100,72
+Time(20640) n59,%480,100,72
+Time(21120) n48,%480,100,72
+Time(21120) n55,%480,100,72
+Time(21600) n48,%480,100,72
+Time(22080) n48,%480,100,72
+Time(22080) n55,%480,100,72
+Time(22560) n55,%480,100,72
+Time(23040) MetaText={Musicbox end}
+
+TR=4
+Port(2) CH=1 Time(0) @42
+TrackName={Musicbox:3:instrument=vsco-viola:%E3%83%B4%E3%82%A3%E3%82%AA%E3%83%A9}
+q100
+Time(0) n60,%3840,100,72
+Time(3840) n67,%1920,100,72
+Time(5760) n60,%7680,100,72
+Time(13440) n62,%1920,100,72
+Time(15360) n60,%3840,100,72
+Time(19200) n67,%1920,100,72
+Time(21120) n60,%1920,100,72
+Time(23040) MetaText={Musicbox end}
+
+TR=5
+Port(3) CH=1 Time(0) @41
+TrackName={Musicbox:4:instrument=vsco-violin:%E3%83%B4%E3%82%A1%E3%82%A4%E3%82%AA%E3%83%AA%E3%83%B3}
+q100
+Time(0) n64,%1920,100,72
+Time(1920) n67,%1920,100,72
+Time(3840) n71,%1920,100,72
+Time(5760) n67,%1920,100,72
+Time(7680) n64,%1920,100,72
+Time(9600) n65,%1920,100,72
+Time(11520) n64,%1920,100,72
+Time(13440) n67,%1920,100,72
+Time(15360) n64,%1920,100,72
+Time(17280) n67,%1920,100,72
+Time(19200) n71,%1920,100,72
+Time(21120) n67,%1920,100,72
+Time(23040) MetaText={Musicbox end}
+
+TR=6
+Port(4) CH=1 Time(0) @43
+TrackName={Musicbox:5:instrument=vsco-cello:%E3%83%81%E3%82%A7%E3%83%AD}
+q100
+Time(0) n48,%3840,100,78
+Time(3840) n43,%1440,100,78
+Time(5280) n50,%480,100,78
+Time(5760) n48,%3840,100,78
+Time(9600) n41,%1440,100,78
+Time(11040) n48,%2400,100,78
+Time(13440) n43,%480,100,78
+Time(13920) n50,%480,100,78
+Time(14400) n43,%960,100,78
+Time(15360) n48,%3840,100,78
+Time(19200) n43,%480,100,78
+Time(19680) n50,%480,100,78
+Time(20160) n43,%960,100,78
+Time(21120) n48,%1920,100,78
+Time(23040) MetaText={Musicbox end}
+
+TR=7
+Port(5) CH=10 Time(0) @1
+TrackName={Musicbox:6:instrument=vsco-percussion:%E6%89%93%E6%A5%BD%E5%99%A8}
+q100
+Time(0) n81,%120,100,60
+Time(7680) n81,%120,100,60
+Time(15360) n81,%120,100,60
+Time(21120) n81,%120,100,60
+Time(23040) MetaText={Musicbox end}
+
+TR=8
+Port(0) CH=1
+Time(0) CC(7,100)
+
+TR=9
+Port(1) CH=1
+Time(0) CC(7,100)
+
+TR=10
+Port(2) CH=1
+Time(0) CC(7,100)
+
+TR=11
+Port(3) CH=1
+Time(0) CC(7,100)
+
+TR=12
+Port(4) CH=1
+Time(0) CC(7,100)
+
+TR=13
+Port(5) CH=10
+Time(0) CC(7,100)

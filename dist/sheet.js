@@ -1,4 +1,4 @@
-import {MAX_STEPS, MAX_NOTES, validateNote, rhythmMetadata, noteName} from './core.js?v=bf323b7c64d8f988';
+import {MAX_STEPS, MAX_NOTES, validateNote, rhythmMetadata, noteName} from './core.js?v=1c05af6bcb0d9852';
 
 const WIDTH=1448,HEIGHT=2048,SCALE=1.2,PAGE_WIDTH=WIDTH/SCALE,PAGE_HEIGHT=HEIGHT/SCALE,LEFT=40,RIGHT=PAGE_WIDTH-40;
 let library;

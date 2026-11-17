@@ -1,4 +1,4 @@
-import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions} from './core.js?v=bf323b7c64d8f988';
+import {noteName,noteNumber,serialize,parseText,convertScore,keyOf,MAX_STEPS,MAX_NOTES,validateNote,rhythmMetadata,validateDefinitions,applySoundGain} from './core.js?v=1c05af6bcb0d9852';
 import {t,currentLanguage,preferredLanguage,loadLanguage,localized,translatePage} from './i18n.js?v=5a3b759997b8e210';
 const $=id=>document.getElementById(id);
 const json=async path=>{const response=await fetch(path,{cache:'no-cache'});if(!response.ok)throw new Error('設定を読み込めませんでした。');return response.json();};
@@ -365,7 +365,7 @@ $('exportSheet').onclick=async()=>{
   const button=$('exportSheet');button.disabled=true;button.setAttribute('aria-busy','true');
   try{
     const name=downloadName('webp').replace(/\.webp$/,''),input={notes:notes.filter(note=>ALLOWED.has(note.midi)).map(note=>({...note})),length,subdivision:Number($('subdivision').value),signature:rhythmMetadata(metadata).signature,stepMs:stepInterval(),title:$('scoreTitle').value.trim()||t('新しい楽譜'),footer:t('自動生成の簡易譜面')};
-    sheetModule??=await import('./sheet.js?v=a0a76c84bd330f61');const sheet=await sheetModule.createSheet(input);sheet.name=name;
+    sheetModule??=await import('./sheet.js?v=da4a67c10f26bbe0');const sheet=await sheetModule.createSheet(input);sheet.name=name;
     sheetPreview=sheet;sheetPage=0;showSheetPage();$('sheetDialog').showModal();showError();
   }catch(error){showError(error.message);}finally{button.disabled=false;button.setAttribute('aria-busy','false');}
 };
@@ -399,7 +399,7 @@ function loadTone(midi,selected=soundset){
       const path=(selected.base+file).split('/').map(encodeURIComponent).join('/'),response=await fetch(`${path}?v=${selected.revision}`);
       if(!response.ok)throw new Error(t('toneLoadError',{note:noteName(midi)}));
       let buffer;try{buffer=await context.decodeAudioData(await response.arrayBuffer());}catch{throw new Error(t('toneDecodeError',{note:noteName(midi)}));}
-      toneCache.set(key,buffer);return buffer;
+      applySoundGain(buffer,selected);toneCache.set(key,buffer);return buffer;
     })().finally(()=>audioLoads.delete(key));audioLoads.set(key,loading);
   }
   return audioLoads.get(key).then(remember);
@@ -449,7 +449,7 @@ function cancelImport(){
 $('cancelImport').onclick=()=>cancelImport();
 function workerRequest(source,settings){
   if(!importWorker){
-    importWorker=new Worker(new URL('./import-worker.js?v=b805033478951739',import.meta.url),{type:'module'});
+    importWorker=new Worker(new URL('./import-worker.js?v=d0ba4c19c4651074',import.meta.url),{type:'module'});
     importWorker.onmessage=({data})=>{const request=workerRequests.get(data.id);if(!request)return;workerRequests.delete(data.id);if(data.error)request.reject(new Error(data.error));else{workerSourceId=request.sourceId;request.resolve(data);}};
     importWorker.onerror=importWorker.onmessageerror=()=>{for(const request of workerRequests.values())request.reject(new Error('取り込み処理を読み込めませんでした。'));workerRequests.clear();importWorker?.terminate();importWorker=null;workerSourceId=null;};
   }

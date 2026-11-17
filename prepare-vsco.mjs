@@ -220,7 +220,7 @@ for(const job of jobs){
     const hold=[19,40,41,42,43,44,48,56,57,58,59,60,68,70,71,72,73].includes(job.program);
     if(hold){
       const last=Math.min(end-.15,3.5),first=Math.max(.2,last-Math.min(1.5,(last-.2)*.7));if(last-first<=.08)throw Error(`Recording too short for a sustain loop: ${job.id} ${note.midi}`);
-      filters.push(`${labels}amix=inputs=${note.layers.length}:normalize=1,asplit=4[x][y][z][w];[x]atrim=end=${last-.04},asetpts=PTS-STARTPTS[x1];[y]atrim=start=${last-.04}:end=${last},asetpts=PTS-STARTPTS[y1];[z]atrim=start=${first-.04}:end=${first},asetpts=PTS-STARTPTS[z1];[w]atrim=start=${first}:end=${first+.15},asetpts=PTS-STARTPTS,afade=t=out:st=0:d=0.15[r];[y1][z1]acrossfade=d=0.04:c1=tri:c2=tri[t];[x1][t][r]concat=n=3:v=0:a=1[out]`);
+      filters.push(`${labels}amix=inputs=${note.layers.length}:normalize=1,asplit=4[x][y][z][w];[x]atrim=end=${last-.04},asetpts=PTS-STARTPTS[x1];[y]atrim=start=${last-.04}:end=${last},asetpts=PTS-STARTPTS[y1];[z]atrim=start=${first-.04}:end=${first},asetpts=PTS-STARTPTS[z1];[w]atrim=start=${first}:end=${first+.15},asetpts=PTS-STARTPTS,afade=t=out:st=0:d=0.15[r];[y1]afade=t=out:st=0:d=0.04[yo];[z1]afade=t=in:st=0:d=0.04[zi];[yo][zi]amix=inputs=2:duration=shortest:normalize=0[t];[x1][t][r]concat=n=3:v=0:a=1[out]`);
       loops[noteName(note.midi)]=[Number(first.toFixed(6)),Number(last.toFixed(6))];
     }else filters.push(`${labels}amix=inputs=${note.layers.length}:normalize=1,afade=t=out:st=${Math.max(0,end-.05)}:d=0.05[out]`);
     const filename=noteName(note.midi)+'.ogg',file=resolve(dir,filename);
@@ -233,7 +233,7 @@ for(const job of jobs){
     console.log(`Encoded ${job.id}: ${Object.keys(files).length} notes`);continue;
   }
   const profile={id:job.id,name:job.name,...(job.percussion?{notes:Object.keys(ordered)}:{range:[job.notes[0].midi,job.notes.at(-1).midi]}),defaultSoundset:job.id,arrangedFor:job.id.replaceAll('-',''),gmProgram:job.program,...(job.percussion?{percussion:true}:{})};
-  const release=Math.min(.1,Math.max(...job.notes.flatMap(n=>n.layers.map(r=>r.release))));
+  const release=.2;
   profiles.push(profile);sounds.push({id:job.id,name:job.name,kind:'samples',base:`audio/${job.id}/`,files:ordered,...(job.sustain?{release}:{} ),...(Object.keys(loops).length?{loops:Object.fromEntries(job.notes.map(n=>[noteName(n.midi),loops[noteName(n.midi)]]))}:{})});
   console.log(`Encoded ${job.id}: ${Object.keys(files).length} notes`);
 }
@@ -249,6 +249,7 @@ profiles.splice(profiles.findIndex(p=>p.id===extra.id),1);sounds.splice(sounds.i
 }
 for(const [path,added] of [['instruments.json',profiles],['audio/soundsets.json',sounds]]){
   const file=resolve(root,path),existing=JSON.parse(await readFile(file,'utf8')),ids=new Set(added.map(i=>i.id));
+  if(path==='audio/soundsets.json')for(const sound of added){const gainDb=existing.find(s=>s.id===sound.id)?.gainDb;if(gainDb!==undefined)sound.gainDb=gainDb;}
   const combined=[...existing.filter(i=>!ids.has(i.id)),...added];
   if(path==='instruments.json'){const concert=combined.splice(combined.findIndex(i=>i.id==='vsco-xylophone-concert'),1)[0];combined.splice(combined.findIndex(i=>i.id==='xylophone-32'),0,concert);}
   await writeFile(file,JSON.stringify(combined,null,2)+'\n');

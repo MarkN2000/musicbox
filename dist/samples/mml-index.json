@@ -55,6 +55,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "akatombo-xylophone-32.mml"
+        },
+        {
+          "id": "akatombo-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "akatombo-orchestra.mml"
         }
       ]
     },
@@ -80,6 +87,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "alps-ichimanjaku-xylophone-32.mml"
+        },
+        {
+          "id": "alps-ichimanjaku-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "alps-ichimanjaku-orchestra.mml"
         }
       ]
     },
@@ -105,6 +119,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "amaryllis-piano-88.mml"
+        },
+        {
+          "id": "amaryllis-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "amaryllis-orchestra.mml"
         }
       ]
     },
@@ -130,6 +151,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "amazing-grace-piano-88.mml"
+        },
+        {
+          "id": "amazing-grace-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "amazing-grace-orchestra.mml"
         }
       ]
     },
@@ -155,6 +183,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "aogeba-totoshi-xylophone-32.mml"
+        },
+        {
+          "id": "aogeba-totoshi-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "aogeba-totoshi-orchestra.mml"
         }
       ]
     },
@@ -180,6 +215,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "army-goes-rolling-along-piano-88.mml"
+        },
+        {
+          "id": "army-goes-rolling-along-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "army-goes-rolling-along-orchestra.mml"
         }
       ]
     },
@@ -205,6 +247,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "auld-lang-syne-piano-88.mml"
+        },
+        {
+          "id": "auld-lang-syne-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "auld-lang-syne-orchestra.mml"
         }
       ]
     },
@@ -231,6 +280,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "bach-toccata-fugue-piano-88.mml"
+        },
+        {
+          "id": "bach-toccata-fugue-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "bach-toccata-fugue-orchestra.mml"
         }
       ]
     },
@@ -256,6 +312,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "battle-hymn-piano-88.mml"
+        },
+        {
+          "id": "battle-hymn-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "battle-hymn-orchestra.mml"
         }
       ]
     },
@@ -315,6 +378,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "bizet-farandole-piano-88.mml"
+        },
+        {
+          "id": "bizet-farandole-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "bizet-farandole-orchestra.mml"
         }
       ]
     },
@@ -341,6 +411,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "blue-danube-piano-88.mml"
+        },
+        {
+          "id": "blue-danube-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "blue-danube-orchestra.mml"
         }
       ]
     },
@@ -367,6 +444,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "brahms-hungarian-dance-5-piano-88.mml"
+        },
+        {
+          "id": "brahms-hungarian-dance-5-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "brahms-hungarian-dance-5-orchestra.mml"
         }
       ]
     },
@@ -393,6 +477,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "brahms-lullaby-piano-88.mml"
+        },
+        {
+          "id": "brahms-lullaby-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "brahms-lullaby-orchestra.mml"
         }
       ]
     },
@@ -418,6 +509,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "british-grenadiers-xylophone-32.mml"
+        },
+        {
+          "id": "british-grenadiers-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "british-grenadiers-orchestra.mml"
         }
       ]
     },
@@ -443,6 +541,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "bun-bun-bun-xylophone-32.mml"
+        },
+        {
+          "id": "bun-bun-bun-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "bun-bun-bun-orchestra.mml"
         }
       ]
     },
@@ -468,6 +573,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "burgmuller-arabesque-piano-88.mml"
+        },
+        {
+          "id": "burgmuller-arabesque-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "burgmuller-arabesque-orchestra.mml"
         }
       ]
     },
@@ -494,6 +606,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "carmen-prelude-piano-88.mml"
+        },
+        {
+          "id": "carmen-prelude-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "carmen-prelude-orchestra.mml"
         }
       ]
     },
@@ -520,6 +639,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "chanson-oignon-piano-88.mml"
+        },
+        {
+          "id": "chanson-oignon-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "chanson-oignon-orchestra.mml"
         }
       ]
     },
@@ -546,6 +672,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "chocho-xylophone-32.mml"
+        },
+        {
+          "id": "chocho-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "chocho-orchestra.mml"
         }
       ]
     },
@@ -571,6 +704,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "chopin-nocturne-2-piano-88.mml"
+        },
+        {
+          "id": "chopin-nocturne-2-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "chopin-nocturne-2-orchestra.mml"
         }
       ]
     },
@@ -596,6 +736,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "chopin-prelude-7-piano-88.mml"
+        },
+        {
+          "id": "chopin-prelude-7-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "chopin-prelude-7-orchestra.mml"
         }
       ]
     },
@@ -621,6 +768,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "clair-de-lune-piano-88.mml"
+        },
+        {
+          "id": "clair-de-lune-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "clair-de-lune-orchestra.mml"
         }
       ]
     },
@@ -646,6 +800,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "colonel-bogey-piano-88.mml"
+        },
+        {
+          "id": "colonel-bogey-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "colonel-bogey-orchestra.mml"
         }
       ]
     },
@@ -671,6 +832,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "csikos-post-piano-88.mml"
+        },
+        {
+          "id": "csikos-post-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "csikos-post-orchestra.mml"
         }
       ]
     },
@@ -729,6 +897,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "dolls-dream-piano-88.mml"
+        },
+        {
+          "id": "dolls-dream-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "dolls-dream-orchestra.mml"
         }
       ]
     },
@@ -786,6 +961,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "erika-xylophone-32.mml"
+        },
+        {
+          "id": "erika-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "erika-orchestra.mml"
         }
       ]
     },
@@ -811,6 +993,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "frog-chorus-xylophone-32.mml"
+        },
+        {
+          "id": "frog-chorus-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "frog-chorus-orchestra.mml"
         }
       ]
     },
@@ -836,6 +1025,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "funiculi-funicula-piano-88.mml"
+        },
+        {
+          "id": "funiculi-funicula-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "funiculi-funicula-orchestra.mml"
         }
       ]
     },
@@ -861,6 +1057,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "fur-elise-piano-88.mml"
+        },
+        {
+          "id": "fur-elise-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "fur-elise-orchestra.mml"
         }
       ]
     },
@@ -886,6 +1089,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "furusato-xylophone-32.mml"
+        },
+        {
+          "id": "furusato-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "furusato-orchestra.mml"
         }
       ]
     },
@@ -911,6 +1121,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "grandfathers-clock-piano-88.mml"
+        },
+        {
+          "id": "grandfathers-clock-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "grandfathers-clock-orchestra.mml"
         }
       ]
     },
@@ -936,6 +1153,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "greensleeves-piano-88.mml"
+        },
+        {
+          "id": "greensleeves-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "greensleeves-orchestra.mml"
         }
       ]
     },
@@ -962,6 +1186,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "grieg-morning-piano-88.mml"
+        },
+        {
+          "id": "grieg-morning-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "grieg-morning-orchestra.mml"
         }
       ]
     },
@@ -987,6 +1218,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "gymnopedie-1-piano-88.mml"
+        },
+        {
+          "id": "gymnopedie-1-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "gymnopedie-1-orchestra.mml"
         }
       ]
     },
@@ -1013,6 +1251,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "hall-of-mountain-king-piano-88.mml"
+        },
+        {
+          "id": "hall-of-mountain-king-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "hall-of-mountain-king-orchestra.mml"
         }
       ]
     },
@@ -1038,6 +1283,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "handel-hallelujah-piano-88.mml"
+        },
+        {
+          "id": "handel-hallelujah-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "handel-hallelujah-orchestra.mml"
         }
       ]
     },
@@ -1095,6 +1347,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "happy-birthday-xylophone-32.mml"
+        },
+        {
+          "id": "happy-birthday-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "happy-birthday-orchestra.mml"
         }
       ]
     },
@@ -1120,6 +1379,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "haru-no-ogawa-piano-88.mml"
+        },
+        {
+          "id": "haru-no-ogawa-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "haru-no-ogawa-orchestra.mml"
         }
       ]
     },
@@ -1145,6 +1411,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "home-sweet-home-piano-88.mml"
+        },
+        {
+          "id": "home-sweet-home-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "home-sweet-home-orchestra.mml"
         }
       ]
     },
@@ -1171,6 +1444,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "ievan-polkka-xylophone-32.mml"
+        },
+        {
+          "id": "ievan-polkka-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "ievan-polkka-orchestra.mml"
         }
       ]
     },
@@ -1197,6 +1477,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "jesu-joy-piano-88.mml"
+        },
+        {
+          "id": "jesu-joy-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "jesu-joy-orchestra.mml"
         }
       ]
     },
@@ -1222,6 +1509,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "jingle-bells-piano-88.mml"
+        },
+        {
+          "id": "jingle-bells-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "jingle-bells-orchestra.mml"
         }
       ]
     },
@@ -1247,6 +1541,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "jupiter-piano-88.mml"
+        },
+        {
+          "id": "jupiter-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "jupiter-orchestra.mml"
         }
       ]
     },
@@ -1272,6 +1573,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "kagome-kagome-xylophone-32.mml"
+        },
+        {
+          "id": "kagome-kagome-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "kagome-kagome-orchestra.mml"
         }
       ]
     },
@@ -1297,6 +1605,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "kimigayo-xylophone-32.mml"
+        },
+        {
+          "id": "kimigayo-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "kimigayo-orchestra.mml"
         }
       ]
     },
@@ -1322,6 +1637,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "kojo-no-tsuki-xylophone-32.mml"
+        },
+        {
+          "id": "kojo-no-tsuki-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "kojo-no-tsuki-orchestra.mml"
         }
       ]
     },
@@ -1347,6 +1669,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "kokyo-no-sora-xylophone-32.mml"
+        },
+        {
+          "id": "kokyo-no-sora-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "kokyo-no-sora-orchestra.mml"
         }
       ]
     },
@@ -1373,6 +1702,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "korobushka-xylophone-32.mml"
+        },
+        {
+          "id": "korobushka-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "korobushka-orchestra.mml"
         }
       ]
     },
@@ -1399,6 +1735,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "little-fugue-piano-88.mml"
+        },
+        {
+          "id": "little-fugue-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "little-fugue-orchestra.mml"
         }
       ]
     },
@@ -1424,6 +1767,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "london-bridge-xylophone-32.mml"
+        },
+        {
+          "id": "london-bridge-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "london-bridge-orchestra.mml"
         }
       ]
     },
@@ -1450,6 +1800,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "maidens-prayer-piano-88.mml"
+        },
+        {
+          "id": "maidens-prayer-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "maidens-prayer-orchestra.mml"
         }
       ]
     },
@@ -1475,6 +1832,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mars-piano-88.mml"
+        },
+        {
+          "id": "mars-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mars-orchestra.mml"
         }
       ]
     },
@@ -1501,6 +1865,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mendelssohn-spring-song-piano-88.mml"
+        },
+        {
+          "id": "mendelssohn-spring-song-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mendelssohn-spring-song-orchestra.mml"
         }
       ]
     },
@@ -1527,6 +1898,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mendelssohn-wedding-march-piano-88.mml"
+        },
+        {
+          "id": "mendelssohn-wedding-march-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mendelssohn-wedding-march-orchestra.mml"
         }
       ]
     },
@@ -1553,6 +1931,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "military-march-piano-88.mml"
+        },
+        {
+          "id": "military-march-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "military-march-orchestra.mml"
         }
       ]
     },
@@ -1579,6 +1964,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "minuet-piano-88.mml"
+        },
+        {
+          "id": "minuet-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "minuet-orchestra.mml"
         }
       ]
     },
@@ -1604,6 +1996,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "minute-waltz-piano-88.mml"
+        },
+        {
+          "id": "minute-waltz-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "minute-waltz-orchestra.mml"
         }
       ]
     },
@@ -1629,6 +2028,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "momiji-piano-88.mml"
+        },
+        {
+          "id": "momiji-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "momiji-orchestra.mml"
         }
       ]
     },
@@ -1654,6 +2060,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mozart-dies-irae-piano-88.mml"
+        },
+        {
+          "id": "mozart-dies-irae-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mozart-dies-irae-orchestra.mml"
         }
       ]
     },
@@ -1713,6 +2126,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mozart-turkish-march-piano-88.mml"
+        },
+        {
+          "id": "mozart-turkish-march-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mozart-turkish-march-orchestra.mml"
         }
       ]
     },
@@ -1738,6 +2158,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "mushi-no-koe-xylophone-32.mml"
+        },
+        {
+          "id": "mushi-no-koe-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mushi-no-koe-orchestra.mml"
         }
       ]
     },
@@ -1764,6 +2191,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mussorgsky-promenade-piano-88.mml"
+        },
+        {
+          "id": "mussorgsky-promenade-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mussorgsky-promenade-orchestra.mml"
         }
       ]
     },
@@ -1789,6 +2223,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "nanatsu-no-ko-xylophone-32.mml"
+        },
+        {
+          "id": "nanatsu-no-ko-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "nanatsu-no-ko-orchestra.mml"
         }
       ]
     },
@@ -1815,6 +2256,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "nedelka-xylophone-32.mml"
+        },
+        {
+          "id": "nedelka-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "nedelka-orchestra.mml"
         }
       ]
     },
@@ -1841,6 +2289,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "neko-funjatta-piano-88.mml"
+        },
+        {
+          "id": "neko-funjatta-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "neko-funjatta-orchestra.mml"
         }
       ]
     },
@@ -1933,6 +2388,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "nutcracker-march-piano-88.mml"
+        },
+        {
+          "id": "nutcracker-march-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "nutcracker-march-orchestra.mml"
         }
       ]
     },
@@ -1958,6 +2420,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "oborozukiyo-piano-88.mml"
+        },
+        {
+          "id": "oborozukiyo-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "oborozukiyo-orchestra.mml"
         }
       ]
     },
@@ -1984,6 +2453,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "ode-to-joy-piano-88.mml"
+        },
+        {
+          "id": "ode-to-joy-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "ode-to-joy-orchestra.mml"
         }
       ]
     },
@@ -2010,6 +2486,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "offenbach-can-can-piano-88.mml"
+        },
+        {
+          "id": "offenbach-can-can-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "offenbach-can-can-orchestra.mml"
         }
       ]
     },
@@ -2035,6 +2518,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "oklahoma-mixer-xylophone-32.mml"
+        },
+        {
+          "id": "oklahoma-mixer-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "oklahoma-mixer-orchestra.mml"
         }
       ]
     },
@@ -2060,6 +2550,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "old-macdonald-piano-88.mml"
+        },
+        {
+          "id": "old-macdonald-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "old-macdonald-orchestra.mml"
         }
       ]
     },
@@ -2117,6 +2614,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "panzerlied-xylophone-32.mml"
+        },
+        {
+          "id": "panzerlied-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "panzerlied-orchestra.mml"
         }
       ]
     },
@@ -2142,6 +2646,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "pomp-and-circumstance-piano-88.mml"
+        },
+        {
+          "id": "pomp-and-circumstance-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "pomp-and-circumstance-orchestra.mml"
         }
       ]
     },
@@ -2168,6 +2679,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "radetzky-march-piano-88.mml"
+        },
+        {
+          "id": "radetzky-march-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "radetzky-march-orchestra.mml"
         }
       ]
     },
@@ -2226,6 +2744,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "sakkijarven-polkka-piano-88.mml"
+        },
+        {
+          "id": "sakkijarven-polkka-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "sakkijarven-polkka-orchestra.mml"
         }
       ]
     },
@@ -2251,6 +2776,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "sakura-sakura-piano-88.mml"
+        },
+        {
+          "id": "sakura-sakura-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "sakura-sakura-orchestra.mml"
         }
       ]
     },
@@ -2277,6 +2809,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "salut-damour-piano-88.mml"
+        },
+        {
+          "id": "salut-damour-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "salut-damour-orchestra.mml"
         }
       ]
     },
@@ -2302,6 +2841,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "schubert-ave-maria-piano-88.mml"
+        },
+        {
+          "id": "schubert-ave-maria-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "schubert-ave-maria-orchestra.mml"
         }
       ]
     },
@@ -2327,6 +2873,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "schumann-piano-concerto-first-piano-88.mml"
+        },
+        {
+          "id": "schumann-piano-concerto-first-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "schumann-piano-concerto-first-orchestra.mml"
         }
       ]
     },
@@ -2352,6 +2905,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "scotland-the-brave-piano-88.mml"
+        },
+        {
+          "id": "scotland-the-brave-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "scotland-the-brave-orchestra.mml"
         }
       ]
     },
@@ -2377,6 +2937,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "shabondama-xylophone-32.mml"
+        },
+        {
+          "id": "shabondama-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "shabondama-orchestra.mml"
         }
       ]
     },
@@ -2402,6 +2969,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "shojoji-piano-88.mml"
+        },
+        {
+          "id": "shojoji-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "shojoji-orchestra.mml"
         }
       ]
     },
@@ -2427,6 +3001,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "shucho-no-musume-xylophone-32.mml"
+        },
+        {
+          "id": "shucho-no-musume-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "shucho-no-musume-orchestra.mml"
         }
       ]
     },
@@ -2453,6 +3034,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "silent-night-piano-88.mml"
+        },
+        {
+          "id": "silent-night-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "silent-night-orchestra.mml"
         }
       ]
     },
@@ -2479,6 +3067,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "smetana-moldau-piano-88.mml"
+        },
+        {
+          "id": "smetana-moldau-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "smetana-moldau-orchestra.mml"
         }
       ]
     },
@@ -2537,6 +3132,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "soviet-anthem-piano-88.mml"
+        },
+        {
+          "id": "soviet-anthem-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "soviet-anthem-orchestra.mml"
         }
       ]
     },
@@ -2562,6 +3164,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "stars-and-stripes-piano-88.mml"
+        },
+        {
+          "id": "stars-and-stripes-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "stars-and-stripes-orchestra.mml"
         }
       ]
     },
@@ -2621,6 +3230,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "swan-lake-scene-piano-88.mml"
+        },
+        {
+          "id": "swan-lake-scene-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "swan-lake-scene-orchestra.mml"
         }
       ]
     },
@@ -2646,6 +3262,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "taki-hana-xylophone-32.mml"
+        },
+        {
+          "id": "taki-hana-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "taki-hana-orchestra.mml"
         }
       ]
     },
@@ -2671,6 +3294,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "tetsudo-shoka-xylophone-32.mml"
+        },
+        {
+          "id": "tetsudo-shoka-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "tetsudo-shoka-orchestra.mml"
         }
       ]
     },
@@ -2696,6 +3326,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "the-entertainer-piano-88.mml"
+        },
+        {
+          "id": "the-entertainer-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "the-entertainer-orchestra.mml"
         }
       ]
     },
@@ -2721,6 +3358,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "toryanse-piano-88.mml"
+        },
+        {
+          "id": "toryanse-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "toryanse-orchestra.mml"
         }
       ]
     },
@@ -2747,6 +3391,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "toy-soldiers-piano-88.mml"
+        },
+        {
+          "id": "toy-soldiers-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "toy-soldiers-orchestra.mml"
         }
       ]
     },
@@ -2773,6 +3424,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "twinkle-piano-88.mml"
+        },
+        {
+          "id": "twinkle-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "twinkle-orchestra.mml"
         }
       ]
     },
@@ -2798,6 +3456,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "us-field-artillery-piano-88.mml"
+        },
+        {
+          "id": "us-field-artillery-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "us-field-artillery-orchestra.mml"
         }
       ]
     },
@@ -2824,6 +3489,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "vivaldi-spring-piano-88.mml"
+        },
+        {
+          "id": "vivaldi-spring-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "vivaldi-spring-orchestra.mml"
         }
       ]
     },
@@ -2850,6 +3522,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "vivaldi-winter-first-piano-88.mml"
+        },
+        {
+          "id": "vivaldi-winter-first-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "vivaldi-winter-first-orchestra.mml"
         }
       ]
     },
@@ -2876,6 +3555,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "wagner-bridal-chorus-piano-88.mml"
+        },
+        {
+          "id": "wagner-bridal-chorus-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "wagner-bridal-chorus-orchestra.mml"
         }
       ]
     },
@@ -2902,6 +3588,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "wagner-ride-of-valkyries-piano-88.mml"
+        },
+        {
+          "id": "wagner-ride-of-valkyries-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "wagner-ride-of-valkyries-orchestra.mml"
         }
       ]
     },
@@ -2928,6 +3621,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "waltz-of-flowers-piano-88.mml"
+        },
+        {
+          "id": "waltz-of-flowers-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "waltz-of-flowers-orchestra.mml"
         }
       ]
     },
@@ -2953,6 +3653,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "we-wish-you-a-merry-christmas-xylophone-32.mml"
+        },
+        {
+          "id": "we-wish-you-a-merry-christmas-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "we-wish-you-a-merry-christmas-orchestra.mml"
         }
       ]
     },
@@ -2978,6 +3685,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "westminster-chimes-xylophone-32.mml"
+        },
+        {
+          "id": "westminster-chimes-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "westminster-chimes-orchestra.mml"
         }
       ]
     },
@@ -3003,6 +3717,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "when-johnny-piano-88.mml"
+        },
+        {
+          "id": "when-johnny-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "when-johnny-orchestra.mml"
         }
       ]
     },
@@ -3061,6 +3782,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "working-on-the-railroad-xylophone-32.mml"
+        },
+        {
+          "id": "working-on-the-railroad-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "working-on-the-railroad-orchestra.mml"
         }
       ]
     },
@@ -3086,6 +3814,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "yokohama-shika-piano-88.mml"
+        },
+        {
+          "id": "yokohama-shika-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "yokohama-shika-orchestra.mml"
         }
       ]
     },
@@ -3111,6 +3846,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "yuki-xylophone-32.mml"
+        },
+        {
+          "id": "yuki-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "yuki-orchestra.mml"
         }
       ]
     },
@@ -3136,6 +3878,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "yuki-no-shingun-piano-88.mml"
+        },
+        {
+          "id": "yuki-no-shingun-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "yuki-no-shingun-orchestra.mml"
         }
       ]
     },
@@ -3161,6 +3910,13 @@
           "label_ja": "木琴",
           "label_en": "Xylophone",
           "file": "yuyake-koyake-xylophone-32.mml"
+        },
+        {
+          "id": "yuyake-koyake-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "yuyake-koyake-orchestra.mml"
         }
       ]
     }

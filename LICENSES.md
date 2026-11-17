@@ -93,9 +93,28 @@ MarkNは、上記の録音・編曲・楽譜データについて保有する著
 - Frank Wen（FluidR3）、Michael Cowgill（FluidR3Mono）、S. Christian Collins（MuseScore General）、Ethan Winer、Michael Schorschの表示を保持する。元の [License](https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_License.md) と [Sample Sources](https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/MuseScore_General_Sample_Sources.csv) を省略せず収録する。
 - GMの未収録音色を補い、旋律128音色を用意する。音域不足のある弦・管、ハープ、チェレスタ、ヴィブラフォンなどは楽器単位で置換する。MuseScore由来のGM音色は実楽器の標準音域で制限せず、元SF2の対応範囲とA0〜C8の共通範囲を使う。パイプオルガンは最高域の元サンプルを最大1オクターブ上げてC8まで補い、A0〜C8に対応する。既存パートの楽器IDは保持し、録音ピアノ・オルゴール・マリンバ・木琴などは従来の音源を使う。従来のCC0バンクも残す。
 - `node prepare-musescore.mjs` で生成する。`--extend` を付けると既存の音を維持し、未生成の音域だけ元SF2から追加する。SF2のSHA-256は `ee51d2c4b1525e70f19a45909c4fd7a2e26d91d115fa89dbf5a6bc413d8b9bf3`。生成時のみ[TinySoundFont固定版](https://github.com/schellingb/TinySoundFont/tree/853a0a171759f1ddba0de1442133a75912bbeffa)（MIT）とGCCを使用し、SF2・ヘッダー・ライセンス・出典一覧のハッシュを照合する。ブラウザの依存関係は増やさない。
-- 音源の基本プリセットをベロシティ90でステレオ生成し、48kHz・Ogg Opus 128kbps（VBR）へ圧縮する。左右が同一の音はモノラルにする。持続音は元のアタックと定常部分を50msで接続し、40msのクロスフェードでループの継ぎ目を整える。アタックは最大8秒、定常部分の生成位置は最大30秒、単発音の自然減衰は最大12秒。SF2の長いエンベロープや複数ベロシティ層を完全再現するものではない。
-- MML再生では弦・管・オルガン・合唱・持続型シンセなどを音価までループし、離鍵・ペダル解除後にフェードアウトする。既存CC0のチェロ・コントラバス・トランペットにも40msで継いだループを追加する。音色ごとのループ位置は `soundsets.json` に記録する。減衰型の楽器・打楽器はループしない。ピアノの離鍵後のフェードは0.5秒、それ以外の音価で離す音源は最大0.1秒とする。木琴・マリンバなどの自然減衰は維持する。
-- 録音オルゴールは既存のOGGを維持する。他は配信用OGGから再圧縮せず、元WAV・FLAC・SF2から生成する。全音源の再生成は `prepare-vsco.mjs` → `prepare-musescore.mjs` → `build-catalog.mjs` の順に行う。GM音色の対象ノートは各プロフィールと音源定義に記録し、途中で音高を折り返さない。
+- 音源の基本プリセットをベロシティ90でステレオ生成し、48kHz・Ogg Opus 128kbps（VBR）へ圧縮する。左右が同一の音はモノラルにする。持続音は元のアタックと定常部分を50msで接続し、圧縮前のPCMで40msのフェードイン／アウトを混合して区間長を保ち、ループの継ぎ目を整える。再生時はデコード後の末尾5msも補正する。アタックは最大8秒、定常部分の生成位置は最大30秒、単発音の自然減衰は最大12秒。SF2の長いエンベロープや複数ベロシティ層を完全再現するものではない。
+- MML再生では弦・管・オルガン・合唱・持続型シンセなどを音価までループし、離鍵・ペダル解除後にフェードアウトする。既存CC0のチェロ・コントラバス・トランペットにも40msで継いだループを追加する。音色ごとのループ位置は `soundsets.json` に記録する。減衰型の楽器・打楽器はループしない。ピアノの離鍵後のフェードは0.5秒、それ以外の音価で離す音源は0.2秒とする。木琴・マリンバなどの自然減衰は維持する。
+- 録音オルゴールは既存のOGGを維持する。他は配信用OGGから再圧縮せず、元WAV・FLAC・SF2から生成する。全音源の再生成は `prepare-vsco.mjs` → `prepare-musescore.mjs` → `prepare-string-sections.mjs` → `build-catalog.mjs` の順に行う。GM音色の対象ノートは各プロフィールと音源定義に記録し、途中で音高を折り返さない。
+
+- スクエアリード（GM80）は従来のピーク基準から−3dBで生成する。`prepare-musescore.mjs --only=80` で再生成しても、この調整を維持する。
+
+## 弦楽器の合奏音源（GM40〜43）
+
+- ヴァイオリン・ヴィオラ・チェロは、上記固定版VSCO 2 CEの `Strings/Violin Section`・`Viola Section`・`Cello Section` の合奏録音と公式SFZを使う。CC0。録音範囲はそれぞれG3〜D6、C3〜D6、C2〜F5。元の対応音域を維持するため、範囲外は従来のMITのMuseScore General（GM40・41）またはCC0のKaroryferチェロ（GM42）を3声へ加工する。
+- コントラバスはCC0のVSCO独奏録音（通常音とビブラート）を3声へ加工する。加工分は約−4／0／＋4セント、0／8／17ms、軽い左右位置の差を付ける。実際に複数人で録音した音源とは区別する。
+- `node prepare-string-sections.mjs` で既存GM40〜43のファイルを置換する。音源ID・GM番号・音域・音源数は維持する。従来音源の持続部の音量に合わせ、ヴァイオリンだけ＋3dBとする。ヴァイオリンの合奏録音は先頭80msを詰め、5msでフェードインし、ループ位置も80ms前へ移す。適用済みの増幅量は `bakedGainDb` に記録し、再生成時の重複増幅を防ぐ。ピークを抑え、40msでループを継ぎ、離鍵後0.2秒で減衰する。録音のGit blobハッシュ、補完用SF2のSHA-256を照合する。CC0由来の加工音はCC0、MuseScore General由来の補完音はMITとし、既存の著作権表示とライセンス本文を保持する。
+
+## FluidR3原版のイングリッシュホルン（MIT）
+
+- GM69はFrank Wenの[FluidR3 3.1原版](https://deb.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz)のステレオ音源を使用する。[作者のREADME・謝辞とMIT本文](./dist/vendor/LICENSE-fluidr3.md)を同梱する。旧ID・パス `musescore-gm069` とGM番号を維持し、他の音色は置換しない。
+- `node prepare-musescore.mjs --only=69` で元SF2が対応するA0〜C♯6の65音を生成する。アーカイブのSHA-256は `2621acaa1c78e4abdb24bdd163230cc577e61276936d6aa6e3180582142f0343`、SF2は `74594e8f4250680adf590507a306655a299935343583256f3b722c48a1bc1cb0`。既存と同じピーク正規化・持続ループ・48kHz/Ogg Opus 128kbps（VBR）、離鍵後0.2秒で再生する。試聴用の冒頭＋6dB補正は適用しない。
+
+## GM音色の音量補正
+
+- Windowsの[Microsoft Software Synthesizer](https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/synthesizers-and-wave-sinks)と `gm.dls` を測定の基準に使う。Windowsの音源は配布しない。
+- 128音色・打楽器を44.1kHz、CC7=100、CC11=127、パン中央、エフェクトなしで比較する。ベロシティ64・90・127を確認し、補正値は90の2秒発音中の400ms区間のK特性エネルギーの最大値から求める。C3・C4・C5（音域外は最寄りの対応音）の中央値を使い、ピアノを基準にする。
+- `soundsets.json` の `gainDb` をデコード後に一度適用する。補正は0.5dB刻み・最大±6dB、スクエアリードは追加増幅しない。配信用OGGは再圧縮せず、曲のベロシティ・制御値・音の立ち上がり・余韻は維持する。音源の再生成でも補正値を保持し、録音を差し替えた場合は再測定する。
 
 ## 同梱ライブラリ
 

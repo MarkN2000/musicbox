@@ -4149,3 +4149,137 @@ CC0の3資料は保存済み提供元メタデータの `license: cc-zero` と�
 - ワシントンは15旋律チャンネルで保存できるよう、同じGM音色の同音が後続発音と重なるフルート・バリトンサックス・チューバの計6音だけ、先行音を次の同音の発音位置までに短縮した。発音位置・音高・速度は変えず、他の長音は保持する。
 - 主題は保存済みの歴史的独奏／縮約譜の主要箇所（ウィリアム・テルの付点主題、チャルダッシュのタイ、ワシントンの6/8と反復、新世界の導入和声と付点、金平糖の半音と休符、見よ勇者の主題）と再対照した。現代CC0の全管弦／吹奏楽声部を古い独奏版と同一とみなさない。
 - 追加6版の音域・曲選択・全音高／発音位置／音長／強さ／パート／CCのMML往復と標準MIDI書き出しを確認。原譜全声部の逐音照合・耳での試聴完了は主張しない。全121曲・255版、うちオーケストラ13版。
+
+### 残る全曲へのオーケストラ版追加（2026-11-17）
+
+既存13版に加え、残る108曲へGM複数楽器版を追加した。曲名・既存の各版は保持する。原曲と古版の国内PD判断は本書の曲別記録を継承し、現代の浄書・編曲は提供元のPD／CC0表示を確認したものを使う。歌詞・非PD録音・非PD編曲の音符は取り込まない。
+
+合奏譜からの声部復元と、確認済みPD／CC0のピアノ・声楽譜からの独自小編成を含む。独自配器は各MMLに記し、原管弦楽譜の全声部復刻とは区別する。ピアノ原曲はピアノ、民俗曲はアコーディオン・バグパイプ・琴等、行進曲は管楽器を軸とする。合唱は原曲に合う声楽・合唱の版へ絞り、独自小編成は弦・木管・低音と曲別の打楽器で厚みを作る。旋律は独立した記譜声部から特定し、和音の最高音だけで推定しない。
+
+| 曲 | 音符の底本 | GM編成 | 収録四分音符数（末尾を含む） |
+| --- | --- | --- | --- |
+| 赤とんぼ | [底本](https://dl.ndl.go.jp/pid/1100014/1/10) | オーボエ・ハープ・ヴィオラ・ヴァイオリン・チェロ | 24 |
+| アルプス一万尺 | [底本](https://en.wikisource.org/wiki/Page:Childs_own_music_book.djvu/57) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 32 |
+| アマリリス | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=606) | ピアノ・ハープ・チェロ・ヴィオラ・コントラバス・打楽器 | 173 |
+| アメイジング・グレイス | [底本](https://www.ccel.org/cceh/0001/000165a.pdf) | バグパイプ・クラリネット・ヴィオラ・チェロ | 48 |
+| 仰げば尊し | [底本](https://dl.ndl.go.jp/pid/992053/1/10) | クラリネット・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 48 |
+| 陸軍は進んで行く | [底本](https://imslp.org/wiki/U.S._Field_Artillery_March_(Sousa,_John_Philip)) | トランペット・ホルン・チューバ・クラリネット・フルート・打楽器 | 66 |
+| 蛍の光 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1121) | ナイロン弦ギター・ハープ・ヴィオラ・ヴァイオリン・チェロ | 48 |
+| トッカータとフーガ BWV.565 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1780) | パイプオルガン・ストリングス・チェロ・ヴィオラ | 120 |
+| リパブリック讃歌 | [底本](https://musescore.com/user/2980291/scores/4876334) | トロンボーン・チューバ・トランペット・ホルン・打楽器 | 138 |
+| ファランドール | [底本](https://imslp.org/wiki/Special:ImagefromIndex/81048) | トランペット・チェロ・ヴィオラ・フルート・ピッコロ・ヴァイオリン | 236 |
+| 美しく青きドナウ | [底本](https://musescore.com/user/24069/scores/114435) | ヴァイオリン・ホルン・チェロ・コントラバス | 389 |
+| ハンガリー舞曲第5番 | [底本](https://musescore.com/user/1438136/scores/5602062) | ヴァイオリン・クラリネット・ヴィオラ・チェロ・打楽器 | 254 |
+| 子守歌 Op.49-4 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1037) | ピアノ・合唱（アー）・ヴィオラ・チェロ・コントラバス | 108 |
+| ブリティッシュ・グレナディアーズ | [底本](https://s9.imslp.org/files/imglnks/usimg/7/72/IMSLP450503-PMLP732681-englishminstrels02bari.pdf) | トランペット・クラリネット・チューバ・ホルン・打楽器 | 32 |
+| ぶんぶんぶん | [底本](https://commons.wikimedia.org/wiki/File:Summ_summ_summ.jpg) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 24 |
+| アラベスク Op.100-2 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=203) | ピアノ・ピチカート・ストリングス・チェロ・ヴィオラ・フルート・打楽器 | 110 |
+| カルメンより「第1幕への前奏曲」 | [底本](https://musescore.com/user/1293481/scores/1251626) | フルート・ピッコロ・オーボエ・クラリネット・ファゴット・ホルン・トランペット・トロンボーン・ティンパニ・打楽器・ヴァイオリン・ヴィオラ・チェロ・コントラバス | 272 |
+| 玉葱の歌 | [底本](https://musescore.com/user/11778731/scores/5992590) | チューバ・トロンボーン・ホルン・トランペット・クラリネット・打楽器 | 138 |
+| ちょうちょう | [底本](https://dc.lib.hiroshima-u.ac.jp/da/2956) | フルート・ハープ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 32 |
+| ノクターン第2番 Op.9-2 | [底本](https://musescore.com/user/56301/scores/2208476) | ピアノ・ハープ・チェロ・コントラバス・ヴィオラ・クラリネット | 215 |
+| プレリュード第7番 Op.28-7 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=470) | ピアノ・ストリングス・チェロ・ヴィオラ・コントラバス・オーボエ | 49 |
+| 月の光 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1778) | ピアノ・ハープ・ヴィオラ・チェロ・コントラバス・フルート | 324 |
+| ボギー大佐 | [底本](https://musescore.com/user/28851728/scores/5948243) | フルート・オーボエ・ファゴット・ホルン・打楽器 | 670.9333 |
+| クシコス・ポスト | TEMPLATE_SOURCES.md: Necke, Csikos Post Op.163, historic PD four-hand piano print | ヴァイオリン・チューバ・ホルン・クラリネット・フルート・打楽器 | 224 |
+| 人形の夢と目覚め | [底本](https://imslp.org/wiki/Kinderscenen,_Op.202_(Oesten,_Theodore)) | ピアノ・ピチカート・ストリングス・チェロ・ヴィオラ・フルート・打楽器 | 308.7333 |
+| エーリカ行進曲 | [底本](https://www.arcanacabana.com/en/herms-niel-erika-marschlied-1938.html) | トランペット・ホルン・チューバ・トロンボーン・クラリネット・打楽器 | 52 |
+| かえるの合唱 | [底本](https://bilingualinjapan.home.blog/wp-content/uploads/2019/08/ganze-sommernc3a4chte-lang-a306.pdf) | リコーダー・ピアノ・ヴィオラ・ヴァイオリン・チェロ・クラリネット・打楽器 | 16 |
+| フニクリ・フニクラ | [底本](https://musescore.com/user/13824426/scores/5267504) | アコースティックベース・ピアノ・ナイロン弦ギター・ヴァイオリン・アコーディオン・ヴィオラ・打楽器 | 688 |
+| エリーゼのために | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=931) | ピアノ・ハープ・チェロ・ヴィオラ・コントラバス・オーボエ | 187.5 |
+| 故郷 | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4078) | オーボエ・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 48 |
+| 大きな古時計 | [底本](https://asset.library.wisc.edu/1711.dl/BTDOFWFQRFE268E/E/file-5c6e8.pdf) | クラリネット・チェロ・ピアノ・ストリングス | 98 |
+| グリーンスリーブス | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=109) | リコーダー・ナイロン弦ギター・ヴィオラ・ヴァイオリン・チェロ | 97 |
+| 朝 | [底本](https://imslp.org/wiki/Special:ReverseLookup/808246) | ヴァイオリン・ヴィオラ・チェロ・ピチカート・ストリングス・ホルン・オーボエ・ファゴット・フルート | 263 |
+| ジムノペディ第1番 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=37) | ピアノ・ストリングス・チェロ・ヴィオラ・オーボエ | 234 |
+| 山の魔王の宮殿にて | [底本](https://imslp.org/wiki/Special:ReverseLookup/808246) | ヴァイオリン・ヴィオラ・チェロ・ピチカート・ストリングス・ホルン・オーボエ・ファゴット・フルート | 352 |
+| ハレルヤ | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=459) | オーボエ・ファゴット・ヴァイオリン・トランペット・ティンパニ・ヴィオラ・チェロ・合唱（アー） | 378 |
+| ハッピーバースデー | [底本](https://commons.wikimedia.org/wiki/File:GoodMorningToAll_1893_song.jpg) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ・グロッケン・打楽器 | 24 |
+| 春の小川 | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4080) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 64 |
+| 埴生の宿 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=435) | オーボエ・チェロ・ヴァイオリン・ハープ | 96 |
+| イエヴァン・ポルカ | [底本](https://pl-static.z-dn.net/files/d4c/c6245a5733ef3cd05b4f3fef432115e2.pdf) | アコーディオン・アコースティックベース・ナイロン弦ギター・ヴァイオリン・打楽器 | 32 |
+| 主よ、人の望みの喜びよ | [底本](https://musescore.com/user/38235231/scores/4390641) | ヴァイオリン・ヴィオラ・チェロ・パイプオルガン・合唱（アー） | 215 |
+| ジングルベル | [底本](https://www.yann-ollivier.org/Music/jb.pdf) | フルート・チェロ・グロッケン・ストリングス・打楽器 | 256 |
+| 惑星より「木星」 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=527) | ヴァイオリン・ホルン・チェロ・クラリネット・ヴィオラ・コントラバス・ティンパニ | 72 |
+| かごめかごめ | [底本](https://dl.ndl.go.jp/pid/1213350/1/23) | 尺八・琴・ヴィオラ・ヴァイオリン・チェロ | 24 |
+| 君が代 | [底本](https://commons.wikimedia.org/wiki/File:Kimigayo.jpg) | トランペット・ホルン・チューバ・ヴィオラ・ヴァイオリン・ティンパニ | 44 |
+| 荒城の月 | [底本](https://dl.ndl.go.jp/pid/8328551) | フルート・ハープ・ヴィオラ・ヴァイオリン・チェロ | 32 |
+| 故郷の空 | [底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs7/kokyo003a.jpg) | フルート・ナイロン弦ギター・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 32 |
+| コロブチカ | [底本](https://github.com/uncle-sheepsky/duru-ai-cc0-bgm) | アコーディオン・アコースティックベース・ナイロン弦ギター・ヴァイオリン・打楽器 | 32 |
+| 小フーガ | [底本](https://musescore.com/user/17243406/scores/5904621) | フルート・オーボエ・クラリネット・ファゴット | 274 |
+| ロンドン橋落ちた | [底本](https://achesonpiano.com/wp-content/uploads/London-Bridge-easy-piano-1.pdf) | リコーダー・ピアノ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 32 |
+| 乙女の祈り | TEMPLATE_SOURCES.md: Badarzewska, Bote & Bock plate2367, printed pp.2–5 | ピアノ・ハープ・チェロ・ヴィオラ・コントラバス・フルート | 242 |
+| 惑星より「火星」 | [底本](https://musescore.com/user/5665301/scores/5876895) | ヴァイオリン・ヴィオラ・トロンボーン・ホルン・トランペット・チューバ・打楽器・ティンパニ | 512 |
+| 春の歌 | [底本](https://imslp.org/wiki/Special:ReverseLookup/53947) | ピアノ・ハープ・コントラバス・チェロ・ヴィオラ・フルート | 180 |
+| 結婚行進曲 | [底本](https://imslp.org/wiki/Special:ImagefromIndex/86146) | トランペット・クラリネット・コントラバス・チェロ・ヴィオラ・ヴァイオリン | 739 |
+| 軍隊行進曲 第1番 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1545) | ピアノ・ホルン・チューバ・ヴィオラ・打楽器 | 540 |
+| メヌエット | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=75) | ピアノ・ハープシコード・チェロ・ヴィオラ・リコーダー | 192 |
+| 小犬のワルツ | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=483) | ピアノ・ピチカート・ストリングス・チェロ・ヴィオラ・フルート・打楽器 | 420 |
+| 紅葉 | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4102) | オーボエ・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 64 |
+| 怒りの日 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=364) | クラリネット・ファゴット・トランペット・ティンパニ・ヴァイオリン・ヴィオラ・合唱（アー）・パイプオルガン | 272 |
+| トルコ行進曲 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=108) | ピアノ・ピチカート・ストリングス・チェロ・ヴィオラ・フルート・打楽器 | 447 |
+| 虫のこえ | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4079) | リコーダー・ピアノ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 40 |
+| プロムナード | [底本](https://musescore.com/user/32365994/scores/6160938) | ピッコロ・フルート・オーボエ・クラリネット・ファゴット・ホルン・トランペット・トロンボーン・チューバ・ヴァイオリン・ヴィオラ・チェロ・コントラバス | 146 |
+| 七つの子 | [底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs/nanatu01.jpg) | クラリネット・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 32 |
+| 一週間 | [底本](https://elib.uraic.ru/handle/123456789/45245) | ナイロン弦ギター・アコースティックベース・アコーディオン・ヴァイオリン・打楽器 | 32 |
+| 猫踏んじゃった | TEMPLATE_SOURCES.md: SteyrerBrain, public-domain Flohwalzer score, Wikimedia Commons | ピアノ・クラリネット・チェロ・ピチカート・ストリングス・打楽器 | 65 |
+| くるみ割り人形より「行進曲」 | [底本](https://musescore.com/user/6923301/scores/5873963) | フルート・オーボエ・クラリネット・アルトサックス・ファゴット | 354 |
+| 朧月夜 | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4078) | オーボエ・ハープ・ヴィオラ・ヴァイオリン・コントラバス | 48 |
+| 歓喜の歌 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=528) | 合唱（アー）・ヴァイオリン・ヴィオラ・チェロ | 64 |
+| 天国と地獄より「序曲」 | [底本](https://musescore.com/user/43922/scores/159692) | ヴァイオリン・ヴィオラ・ファゴット・チェロ・コントラバス | 184 |
+| オクラホマミキサー | [底本](https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=29418) | ヴァイオリン・アコースティックベース・バンジョー・ナイロン弦ギター・アコーディオン・打楽器 | 48 |
+| 愉快な牧場 | [底本](https://tunvox.com/music-sheet/old-macdonald-had-a-farm) | ヴァイオリン・アコースティックベース・バンジョー・アコーディオン・打楽器 | 64 |
+| パンツァー・リート | [底本](https://archive.org/details/pallmann-gerhard-soldaten-kameraden-liederbuch-fuer-wehrmacht-und-volk-1940-124-s.-scan-fraktur/page/n86/mode/1up) | トランペット・チューバ・トロンボーン・ホルン・クラリネット・打楽器 | 68 |
+| 威風堂々 第1番 | [底本](https://musescore.com/hmscomp/scores/151163) | トランペット・ヴァイオリン・トロンボーン・チューバ | 626 |
+| ラデツキー行進曲 | [底本](https://musescore.com/user/58480/scores/4873493) | フルート・クラリネット・トロンボーン・チューバ | 560.5 |
+| サッキヤルヴェン・ポルカ | [底本](https://musescore.com/user/14474471/scores/5951964) | アコーディオン・ナイロン弦ギター・クラリネット・アコースティックベース・ヴァイオリン・打楽器 | 194.5 |
+| さくらさくら | [底本](https://dl.ndl.go.jp/pid/857651/1/22) | 尺八・琴・ヴィオラ・ヴァイオリン・チェロ | 56 |
+| 愛の挨拶 | [底本](https://musescore.com/user/6959546/scores/5605158) | コントラバス・ハープ・ピアノ・ヴァイオリン・ヴィオラ | 202 |
+| アヴェ・マリア D.839 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1054) | コントラバス・ハープ・合唱（アー）・ピアノ・ストリングス・チェロ | 172 |
+| ピアノ協奏曲イ短調 Op.54 第1楽章 | [底本](https://imslp.org/wiki/Piano_Concerto,_Op.54_(Schumann,_Robert)) | ピアノ・オーボエ・ヴァイオリン・チェロ・コントラバス | 270 |
+| 勇敢なるスコットランド | [底本](https://musescore.com/user/3161/scores/3442) | バグパイプ・チェロ・ホルン・ヴァイオリン・打楽器 | 66 |
+| シャボン玉 | [底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs2/shabondfu1.jpg) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 40 |
+| 證城寺の狸囃子 | [底本](https://www.ne.jp/asahi/sayuri/home/doyobook/doyofigs/shojoji8.jpg) | ピアノ・クラリネット・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 114 |
+| 酋長の娘 | [底本](https://dl.ndl.go.jp/pid/8272739) | フルート・アコースティックベース・ナイロン弦ギター・ストリングス・打楽器 | 30 |
+| きよしこの夜 | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1295) | フルート・ヴァイオリン・ヴィオラ・チェロ・グロッケン・打楽器 | 36 |
+| モルダウ | [底本](https://imslp.org/wiki/Special:ImagefromIndex/36730) | ヴァイオリン・チェロ・ヴィオラ・ファゴット・コントラバス・フルート | 201.5 |
+| ソビエト国歌 | [底本](https://musescore.com/user/27178100/scores/5602826) | ホルン・トランペット・チェロ・コントラバス・トロンボーン・ヴァイオリン・ティンパニ・打楽器 | 248.5 |
+| 星条旗よ永遠なれ | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=626) | トランペット・フルート・トロンボーン・チューバ | 848 |
+| 白鳥の湖より「情景」 | [底本](https://musescore.com/user/28335048/scores/5969235) | ピッコロ・フルート・オーボエ・ファゴット・クラリネット・アルトサックス・テナーサックス・バリトンサックス・トランペット・ホルン・トロンボーン・チューバ・コントラバス・ティンパニ・61音マリンバ | 282 |
+| 花 | [底本](https://imslp.org/wiki/Hana_(Taki,_Rentar%C5%8D)) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ | 32 |
+| 鉄道唱歌 | [底本](https://ndlsearch.ndl.go.jp/books/R100000039-I855601) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ・打楽器 | 32 |
+| ジ・エンターテイナー | [底本](https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=263) | ピアノ・アコースティックベース・クラリネット・弱音トランペット・打楽器 | 304 |
+| 通りゃんせ | [底本](https://dl.ndl.go.jp/pid/1121414/1/6) | 尺八・琴・ヴィオラ・ヴァイオリン・チェロ | 78 |
+| おもちゃの兵隊のマーチ | [底本](https://imslp.org/wiki/Special:ReverseLookup/110249) | クラリネット・チューバ・ホルン・ピチカート・ストリングス・ファゴット・フルート・グロッケン・打楽器 | 274 |
+| きらきら星変奏曲 | Mozart K.265, Breitkopf & Haertel, Mozarts Werke (1878), pp.2-3; see TEMPLATE_SOURCES.md. | ピアノ・ハープ・チェロ・ヴィオラ・フルート・グロッケン | 384 |
+| アメリカ野砲隊 | [底本](https://imslp.org/wiki/U.S._Field_Artillery_March_(Sousa,_John_Philip)) | トランペット・ホルン・チューバ・クラリネット・フルート・打楽器 | 66 |
+| 四季より「春」第1楽章 | [底本](https://musescore.com/user/14776101/scores/3626736) | ヴァイオリン・ヴィオラ・チェロ | 330.5 |
+| 四季より「冬」第1楽章 | [底本](https://musescore.com/user/18351/scores/135805) | チェロ・ヴィオラ・ヴァイオリン | 255 |
+| 婚礼の合唱 | [底本](https://musescore.com/user/5/scores/43724) | ヴァイオリン・合唱（アー）・コントラバス・ハープ・オーボエ・チェロ・ヴィオラ | 348 |
+| ワルキューレの騎行 | [底本](https://imslp.org/wiki/Special:ImagefromIndex/1006817) | チューバ・チェロ・ヴァイオリン・ヴィオラ・ホルン・トランペット | 768 |
+| くるみ割り人形より「花のワルツ」 | [底本](https://musescore.com/user/30667655/scores/5930685) | フルート・ヴァイオリン・クラリネット・チェロ・ハープ・ヴィオラ・打楽器 | 1049 |
+| おめでとうクリスマス | [底本](https://www.yann-ollivier.org/Music/merry3+2.pdf) | クラリネット・チェロ・ハープ・ストリングス・グロッケン・打楽器 | 48 |
+| ウェストミンスターの鐘 | [底本](https://commons.wikimedia.org/wiki/File:Westminster_Chimes_(IA_jstor-3369957).pdf) | チューブラーベル・パイプオルガン・ヴィオラ・ヴァイオリン・チェロ | 48 |
+| ジョニーが凱旋するとき | [底本](https://musescore.com/user/9965577/scores/4579947) | トランペット・ホルン・チューバ・トロンボーン・打楽器 | 92 |
+| 線路は続くよどこまでも | [底本](https://archive.org/details/carminaprinceto00univgoog) | ヴァイオリン・バンジョー・アコースティックベース・ナイロン弦ギター・クラリネット・打楽器 | 64 |
+| 横浜市歌 | [底本](https://www.city.yokohama.lg.jp/city-info/yokohamashi/gaiyo/shika/sika.files/0006_20180822.pdf) | トランペット・ホルン・クラリネット・チューバ・トロンボーン・打楽器 | 130 |
+| 雪〈雪やこんこ〉 | [底本](https://dc.lib.hiroshima-u.ac.jp/da/4102) | フルート・ピアノ・ヴィオラ・ヴァイオリン・チェロ・グロッケン・打楽器 | 32 |
+| 雪の進軍 | [底本](https://commons.wikimedia.org/wiki/File:Yukino_singun_1900.jpg) | トランペット・ホルン・チューバ・トロンボーン・クラリネット・打楽器 | 98 |
+| 夕焼け小焼け | [底本](https://www.ne.jp/asahi/sayuri/home/doyokashi/yuyakekogakufu1.jpg) | オーボエ・ハープ・ヴィオラ・ヴァイオリン・チェロ | 32 |
+
+- 音符の拍位置・記譜音価・休符・タイ・連符を保持し、固定格子への丸めや長音の連打へ置き換えない。原編曲の通常反復を尊重する。オルゴール用の高い配置やピアノ独奏用の+12を一括で戻した曲は各MMLに記録し、一部の音だけを折り返さない。
+- 新しい底本の全曲形を採用した例：花のワルツはCC0三重奏の349演奏小節・1047拍＋末尾2拍、原調E♭。プロムナードはCC0管弦楽の25小節・144拍＋2拍、原実音。カンカンはCC0五重奏の全91小節・182拍＋2拍で既存ピアノ版より短い独立編曲。原譜にない反復は加えず、既存版は変更しない。
+- 花のワルツの速度は四分160を基準に、明示的なaccelerando／ritardando／a tempoのみ144〜176へ控えめに解釈する。dim.を速度変化へ取り違えない。
+- ハレルヤは音源範囲を超える第1トランペットD6を含む声部全体をヴァイオリンへ受け渡し、第2トランペットを保持。怒りの日はD管トランペットの旧Lily定義による低いMIDI出力を総譜の実音D4/D5へ訂正。原音高は個別に折り返さない。
+- 同GMの同時同音は必要に応じ最長音長・最大ベロシティへ統合。標準MIDIの15旋律CHに収めるため、白鳥のファゴット／チューバの同音重複4音は先行音を次の同音発音までに短縮した。発音位置や他声部の拍は動かさない。
+- 各版は最低2種類のGM楽器を使い、全音符を現行音源の対応音内へ配器する。標準GM音色・CC7=100を基本とし、音源固有バンク・GS/XG・SysExは加えない。
+- 追加版の全音域・GM音色・MML往復・標準単一ポートMIDIでの音高／開始／音長／強さ・拍子・テンポ・曲末と、一覧の掲載漏れを確認した。原総譜全声部の逐音再校合と耳での実音試聴は未実施。
+- グリーグの2曲は[Brandon AmaroのPD献呈総譜（2022、IMSLP808246）](https://imslp.org/wiki/Special:ReverseLookup/808246)から主要な木管・弦・ホルン声部を読み直した縮小編成。「朝」は全87小節と末尾2拍、「山の魔王」は全88小節。通常音・休符・付点・連符・臨時記号・タイを復元し、ピチカートは別GMパートへ分ける。奏法トレモロは連桁と斜線から細分音価を決め、通常の長音とは区別した。
+
+### 少数編成と合唱の見直し（2026-11-17）
+
+独自編曲87版を4〜8種類のGM音色へ拡充。全曲の2音色版は66版から1版、3音色以下で合唱を使う版は0版になった。残る2音色版は原編成のヴァイオリン3声＋チェロによるカノン。旋律・既存伴奏・内声・持続和声・低音・木管の応答を分け、空パートや全曲の同一ノート列の複製で音色数を増やさない。原編成の弦合奏などは元の声部構成を尊重する。
+
+変更した49版に曲別のGM打楽器パートを使用。行進曲はスネア・大太鼓と節目のシンバル、ポルカ等はタンバリン、猫踏んじゃったはウッドブロック、狸囃子はトムとウッドブロック、汽車は2拍子の軽いスネア、虫のこえは句末のトライアングルなど。雪・ジングルベル・きらきら星の色彩にはグロッケンを用いる。静かな夜想曲・子守歌・月の光等は弦と木管を優先する。
+
+追加した持続和声・応答・打楽器は本サイト独自の編曲で、原版の音符とは区別する。既存主旋律の全音高・発音位置・音長、休符・タイ・拍子・テンポ・収録範囲を保持。かえるの短い追いかけ句とグリーンスリーブスの内声和声も独自編曲として明記した。各変更版の対応音域・MML往復・標準MIDI保存を確認。実音試聴は未実施。

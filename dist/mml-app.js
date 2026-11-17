@@ -1,5 +1,5 @@
-import {noteName,validateDefinitions} from './core.js';
-import {demoScore,validateScore,serializeMml,secondsAt,tickAt,moveNotes,resizeNotes,scorePosition,midiPerformance} from './mml-score.js';
+import {noteName,validateDefinitions,applySoundGain} from './core.js';
+import {demoScore,validateScore,serializeMml,serializeResoniteTxt,secondsAt,tickAt,moveNotes,resizeNotes,scorePosition,midiPerformance} from './mml-score.js';
 import {t,currentLanguage,preferredLanguage,loadLanguage,localized,translatePage} from './i18n.js';
 
 await loadLanguage(preferredLanguage());
@@ -314,13 +314,30 @@ document.addEventListener('keydown',e=>{
 });
 
 function getAudio(){return audio??=new (window.AudioContext||window.webkitAudioContext)();}
-async function loadBuffer(midi,sound){const key=sound.id+':'+midi;if(!buffers.has(key)){const file=sound.files[noteName(midi)];if(!file)throw Error('音源の範囲外です。');const r=await fetch((sound.base+file).split('/').map(encodeURIComponent).join('/')+'?v='+sound.revision);if(!r.ok)throw Error('音源を取得できません。');buffers.set(key,await getAudio().decodeAudioData(await r.arrayBuffer()));}return buffers.get(key);}
+async function loadBuffer(midi,sound){
+  const key=sound.id+':'+midi;
+  if(!buffers.has(key)){
+    const file=sound.files[noteName(midi)];if(!file)throw Error('音源の範囲外です。');
+    const r=await fetch((sound.base+file).split('/').map(encodeURIComponent).join('/')+'?v='+sound.revision);if(!r.ok)throw Error('音源を取得できません。');
+    const buffer=await getAudio().decodeAudioData(await r.arrayBuffer()),loop=sound.loops?.[noteName(midi)];
+    if(loop){
+      // Match the decoded boundary too: lossy compression can change the two ends differently.
+      const first=Math.round(loop[0]*buffer.sampleRate),last=Math.min(buffer.length,Math.round(loop[1]*buffer.sampleRate)),fade=Math.min(Math.round(buffer.sampleRate*.005),first,last-first);
+      for(let channel=0;channel<buffer.numberOfChannels;channel++){
+        const pcm=buffer.getChannelData(channel);
+        for(let i=0;i<fade;i++){const weight=(1-Math.cos(Math.PI*(i+1)/fade))/2;pcm[last-fade+i]=pcm[last-fade+i]*(1-weight)+pcm[first-fade+i]*weight;}
+      }
+    }
+    buffers.set(key,applySoundGain(buffer,sound));
+  }
+  return buffers.get(key);
+}
 function voice(buffer,start,duration,velocity,sound,control={},ctx=getAudio(),pool=voices){
   // 分割保存は曲頭からのサンプル位置で丸め、区切りごとの発音・制御のずれを防ぐ。
   const at=time=>control.frameOrigin===undefined?time:(Math.round((time+control.frameOrigin/ctx.sampleRate)*ctx.sampleRate)-control.frameOrigin)/ctx.sampleRate;
   const node=ctx.createBufferSource(),gain=ctx.createGain();node.buffer=buffer;node.connect(gain);gain.gain.setValueAtTime(velocity/127*.35,at(start));
   const loop=control.midi===undefined?null:sound.loops?.[noteName(control.midi)];
-  if(loop){if(loop[0]>=buffer.duration)throw Error('音源のループ位置が録音の長さを超えています。');node.loop=true;node.loopStart=loop[0];node.loopEnd=Math.min(loop[1],buffer.duration);}
+  if(loop){if(loop[0]>=buffer.duration)throw Error('音源のループ位置が録音の長さを超えています。');node.loop=true;node.loopStart=Math.round(loop[0]*buffer.sampleRate)/buffer.sampleRate;node.loopEnd=Math.min(Math.round(loop[1]*buffer.sampleRate)/buffer.sampleRate,buffer.duration);}
   const release=control.cut?0:sound.release??(sound.id==='vsco-piano'?.5:undefined),end=start+(release===undefined?buffer.duration??duration:duration+release);
   let volume,pan,lfo,depth,output,key;
   if(control.states){
@@ -348,8 +365,10 @@ function voice(buffer,start,duration,velocity,sound,control={},ctx=getAudio(),po
   if(control.group)for(const [previous,when] of pool)if(previous.midiGroup===control.group&&when<=start&&previous.cutAt>start){previous.stop(at(start+.015));previous.cutAt=start+.015;previous.midiEnvelope.gain.cancelScheduledValues(at(start));previous.midiEnvelope.gain.setValueAtTime(previous.midiGain,at(start));previous.midiEnvelope.gain.linearRampToValueAtTime(0,at(start+.015));}
   node.midiGroup=control.group;node.cutAt=end;node.midiEnvelope=gain;node.midiGain=velocity/127*.35;
   node.start(at(start));
-  if(release!==undefined){gain.gain.setValueAtTime(velocity/127*.35,at(start+duration));gain.gain.linearRampToValueAtTime(0,at(start+duration+release));node.stop(at(start+duration+release+.01));}
+  const releaseAt=when=>{gain.gain.setValueAtTime(velocity/127*.35,at(when));gain.gain.linearRampToValueAtTime(0,at(when+(release??0)));node.stop(at(when+(release??0)+.01));};
+  if(release!==undefined&&Number.isFinite(duration))releaseAt(start+duration);
   pool.set(node,start);node.onended=()=>{pool.delete(node);node.disconnect();gain.disconnect();if(!output||!--output.count){volume?.disconnect();pan?.disconnect();if(output)control.outputs.delete(key);}depth?.disconnect();lfo?.stop();lfo?.disconnect();};
+  if(!Number.isFinite(duration))return ()=>releaseAt(ctx.currentTime);
 }
 function audioEvents(score,profiles){
   const performance=midiPerformance(score),drumParts=new Set(score.parts.filter(p=>p.percussion).map(p=>p.id));
@@ -398,30 +417,38 @@ $('loop').onclick=()=>{
   }
 };
 async function previewKey(midi,session){
-  if(keyGesture!==session||session.epoch!==playEpoch||!instrument?.allowed.has(midi))return;
+  if(keyGesture!==session||session.epoch!==playEpoch||session.last===null||!instrument?.allowed.has(midi))return;
+  session.release?.();session.release=null;
   const sound=defs.soundsets.find(s=>s.id===instrument.defaultSoundset);
   try{
     await getAudio().resume();if(keyGesture!==session||session.epoch!==playEpoch)return;
     const buffer=await loadBuffer(midi,sound);
-    if(keyGesture===session&&session.epoch===playEpoch)voice(buffer,getAudio().currentTime,.4,90,sound,{midi,...(instrument.percussion&&[42,44,46].includes(midi)?{group:activePart+':hihat'}:{})});
+    if(keyGesture===session&&session.epoch===playEpoch&&session.last!==null){const held=!!sound.loops?.[noteName(midi)]&&(session.pointer!==null||!!session.key),release=voice(buffer,getAudio().currentTime,held?Infinity:.4,90,sound,{midi,...(instrument.percussion&&[42,44,46].includes(midi)?{group:activePart+':hihat'}:{})});if(held)session.release=release;}
   }catch(e){if(keyGesture===session&&session.epoch===playEpoch)error(e.message);}
 }
 function endKeyGesture(cancel=false){
-  const g=keyGesture;if(!g)return;const pointer=g.pointer;g.pointer=null;
-  if(cancel||g.moved)keyGesture=null;
+  const g=keyGesture;if(!g)return;const pointer=g.pointer;g.pointer=null;g.key=null;
+  if(cancel||g.moved||g.release)keyGesture=null;
+  g.release?.();g.release=null;
   if(pointer!==null)try{$('keyboard').releasePointerCapture(pointer);}catch{}
 }
-$('keyboard').onclick=e=>{if(e.detail!==0)return;const b=e.target.closest('.piano-key');if(b){const g=keyGesture={pointer:null,last:Number(b.dataset.midi),epoch:playEpoch};g.queue=previewKey(g.last,g);}};
+$('keyboard').onclick=e=>{if(e.detail!==0)return;const b=e.target.closest('.piano-key');if(b){endKeyGesture(true);const g=keyGesture={pointer:null,last:Number(b.dataset.midi),epoch:playEpoch};g.queue=previewKey(g.last,g);}};
+$('keyboard').onkeydown=e=>{
+  const b=e.target.closest('.piano-key');if(!b||!['Enter','Space'].includes(e.code)||e.ctrlKey||e.metaKey||e.altKey)return;e.preventDefault();e.stopPropagation();if(e.repeat)return;
+  endKeyGesture(true);const g=keyGesture={pointer:null,key:e.code,last:Number(b.dataset.midi),epoch:playEpoch};g.queue=previewKey(g.last,g);
+};
+$('keyboard').onkeyup=e=>{if(keyGesture?.key===e.code){e.preventDefault();e.stopPropagation();endKeyGesture();}};
 $('keyboard').onpointerdown=e=>{
   const b=e.target.closest('.piano-key');if(!b||e.button!==0||e.isPrimary===false||keyGesture?.pointer!=null)return;
   e.preventDefault();b.focus({preventScroll:true});
+  endKeyGesture(true);
   const g=keyGesture={pointer:e.pointerId,last:Number(b.dataset.midi),epoch:playEpoch};
   $('keyboard').setPointerCapture(e.pointerId);g.queue=previewKey(g.last,g);
 };
 $('keyboard').onpointermove=e=>{
   const g=keyGesture;if(!g||g.pointer!==e.pointerId)return;e.preventDefault();
   const b=document.elementFromPoint(e.clientX,e.clientY)?.closest('.piano-key'),midi=b?Number(b.dataset.midi):null;
-  if(midi===g.last)return;g.moved=true;
+  if(midi===g.last)return;g.moved=true;g.release?.();g.release=null;
   if(midi!==null){
     const from=g.last??midi,distance=Math.abs(midi-from);
     for(let i=distance?1:0;i<=distance;i++){const pitch=from+Math.sign(midi-from)*i;g.queue=g.queue.then(()=>previewKey(pitch,g));}
@@ -488,6 +515,7 @@ async function saveAudio(format){
 }
 $('saveMp3').onclick=()=>saveAudio('mp3');$('saveOgg').onclick=()=>saveAudio('ogg');
 $('saveMml').onclick=()=>attempt(()=>{download(exportSource(),score.title+'.mml','text/plain;charset=utf-8');$('saveMenu').hidePopover();});
+$('saveTxt').onclick=()=>attempt(()=>{if(textEditing)throw Error('編集中のMMLを適用してから書き出してください。');download(serializeResoniteTxt(score),score.title+'.txt','text/plain;charset=utf-8');$('saveMenu').hidePopover();});
 $('saveMidi').onclick=async()=>{saveProgress('mmlSavingMidi');try{const bytes=await compile({text:exportSource(),midiOnly:true});download(bytes,score.title+'.mid','audio/midi');$('saveMenu').hidePopover();}catch(e){error(e.message);}finally{saveProgress();}};
 $('copyMml').onclick=async e=>{e.preventDefault();try{const text=exportSource();if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const previous=$('mml').value;$('mmlPanel').open=true;try{$('mml').value=text;$('mml').select();if(!document.execCommand('copy'))throw Error('コピーできませんでした。「MMLを保存」で取得してください。');}finally{$('mml').value=previous;}}}catch(e){error(e.message);}};
 $('editMml').onclick=()=>{stop();textEditing=true;render();$('mml').focus();};$('cancelMml').onclick=()=>{textEditing=false;render();error();};

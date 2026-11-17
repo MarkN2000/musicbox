@@ -1,0 +1,226 @@
+// Source: Source: User-provided three transcribed score images and subsequent explicit revisions, 4-4-3-4 beat phrases twice. Composition catalogue reference only: https://dl.ndl.go.jp/pid/8272739
+// Light Hawaiian-style instrumental arrangement: flute lead, original nylon-guitar rhythm, acoustic bass and independent sustained G/Em/Am/D7 string harmony. Sparse maracas respect each 4/4 and 3/4 phrase. Choir removed; user-confirmed melody and its irregular phrase lengths remain exactly as accepted. Standard GM, CC7=100; no custom banks.
+// Musicbox title: %E9%85%8B%E9%95%B7%E3%81%AE%E5%A8%98
+TimeBase(960)
+TR=1
+Time(0) TimeSignature(4,4)
+Time(7680) TimeSignature(3,4)
+Time(10560) TimeSignature(4,4)
+Time(22080) TimeSignature(3,4)
+Time(24960) TimeSignature(4,4)
+Time(0) Tempo={110.00011000011}
+Time(28800) MetaText={Musicbox end}
+
+TR=2
+Port(0) CH=1 Time(0) @74
+TrackName={Musicbox:1:instrument=vsco-flute:%E3%83%95%E3%83%AB%E3%83%BC%E3%83%88}
+q100
+Time(0) n64,%720,100,94
+Time(720) n67,%240,100,94
+Time(960) n67,%960,100,94
+Time(1920) n67,%1920,100,94
+Time(3840) n69,%720,100,94
+Time(4560) n67,%240,100,94
+Time(4800) n64,%720,100,94
+Time(5520) n67,%240,100,94
+Time(5760) n69,%1920,100,94
+Time(7680) n69,%720,100,94
+Time(8400) n67,%240,100,94
+Time(8640) n69,%960,100,94
+Time(9600) n72,%960,100,94
+Time(10560) n74,%720,100,94
+Time(11280) n76,%240,100,94
+Time(11520) n74,%2880,100,94
+Time(14400) n76,%720,100,94
+Time(15120) n74,%240,100,94
+Time(15360) n72,%960,100,94
+Time(16320) n69,%1920,100,94
+Time(18240) n72,%720,100,94
+Time(18960) n69,%240,100,94
+Time(19200) n67,%960,100,94
+Time(20160) n64,%1920,100,94
+Time(22080) n62,%720,100,94
+Time(22800) n60,%240,100,94
+Time(23040) n62,%960,100,94
+Time(24000) n64,%960,100,94
+Time(24960) n67,%720,100,94
+Time(25680) n69,%240,100,94
+Time(25920) n67,%2880,100,94
+Time(28800) MetaText={Musicbox end}
+
+TR=3
+Port(1) CH=1 Time(0) @33
+TrackName={Musicbox:2:instrument=musescore-gm032:%E3%82%A2%E3%82%B3%E3%83%BC%E3%82%B9%E3%83%86%E3%82%A3%E3%83%83%E3%82%AF%E3%83%99%E3%83%BC%E3%82%B9}
+q100
+Time(0) n43,%480,100,60
+Time(0) n50,%480,100,60
+Time(960) n50,%480,100,60
+Time(1920) n43,%480,100,60
+Time(1920) n50,%480,100,60
+Time(2880) n50,%480,100,60
+Time(5760) n48,%480,100,60
+Time(7680) n48,%480,100,60
+Time(9600) n50,%480,100,60
+Time(10080) n48,%480,100,60
+Time(10560) n50,%480,100,60
+Time(11040) n48,%480,100,60
+Time(11520) n50,%480,100,60
+Time(12480) n48,%480,100,60
+Time(13440) n50,%960,100,60
+Time(14400) n48,%480,100,60
+Time(16320) n48,%480,100,60
+Time(18240) n48,%480,100,60
+Time(19200) n43,%480,100,60
+Time(22080) n50,%480,100,60
+Time(23040) n48,%480,100,60
+Time(24000) n50,%960,100,60
+Time(24960) n43,%480,100,60
+Time(25440) n50,%480,100,60
+Time(26880) n50,%480,100,60
+Time(27840) n43,%960,100,60
+Time(27840) n50,%960,100,60
+Time(28800) MetaText={Musicbox end}
+
+TR=4
+Port(2) CH=1 Time(480) @25
+TrackName={Musicbox:3:instrument=freepats-nylon-guitar:%E3%83%8A%E3%82%A4%E3%83%AD%E3%83%B3%E5%BC%A6%E3%82%AE%E3%82%BF%E3%83%BC}
+q100
+Time(480) n59,%480,100,60
+Time(960) n55,%480,100,60
+Time(1440) n59,%480,100,60
+Time(2400) n59,%480,100,60
+Time(2880) n55,%480,100,60
+Time(3360) n59,%480,100,60
+Time(3840) n52,%480,100,60
+Time(3840) n55,%480,100,60
+Time(4320) n59,%480,100,60
+Time(4800) n52,%480,100,60
+Time(4800) n55,%480,100,60
+Time(5280) n59,%480,100,60
+Time(5760) n52,%480,100,60
+Time(6240) n57,%480,100,60
+Time(6720) n52,%480,100,60
+Time(6720) n57,%480,100,60
+Time(7200) n52,%480,100,60
+Time(7680) n52,%480,100,60
+Time(8160) n57,%480,100,60
+Time(8640) n52,%480,100,60
+Time(8640) n57,%480,100,60
+Time(9120) n52,%480,100,60
+Time(9600) n57,%480,100,60
+Time(10560) n57,%480,100,60
+Time(12000) n57,%480,100,60
+Time(12960) n57,%480,100,60
+Time(13440) n57,%960,100,60
+Time(14880) n55,%480,100,60
+Time(15360) n52,%960,100,60
+Time(15360) n55,%960,100,60
+Time(16800) n57,%480,100,60
+Time(17280) n52,%480,100,60
+Time(17760) n57,%480,100,60
+Time(18240) n52,%480,100,60
+Time(18720) n55,%480,100,60
+Time(19680) n52,%480,100,60
+Time(19680) n55,%480,100,60
+Time(20160) n52,%480,100,60
+Time(20640) n55,%480,100,60
+Time(21120) n59,%480,100,60
+Time(21600) n55,%480,100,60
+Time(22560) n57,%480,100,60
+Time(23520) n57,%480,100,60
+Time(24000) n57,%960,100,60
+Time(25440) n55,%480,100,60
+Time(25920) n59,%480,100,60
+Time(26400) n55,%480,100,60
+Time(27360) n55,%480,100,60
+Time(27360) n59,%480,100,60
+Time(27840) n59,%960,100,60
+Time(28800) MetaText={Musicbox end}
+
+TR=5
+Port(3) CH=1 Time(0) @49
+TrackName={Musicbox:4:instrument=vsco-strings:%E3%82%B9%E3%83%88%E3%83%AA%E3%83%B3%E3%82%B0%E3%82%B9}
+q100
+Time(0) n55,%3720,100,78
+Time(0) n59,%3720,100,78
+Time(0) n62,%3720,100,78
+Time(3840) n52,%1800,100,78
+Time(3840) n55,%1800,100,78
+Time(3840) n59,%1800,100,78
+Time(5760) n57,%4680,100,78
+Time(5760) n60,%4680,100,78
+Time(5760) n64,%4680,100,78
+Time(10560) n50,%3720,100,78
+Time(10560) n54,%3720,100,78
+Time(10560) n57,%3720,100,78
+Time(10560) n60,%3720,100,78
+Time(14400) n55,%3720,100,78
+Time(14400) n59,%3720,100,78
+Time(14400) n62,%3720,100,78
+Time(18240) n52,%1800,100,78
+Time(18240) n55,%1800,100,78
+Time(18240) n59,%1800,100,78
+Time(20160) n57,%4680,100,78
+Time(20160) n60,%4680,100,78
+Time(20160) n64,%4680,100,78
+Time(24960) n50,%3720,100,78
+Time(24960) n54,%3720,100,78
+Time(24960) n57,%3720,100,78
+Time(24960) n60,%3720,100,78
+Time(28800) MetaText={Musicbox end}
+
+TR=6
+Port(4) CH=10 Time(480) @1
+TrackName={Musicbox:5:instrument=vsco-percussion:%E6%89%93%E6%A5%BD%E5%99%A8}
+q100
+Time(480) n70,%120,100,72
+Time(1440) n70,%120,100,72
+Time(2400) n70,%120,100,72
+Time(3360) n70,%120,100,72
+Time(4320) n70,%120,100,72
+Time(5280) n70,%120,100,72
+Time(6240) n70,%120,100,72
+Time(7200) n70,%120,100,72
+Time(8160) n70,%120,100,72
+Time(9120) n70,%120,100,72
+Time(10080) n70,%120,100,72
+Time(11040) n70,%120,100,72
+Time(12000) n70,%120,100,72
+Time(12960) n70,%120,100,72
+Time(13920) n70,%120,100,72
+Time(14880) n70,%120,100,72
+Time(15840) n70,%120,100,72
+Time(16800) n70,%120,100,72
+Time(17760) n70,%120,100,72
+Time(18720) n70,%120,100,72
+Time(19680) n70,%120,100,72
+Time(20640) n70,%120,100,72
+Time(21600) n70,%120,100,72
+Time(22560) n70,%120,100,72
+Time(23520) n70,%120,100,72
+Time(24480) n70,%120,100,72
+Time(25440) n70,%120,100,72
+Time(26400) n70,%120,100,72
+Time(27360) n70,%120,100,72
+Time(28320) n70,%120,100,72
+Time(28800) MetaText={Musicbox end}
+
+TR=7
+Port(0) CH=1
+Time(0) CC(7,100)
+
+TR=8
+Port(1) CH=1
+Time(0) CC(7,100)
+
+TR=9
+Port(2) CH=1
+Time(0) CC(7,100)
+
+TR=10
+Port(3) CH=1
+Time(0) CC(7,100)
+
+TR=11
+Port(4) CH=10
+Time(0) CC(7,100)

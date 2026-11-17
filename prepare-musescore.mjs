@@ -7,6 +7,7 @@ import {noteName,noteNumber} from './dist/core.js';
 
 const root=resolve('dist'),cache=resolve('.sites-runtime/musescore-import'),ffmpeg=process.env.FFMPEG??'ffmpeg';
 const base='https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/',tsf='853a0a171759f1ddba0de1442133a75912bbeffa';
+const fluidSource='https://deb.debian.org/debian/pool/main/f/fluid-soundfont/fluid-soundfont_3.1.orig.tar.gz';
 await mkdir(resolve(cache,'raw'),{recursive:true});
 async function download(name,url,hash){let bytes;try{bytes=await readFile(resolve(cache,name));}catch(e){if(e.code!=='ENOENT')throw e;const r=await fetch(url);if(!r.ok)throw Error(`${name}: HTTP ${r.status}`);bytes=Buffer.from(await r.arrayBuffer());await writeFile(resolve(cache,name),bytes);}if(createHash('sha256').update(bytes).digest('hex')!==hash)throw Error('Source hash mismatch: '+name);return bytes;}
 await download('MuseScore_General.sf2',base+'MuseScore_General.sf2','ee51d2c4b1525e70f19a45909c4fd7a2e26d91d115fa89dbf5a6bc413d8b9bf3');
@@ -35,6 +36,12 @@ const en=(await readFile('node_modules/@tonejs/midi/src/InstrumentMaps.ts','utf8
 if(ja.length!==128||en.length!==128)throw Error('GM names are incomplete');
 const only=new Set((process.argv.find(a=>a.startsWith('--only='))?.slice(7)??'').split(',').filter(Boolean).map(Number));
 const programs=Array.from({length:128},(_,i)=>i).filter(gm=>(!only.size||only.has(gm))&&(replace.has(gm)||!profiles.some(p=>!p.percussion&&p.gmProgram===gm)||profiles.some(p=>!p.percussion&&p.gmProgram===gm&&p.defaultSoundset.startsWith('musescore-'))));
+if(programs.includes(69)){
+ await download('fluid-soundfont_3.1.orig.tar.gz',fluidSource,'2621acaa1c78e4abdb24bdd163230cc577e61276936d6aa6e3180582142f0343');
+ await run('tar',['-xzf','fluid-soundfont_3.1.orig.tar.gz','fluid-soundfont-3.1/FluidR3_GM.sf2','fluid-soundfont-3.1/COPYING','fluid-soundfont-3.1/README']);
+ if(createHash('sha256').update(await readFile(resolve(cache,'fluid-soundfont-3.1/FluidR3_GM.sf2'))).digest('hex')!=='74594e8f4250680adf590507a306655a299935343583256f3b722c48a1bc1cb0')throw Error('Source hash mismatch: FluidR3_GM.sf2');
+ await writeFile(resolve(root,'vendor/LICENSE-fluidr3.md'),'# FluidR3 GM — English horn\n\nSource: '+fluidSource+'\n\n'+await readFile(resolve(cache,'fluid-soundfont-3.1/README'),'utf8')+'\n\n## MIT license\n\n'+await readFile(resolve(cache,'fluid-soundfont-3.1/COPYING'),'utf8'));
+}
 const jobs=programs.map(program=>{const id='musescore-gm'+String(program).padStart(3,'0'),existing=process.argv.includes('--extend')?sounds.find(s=>s.id===id):null;return {program,id,name:{ja:ja[program],en:en[program]},range:[21,108],files:{...existing?.files},loops:{...existing?.loops},release:existing?.release??0};});
 const requests=jobs.flatMap(j=>Array.from({length:j.range[1]-j.range[0]+1},(_,i)=>({job:j,midi:j.range[0]+i})).filter(r=>!j.files[noteName(r.midi)])),lookup=new Map(jobs.map(j=>[j.program,j]));
 for(const j of jobs)await mkdir(resolve(root,'audio',j.id),{recursive:true});
@@ -49,19 +56,20 @@ async function encode(meta){
  let filter;
  if(meta.loop){
   const start=meta.head+.1,end=start+1.5;
-  filter=`[0:a]asplit[h][s];[h]atrim=end=${meta.head},asetpts=PTS-STARTPTS[a];[s]atrim=start=${meta.settle}:end=${meta.settle+2},asetpts=PTS-STARTPTS[b];[a][b]acrossfade=d=0.05:c1=tri:c2=tri[m];[m]asplit=4[x][y][z][w];[x]atrim=end=${end-.04},asetpts=PTS-STARTPTS[x1];[y]atrim=start=${end-.04}:end=${end},asetpts=PTS-STARTPTS[y1];[z]atrim=start=${start-.04}:end=${start},asetpts=PTS-STARTPTS[z1];[w]atrim=start=${start}:end=${start+.15},asetpts=PTS-STARTPTS,afade=t=out:st=0:d=0.15[r];[y1][z1]acrossfade=d=0.04:c1=tri:c2=tri[t];[x1][t][r]concat=n=3:v=0:a=1[out]`;
+  filter=`[0:a]asplit[h][s];[h]atrim=end=${meta.head},asetpts=PTS-STARTPTS[a];[s]atrim=start=${meta.settle}:end=${meta.settle+2},asetpts=PTS-STARTPTS[b];[a][b]acrossfade=d=0.05:c1=tri:c2=tri[m];[m]asplit=4[x][y][z][w];[x]atrim=end=${end-.04},asetpts=PTS-STARTPTS[x1];[y]atrim=start=${end-.04}:end=${end},asetpts=PTS-STARTPTS[y1];[z]atrim=start=${start-.04}:end=${start},asetpts=PTS-STARTPTS[z1];[w]atrim=start=${start}:end=${start+.15},asetpts=PTS-STARTPTS,afade=t=out:st=0:d=0.15[r];[y1]afade=t=out:st=0:d=0.04[yo];[z1]afade=t=in:st=0:d=0.04[zi];[yo][zi]amix=inputs=2:duration=shortest:normalize=0[t];[x1][t][r]concat=n=3:v=0:a=1[out]`;
   j.loops[name]=[Number(start.toFixed(6)),Number(end.toFixed(6))];
  }else filter=`[0:a]afade=t=out:st=${Math.max(0,meta.duration-.05)}:d=0.05[out]`;
- await run(ffmpeg,['-hide_banner','-loglevel','error','-y','-i',source,'-filter_complex',filter,'-map','[out]','-ar','48000','-c:a','libopus','-b:a','128k','-vbr','on','-metadata','LICENSE=MIT','-metadata','COPYRIGHT=Frank Wen; Michael Cowgill; S. Christian Collins; Ethan Winer; Michael Schorsch','-metadata','SOURCE='+base+'MuseScore_General_License.md',path]);
- await unlink(source);j.files[name]=name+'.ogg';j.release=Math.max(j.release,Math.min(.1,meta.release));bytes+=(await stat(path)).size;
+ await run(ffmpeg,['-hide_banner','-loglevel','error','-y','-i',source,'-filter_complex',filter,'-map','[out]','-ar','48000','-c:a','libopus','-b:a','128k','-vbr','on','-metadata','LICENSE=MIT','-metadata','COPYRIGHT='+(meta.program===69?'Frank Wen':'Frank Wen; Michael Cowgill; S. Christian Collins; Ethan Winer; Michael Schorsch'),'-metadata','SOURCE='+(meta.program===69?fluidSource:base+'MuseScore_General_License.md'),path]);
+ await unlink(source);j.files[name]=name+'.ogg';j.release=.2;bytes+=(await stat(path)).size;
 }
 createInterface({input:child.stdout}).on('line',line=>{const p=encode(JSON.parse(line)).catch(e=>{failure??=e;child.kill();}).finally(()=>{encodings.delete(p);inflight--;completed++;if(completed%50===0)console.log(`Encoded ${completed}/${requests.length} (${(bytes/1048576).toFixed(1)} MiB)`);pump();});encodings.add(p);});
 pump();await done;while(encodings.size)await Promise.all([...encodings]);if(failure)throw failure;
 for(const j of jobs){
  const names=Object.keys(j.files).sort((a,b)=>noteNumber(a)-noteNumber(b));if(!names.length)throw Error('Silent instrument: '+j.program);
+ if(j.program===69)for(const [note,file] of Object.entries(sounds.find(s=>s.id===j.id)?.files??{}))if(!j.files[note])await unlink(resolve(root,'audio',j.id,file));
  const low=noteNumber(names[0]),high=noteNumber(names.at(-1));if(names.length!==high-low+1)throw Error('Discontinuous instrument range: '+j.program);
  const sound={id:j.id,name:j.name,kind:'samples',base:`audio/${j.id}/`,files:Object.fromEntries(names.map(n=>[n,j.files[n]])),...(looped.has(j.program)||![45,47,112,113,114,115,116,117,118,119,120,123,124,127].includes(j.program)?{release:j.program<=3?.5:j.release}:{}),...(Object.keys(j.loops).length?{loops:Object.fromEntries(names.filter(n=>j.loops[n]).map(n=>[n,j.loops[n]]))}:{})};
- const index=sounds.findIndex(s=>s.id===j.id);if(index<0)sounds.push(sound);else sounds[index]=sound;
+ const index=sounds.findIndex(s=>s.id===j.id);if(index<0)sounds.push(sound);else {if(sounds[index].gainDb!==undefined)sound.gainDb=sounds[index].gainDb;sounds[index]=sound;}
  const existing=profiles.filter(p=>!p.percussion&&p.gmProgram===j.program);
  if(existing.length)for(const p of existing){p.range=[low,high];delete p.notes;p.defaultSoundset=j.id;}
  else profiles.push({id:j.id,name:j.name,range:[low,high],defaultSoundset:j.id,arrangedFor:'musescoregm'+j.program,gmProgram:j.program});
