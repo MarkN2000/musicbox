@@ -30,7 +30,10 @@ for(const version of versions){
  const profile=instruments.find(i=>i.arrangedFor===version.arranged_for);assert.ok((profile||version.arranged_for==='gm')&&version.label_ja&&version.label_en);
  const score=compile(await readFile(new URL('./dist/samples/'+version.file,import.meta.url),'utf8'));
  for(const part of score.parts){const target=profile??instruments.find(i=>i.id===part.instrumentId);assert.ok(target&&part.program===target.gmProgram&&!!part.percussion===!!target.percussion&&part.instrumentId===target.id,version.id+'のGM音色と実機音域');assert.ok(score.notes.filter(n=>n.part===part.id).every(n=>target.allowed.has(n.midi)),version.id+'の対象楽器の音域');}
- if(version.arranged_for==='gm')assert.ok(new Set(score.parts.map(p=>`${p.program}:${!!p.percussion}`)).size>1,version.id+'は複数のGM楽器で演奏する');
+ if(version.arranged_for==='gm'){
+  assert.ok(new Set(score.parts.map(p=>`${p.program}:${!!p.percussion}`)).size>1,version.id+'は複数のGM楽器で演奏する');
+  const midi=compile(serializeMml(score,{singlePort:true}));assert.deepEqual(musical(midi),musical(score),version.id+'は標準MIDIのチャンネル数内で全パート・全音を保持する');assert.deepEqual(midi.controllers??[],score.controllers??[],version.id+'の標準CCを保持する');
+ }
  if(['musicbox30','xylophone32'].includes(version.arranged_for))for(const n of score.notes.filter(n=>n.part!==1))assert.ok(!score.notes.some(m=>m.part===1&&m.midi===n.midi&&m.tick<n.tick&&n.tick<m.tick+m.duration),version.id+'で伴奏が旋律の長音を打ち直さない');
  const restored=compile(serializeMml(score));assert.deepEqual(musical(restored),musical(score),version.id+'の全音長・拍位置の往復');assert.deepEqual(restored.parts,score.parts,version.id+'のパート・GM音色・音域の往復');assert.equal(restored.end,score.end);assert.deepEqual(restored.tempos.map(t=>t.tick),score.tempos.map(t=>t.tick));for(const [i,t]of score.tempos.entries())assert.ok(Math.abs(60000000/t.bpm-60000000/restored.tempos[i].bpm)<=1.000001,version.id+'のテンポをMIDIの1マイクロ秒精度で保持');assert.deepEqual(restored.signatures,score.signatures);
 }
@@ -178,6 +181,15 @@ console.log('MIDI制御：グローバルCH解析・途中音色・CC往復・�
 
 // 実際の再生処理を仮想時計で動かし、AudioBufferSourceへ渡す発音時刻を確認する。
 const app=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8');
+const menuBounds={style:{},offsetWidth:350,get offsetHeight(){return Math.min(12000,parseFloat(this.style.maxHeight)||12000);},matches:()=>true};
+const menuWindow={innerHeight:844,visualViewport:{height:640,offsetTop:0}},menuContext=createContext({window:menuWindow,document:{documentElement:{clientWidth:390}},menus:[[menuBounds,{getBoundingClientRect:()=>({top:70,bottom:110,right:350})}]],$:()=>({matches:()=>false})});
+runInContext(app.slice(app.indexOf('function positionMenus('),app.indexOf("for(const [menu,button] of menus){\n  menu.addEventListener")),menuContext);
+for(const [height,offsetTop]of [[640,0],[340,0],[340,120],[844,0]]){
+  menuWindow.visualViewport={height,offsetTop};menuContext.positionMenus();const top=parseFloat(menuBounds.style.top);
+  assert.ok(top>=offsetTop+8&&top+menuBounds.offsetHeight<=offsetTop+height-8,'スマホのアドレスバー・キーボード開閉・表示位置に合わせ、曲選択全体を可視領域に収める');
+  assert.equal(parseFloat(menuBounds.style.maxHeight),height-16,'最後の曲まで内部スクロールできる高さに制限する');
+}
+delete menuWindow.visualViewport;menuContext.positionMenus();assert.ok(parseFloat(menuBounds.style.top)+menuBounds.offsetHeight<=menuWindow.innerHeight-8,'VisualViewport非対応でも画面内に収める');
 const importError={textContent:'',scrolls:0,scrollIntoView(){this.scrolls++;}},errorContext=createContext({t,currentLanguage,localized,$:()=>importError});runInContext(app.slice(app.indexOf('function error('),app.indexOf('function emptyScore(')),errorContext);errorContext.error('読み込みエラー');assert.equal(importError.textContent,'読み込みエラー');assert.equal(importError.scrolls,1,'鍵盤の下までスクロールしなくても読み込みの失敗を確認できる');errorContext.error();assert.equal(importError.scrolls,1);
 let sampleBefore;
 const sampleErrors=[],sampleMain={inert:false},sampleControls=new Map([['templateMenu',{hidePopover(){}}],['viewport',{focus(){}}]]);
@@ -391,6 +403,15 @@ assert.deepEqual(musical(pointerContext.score),musical({...original,notes:moveNo
 pointerContext.score=structuredClone(original);pointerContext.selected.clear();pointerContext.beginNote(blank);pointerContext.updateGesture({...blank,clientX:420,clientY:40});pointerContext.autoScroll();pointerContext.endGesture();
 assert.equal(pointerContext.selected.size,0);assert.equal(pointerControls.get('viewport').scrollTop,0);assert.deepEqual(musical(pointerContext.score),musical(original),'スマホの空白スワイプは配置・選択・自動スクロールしない');
 const referenceNote=original.notes.find(n=>n.part===1);pointerContext.beginNote({...touch,target:{closest:selector=>selector==='.midi-note'?{dataset:{id:String(referenceNote.id)}}:null}});assert.equal(pointerContext.gesture,null);assert.deepEqual(musical(pointerContext.score),musical(original),'参考表示の他パートの音を編集しない');
+const scrollPlayback={};pointerContext.stop=()=>{pointerContext.playing=null;};
+for(const cancel of [false,true]){
+  pointerContext.score=structuredClone(original);pointerContext.playing=scrollPlayback;
+  pointerContext.beginNote(blank);assert.equal(pointerContext.playing,scrollPlayback,'スマホで空白に触れただけでは再生を止めない');
+  pointerContext.updateGesture({...blank,clientY:blank.clientY+40});pointerContext.endGesture(cancel);
+  assert.equal(pointerContext.playing,scrollPlayback,'縦スワイプとブラウザのスクロールによる中断で再生を止めない');assert.deepEqual(musical(pointerContext.score),musical(original));
+}
+pointerContext.beginNote(blank);pointerContext.endGesture();assert.equal(pointerContext.playing,null,'タップで音を追加するときは再生を止める');assert.equal(pointerContext.score.notes.length,original.notes.length+1);
+pointerContext.playing=scrollPlayback;pointerContext.beginNote(touch);assert.equal(pointerContext.playing,null,'音符の編集では従来どおり再生を止める');pointerContext.endGesture(true);
 console.log('MMLポインター操作：モードなしの配置・削除・範囲選択・移動・伸縮・タッチのスクロール競合を確認');
 function keyboardPreview(load=async midi=>({midi})){
   const handlers=new Map(),played=[],keyboard={setPointerCapture(){},releasePointerCapture(){},addEventListener(type,fn){handlers.set(type,fn);}};

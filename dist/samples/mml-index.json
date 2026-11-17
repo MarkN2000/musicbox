@@ -696,6 +696,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "czardas-piano-88.mml"
+        },
+        {
+          "id": "czardas-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "czardas-orchestra.mml"
         }
       ]
     },
@@ -1056,6 +1063,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "handel-see-conquering-hero-piano-88.mml"
+        },
+        {
+          "id": "handel-see-conquering-hero-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "handel-see-conquering-hero-orchestra.mml"
         }
       ]
     },
@@ -1666,6 +1680,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "mozart-figaro-overture-piano-88.mml"
+        },
+        {
+          "id": "mozart-figaro-overture-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "mozart-figaro-overture-orchestra.mml"
         }
       ]
     },
@@ -1846,6 +1867,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "new-world-fourth-piano-88.mml"
+        },
+        {
+          "id": "new-world-fourth-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "new-world-fourth-orchestra.mml"
         }
       ]
     },
@@ -1872,6 +1900,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "new-world-largo-piano-88.mml"
+        },
+        {
+          "id": "new-world-largo-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "new-world-largo-orchestra.mml"
         }
       ]
     },
@@ -2469,6 +2504,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "sousa-washington-post-piano-88.mml"
+        },
+        {
+          "id": "sousa-washington-post-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "sousa-washington-post-orchestra.mml"
         }
       ]
     },
@@ -2546,6 +2588,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "sugar-plum-fairy-piano-88.mml"
+        },
+        {
+          "id": "sugar-plum-fairy-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "sugar-plum-fairy-orchestra.mml"
         }
       ]
     },
@@ -2980,6 +3029,13 @@
           "label_ja": "ピアノ",
           "label_en": "Piano",
           "file": "william-tell-piano-88.mml"
+        },
+        {
+          "id": "william-tell-orchestra",
+          "arranged_for": "gm",
+          "label_ja": "オーケストラ",
+          "label_en": "Orchestra",
+          "file": "william-tell-orchestra.mml"
         }
       ]
     },
