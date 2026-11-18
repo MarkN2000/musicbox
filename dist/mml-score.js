@@ -3,6 +3,7 @@ import parseMidi from './vendor/midi-parser.js';
 
 export const PPQ=960;
 export const MAX_TICKS=PPQ*4096;
+const DEFAULT_MIDI_VOLUME=100;
 export function demoScore(){
   const notes=[],add=(part,midi,beat,duration,velocity=90)=>notes.push({id:notes.length+1,part,midi,tick:Math.round(beat*PPQ),duration:Math.round(duration*PPQ),velocity});
   add(1,72,0,3,100);add(1,76,3,1);add(1,74,4,1.5);add(1,72,5.5,.5);add(1,71,6,2);
@@ -246,23 +247,32 @@ export function fromMidi(midi,source=''){
 
 export function serializeResoniteTxt(score){
   validateScore(score);
-  const ms=tick=>Math.round(secondsAt(score,tick)*1000),performance=midiPerformance(score),instruments=new Map(score.parts.map(p=>[p.id,p.percussion?'d':p.program??0])),events=[];
-  for(const [id,part] of performance)for(const s of part.states)events.push({time:ms(s.tick),tick:s.tick,type:0,instrument:instruments.get(id),values:[s.gain,s.pan,s.detune,s.modulation].map(v=>+v.toFixed(6))});
-  for(const n of score.notes){
-    const time=ms(n.tick),end=performance.get(n.part).ends.get(n.id)??n.tick+n.duration;
-    events.push({time,tick:n.tick,type:1,instrument:instruments.get(n.part),values:[n.midi,Math.max(0,ms(end)-time),n.velocity]});
+  const ms=tick=>Math.round(secondsAt(score,tick)*1000);
+  const performance=midiPerformance(score);
+  const instruments=new Map(score.parts.map(p=>[p.id,p.percussion?128:p.program??0]));
+  const defaultGain=(DEFAULT_MIDI_VOLUME/127)**2;
+  const stateIndices=new Map();
+  const notes=[];
+  let peak=127;
+  for(const n of [...score.notes].sort((a,b)=>a.tick-b.tick)){
+    const {states,ends}=performance.get(n.part);
+    let i=stateIndices.get(n.part)??0;
+    while(states[i+1]?.tick<=n.tick)i++;
+    stateIndices.set(n.part,i);
+    const strength=n.velocity*states[i].gain/defaultGain;
+    peak=Math.max(peak,strength);
+    const time=ms(n.tick),end=ms(ends.get(n.id)??n.tick+n.duration);
+    notes.push({time:time/1000,instrument:instruments.get(n.part),midi:n.midi,duration:Math.max(0,end-time)/1000,strength});
   }
-  events.sort((a,b)=>a.time-b.time||a.type-b.type||a.tick-b.tick);
-  const latest=new Map(),settings=new Map(),lines=[`v1,${ms(score.end)}`,score.title.replace(/[\r\n\u2028\u2029]+/g,' ')];
-  for(const e of events)if(!e.type)latest.set(`${e.time}:${e.instrument}`,e);
-  for(const e of events){
-    const values=e.values.join(',');
-    if(!e.type){
-      if(latest.get(`${e.time}:${e.instrument}`)!==e||(settings.get(e.instrument)??'1,0,0,0')===values)continue;
-      settings.set(e.instrument,values);
-    }
-    lines.push(`${e.type?'':'C,'}${e.time/1000},${e.instrument},${values}`);
+  const scale=127/peak;
+  const singleLineTitle=title=>title.replace(/[\t\r\n\u2028\u2029]+/g,' ');
+  const titleFields=[singleLineTitle(score.title)];
+  for(const language of ['en','ja']){
+    const translation=score.titleTranslations?.[language]?.trim();
+    if(translation)titleFields.push(`${language}=${singleLineTitle(translation)}`);
   }
+  const lines=[`v1,${ms(score.end)/1000}`,titleFields.join('\t')];
+  for(const n of notes)lines.push(`${n.time},${n.instrument},${n.midi},${n.duration},${Math.round(n.strength*scale)}`);
   return lines.join('\n')+'\n';
 }
 
@@ -271,7 +281,7 @@ export function midiPerformance(score){
   const masterVolumes=(score.sysex??[]).filter(e=>e.data.length===7&&e.data[0]===127&&e.data[2]===4&&e.data[3]===1).map(e=>({tick:e.tick,type:'masterVolume',value:e.data[4]+e.data[5]*128}));
   for(const part of score.parts){
     const changes=(score.controllers??[]).filter(c=>c.part===part.id).concat(masterVolumes).sort((a,b)=>a.tick-b.tick),states=[];
-    let volume=100,expression=127,pan=64,modulation=0,soft=0,bend=0,range=2,cents=0,fine=8192,coarse=64,rpnMSB=127,rpnLSB=127,master=1;
+    let volume=DEFAULT_MIDI_VOLUME,expression=127,pan=64,modulation=0,soft=0,bend=0,range=2,cents=0,fine=8192,coarse=64,rpnMSB=127,rpnLSB=127,master=1;
     const state=tick=>({tick,gain:(volume/127*expression/127*master)**2*(soft?0.7:1),pan:(pan-64)/(pan<64?64:63),detune:bend/8192*(range*100+cents)+(fine-8192)/8192*100+(coarse-64)*100,modulation:modulation/127*50});
     states.push(state(0));
     const ends=new Map(),cuts=new Set(),held=new Set(),sounding=new Set(),captured=new Set();let sustain=false,sostenuto=false;

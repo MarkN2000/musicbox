@@ -8,7 +8,7 @@ import {initSync,SakuraCompiler,get_version} from './dist/vendor/sakura/sakuramm
 import {t,currentLanguage,localized} from './dist/i18n.js';
 import {demoScore,validateScore,serializeMml,serializeResoniteTxt,prepareMml,fromMidi,secondsAt,tickAt,moveNotes,resizeNotes,scorePosition,midiPerformance} from './dist/mml-score.js';
 
-const txtScore={title:'曲,名\r\n副題',ppq:960,end:3840,signatures:[{tick:0,signature:[4,4]}],tempos:[{tick:0,bpm:120},{tick:960,bpm:60}],parts:[{id:7,program:0},{id:8,program:10},{id:9,program:0,percussion:true}],notes:[
+const txtScore={title:'曲,名\r\n副題',titleTranslations:{en:'Name, take=2',ja:'別名\t第二版'},ppq:960,end:3840,signatures:[{tick:0,signature:[4,4]}],tempos:[{tick:0,bpm:120},{tick:960,bpm:60}],parts:[{id:7,program:0},{id:8,program:10},{id:9,program:0,percussion:true}],notes:[
   {id:1,part:7,midi:67,tick:1440,duration:480,velocity:88},
   {id:2,part:8,midi:72,tick:960,duration:480,velocity:85},
   {id:3,part:7,midi:60,tick:0,duration:1920,velocity:100},
@@ -16,24 +16,21 @@ const txtScore={title:'曲,名\r\n副題',ppq:960,end:3840,signatures:[{tick:0,s
   {id:5,part:9,midi:38,tick:960,duration:120,velocity:95},
   {id:6,part:8,midi:21,tick:480,duration:480,velocity:75}
 ],controllers:[{part:7,tick:240,type:'cc',number:64,value:127},{part:7,tick:2880,type:'cc',number:64,value:0},...[7,10,1].map((number,i)=>({part:7,tick:960,type:'cc',number,value:i===1?0:64})),{part:7,tick:960,type:'pitchBend',value:4096},{part:7,tick:1920,type:'cc',number:7,value:64}]};
-const txtBefore=JSON.stringify(txtScore),txtLines=serializeResoniteTxt(txtScore).trimEnd().split('\n'),txtRows=txtLines.slice(2).map(line=>line.split(','));
-assert.deepEqual(txtLines.slice(0,2),['v1,3500','曲,名 副題'],'曲末休符を含む長さmsと、カンマを保持した1行の曲名');
-assert.deepEqual(txtRows.filter(row=>row[0]!=='C').map(row=>row.map(value=>value==='d'?value:Number(value))),[[0,0,60,2500,100],[0,0,64,2500,90],[.25,10,21,250,75],[.5,10,72,500,85],[.5,'d',38,125,95],[1,0,67,1500,88]],'GM番号・打楽器・全音符を保持し、秒の開始時刻とmsの音長にテンポとペダルを反映');
-assert.ok(txtRows.every((row,i)=>!i||Number(row[row[0]==='C'?1:0])>=Number(txtRows[i-1][txtRows[i-1][0]==='C'?1:0])),'設定変更も含め開始時刻は逆行しない');
-assert.equal(txtRows.find(row=>row[0]==='C'&&row[1]==='0.5').join(','),'C,0.5,0,0.253953,-1,100,25.19685','同時刻の制御を1行にまとめる');
-assert.ok(txtRows.findIndex(row=>row[0]==='C'&&row[1]==='0.5')<txtRows.findIndex(row=>row[0]==='0.5'),'同時刻は設定変更が発音より先');
-assert.equal(txtRows.filter(row=>row[0]==='C').length,4,'値が変わらない設定行を省く');
+const txtBefore=JSON.stringify(txtScore),txtLines=serializeResoniteTxt(txtScore).trimEnd().split('\n');
+assert.deepEqual(txtLines.slice(0,2),['v1,3.5','曲,名 副題\ten=Name, take=2\tja=別名 第二版'],'曲の長さは秒。タイトル行はカンマと等号を保持し、タブで訳名を分ける');
+assert.deepEqual(txtLines.slice(2),['0,0,60,2.5,100','0,0,64,2.5,90','0.25,10,21,0.25,75','0.5,10,72,0.5,85','0.5,128,38,0.125,95','1,0,67,1.5,36'],'音符行だけを時刻順で出力し、打楽器ID128、発音時点の音量、テンポ、ペダルを反映する');
 assert.equal(JSON.stringify(txtScore),txtBefore,'書き出しで編集データを変更しない');
-const txtShared={...txtScore,parts:[{id:7,program:0},{id:8,program:0}],notes:txtScore.notes.filter(n=>n.part!==9),controllers:[{part:7,tick:960,type:'cc',number:7,value:64},{part:8,tick:960,type:'cc',number:7,value:32}]};
-assert.ok(serializeResoniteTxt(txtShared).includes('C,0.5,0,0.063488,0,0,0\n'),'同じGM音色の同時刻の設定は元のパート順で後の設定を使う');
-assert.equal(serializeResoniteTxt({...txtShared,title:'',notes:[],controllers:[]}).split('\n')[1],'','空の曲名でも2行目を保つ');
+const txtShared={...txtScore,parts:[{id:7,program:0},{id:8,program:0}],notes:[{...txtScore.notes[2],tick:960,velocity:127}, {...txtScore.notes[1],velocity:127},txtScore.notes[0]],controllers:[{part:8,tick:960,type:'cc',number:7,value:127},{part:7,tick:1440,type:'cc',number:11,value:0}]};
+assert.deepEqual(serializeResoniteTxt(txtShared).trimEnd().split('\n').slice(2),['0.5,0,60,2,79','0.5,0,72,0.5,127','1,0,67,0.5,0'],'同じ音色の別パートの音量を保ち、最大値を超える場合の共通縮小と無音を反映する');
+assert.equal(serializeResoniteTxt({...txtShared,titleTranslations:{ja:'訳名',en:' '}}).split('\n')[1],'曲,名 副題\tja=訳名','ある訳名だけ出力する');
+assert.equal(serializeResoniteTxt({...txtShared,title:'',titleTranslations:undefined,notes:[],controllers:[]}).split('\n')[1],'','訳名もメインタイトルも空なら空の2行目を保つ');
 const txtApp=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8'),txtSaved=[],txtErrors=[],txtControls=new Map([['saveTxt',{}],['saveMenu',{hidePopover(){this.closed=true;}}]]),txtContext=createContext({score:txtScore,textEditing:false,serializeResoniteTxt,$:id=>txtControls.get(id),attempt:fn=>{try{fn();}catch(e){txtErrors.push(e.message);}},download:(body,name,type)=>txtSaved.push({body,name,type})});
 runInContext(txtApp.slice(txtApp.indexOf("$('saveTxt').onclick="),txtApp.indexOf("$('saveMidi').onclick=")),txtContext);
 txtControls.get('saveTxt').onclick();assert.equal(txtSaved.length,1);assert.equal(txtSaved[0].body,serializeResoniteTxt(txtScore));assert.equal(txtSaved[0].name,txtScore.title+'.txt');assert.equal(txtSaved[0].type,'text/plain;charset=utf-8');assert.equal(txtControls.get('saveMenu').closed,true);
 txtContext.textEditing=true;txtControls.get('saveTxt').onclick();assert.equal(txtSaved.length,1);assert.deepEqual(txtErrors,['編集中のMMLを適用してから書き出してください。']);
 assert.match(await readFile(new URL('./dist/mml.html',import.meta.url),'utf8'),/id="saveTxt" data-i18n="Resonite用TXTを保存"/);
 for(const language of ['ja','en'])assert.ok(JSON.parse(await readFile(new URL('./dist/locales/'+language+'.json',import.meta.url),'utf8'))['Resonite用TXTを保存']);
-console.log('Resonite TXT：秒の時系列・GM音色・全音符・テンポ・ペダル・設定変更・保存ボタン OK');
+console.log('Resonite TXT：秒の時系列・GM音色・全音符・テンポ・ペダル・音量バランス・保存ボタン OK');
 
 const loopLoaderApp=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8');
 for(const sampleRate of [44100,48000]){
@@ -248,6 +245,7 @@ runInContext(app.slice(app.indexOf("$('templateMenu').onclick="),app.indexOf('co
 for(const version of versions){
   await sampleControls.get('templateMenu').onclick({target:{closest:()=>({dataset:{sample:version.id}})}});
   assert.deepEqual(sampleErrors,[],version.id);const score=sampleContext.score;
+  if(version.id==='air-on-g-orchestra')assert.equal(serializeResoniteTxt(score).split('\n')[1],'G線上のアリア\ten=Air on the G String\tja=G線上のアリア','選曲した曲の訳名をResonite用TXTへ引き継ぐ');
   assert.equal(score.parts.length,new Set(sampleBefore.parts.map(p=>`${p.program}:${p.instrumentId}:${!!p.percussion}`)).size,version.id+'は同じ楽器の声部をまとめ、異なる楽器を別タブに保つ');
   const partIds=new Map(sampleBefore.parts.map(p=>[p.id,score.parts.find(s=>s.program===p.program&&s.instrumentId===p.instrumentId&&!!s.percussion===!!p.percussion).id]));
   assert.deepEqual(JSON.parse(JSON.stringify(score.notes)),sampleBefore.notes.map(n=>({...n,part:partIds.get(n.part)})),version.id+'の全音・同音の重なり・発音位置・音長・強さを保持する');

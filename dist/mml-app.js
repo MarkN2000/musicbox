@@ -248,7 +248,11 @@ $('partRange').onchange=()=>change(()=>{score.parts.find(p=>p.id===activePart).i
 $('partName').onchange=()=>change(()=>{score.parts.find(p=>p.id===activePart).name=$('partName').value.trim()||t('パート');});
 $('addPart').onclick=()=>change(()=>{if(score.parts.length>=64)throw Error('追加できるパートは64までです。');const id=Math.max(...score.parts.map(p=>p.id))+1,{channel,port,...part}=score.parts.find(p=>p.id===activePart);score.parts.push({...(part.percussion?{program:0,instrumentId:'piano-88'}:part),id,name:t('mmlPartName',{number:id})});activePart=id;selected.clear();});
 $('deletePart').onclick=()=>deletePart(activePart);
-$('scoreTitle').onchange=()=>change(()=>{score.title=$('scoreTitle').value;});
+$('scoreTitle').onchange=()=>change(()=>{
+  const title=$('scoreTitle').value;
+  if(title!==score.title)delete score.titleTranslations;
+  score.title=title;
+});
 $('songEnd').onchange=()=>change(()=>{score.end=Math.round(Number($('songEnd').value)*score.ppq);cursor=Math.min(cursor,score.end);});
 function renderMarkerMenu(){
   const tempo=score.tempos.find(t=>t.tick===markerTick),signature=score.signatures.find(s=>s.tick===markerTick);
@@ -519,7 +523,15 @@ $('saveTxt').onclick=()=>attempt(()=>{if(textEditing)throw Error('編集中のMM
 $('saveMidi').onclick=async()=>{saveProgress('mmlSavingMidi');try{const bytes=await compile({text:exportSource(),midiOnly:true});download(bytes,score.title+'.mid','audio/midi');$('saveMenu').hidePopover();}catch(e){error(e.message);}finally{saveProgress();}};
 $('copyMml').onclick=async e=>{e.preventDefault();try{const text=exportSource();if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const previous=$('mml').value;$('mmlPanel').open=true;try{$('mml').value=text;$('mml').select();if(!document.execCommand('copy'))throw Error('コピーできませんでした。「MMLを保存」で取得してください。');}finally{$('mml').value=previous;}}}catch(e){error(e.message);}};
 $('editMml').onclick=()=>{stop();textEditing=true;render();$('mml').focus();};$('cancelMml').onclick=()=>{textEditing=false;render();error();};
-$('applyMml').onclick=async()=>{const text=$('mml').value;$('applyMml').disabled=true;try{const parsed=await compile({text});const before=snapshot();score=parsed;sourceText=text;cursor=0;selected.clear();textEditing=false;remember(before);render();error();}catch(e){error(e.message);}finally{$('applyMml').disabled=false;}};
+$('applyMml').onclick=async()=>{
+  const text=$('mml').value;
+  $('applyMml').disabled=true;
+  try{
+    const parsed=await compile({text}),before=snapshot();
+    if(parsed.title===score.title&&score.titleTranslations)parsed.titleTranslations=score.titleTranslations;
+    score=parsed;sourceText=text;cursor=0;selected.clear();textEditing=false;remember(before);render();error();
+  }catch(e){error(e.message);}finally{$('applyMml').disabled=false;}
+};
 $('enableGui').onclick=()=>{remember(snapshot());sourceText=null;for(const part of score.parts){const profile=profileFor(part);if(profile)part.instrumentId=profile.id;}render();error();};
 async function loadFile(file){
   if(!file||textEditing)return;
@@ -563,7 +575,9 @@ $('templateMenu').onclick=async e=>{
     }
     parsed.parts=[...parts.values()];for(const note of parsed.notes)note.part=ids.get(note.part);
     if(parsed.controllers)parsed.controllers=controllers;
-    remember(snapshot());score=parsed;score.title=localized(song,'title');sourceText=null;selected.clear();cursor=0;activePart=score.parts[0].id;render();$('viewport').scrollLeft=0;$('viewport').focus({preventScroll:true});error();
+    remember(snapshot());score=parsed;score.title=localized(song,'title');
+    score.titleTranslations={en:song.title_en,ja:song.title_ja};
+    sourceText=null;selected.clear();cursor=0;activePart=score.parts[0].id;render();$('viewport').scrollLeft=0;$('viewport').focus({preventScroll:true});error();
   }
   catch(e){error(e.message);}finally{document.querySelector('main').inert=false;}
 };
