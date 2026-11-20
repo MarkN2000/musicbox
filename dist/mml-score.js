@@ -264,7 +264,6 @@ export function serializeResoniteTxt(score){
     const time=ms(n.tick),end=ms(ends.get(n.id)??n.tick+n.duration);
     notes.push({time:time/1000,instrument:instruments.get(n.part),midi:n.midi,duration:Math.max(0,end-time)/1000,strength});
   }
-  const scale=127/peak;
   const singleLineTitle=title=>title.replace(/[\t\r\n\u2028\u2029]+/g,' ');
   const titleFields=[singleLineTitle(score.title)];
   for(const language of ['en','ja']){
@@ -272,7 +271,7 @@ export function serializeResoniteTxt(score){
     if(translation)titleFields.push(`${language}=${singleLineTitle(translation)}`);
   }
   const lines=[`v1,${ms(score.end)/1000}`,titleFields.join('\t')];
-  for(const n of notes)lines.push(`${n.time},${n.instrument},${n.midi},${n.duration},${Math.round(n.strength*scale)}`);
+  for(const n of notes)lines.push(`${n.time},${n.instrument},${n.midi},${n.duration},${Number((n.strength/peak).toFixed(6))}`);
   return lines.join('\n')+'\n';
 }
 

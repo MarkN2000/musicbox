@@ -18,10 +18,10 @@ const txtScore={title:'曲,名\r\n副題',titleTranslations:{en:'Name, take=2',j
 ],controllers:[{part:7,tick:240,type:'cc',number:64,value:127},{part:7,tick:2880,type:'cc',number:64,value:0},...[7,10,1].map((number,i)=>({part:7,tick:960,type:'cc',number,value:i===1?0:64})),{part:7,tick:960,type:'pitchBend',value:4096},{part:7,tick:1920,type:'cc',number:7,value:64}]};
 const txtBefore=JSON.stringify(txtScore),txtLines=serializeResoniteTxt(txtScore).trimEnd().split('\n');
 assert.deepEqual(txtLines.slice(0,2),['v1,3.5','曲,名 副題\ten=Name, take=2\tja=別名 第二版'],'曲の長さは秒。タイトル行はカンマと等号を保持し、タブで訳名を分ける');
-assert.deepEqual(txtLines.slice(2),['0,0,60,2.5,100','0,0,64,2.5,90','0.25,10,21,0.25,75','0.5,10,72,0.5,85','0.5,128,38,0.125,95','1,0,67,1.5,36'],'音符行だけを時刻順で出力し、打楽器ID128、発音時点の音量、テンポ、ペダルを反映する');
+assert.deepEqual(txtLines.slice(2),['0,0,60,2.5,0.787402','0,0,64,2.5,0.708661','0.25,10,21,0.25,0.590551','0.5,10,72,0.5,0.669291','0.5,128,38,0.125,0.748031','1,0,67,1.5,0.283817'],'音符行だけを時刻順で出力し、打楽器ID128、0〜1の強さ、テンポ、ペダルを反映する');
 assert.equal(JSON.stringify(txtScore),txtBefore,'書き出しで編集データを変更しない');
 const txtShared={...txtScore,parts:[{id:7,program:0},{id:8,program:0}],notes:[{...txtScore.notes[2],tick:960,velocity:127}, {...txtScore.notes[1],velocity:127},txtScore.notes[0]],controllers:[{part:8,tick:960,type:'cc',number:7,value:127},{part:7,tick:1440,type:'cc',number:11,value:0}]};
-assert.deepEqual(serializeResoniteTxt(txtShared).trimEnd().split('\n').slice(2),['0.5,0,60,2,79','0.5,0,72,0.5,127','1,0,67,0.5,0'],'同じ音色の別パートの音量を保ち、最大値を超える場合の共通縮小と無音を反映する');
+assert.deepEqual(serializeResoniteTxt(txtShared).trimEnd().split('\n').slice(2),['0.5,0,60,2,0.620001','0.5,0,72,0.5,1','1,0,67,0.5,0'],'同じ音色の別パートの音量比を保ち、最大値1と無音0を出力する');
 assert.equal(serializeResoniteTxt({...txtShared,titleTranslations:{ja:'訳名',en:' '}}).split('\n')[1],'曲,名 副題\tja=訳名','ある訳名だけ出力する');
 assert.equal(serializeResoniteTxt({...txtShared,title:'',titleTranslations:undefined,notes:[],controllers:[]}).split('\n')[1],'','訳名もメインタイトルも空なら空の2行目を保つ');
 const txtApp=await readFile(new URL('./dist/mml-app.js',import.meta.url),'utf8'),txtSaved=[],txtErrors=[],txtControls=new Map([['saveTxt',{}],['saveMenu',{hidePopover(){this.closed=true;}}]]),txtContext=createContext({score:txtScore,textEditing:false,serializeResoniteTxt,$:id=>txtControls.get(id),attempt:fn=>{try{fn();}catch(e){txtErrors.push(e.message);}},download:(body,name,type)=>txtSaved.push({body,name,type})});

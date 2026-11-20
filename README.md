@@ -2,7 +2,7 @@
 
 公開サイト：**[musicbox.markn2000.com](https://musicbox.markn2000.com)**
 
-`dev` のMML操作試作は `/mml.html`。`npm start -- --lan` で起動し、表示されたLANアドレスの `/mml.html` を同じネットワークの別端末から開けます。ノート編集・途中テンポ・拍子変更・MML/MIDI保存を試せます。既存曲の再制作とResonite出力は未実装です。試作の検証は `node check-mml.mjs`。
+`dev` のMMLエディターは `/mml.html`。`npm start -- --lan` で起動し、表示されたLANアドレスの `/mml.html` を同じネットワークの別端末から開けます。ノート編集・途中テンポ・拍子変更・MML/MIDI保存と、[Resonite用TXTの書き出し](#resonite用txt-v1)を試せます。試作の検証は `node check-mml.mjs`。
 
 30音オルゴールや88鍵の楽器向けに、楽譜を編集・試聴してTXT・Resoniteパッケージ・MIDI・MP3・OGG（Vorbis）を書き出すWebアプリです。
 
@@ -24,8 +24,32 @@ Resoniteテンプレートは `dist/packages/`。更新は `node prepare-resonit
 
 MIDIはWorkerで取り込み、TXTは直接解析します。取り込み中も操作でき、中止・失敗時は編集中の楽譜を保持します。マス目は表示範囲だけを描画し、MIDIライブラリ・サンプル本文・音源は必要時に読み込みます。
 
-詳しい操作は [SPEC.md](./SPEC.md)、テキスト形式の仕様は [StepScore v1](https://github.com/MarkN2000/stepscore/blob/v1.0.1/SPEC.ja.md) を参照してください。
+詳しい操作は [SPEC.md](./SPEC.md)、StepScoreのテキスト形式は [StepScore v1](https://github.com/MarkN2000/stepscore/blob/v1.0.1/SPEC.ja.md) を参照してください。
 2026年10月の追加曲の底本・抜粋・移調・検証は [TEMPLATE_SOURCES.md](./TEMPLATE_SOURCES.md) に記録しています。
+
+## Resonite用TXT v1
+
+MMLエディターで「保存 → Resonite用TXTを保存」を選ぶと、Resoniteでの再生に使えるUTF-8の `.txt` を書き出します。
+
+```text
+v1,4
+サンプル曲	en=Sample Piece	ja=サンプル曲
+0,0,60,1,0.787402
+0.5,128,38,0.125,0.748031
+```
+
+| 行 | 内容 |
+| --- | --- |
+| 1行目 | `v1,曲の長さ`。曲末の休符を含みます。 |
+| 2行目 | メインタイトルに続けて、利用できる訳名を `en=…`・`ja=…` としてタブ区切りで並べます。 |
+| 3行目以降 | `開始時刻,音色ID,MIDIノート番号,音長,強さ`。カンマ区切りで1行に1音です。 |
+
+- **時間はすべて秒**で、小数点以下は最大3桁です。開始時刻は曲頭からの経過時間で、昇順に並びます。同時発音も可能です。テンポとペダルは時刻と音長に反映済みです。
+- **音色ID**は `0`〜`127` がGM音色、`128` がGM打楽器です。例の `128,38` はスネアを指します。
+- **強さ**は `0`〜`1` の数値で、小数点以下は最大6桁です。発音時の音量バランスを反映済みで、`0` は無音です。
+- **タイトル行**はタブで分割し、訳名は最初の `=` で言語と値に分けます。表示言語の訳名がなければメインタイトルを使います。
+
+詳しい仕様は [SPEC.md](./SPEC.md#resonite用txt-v1) を参照してください。
 
 ## ローカルで使う
 
